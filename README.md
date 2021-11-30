@@ -1,7 +1,9 @@
-vscode extension prettier 설치
-File > Preferences > Settings
-검색창에 editor format on save 를 입력 하고 Editor: Format On Save를 체크해주자.
-검색창에 editor Default Formatter 를 입력 Editor: Default Formatter를 esbenp.prettier-vscode로 선택
+### `vscode extensions`
+
+vscode extension prettier 설치\
+File > Preferences > Settings\
+검색창에 editor format on save 를 입력 하고 Editor: Format On Save를 체크해주자.\
+검색창에 editor Default Formatter 를 입력 Editor: Default Formatter를 esbenp.prettier-vscode로 선택\\
 Reactjs Code snippets 설치 : rsfp 하면 functional component 기본소스를 생성해준다.
 
 # Getting Started with Create React App
