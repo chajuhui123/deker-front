@@ -1,13 +1,33 @@
-import { Layout } from "antd";
+import { Route, Switch } from "react-router-dom";
+
 import "antd/dist/antd.css";
-const { Header, Footer, Content } = Layout;
+import "./App.css";
+
+import { Layout, Breadcrumb } from "antd";
+import NavigationBar from "./navigation/NavigationBar";
 
 function App() {
   return (
-    <Layout>
-      <Header>Header</Header>
-      <Content>Content</Content>
-      <Footer>Footer</Footer>
+    <Layout className="layout">
+      <Layout.Header style={{ background: "white" }}>
+        <NavigationBar />
+      </Layout.Header>
+      <Layout.Content className="content">
+        <Switch>
+          <Route path="/" exact>
+            <Breadcrumb style={{ margin: "16px 0" }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className="site-layout-content">Content</div>
+          </Route>
+          <Route path="/test" exact>
+            <div className="site-layout-content">Content</div>
+          </Route>
+        </Switch>
+      </Layout.Content>
+      <Layout.Footer>Footer</Layout.Footer>
     </Layout>
   );
 }
