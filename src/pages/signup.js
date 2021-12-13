@@ -1,0 +1,155 @@
+import React, { useRef, useState } from "react";
+import GoogleLoginBtn from "../oauth/google";
+import api from "../api/testFirebase";
+import "./signup.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import KakaoLoginBtn from "../oauth/kakao";
+
+function Signup(props) {
+  const history = useHistory();
+  const [userId, setUserId] = useState("");
+  const [inputPassword, setInputPassword] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [isSame, setIsSame] = useState(true);
+
+  const userIdRef = useRef();
+  const passwordRef = useRef();
+  const rePassword = useRef();
+  const nicknameRef = useRef();
+
+  const googleLoginHandler = (googleId, email, name) => {
+    setUserId(email);
+    setNickname(name);
+    setInputPassword(googleId);
+    setIsSame(true);
+    submit("2");
+  };
+
+  const onKakaoLoginSuccessHandler = (kakaoId, email, name) => {
+    setUserId(email);
+    setNickname(name);
+    setInputPassword(kakaoId);
+    setIsSame(true);
+    submit("3");
+  };
+
+  // 아이디 Input Handler
+  const idInputHandler = (e) => {
+    setUserId(e.target.value);
+  };
+  // 비밀번호 Input Handler
+  const pwInputHandler = (e) => {
+    setInputPassword(e.target.value);
+  };
+  // 닉네임 Input Handler
+  const nicknameInputHandler = (e) => {
+    setNickname(e.target.value);
+  };
+
+  // 비밀번호 확인 로직
+  const rePasswordHandler = () => {
+    if (rePassword.current.value === passwordRef.current.value) {
+      setIsSame(true);
+    } else {
+      setIsSame(false);
+    }
+  };
+
+  // 비밀번호 정합성 체크
+  // const checkPassword = () => {};
+
+  const submit = (accountType) => {
+    const signupData = {
+      userId: userIdRef.current.value,
+      inputPassword: passwordRef.current.value,
+      nickname: nicknameRef.current.value,
+      accountType: accountType || "1",
+    };
+    api("signup.json", signupData, fnCallback);
+  };
+
+  const fnCallback = (res) => {
+    console.log("fnCallback() res ::: ", res);
+    history.replace("/");
+  };
+
+  const signupSubmitHandler = (e) => {
+    e.preventDefault();
+    submit();
+  };
+
+  //const kakaoOnSuccessHandler = () => {};
+
+  return (
+    <form className="signup" onSubmit={signupSubmitHandler}>
+      <div className="signup">
+        <div className="signupInner">
+          <p className="signupTitle">회원가입</p>
+          <div className="snsArea">
+            <p className="snsTitle">SNS계정으로 간편 로그인/회원가입</p>
+            <div className="snsGoogle">
+              <GoogleLoginBtn onGoogleLogin={googleLoginHandler} />
+            </div>
+            <div className="snsKakao">
+              <KakaoLoginBtn onSuccess={onKakaoLoginSuccessHandler} />
+            </div>
+            <div className="snsNaver"></div>
+          </div>
+          <div className="userInfoArea">
+            <p className="userTitle">아이디</p>
+            <div>
+              <input
+                className="userInput"
+                type="text"
+                value={userId}
+                onChange={idInputHandler}
+                ref={userIdRef}
+              ></input>
+            </div>
+            <p className="userTitle">비밀번호</p>
+            <div>
+              <input
+                className="userInput"
+                type="password"
+                value={inputPassword}
+                onChange={pwInputHandler}
+                ref={passwordRef}
+              ></input>
+            </div>
+            <p className="userTitle">비밀번호확인</p>
+            <div>
+              <input
+                className="userInput"
+                type="password"
+                ref={rePassword}
+                onChange={rePasswordHandler}
+              ></input>
+            </div>
+            {!isSame && (
+              <h6 style={{ color: "red", margin: "5px" }}>
+                비밀번호가 같지 않습니다.
+              </h6>
+            )}
+            <p className="userTitle">닉네임</p>
+            <div>
+              <input
+                className="userInput"
+                type="text"
+                value={nickname}
+                onChange={nicknameInputHandler}
+                ref={nicknameRef}
+              ></input>
+            </div>
+            <p className="userTitle">약관동의</p>
+            <div>약관 영역</div>
+          </div>
+        </div>
+      </div>
+      <button className="signupBtn" type="submit">
+        회원가입 하기
+      </button>
+    </form>
+  );
+}
+
+export default Signup;
