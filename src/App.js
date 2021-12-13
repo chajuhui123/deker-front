@@ -5,6 +5,8 @@ import "./App.css";
 
 import { Layout, Breadcrumb } from "antd";
 import NavigationBar from "./navigation/NavigationBar";
+import Signup from "./pages/signup";
+import KakaoAuth from "./oauth/kakao";
 
 function App() {
   return (
@@ -22,9 +24,12 @@ function App() {
             </Breadcrumb>
             <div className="site-layout-content">Content</div>
           </Route>
-          <Route path="/test" exact>
-            <div className="site-layout-content">Content</div>
+          <Route path="/signup" exact>
+            <div className="site-layout-content">
+              <Signup />
+            </div>
           </Route>
+          <Route path="/oauth/kakao" component={KakaoAuth} exact></Route>
         </Switch>
       </Layout.Content>
       <Layout.Footer>Footer</Layout.Footer>
