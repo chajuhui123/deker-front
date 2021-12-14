@@ -8,11 +8,11 @@ function NavigationBar(props) {
     <>
       <div className="logo" />
       <Menu theme="light" mode="horizontal">
-        <Menu.Item>
+        <Menu.Item key="/">
           <Link to="/">Home</Link>
         </Menu.Item>
-        <Menu.Item>
-          <Link to="/test">Test</Link>
+        <Menu.Item key="/signup">
+          <Link to="/signup">회원가입</Link>
         </Menu.Item>
       </Menu>
     </>
