@@ -14,6 +14,9 @@ function NavigationBar(props) {
         <Menu.Item key="/signup">
           <Link to="/signup">회원가입</Link>
         </Menu.Item>
+        <Menu.Item key="/signupUserInfo">
+          <Link to="/signupUserInfo">사용자</Link>
+        </Menu.Item>
       </Menu>
     </>
   );

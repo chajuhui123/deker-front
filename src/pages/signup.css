@@ -136,3 +136,35 @@
   color: #f5f5f5;
   margin-top: 50px;
 }
+
+.guideArea {
+  position: relative;
+  display: inline-flex;
+  margin-top: 20px;
+}
+
+.guideText {
+  position: relative;
+  left: 50px;
+  width: 240px;
+  height: 27px;
+  text-align: left;
+  font: normal normal normal 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #514f4f;
+  opacity: 1;
+}
+
+.loginText {
+  position: relative;
+  left: 70px;
+  width: 60px;
+  height: 27px;
+  text-align: left;
+  text-decoration: underline;
+  font: normal normal bold 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #514f4f;
+  opacity: 1;
+  cursor: pointer;
+}
