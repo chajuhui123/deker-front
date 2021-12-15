@@ -6,6 +6,7 @@ import "./App.css";
 import { Layout, Breadcrumb } from "antd";
 import NavigationBar from "./navigation/NavigationBar";
 import Signup from "./pages/signup";
+import SignupAdditional from "./pages/signupAdditional";
 import KakaoAuth from "./oauth/kakao";
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
             </div>
           </Route>
           <Route path="/oauth/kakao" component={KakaoAuth} exact></Route>
+          <Route path="/signup/signupAdd" exact>
+            <div className="site-layout-content">
+              <SignupAdditional />
+            </div>
+          </Route>
         </Switch>
       </Layout.Content>
       <Layout.Footer>Footer</Layout.Footer>
