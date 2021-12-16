@@ -55,27 +55,31 @@ function ModifyUserInfo(props) {
       <p className="modifyUserInfoTitle">회원정보 변경</p>
         <div className="modifyUserInfoInner">
           <div className="userInfoArea">
-            <p className="userInfoTitle">프로필 사진</p>
-            <div className="profilePic">
-              
+            <div className="row1">
+              <p className="userInfoTitle">프로필 사진</p>
+              <div className="profilePic">
+                
+              </div>
+              <p className="userInfoTitle">이메일</p>
+              <p className="userInfoEmail">{}</p>
             </div>
-            <p className="userInfoTitle">이메일</p>
-            <p className="userInfoEmail">{}</p>
-            <p className="userInfoTitle">직군</p>
-            <div>
-              <Select options={jopGroupOptions} defaultValue={jopGroupOptions[0]} />
-            </div>
-            <p className="userInfoTitle">분위기</p>
-            <div>
-              <Select options={moodOptions} defaultValue={moodOptions[0]} />
-            </div>
-            <p className="userInfoTitle">태그</p>
-            <div>
-              <input
-                className="userTagInput"
-                type="text"
-                onChange={TagInputHandler}
-              ></input>
+            <div className="row2">
+              <p className="userInfoTitle">직군</p>
+              <div>
+                <Select options={jopGroupOptions} defaultValue={jopGroupOptions[0]} />
+              </div>
+              <p className="userInfoTitle">분위기</p>
+              <div>
+                <Select options={moodOptions} defaultValue={moodOptions[0]} />
+              </div>
+              <p className="userInfoTitle">태그</p>
+              <div>
+                <input
+                  className="userTagInput"
+                  type="text"
+                  onChange={TagInputHandler}
+                ></input>
+              </div>
             </div>
             <button className="signupAdditionalCmpltBtn" type="submit">변경</button>
           </div>
