@@ -24,6 +24,10 @@ a {
   font-size: 1.2rem;
 }
 
+.nav-logo {
+  height: 60px;
+}
+
 .nav-links {
   display: grid;
   grid-template-columns: repeat(4, auto);

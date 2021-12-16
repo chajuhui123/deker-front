@@ -7,7 +7,7 @@ import { Layout, Breadcrumb } from "antd";
 import NavigationBar from "./navigation/NavigationBar";
 import Signup from "./pages/signup";
 import KakaoAuth from "./oauth/kakao";
-// import SigninPage from "./pages/signin";
+import SigninPage from "./pages/signin";
 
 import SignupAdditional from "./pages/signupAdditional";
 import ModifyUserInfo from "./pages/modifyUserInfo";
@@ -34,6 +34,11 @@ function App() {
             </div>
           </Route>
           <Route path="/oauth/kakao" component={KakaoAuth} exact></Route>
+          <Route path="/signin" exact>
+            <div>
+              <SigninPage />
+            </div>
+          </Route>
           <Route path="/signupAdd" exact>
             <div className="site-layout-content">
               <SignupAdditional />

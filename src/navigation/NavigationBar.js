@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./NavigationBar.css";
 import { FiMenu, FiX } from "react-icons/fi";
+import logoImg from "../img/logo.png";
 
 function NavigationBar(props) {
   const [opend, setOpen] = useState(false); //false = bars, true = times
@@ -17,7 +18,7 @@ function NavigationBar(props) {
   return (
     <nav className="navbar">
       <Link to="/" className="nav-logo" onClick={resetClick}>
-        로고
+        {/* <img src={logoImg} alt="로고" /> */}
       </Link>
       <ul className={opend ? "nav-links active" : "nav-links"}>
         <li className="nav-item">
