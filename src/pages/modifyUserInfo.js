@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import {Link} from "react-router-dom"
 import Select from "react-select";
-import "./signupAdditional.css";
+import "./modifyUserInfo.css";
 
-function SignupAdditional(props) {
+function ModifyUserInfo(props) {
   const [tag, setTag] = useState("");
   const [profilePic, setProfilePic] = useState("");
  
@@ -50,24 +50,26 @@ function SignupAdditional(props) {
 //<ProfilePicBtn onClick={uploadProfilePicHandler} />
 // 건너뛰기 일단 home으로 가게 함
   return (
-    <form className="signupAdditional" onSubmit={signupAdditionalSubmitHandler}>
-      <div className="signupAdditional">
-        <div className="signupAdditionalInner">
-          <p className="signupAdditionalTitle">추가정보</p>
-          <div className="userAddInfoArea">
-            <p className="userAddInfoTitle">프로필 사진</p>
+    <form className="modifyUserInfo" onSubmit={signupAdditionalSubmitHandler}>
+      <div className="modifyUserInfo">
+      <p className="modifyUserInfoTitle">회원정보 변경</p>
+        <div className="modifyUserInfoInner">
+          <div className="userInfoArea">
+            <p className="userInfoTitle">프로필 사진</p>
             <div className="profilePic">
               
             </div>
-            <p className="userAddInfoTitle">직군</p>
+            <p className="userInfoTitle">이메일</p>
+            <p className="userInfoEmail">{}</p>
+            <p className="userInfoTitle">직군</p>
             <div>
               <Select options={jopGroupOptions} defaultValue={jopGroupOptions[0]} />
             </div>
-            <p className="userAddInfoTitle">관심분위기</p>
+            <p className="userInfoTitle">분위기</p>
             <div>
               <Select options={moodOptions} defaultValue={moodOptions[0]} />
             </div>
-            <p className="userAddInfoTitle">태그</p>
+            <p className="userInfoTitle">태그</p>
             <div>
               <input
                 className="userTagInput"
@@ -75,15 +77,12 @@ function SignupAdditional(props) {
                 onChange={TagInputHandler}
               ></input>
             </div>
+            <button className="signupAdditionalCmpltBtn" type="submit">변경</button>
           </div>
         </div>
       </div>
-      <button className="signupAdditionalCmpltBtn" type="submit">완료</button>
-      <Link to='/'>
-        <button className="signupAdditionalPassBtn">건너뛰기</button>
-      </Link>
-    </form>
+     </form>
   );
 };
 
-export default SignupAdditional;
+export default ModifyUserInfo;
