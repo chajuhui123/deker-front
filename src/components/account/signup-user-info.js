@@ -1,5 +1,5 @@
 import React from "react";
-import "./signup-user-info.css";
+import classes from "./signup-user-info.module.css";
 
 function SignupUserInfo(props) {
   const profileImageErrorHandler = (e) => {
@@ -18,24 +18,24 @@ function SignupUserInfo(props) {
   // const ATMO_COMBO = ["따뜻함", "차가움", "부드러움"];
   return (
     <form>
-      <div className="userDetailInfoArea">
-        <div className="userDetailInfoInner">
-          <div className="userDetailInfoTitleArea">
-            <p className="userDetailInfoTitle">추가정보</p>
+      <div className={classes.userDetailInfoArea}>
+        <div className={classes.userDetailInfoInner}>
+          <div className={classes.userDetailInfoTitleArea}>
+            <p className={classes.userDetailInfoTitle}>추가정보</p>
           </div>
-          <div className="userDetailInputArea">
-            <p className="userDetailInputTitle">프로필 사진</p>
-            <div className="userProfileImageBox">
+          <div className={classes.userDetailInputArea}>
+            <p className={classes.userDetailInputTitle}>프로필 사진</p>
+            <div className={classes.userProfileImageBox}>
               <img
-                className="userProfileImage"
+                className={classes.userProfileImage}
                 src=""
                 alt=""
                 onError={profileImageErrorHandler}
               />
             </div>
-            <p className="userDetailInputTitle">직군</p>
+            <p className={classes.userDetailInputTitle}>직군</p>
             <div>
-              <select defaultValue={0} className="userDetailSelect">
+              <select defaultValue={0} className={classes.userDetailSelect}>
                 {/* TODO : 데이터 가져와서 넣어줘야함 */}
                 {JOB_COMBO.map((item, index) => {
                   return (
@@ -59,9 +59,9 @@ function SignupUserInfo(props) {
                 })}
               </select>
             </div> */}
-            <p className="userDetailInputTitle">태그</p>
+            <p className={classes.userDetailInputTitle}>태그</p>
             <div>
-              <input className="userDetailInput" type="text"></input>
+              <input className={classes.userDetailInput} type="text"></input>
             </div>
           </div>
         </div>

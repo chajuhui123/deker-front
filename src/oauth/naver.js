@@ -1,34 +1,26 @@
-import { useCallback, useEffect } from "react";
-import { useLocation } from "react-router-dom/";
+import NaverLogin from "react-naver-login";
+import naverImg from "../img/naver.jpg";
+import classes from "./naver.module.css";
 
-const { naver } = window;
-
-function NaverLogin({ onSuccess }) {
-  const location = useLocation();
-
-  const getNaverToken = useCallback(() => {
-    if (!location.hash) return;
-    const token = location.hash.split("=")[1].split("&")[0];
-    console.log(token);
-    onSuccess(token);
-  }, [location.hash, onSuccess]);
-
-  const initializeNaverLogin = () => {
-    const naverLogin = new naver.LoginWithNaverId({
-      clientId: "8dvi0_ZoIcwCt8P7IVyJ",
-      callbackUrl: "http://localhost:3000/signup",
-      isPopup: true, // popup 형식으로 띄울것인지 설정
-      loginButton: { color: "white", type: 1, height: "70", opacity: 0 }, //버튼의 스타일, 타입, 크기를 지정
-    });
-    naverLogin.init();
+function NaverLoginBtn({ onSuccess }) {
+  const onNaverLoginSuccessHandler = (res) => {
+    const userId = res.id;
+    const email = res.email;
+    const nickname = res.nickname;
+    onSuccess(userId, email, nickname);
   };
-
-  useEffect(() => {
-    initializeNaverLogin();
-    getNaverToken();
-  }, [getNaverToken]);
-
-  return <div id="naverIdLogin" />;
+  return (
+    <NaverLogin
+      clientId="8dvi0_ZoIcwCt8P7IVyJ"
+      callbackUrl="http://localhost:3000/signup"
+      onSuccess={onNaverLoginSuccessHandler}
+      render={(renderProps) => (
+        <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
+          <img className={classes.naverImg} src={naverImg} alt="KakaoImage" />
+        </div>
+      )}
+    />
+  );
 }
 
-export default NaverLogin;
+export default NaverLoginBtn;
