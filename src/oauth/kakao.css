@@ -1,0 +1,18 @@
+.none {
+  display: none;
+}
+
+.snsKakao {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.kakaoImg {
+  width: 70px;
+  height: 70px;
+  background: transparent url("/src/img/kakao.png") 0% 0% no-repeat;
+  background-size: contain;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+}
