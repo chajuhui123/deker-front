@@ -11,6 +11,8 @@ function Signin() {
   // 로그인 요청
   const sumbmitHandler = (event) => {
     event.preventDefault();
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
   };
 
   const emailInputRef = useRef();
@@ -18,7 +20,9 @@ function Signin() {
 
   return (
     <div className="signin-box">
-      <img className="signin-logo" src={logoImg} alt="로고" />
+      <Link to="/">
+        <img className="signin-logo" src={logoImg} alt="로고" />
+      </Link>
 
       <div>
         <input

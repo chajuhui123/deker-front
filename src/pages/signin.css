@@ -62,4 +62,5 @@ input::placeholder {
 
 .signin-social-img img {
   height: 78px;
+  cursor: pointer;
 }

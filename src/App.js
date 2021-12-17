@@ -8,6 +8,7 @@ import NavigationBar from "./navigation/NavigationBar";
 import Signup from "./pages/signup";
 import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/signin";
+import ModifyPasswordPage from "./pages/modifyPassword";
 
 import SignupAdditional from "./pages/signupAdditional";
 import ModifyUserInfo from "./pages/modifyUserInfo";
@@ -47,6 +48,11 @@ function App() {
           <Route path="/modifyUserInfo" exact>
             <div className="site-layout-content">
               <ModifyUserInfo />
+            </div>
+          </Route>
+          <Route path="/modifyPassword" exact>
+            <div>
+              <ModifyPasswordPage />
             </div>
           </Route>
         </Switch>
