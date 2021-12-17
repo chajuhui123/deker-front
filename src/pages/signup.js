@@ -4,13 +4,23 @@ import api from "../api/testFirebase";
 import "./signup.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import KakaoLoginBtn from "../oauth/kakao";
+import NaverLogin from "react-naver-login";
+
+/**
+ * TODO
+ * 1. Naver Login
+ * 2. Back Endpoint connect
+ * 3. Redirect 'User Detail Info page' after signup and login
+ * 4. Focusing input area about Error occured
+ */
 
 function Signup(props) {
   const history = useHistory();
   const [userId, setUserId] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [nickname, setNickname] = useState("");
-  const [isSame, setIsSame] = useState(true);
+  const [isSame, setIsSame] = useState(null);
+  const [checkPassword, setCheckPassword] = useState(null);
 
   const userIdRef = useRef();
   const passwordRef = useRef();
@@ -33,6 +43,10 @@ function Signup(props) {
     submit("3");
   };
 
+  // const onNaverLoginSuccessHandler = (token) => {
+  //   console.log("onNaverLoginSuccessHandler() token :: ", token);
+  // };
+
   // 아이디 Input Handler
   const idInputHandler = (e) => {
     setUserId(e.target.value);
@@ -40,6 +54,13 @@ function Signup(props) {
   // 비밀번호 Input Handler
   const pwInputHandler = (e) => {
     setInputPassword(e.target.value);
+    const check =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    if (check.test(passwordRef.current.value)) {
+      setCheckPassword(true);
+    } else {
+      setCheckPassword(false);
+    }
   };
   // 닉네임 Input Handler
   const nicknameInputHandler = (e) => {
@@ -55,9 +76,6 @@ function Signup(props) {
     }
   };
 
-  // 비밀번호 정합성 체크
-  // const checkPassword = () => {};
-
   const submit = (accountType) => {
     const signupData = {
       userId: userIdRef.current.value,
@@ -70,7 +88,7 @@ function Signup(props) {
 
   const fnCallback = (res) => {
     console.log("fnCallback() res ::: ", res);
-    history.replace("/");
+    history.push("/signupUserInfo");
   };
 
   const signupSubmitHandler = (e) => {
@@ -78,22 +96,43 @@ function Signup(props) {
     submit();
   };
 
-  //const kakaoOnSuccessHandler = () => {};
+  const loginPageHandler = () => {
+    history.push("/login");
+  };
 
   return (
-    <form className="signup" onSubmit={signupSubmitHandler}>
+    <form onSubmit={signupSubmitHandler}>
       <div className="signup">
         <div className="signupInner">
           <p className="signupTitle">회원가입</p>
           <div className="snsArea">
             <p className="snsTitle">SNS계정으로 간편 로그인/회원가입</p>
-            <div className="snsGoogle">
-              <GoogleLoginBtn onGoogleLogin={googleLoginHandler} />
-            </div>
-            <div className="snsKakao">
+            <div className="snsBtnArea">
+              <div className="snsGoogle">
+                <GoogleLoginBtn
+                  onGoogleLogin={googleLoginHandler}
+                  render={(renderProps) => (
+                    <div
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    ></div>
+                  )}
+                />
+              </div>
               <KakaoLoginBtn onSuccess={onKakaoLoginSuccessHandler} />
+              <div className="snsNaver" id="naverIdLogin">
+                <NaverLogin
+                  clientId="8dvi0_ZoIcwCt8P7IVyJ"
+                  callbackUrl="http://localhost:3000"
+                  render={(renderProps) => (
+                    <div
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    ></div>
+                  )}
+                />
+              </div>
             </div>
-            <div className="snsNaver"></div>
           </div>
           <div className="userInfoArea">
             <p className="userTitle">아이디</p>
@@ -115,6 +154,12 @@ function Signup(props) {
                 onChange={pwInputHandler}
                 ref={passwordRef}
               ></input>
+              {checkPassword !== null && !checkPassword && (
+                <h6 style={{ color: "red", margin: "5px" }}>
+                  영문, 숫자, 특수문자를 포함한 8자 이상 비밀번호로
+                  설정해주세요.
+                </h6>
+              )}
             </div>
             <p className="userTitle">비밀번호확인</p>
             <div>
@@ -125,7 +170,7 @@ function Signup(props) {
                 onChange={rePasswordHandler}
               ></input>
             </div>
-            {!isSame && (
+            {isSame !== null && !isSame && (
               <h6 style={{ color: "red", margin: "5px" }}>
                 비밀번호가 같지 않습니다.
               </h6>
@@ -145,9 +190,17 @@ function Signup(props) {
           </div>
         </div>
       </div>
-      <button className="signupBtn" type="submit">
-        회원가입 하기
-      </button>
+      {isSame && checkPassword && (
+        <button className="signupBtn" type="submit">
+          회원가입 하기
+        </button>
+      )}
+      <div className="guideArea">
+        <p className="guideText">이미 아이디가 있으신가요?</p>
+        <p className="loginText" onClick={loginPageHandler}>
+          로그인
+        </p>
+      </div>
     </form>
   );
 }

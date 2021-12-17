@@ -1,98 +1,84 @@
 .signup {
-  position: relative;
   width: 476px;
   height: 1340px;
   border: 1px solid #707070a3;
   border-radius: 4px;
-  opacity: 1;
-  margin: auto;
+  margin: 50px auto;
 }
 
 .signupInner {
-  position: relative;
-  top: 34px;
-  left: 40px;
   width: 396px;
   height: 1300px;
+  margin: 30px;
+  border: black 1px solid;
 }
 
 .signupTitle {
-  position: relative;
-  top: 0px;
-  left: 0px;
   width: 140px;
   height: 46px;
   text-align: left;
   font: normal normal bold 35px/47px Segoe UI;
   letter-spacing: 0px;
   color: #000000;
-  opacity: 1;
-  margin: 0px;
 }
 
 .snsArea {
-  position: relative;
-  display: inline-flex;
-  top: 40px;
-  left: 40px;
   width: 317px;
   height: 250px;
+  border: 1px black solid;
   border-bottom: gray 2px solid;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .snsTitle {
-  position: relative;
   width: 317px;
   height: 27px;
   text-align: left;
   font: normal normal bold 20px/64px Ubuntu;
   letter-spacing: 0px;
   color: #57575885;
-  opacity: 1;
+}
+
+.snsBtnArea {
+  margin-top: 50px;
 }
 
 .snsGoogle {
-  position: relative;
-  left: 10px;
+  display: inline-block;
+  vertical-align: middle;
   width: 70px;
   height: 70px;
   background: transparent url("/src/img/google.jpg") 0% 0% no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: 1;
   border: none;
   cursor: pointer;
 }
 
 .snsKakao {
-  position: relative;
-  left: 45px;
+  display: inline-block;
+  vertical-align: middle;
   width: 70px;
   height: 70px;
   background: transparent url("/src/img/kakao.png") 0% 0% no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: 1;
   border: none;
   cursor: pointer;
 }
 
 .snsNaver {
-  position: relative;
-  left: 90px;
+  display: inline-block;
+  vertical-align: middle;
   width: 70px;
   height: 70px;
   background: transparent url("/src/img/naver.jpg") 0% 0% no-repeat;
   background-size: contain;
   background-position: center;
-  opacity: 1;
   border: none;
   cursor: pointer;
 }
-
+/*
 .userInfoArea {
   position: relative;
   top: 80px;
@@ -136,3 +122,35 @@
   color: #f5f5f5;
   margin-top: 50px;
 }
+
+.guideArea {
+  position: relative;
+  display: inline-flex;
+  margin-top: 20px;
+}
+
+.guideText {
+  position: relative;
+  left: 50px;
+  width: 240px;
+  height: 27px;
+  text-align: left;
+  font: normal normal normal 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #514f4f;
+  opacity: 1;
+}
+
+.loginText {
+  position: relative;
+  left: 70px;
+  width: 60px;
+  height: 27px;
+  text-align: left;
+  text-decoration: underline;
+  font: normal normal bold 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #514f4f;
+  opacity: 1;
+  cursor: pointer;
+} */
