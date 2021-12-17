@@ -15,7 +15,7 @@ function SignupUserInfo(props) {
     "쇼핑",
     "기타",
   ];
-  const ATMO_COMBO = ["따뜻함", "차가움", "부드러움"];
+  // const ATMO_COMBO = ["따뜻함", "차가움", "부드러움"];
   return (
     <form>
       <div className="userDetailInfoArea">
@@ -47,10 +47,9 @@ function SignupUserInfo(props) {
                 ;
               </select>
             </div>
-            <p className="userDetailInputTitle">관심분위기</p>
+            {/* <p className="userDetailInputTitle">관심분위기</p>
             <div>
               <select defaultValue={0} className="userDetailSelect">
-                {/* TODO : 데이터 가져와서 넣어줘야함 */}
                 {ATMO_COMBO.map((item, index) => {
                   return (
                     <option key={index} value={index}>
@@ -59,7 +58,7 @@ function SignupUserInfo(props) {
                   );
                 })}
               </select>
-            </div>
+            </div> */}
             <p className="userDetailInputTitle">태그</p>
             <div>
               <input className="userDetailInput" type="text"></input>

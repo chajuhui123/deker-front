@@ -4,6 +4,7 @@ import api from "../api/testFirebase";
 import "./signup.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import KakaoLoginBtn from "../oauth/kakao";
+import NaverLogin from "react-naver-login";
 
 /**
  * TODO
@@ -41,6 +42,10 @@ function Signup(props) {
     setIsSame(true);
     submit("3");
   };
+
+  // const onNaverLoginSuccessHandler = (token) => {
+  //   console.log("onNaverLoginSuccessHandler() token :: ", token);
+  // };
 
   // 아이디 Input Handler
   const idInputHandler = (e) => {
@@ -96,19 +101,38 @@ function Signup(props) {
   };
 
   return (
-    <form className="signup" onSubmit={signupSubmitHandler}>
+    <form onSubmit={signupSubmitHandler}>
       <div className="signup">
         <div className="signupInner">
           <p className="signupTitle">회원가입</p>
           <div className="snsArea">
             <p className="snsTitle">SNS계정으로 간편 로그인/회원가입</p>
-            <div className="snsGoogle">
-              <GoogleLoginBtn onGoogleLogin={googleLoginHandler} />
-            </div>
-            <div className="snsKakao">
+            <div className="snsBtnArea">
+              <div className="snsGoogle">
+                <GoogleLoginBtn
+                  onGoogleLogin={googleLoginHandler}
+                  render={(renderProps) => (
+                    <div
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    ></div>
+                  )}
+                />
+              </div>
               <KakaoLoginBtn onSuccess={onKakaoLoginSuccessHandler} />
+              <div className="snsNaver" id="naverIdLogin">
+                <NaverLogin
+                  clientId="8dvi0_ZoIcwCt8P7IVyJ"
+                  callbackUrl="http://localhost:3000"
+                  render={(renderProps) => (
+                    <div
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    ></div>
+                  )}
+                />
+              </div>
             </div>
-            <div className="snsNaver"></div>
           </div>
           <div className="userInfoArea">
             <p className="userTitle">아이디</p>
