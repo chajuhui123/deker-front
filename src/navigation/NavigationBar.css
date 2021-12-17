@@ -33,7 +33,7 @@ a {
   display: flex;
   grid-template-columns: repeat(2, auto);
   grid-gap: 20px;
-  margin-inline-start: 0px;
+  margin-inline-start: 10px;
 }
 
 .nav-right {

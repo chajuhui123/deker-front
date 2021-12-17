@@ -1,31 +1,34 @@
-import React from "react";
 import GoogleLogin from "react-google-login";
-import "./google.css";
+import googleImage from "../img/google.jpg";
+import classes from "./google.module.css";
 
 const clientId =
   "552147493556-b2fe3c27j51ir49vlirakffs87ivtk0s.apps.googleusercontent.com";
 
-export default function GoogleLoginBtn({ onGoogleLogin }) {
-  const onSuccess = async (response) => {
+export default function GoogleLoginBtn({ onSuccess }) {
+  const onGoogleLoginSuccessHandler = async (response) => {
     const {
       googleId,
       profileObj: { email, name },
     } = response;
-    await onGoogleLogin(googleId, email, name);
-  };
-
-  const onFailure = (error) => {
-    console.log(error);
+    await onSuccess(googleId, email, name);
   };
 
   return (
-    <div className="none">
-      <GoogleLogin
-        clientId={clientId}
-        responseType={"id_token"}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-      />
-    </div>
+    <GoogleLogin
+      clientId={clientId}
+      onSuccess={onGoogleLoginSuccessHandler}
+      onFail={console.error}
+      onLogout={console.info}
+      render={(renderProps) => (
+        <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
+          <img
+            className={classes.googleImg}
+            src={googleImage}
+            alt="GoogleImage"
+          />
+        </div>
+      )}
+    />
   );
 }

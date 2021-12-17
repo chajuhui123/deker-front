@@ -1,25 +1,25 @@
 import { Route, Switch } from "react-router-dom";
 
 import "antd/dist/antd.css";
-import "./App.css";
+import classes from "./App.module.css";
 
 import { Layout, Breadcrumb } from "antd";
 import NavigationBar from "./navigation/NavigationBar";
-import Signup from "./pages/signup";
 import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/SigninPage";
 import ModifyPasswordPage from "./pages/modifyPassword";
 
 import SignupAdditional from "./pages/signupAdditional";
 import ModifyUserInfo from "./pages/modifyUserInfo";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
     <>
       <NavigationBar />
-      <Layout className="layout">
+      <Layout className={classes.layout}>
         <Layout.Header style={{ background: "white" }}></Layout.Header>
-        <Layout.Content className="content">
+        <Layout.Content className={classes.content}>
           <Switch>
             <Route path="/" exact>
               <Breadcrumb style={{ margin: "16px 0" }}>
@@ -31,7 +31,7 @@ function App() {
             </Route>
             <Route path="/signup" exact>
               <div className="site-layout-content">
-                <Signup />
+                <SignupPage />
               </div>
             </Route>
             <Route path="/oauth/kakao" component={KakaoAuth} exact></Route>

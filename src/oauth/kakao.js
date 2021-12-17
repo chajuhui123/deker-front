@@ -1,6 +1,6 @@
 import KakaoLogin from "react-kakao-login";
 import kakaoImage from "../img/kakao.png";
-import "./kakao.css";
+import classes from "./kakao.module.css";
 
 export default function KakaoLoginBtn({ onSuccess }) {
   const onKakaoLoginSuccessHandler = (res) => {
@@ -16,12 +16,8 @@ export default function KakaoLoginBtn({ onSuccess }) {
       onFail={console.error}
       onLogout={console.info}
       render={(renderProps) => (
-        <div
-          className="snsKakao"
-          onClick={renderProps.onClick}
-          disabled={renderProps.disabled}
-        >
-          <img className="kakaoImg" src={kakaoImage} alt="KakaoImage" />
+        <div onClick={renderProps.onClick} disabled={renderProps.disabled}>
+          <img className={classes.kakaoImg} src={kakaoImage} alt="KakaoImage" />
         </div>
       )}
     />

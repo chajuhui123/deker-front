@@ -3,7 +3,7 @@ import googleImg from "../../img/google.jpg";
 import kakaoImg from "../../img/kakao.png";
 import naverImg from "../../img/naver.jpg";
 
-function SigninForm() {
+function SocialAuthForm() {
   return (
     <div className="signin-social">
       <p>SNS계정으로 간편 로그인/회원가입</p>
@@ -16,4 +16,4 @@ function SigninForm() {
   );
 }
 
-export default SigninForm;
+export default SocialAuthForm;
