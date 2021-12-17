@@ -41,11 +41,13 @@
 
 .snsBtnArea {
   margin-top: 50px;
+  display: flex;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 30px;
+  margin-inline-start: 20px;
 }
 
 .snsGoogle {
-  display: inline-block;
-  vertical-align: middle;
   width: 70px;
   height: 70px;
   background: transparent url("/src/img/google.jpg") 0% 0% no-repeat;
@@ -56,8 +58,6 @@
 }
 
 .snsKakao {
-  display: inline-block;
-  vertical-align: middle;
   width: 70px;
   height: 70px;
   background: transparent url("/src/img/kakao.png") 0% 0% no-repeat;
@@ -68,8 +68,6 @@
 }
 
 .snsNaver {
-  display: inline-block;
-  vertical-align: middle;
   width: 70px;
   height: 70px;
   background: transparent url("/src/img/naver.jpg") 0% 0% no-repeat;

@@ -134,6 +134,7 @@ function Signup(props) {
               </div>
             </div>
           </div>
+          {/* asdfafdsafds */}
           <div className="userInfoArea">
             <p className="userTitle">아이디</p>
             <div>
