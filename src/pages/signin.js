@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./signin.css";
+import { isEmail, isPassword } from "../api/check";
 // img import
 import logoImg from "../img/logo.png";
 import googleImg from "../img/google.jpg";
@@ -8,15 +9,29 @@ import kakaoImg from "../img/kakao.png";
 import naverImg from "../img/naver.jpg";
 
 function Signin() {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const [isVaildEmail, setIsVaildEmail] = useState(true);
+  const [isVaildPass, setIsVaildPass] = useState(true);
+
   // 로그인 요청
-  const sumbmitHandler = (event) => {
+  const SigninHandler = (event) => {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+    // 이메일 유효성 검사
+    if (!isEmail(enteredEmail)) {
+      setIsVaildEmail(false);
+    } else {
+      setIsVaildEmail(true);
+    }
+    // 비밀번호 유효성 검사
+    if (!isPassword(enteredPassword)) {
+      setIsVaildPass(false);
+    } else {
+      setIsVaildPass(true);
+    }
   };
-
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
 
   return (
     <div className="signin-box">
@@ -44,7 +59,20 @@ function Signin() {
           ref={passwordInputRef}
         />
       </div>
-      <button className="signin-btn">로그인</button>
+      <div className="signin-valid">
+        {!isVaildEmail && isVaildPass && (
+          <p>올바른 이메일 형태를 입력해주세요.</p>
+        )}
+        {isVaildEmail && !isVaildPass && (
+          <p>영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.</p>
+        )}
+        {!isVaildEmail && !isVaildPass && (
+          <p>이메일과 비밀번호를 다시 확인해주세요.</p>
+        )}
+      </div>
+      <button className="signin-btn" onClick={SigninHandler}>
+        로그인
+      </button>
 
       <div className="signin-links">
         <Link to="/" className="signin-link">
