@@ -7,7 +7,7 @@ import { Layout, Breadcrumb } from "antd";
 import NavigationBar from "./navigation/NavigationBar";
 import Signup from "./pages/signup";
 import KakaoAuth from "./oauth/kakao";
-import SigninPage from "./pages/signin";
+import SigninPage from "./pages/SigninPage";
 import ModifyPasswordPage from "./pages/modifyPassword";
 
 import SignupAdditional from "./pages/signupAdditional";

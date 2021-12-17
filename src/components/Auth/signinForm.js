@@ -1,36 +1,76 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import "./signin.css";
-import { isEmail, isPassword } from "../api/check";
+import { useHistory } from "react-router-dom";
+import "./signinForm.css";
+import { isEmail, isPassword } from "../../api/check";
 // img import
-import logoImg from "../img/logo.png";
-import googleImg from "../img/google.jpg";
-import kakaoImg from "../img/kakao.png";
-import naverImg from "../img/naver.jpg";
+import logoImg from "../../img/logo.png";
+import googleImg from "../../img/google.jpg";
+import kakaoImg from "../../img/kakao.png";
+import naverImg from "../../img/naver.jpg";
 
-function Signin() {
+function SigninForm() {
+  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isVaildEmail, setIsVaildEmail] = useState(true);
   const [isVaildPass, setIsVaildPass] = useState(true);
 
-  // 로그인 요청
+  // 로그인 요청 핸들러
   const SigninHandler = (event) => {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+
     // 이메일 유효성 검사
     if (!isEmail(enteredEmail)) {
       setIsVaildEmail(false);
     } else {
       setIsVaildEmail(true);
     }
+
     // 비밀번호 유효성 검사
     if (!isPassword(enteredPassword)) {
       setIsVaildPass(false);
     } else {
       setIsVaildPass(true);
     }
+
+    let url = "";
+    fetch(url, {
+      method: "POST",
+      // JSON 데이터로 변환
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "인증 실패";
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      // 성공 사례 가져오기
+      .then((data) => {
+        const expirationTime = new Date(
+          new Date().getTime() + +data.expiresIn * 1000
+        );
+        // authCtx.login(data.idToken, expirationTime.toISOString());
+        history.replace("/");
+      })
+      // 혹은 오류를 잡아내는 블록을 추가
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   return (
@@ -82,17 +122,8 @@ function Signin() {
           회원가입
         </Link>
       </div>
-
-      <div className="signin-social">
-        <p>SNS계정으로 간편 로그인/회원가입</p>
-        <div className="signin-social-img">
-          <img src={googleImg} alt="구글" />
-          <img src={kakaoImg} alt="카카오" />
-          <img src={naverImg} alt="네이버" />
-        </div>
-      </div>
     </div>
   );
 }
 
-export default Signin;
+export default SigninForm;

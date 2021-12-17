@@ -4,10 +4,10 @@
   --accent-color: #4242e2;
   --icons-color: rgb(152, 187, 201);
   --bodybackground-color: #ffffff;
-  border: 1px #70707021;
 }
 
 a {
+  font-size: 14px;
   text-decoration: none;
   color: var(--text-color);
 }
@@ -17,22 +17,35 @@ a {
   width: 100%;
   background-color: var(--bodybackground-color);
   color: var(--text-color);
+  border: 1px solid #70707021;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
   font-size: 1.2rem;
+  justify-content: space-between;
 }
 
-.nav-logo {
-  height: 60px;
+.nav-logo img {
+  height: 50px;
+}
+
+.nav-left {
+  display: flex;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 20px;
+  margin-inline-start: 0px;
+}
+
+.nav-right {
+  display: flex;
 }
 
 .nav-links {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: 20px;
+  display: flex;
   list-style: none;
+  width: 100%;
+  margin: auto;
+  justify-content: space-between;
 }
 
 .nav-link {
@@ -45,10 +58,39 @@ a {
   color: var(--aceent-color);
 }
 
+.nav-basket {
+  margin-block: auto;
+  background-color: #f2f5f8;
+  border: 1px solid #70707021;
+  border-radius: 100%;
+  padding: 5px;
+  margin-inline: 33px;
+  cursor: pointer;
+}
 .nav-icon {
   display: none;
   font-size: 2rem;
   cursor: pointer;
+}
+
+.nav-input {
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #70707021;
+  background-color: #f2f5f8;
+  border-right: none;
+}
+
+.nav-input::placeholder {
+  color: #69a3a2;
+  font-weight: 400;
+  font-size: 14px;
+  margin-block: auto;
+}
+.nav-btn {
+  color: white;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid var(--text-color);
+  background-color: var(--text-color);
 }
 
 @media only screen and (max-width: 500px) {
