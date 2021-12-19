@@ -12,10 +12,41 @@ import ModifyPasswordPage from "./pages/modifyPassword";
 import SignupAdditional from "./pages/signupAdditional";
 import ModifyUserInfo from "./pages/modifyUserInfo";
 import SignupPage from "./pages/SignupPage";
+import ReactModal from "react-modal";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { modalAction } from "./store/modal-slice";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
 function App() {
+  const isOpen = useSelector((state) => state.modal.isOpen);
+  const dispatch = useDispatch();
+  const openModalEventHandler = () => {
+    dispatch(modalAction.modalPopup({ modalId: "test", isOpen: true }));
+  };
+  const closeModalEventHandler = () => {
+    dispatch(modalAction.modalPopup({ modalId: "test", isOpen: false }));
+  };
   return (
     <>
+      <button
+        onClick={openModalEventHandler}
+        style={{ position: "absolute", opacity: 0 }}
+      ></button>
+      <ReactModal isOpen={isOpen} style={customStyles}>
+        <SignupPage />
+        <button onClick={closeModalEventHandler}>X</button>
+      </ReactModal>
       <NavigationBar />
       <Layout className={classes.layout}>
         <Layout.Header style={{ background: "white" }}></Layout.Header>
