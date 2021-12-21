@@ -2,6 +2,108 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+:root {
+  --main_color: #4242e2;
+  --background_color: #ffffff;
+  --icons_color: rgb(152, 187, 201);
+}
+
+.h1 {
+  text-align: center;
+  font: normal normal bold 35px/47px Roboto;
+  color: #000000;
+}
+
+.h2 {
+  text-align: center;
+  font: normal normal bold 20px/27px Roboto;
+  color: #000000;
+}
+
+.h3 {
+  text-align: center;
+  font: normal normal bold 15px/25px Roboto;
+  color: #000000;
+}
+
+.p {
+  margin: 0 10px;
+  color: #3f3f42;
+}
+
+.input {
+  /* 가로세로(width, height) 알아서 조정 */
+  width: 396px;
+  height: 49px;
+  border: 1px solid #a6a6a7;
+}
+
+.activeBtn {
+  /* 버튼 부분_가로세로(width, height) 알아서 조정 */
+  width: 212px;
+  height: 70px;
+  background: var(--main_color) 0% 0% no-repeat padding-box;
+  border: 1px solid #70707021;
+  border-radius: 4px;
+  /* 버튼 안에 텍스트 부분_텍스트크기(30px/40px) 알아서 조정 */
+  text-align: center;
+  font: normal normal bold 30px/40px Roboto;
+  letter-spacing: 0px;
+  color: #f5f5f5;
+}
+
+.inactiveBtn {
+  /* 버튼 부분_가로세로(width, height) 알아서 조정 */
+  width: 212px;
+  height: 70px;
+  background: #f8f8fa 0% 0% no-repeat padding-box;
+  border: 1px solid var(--main_color);
+  border-radius: 4px;
+  /* 버튼 안에 텍스트 부분_텍스트크기(30px/40px) 알아서 조정 */
+  text-align: center;
+  font: normal normal bold 30px/40px Roboto;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+}
+
+.InnerArea {
+  /* 가로세로(width, height) 알아서 조정 */
+  width: 832px;
+  height: 499px;
+  background: var(--background_color) 0% 0% no-repeat padding-box;
+  border: 1px solid #707070;
+  border-radius: 8px;
+  opacity: 1;
+}
+
+.tagChk {
+  /* 태그 확인 부분 */
+  width: 97px;
+  height: 44px;
+  border: 1px solid var(--main_color);
+  border-radius: 13px;
+  /* 태그 확인 안에 텍스트 부분 */
+  text-align: center;
+  font: normal normal medium 13px/25px Roboto;
+  letter-spacing: 0px;
+  color: var(--main_color);
+}
+
+.footer {
+  /* 수정 금지 */
+  /* footer 영역 */
+  width: 1920px;
+  height: 186px;
+  background: #f0f0f0 0% 0% no-repeat padding-box;
+  opacity: 1;
+  /* footer 텍스트 부분 */
+  width: 225px;
+  height: 19px;
+  text-align: center;
+  font: normal normal medium 14px/19px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+}
 
 html,
 body,
@@ -10,13 +112,9 @@ span,
 applet,
 object,
 iframe,
-h1,
-h2,
-h3,
 h4,
 h5,
 h6,
-p,
 blockquote,
 pre,
 a,
@@ -71,7 +169,6 @@ details,
 embed,
 figure,
 figcaption,
-footer,
 header,
 hgroup,
 menu,
