@@ -1,23 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialModalState = {
-  type: "",
+  modalId: "",
   isOpen: false,
-  message: "",
+  cont: null,
 };
 
 const modalSlice = createSlice({
   name: "modal",
-  initialModalState: initialModalState,
+  initialState: initialModalState,
   reducers: {
     modalPopup: (state, action) => {
-      state.type = action.payload.type;
       state.isOpen = action.payload.isOpen;
-      state.message = action.payload.message;
+      state.cont = action.payload.cont;
     },
   },
 });
 
-export const userAction = modalSlice.actions;
+export const modalAction = modalSlice.actions;
 
 export default modalSlice;

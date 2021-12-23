@@ -7,7 +7,7 @@ const initialUserState = {
 
 const userSlice = createSlice({
   name: "user",
-  initialUserState: initialUserState,
+  initialState: initialUserState,
   reducers: {
     login: (state, action) => {
       // 1. action payload에서 id, password 가져옴
