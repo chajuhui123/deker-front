@@ -1,8 +1,12 @@
+### HISTORY
 
-예시
+---
 
---- 2021.12.19. 권예림 ---
+### 2021.12.23. 김효진
 
-App.js 로그인 버튼 추가
-Component folder Input 컴포넌트 생성
+modal.js 생성
+● 사용법
 
+1. import { useDispatch } from "react-redux";
+2. const dispatch = useDispatch();
+3. dispatch(modalAction.modalPopup({ id:'생략가능 or unique한 string', isOpen: false, cont: <Component /> }));
