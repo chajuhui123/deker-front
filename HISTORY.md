@@ -1,17 +1,8 @@
-### HISTORY
 
----
+예시
 
-### 2021. 12. 21. 차주희
+--- 2021.12.19. 권예림 ---
 
-전체 레이아웃 수정
--> 네브바, 콘텐츠, 푸터 구성으로 변경
+App.js 로그인 버튼 추가
+Component folder Input 컴포넌트 생성
 
-### 2021.12.23. 김효진
-
-modal.js 생성
-● 사용법
-
-1. import { useDispatch } from "react-redux";
-2. const dispatch = useDispatch();
-3. dispatch(modalAction.modalPopup({ id:'생략가능 or unique한 string', isOpen: false, cont: <Component /> }));

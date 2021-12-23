@@ -6,8 +6,6 @@ File > Preferences > Settings\
 검색창에 editor Default Formatter 를 입력 Editor: Default Formatter를 esbenp.prettier-vscode로 선택\
 Reactjs Code snippets 설치 : rsfp 하면 functional component 기본소스를 생성해준다.
 
----
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
