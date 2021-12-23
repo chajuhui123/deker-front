@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 import api from "../../api/testFirebase";
 import classes from "./signup.module.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import SocialLogin from "../common/socialLogin";
+import SocialLogin from "./socialLogin";
 
 import { isPassword } from "../../api/check";
 
