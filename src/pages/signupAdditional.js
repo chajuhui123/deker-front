@@ -11,7 +11,7 @@ function SignupAdditional(props) {
     setProfilePic(pic);
   };
 
-  // 직군 select  option
+  // 직군 select option
   const jopGroupOptions = useMemo(
     () => [
       { value: "job1", label: "Job1" },

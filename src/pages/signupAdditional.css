@@ -1,83 +1,85 @@
+.signupAddLayout {
+  position: relative;
+  width: 476px;
+  /* height: 가변으로 수정 */
+  border: 1px solid #707070a3; /* 레이아웃 확인용, 나중에 삭제*/
+}
 .signupAdditional {
-    position: relative;
-    width: 476px;
-    height: 700px;
-    border: 1px solid #707070A3;
-    border-radius: 4px;
-    opacity: 1;
-    margin: auto;
-  }
-  
-  .signupAdditionalInner {
-    position: relative;
-    top: 34px;
-    left: 40px;
-    width: 396px;
-    height: 600px;
-  }
+  position: relative;
+  width: 476px;
+  height: 700px; /*태그 따라서 늘어나게 수정*/
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #707070a3;
+  border-radius: 4px;
+  opacity: 1;
+  margin: auto;
+}
 
- .signupAdditionalTitle {
-    position: relative;
-    top: 0px;
-    left: 0px;
-    width: 140px;
-    height: 46px;
-    text-align: left;
-    font: normal normal bold 35px/47px Segoe UI;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
-    margin: 0px;
- }
+.signupAdditionalInner {
+  position: relative;
+  top: 34px;
+  left: 40px;
+  width: 396px;
+  height: 600px;
+}
 
- .userAddInfoTitle{
-    margin-top: 50px;
-    position: relative;
-    width: 317px;
-    height: 27px;
-    text-align: left;
-    font: normal normal bold 20px/27px Segoe UI;
-    letter-spacing: 0px;
-    color: #000000;
-    opacity: 1;
- }
+.signupAdditionalTitle {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 140px;
+  height: 46px;
+  text-align: left;
+  font: normal normal bold 35px/47px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  margin: 0px;
+}
 
- .userTagInput{
-    position: relative;
-    width: 396px;
-    height: 49px;
-    border: 1px solid #A6A6A7;
-    border-radius: 8px;
-    opacity: 1;
- }
+.userAddInfoTitle {
+  margin-top: 50px;
+  position: relative;
+  width: 317px;
+  height: 27px;
+  text-align: left;
+  font: normal normal bold 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
 
- .signupAdditionalCmpltBtn{
-    margin-top: 50px;
-    width: 212px;
-    height: 70px;
-    background: #4242E2 0% 0% no-repeat padding-box;
-    border: 1px solid #70707021;
-    border-radius: 4px;
-    opacity: 1;
-    text-align: center;
-    font: normal normal bold 30px/40px Segoe UI;
-    letter-spacing: 0px;
-    color: #F5F5F5;
-    opacity: 1;
- }
+.signupAddBtns {
+  margin-top: 50px;
+  width: 476px;
+  height: 70px;
+}
 
- .signupAdditionalPassBtn{
-    margin-top: 50px;
-    margin-left: 50px;
-    width: 212px;
-    height: 70px;
-    background: #F8F8FA 0% 0% no-repeat padding-box;
-    border: 1px solid #4242E2;
-    border-radius: 4px;
-    opacity: 1;
-    text-align: center;
-    font: normal normal bold 30px/40px Segoe UI;
-    letter-spacing: 0px;
-    color: #4E4E4E;
-    opacity: 1;
- }
+.signupAddCmpltBtn {
+  width: 212px;
+  height: 70px;
+  background: #4242e2 0% 0% no-repeat padding-box;
+  border: 1px solid #70707021;
+  border-radius: 4px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal bold 30px/40px Segoe UI;
+  letter-spacing: 0px;
+  color: #f5f5f5;
+  opacity: 1;
+}
+
+.signupAddPassBtn {
+  margin-left: 50px;
+  width: 212px;
+  height: 70px;
+  background: #f8f8fa 0% 0% no-repeat padding-box;
+  border: 3px solid #4242e2;
+  border-radius: 4px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal bold 30px/40px Segoe UI;
+  letter-spacing: 0px;
+  color: #4e4e4e;
+  opacity: 1;
+}
