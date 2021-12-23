@@ -45,18 +45,16 @@ function UserTagForm(props) {
   ));
 
   return (
-    <form>
-      <div>
-        <input
-          className="userTagForm_TagInput"
-          type="text"
-          onChange={TagInputHandler}
-          onKeyDown={enterSearch}
-          value={inputText}
-        ></input>
-        <ul>{tagList}</ul>
-      </div>
-    </form>
+    <div>
+      <input
+        className="userTagForm_TagInput"
+        type="text"
+        onChange={TagInputHandler}
+        onKeyDown={enterSearch}
+        value={inputText}
+      ></input>
+      <ul>{tagList}</ul>
+    </div>
   );
 }
 
