@@ -225,6 +225,20 @@ table {
   border-spacing: 0;
 }
 
+.site-layout-content {
+  min-height: 280px;
+  padding: 24px;
+  background: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .content {
-  min-height: calc(100vh - 100px);
+  text-align: left;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 0px;
+  padding-bottom: 50px;
 }
