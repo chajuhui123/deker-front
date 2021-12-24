@@ -1,13 +1,10 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import "./signinForm.css";
+import classes from "./signinForm.module.css";
 import { isEmail, isPassword } from "../../api/check";
 // img import
 import logoImg from "../../img/logo.png";
-import googleImg from "../../img/google.jpg";
-import kakaoImg from "../../img/kakao.png";
-import naverImg from "../../img/naver.jpg";
 
 function SigninForm() {
   const history = useHistory();
@@ -36,54 +33,20 @@ function SigninForm() {
       setIsVaildPass(true);
     }
 
-    let url = "";
-    fetch(url, {
-      method: "POST",
-      // JSON 데이터로 변환
-      body: JSON.stringify({
-        email: enteredEmail,
-        password: enteredPassword,
-        returnSecureToken: true,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "인증 실패";
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      // 성공 사례 가져오기
-      .then((data) => {
-        const expirationTime = new Date(
-          new Date().getTime() + +data.expiresIn * 1000
-        );
-        // authCtx.login(data.idToken, expirationTime.toISOString());
-        history.replace("/");
-      })
-      // 혹은 오류를 잡아내는 블록을 추가
-      .catch((err) => {
-        alert(err.message);
-      });
+    
   };
 
   return (
-    <div className="signin-box">
+    <div className={classes.signin_box}>
       <Link to="/">
-        <img className="signin-logo" src={logoImg} alt="로고" />
+        <img className={classes.signin_logo} src={logoImg} alt="로고" />
       </Link>
 
       <div>
         <input
           type="email"
           id="email"
-          className="signin-email-input"
+          className={classes.signin_email_input}
           required
           placeholder="이메일"
           ref={emailInputRef}
@@ -94,12 +57,12 @@ function SigninForm() {
           type="password"
           id="password"
           placeholder="비밀번호"
-          className="signin-password-input"
+          className={classes.signin_password_input}
           required
           ref={passwordInputRef}
         />
       </div>
-      <div className="signin-valid">
+      <div className={classes.signin_valid}>
         {!isVaildEmail && isVaildPass && (
           <p>올바른 이메일 형태를 입력해주세요.</p>
         )}
@@ -110,15 +73,15 @@ function SigninForm() {
           <p>이메일과 비밀번호를 다시 확인해주세요.</p>
         )}
       </div>
-      <button className="signin-btn" onClick={SigninHandler}>
+      <button className={classes.signin_btn} onClick={SigninHandler}>
         로그인
       </button>
 
-      <div className="signin-links">
-        <Link to="/" className="signin-link">
+      <div className={classes.signin_links}>
+        <Link to="/" className={classes.signin_link}>
           비밀번호 재설정
         </Link>
-        <Link to="/signup" className="signin-link">
+        <Link to="/signup" className={classes.signin_link}>
           회원가입
         </Link>
       </div>

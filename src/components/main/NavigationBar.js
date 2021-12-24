@@ -15,12 +15,16 @@ function NavigationBar(props) {
     setOpen(false);
   };
 
+  // {opend} 하드코딩 영역 수정 필요
+  // 로그인 권한에 따라 보이는 메뉴 구분 
   return (
+    <>
     <nav className={classes.navbar}>
       <Link to="/" onClick={resetClick}>
         <img className={classes.navLogo} src={logoImg} alt="로고" />
       </Link>
-      <ul className={opend ? classes.navLinks.active : classes.navLinks}>
+      {(!opend) &&
+      <ul className={classes.navLinks}>
         <div className={classes.navLeft}>
           <li className={classes.navItem}>
             <Link to="/" className={classes.navLink} onClick={resetClick}>
@@ -48,7 +52,7 @@ function NavigationBar(props) {
           {/* 추후, 로그인 정보 불러와서 조건 걸 예정 */}
           <li className={classes.navItem}>
             <Link to="/signup" className={classes.navLink} onClick={resetClick}>
-              회원가입/
+              회원가입
             </Link>
           </li>
           <li className={classes.navItem}>
@@ -63,11 +67,43 @@ function NavigationBar(props) {
           </li>
         </div>
       </ul>
-
+      }
       <div className={classes.navIcon} onClick={handleClick}>
         {opend ? <FiX /> : <FiMenu />}
       </div>
     </nav>
+
+    {(opend) &&
+      <ul className={classes.navLinks.active}>
+          <li className={classes.navItem}>
+            <Link to="/" className={classes.navLink} onClick={resetClick}>
+              커뮤니티
+            </Link>
+          </li>
+          <li className={classes.navItem}>
+            <Link to="/store" className={classes.navLink} onClick={resetClick}>
+              스토어
+            </Link>
+          </li>
+          {/* 추후, 로그인 정보 불러와서 조건 걸 예정 */}
+          <li className={classes.navItem}>
+            <Link to="/signup" className={classes.navLink} onClick={resetClick}>
+              회원가입
+            </Link>
+          </li>
+          <li className={classes.navItem}>
+            <Link to="/signin" className={classes.navLink} onClick={resetClick}>
+              로그인
+            </Link>
+          </li>
+          <li className={classes.navItem}>
+            <Link to="/" className={classes.navLink}>
+              회원프로필
+            </Link>
+          </li>
+      </ul>
+      }
+      </>
   );
 }
 

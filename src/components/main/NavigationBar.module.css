@@ -126,6 +126,9 @@ a {
     background-color: var(--bodybackground-color);
     left: 0;
   }
+  .navLink {
+    padding-inline-start: 25px;
+  }
   .navItem {
     padding: 10px 0;
     border-bottom: 1px solid #70707021;
