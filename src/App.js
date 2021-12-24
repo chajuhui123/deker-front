@@ -6,6 +6,7 @@ import NavigationBar from "./components/main/NavigationBar";
 import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/SigninPage";
 import ModifyPasswordPage from "./pages/modifyPassword";
+import MyPresentPage from "./pages/MyPreentPage";
 import Footer from "./components/main/Footer";
 
 import SignupAdditional from "./pages/signupAdditional";
@@ -15,6 +16,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { modalAction } from "./store/modal-slice";
 import ModalPopup from "./components/common/modal";
+
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -62,6 +64,11 @@ function App() {
           <Route path="/modifyPassword" exact>
             <div>
               <ModifyPasswordPage />
+            </div>
+          </Route>
+          <Route path="/myPresent" exact>
+            <div>
+              <MyPresentPage />
             </div>
           </Route>
         </Switch>
