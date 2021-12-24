@@ -1,0 +1,8 @@
+.snsBtnArea {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 30px;
+  margin-inline-start: 20px;
+}
