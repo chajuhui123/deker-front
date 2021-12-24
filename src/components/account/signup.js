@@ -3,16 +3,18 @@ import React, { useRef, useState } from "react";
 import api from "../../api/testFirebase";
 import classes from "./signup.module.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import SocialLogin from "./socialLogin";
+import SocialLogin from "../common/socialLogin";
 
 import { isPassword } from "../../api/check";
 
 /**
  * TODO
- * 1. Naver Login
- * 2. Back Endpoint connect
- * 3. Redirect 'User Detail Info page' after signup and login
- * 4. Focusing input area about Error occured
+ * 1. Login / Signup은 backend와 협의 해야함
+ * 2. Front에서 Social에서 Code를 발급 받아서 Backend로 전달
+ * 3. Backend에서 Social에 Access Token을 요청
+ * 4. Backend에서 받아온 Access Token을 가지고 Login 요청
+ * 5. Login Success가 되면 JWT Token을 생성하여 Front에 전달
+ * 6. Front에서 JWT Token을 만료기간까지 Local Storage에 저장
  */
 
 function Signup(props) {
