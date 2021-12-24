@@ -7,6 +7,7 @@ import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/SigninPage";
 import ModifyPasswordPage from "./pages/modifyPassword";
 import MyPresentPage from "./pages/MyPreentPage";
+import MyReviewPage from "./pages/MyReviewPage";
 import Footer from "./components/main/Footer";
 
 import SignupAdditional from "./pages/signupAdditional";
@@ -69,6 +70,11 @@ function App() {
           <Route path="/myPresent" exact>
             <div>
               <MyPresentPage />
+            </div>
+          </Route>
+          <Route path="/myReview" exact>
+            <div>
+              <MyReviewPage />
             </div>
           </Route>
         </Switch>

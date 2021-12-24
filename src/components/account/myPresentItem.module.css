@@ -1,0 +1,35 @@
+.present_box {
+  margin-inline: auto;
+  margin-block: 20px;
+  padding: 20px;
+  width: 750px;
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.present_info_box {
+  display: flex;
+  margin-block: 30px;
+}
+
+.present_img {
+  background-color: rgb(206, 206, 206);
+  width: 120px;
+  height: 120px;
+}
+
+.present_info {
+  margin-inline: 10px;
+}
+
+.present_btn {
+  display: grid;
+}
+
+.message {
+  width: 100%;
+  height: 80px;
+  background-color: gray;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
