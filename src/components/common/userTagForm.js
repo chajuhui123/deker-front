@@ -31,17 +31,15 @@ function UserTagForm(props) {
     setTag(copyItem);
   };
   const tagList = tag.map((tagElement) => (
-    <div className="userTagForm_TagArea">
-      <li className="userTagForm_TagList" key={tagElement.id}>
-        {tagElement.text}
-        <button
-          className="userTagForm_TagRmvBtn"
-          onClick={() => onClickRemove(tagElement.id)}
-        >
-          X
-        </button>
-      </li>
-    </div>
+    <li className="userTagForm_TagList" key={tagElement.id}>
+      {tagElement.text}
+      <button
+        className="userTagForm_TagRmvBtn"
+        onClick={() => onClickRemove(tagElement.id)}
+      >
+        X
+      </button>
+    </li>
   ));
 
   return (
@@ -53,7 +51,9 @@ function UserTagForm(props) {
         onKeyDown={enterSearch}
         value={inputText}
       ></input>
-      <ul>{tagList}</ul>
+      <div className="userTagForm_TagListArea">
+        <ul>{tagList}</ul>
+      </div>
     </div>
   );
 }
