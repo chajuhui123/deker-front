@@ -1,0 +1,27 @@
+.reviewItem_box {
+  margin-inline: auto;
+  margin-block: 20px;
+  padding: 20px;
+  width: 750px;
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+.product_info_box {
+  display: flex;
+  margin-block: 30px;
+}
+
+.product_img {
+  background-color: rgb(206, 206, 206);
+  width: 120px;
+  height: 120px;
+}
+
+.product_info {
+  margin-inline: 10px;
+}
+
+.product_btn {
+  display: grid;
+}
