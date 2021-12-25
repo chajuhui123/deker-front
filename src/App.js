@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { modalAction } from "./store/modal-slice";
 import ModalPopup from "./components/common/modal";
+import AccountMyPage from "./pages/accountMyPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -52,6 +53,11 @@ function App() {
           <Route path="/signupAdd" exact>
             <div>
               <SignupAdditional />
+            </div>
+          </Route>
+          <Route path="/AccountMyPage" exact>
+            <div>
+              <AccountMyPage />
             </div>
           </Route>
           <Route path="/modifyUserInfo" exact>

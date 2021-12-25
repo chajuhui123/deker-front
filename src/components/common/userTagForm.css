@@ -7,7 +7,10 @@
   opacity: 1;
 }
 
-/* .userTagForm_TagArea {
+/* .userTagForm_TagListArea {
+  position: relative;
+  width: 100%;
+  height: auto;
 } */
 
 .userTagForm_TagList {

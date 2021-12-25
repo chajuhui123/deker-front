@@ -22,20 +22,25 @@ function SignupAdditional(props) {
   //<ProfilePicBtn onClick={uploadProfilePicHandler} />
   // 건너뛰기 일단 home으로 가게 함
   return (
-    <form className="signupAdditional" onSubmit={signupAdditionalSubmitHandler}>
+    <form
+      className="signupAdditional_submit"
+      onSubmit={signupAdditionalSubmitHandler}
+    >
       <div className="signupAddLayout">
         <div className="signupAdditional">
           <div className="signupAdditionalInner">
             <p className="signupAdditionalTitle">추가정보</p>
             <div className="signupAddUserAddInfoArea">
               <p className="userAddInfoTitle">프로필 사진</p>
-              <div className="profilePic"></div>
+              <div className="userAddInfo_profilePic"></div>
               <p className="userAddInfoTitle">직군</p>
               <JobDropdown />
               <p className="userAddInfoTitle">관심분위기</p>
               <MoodDropdown />
               <p className="userAddInfoTitle">태그</p>
-              <UserTagForm />
+              <div className="userAddInfo_TagArea">
+                <UserTagForm />
+              </div>
             </div>
           </div>
         </div>

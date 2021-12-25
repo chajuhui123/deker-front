@@ -28,7 +28,7 @@ function ModifyUserInfo(props) {
           <div className="modifyUserInfoArea">
             <div className="modifyUserInfo_row1">
               <p className="userInfoTitle">프로필 사진</p>
-              <div className="profilePic"></div>
+              <div className="modifyUserInfo_profilePic"></div>
               <p className="userInfoTitle">이메일</p>
               <p className="modifyUserInfoEmail">email@email.com</p>
             </div>
