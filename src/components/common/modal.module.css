@@ -1,15 +1,15 @@
-.close {
+/* .close {
   cursor: pointer;
 }
 
 .close:after,
 .close:before {
   content: "";
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   border-top: 1px solid #000;
   position: absolute;
-  top: 11px;
+  top: 6px;
   right: -8px;
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -18,9 +18,9 @@
 }
 
 .close:before {
-  right: 12px;
+  right: 6px;
   -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
-}
+} */
