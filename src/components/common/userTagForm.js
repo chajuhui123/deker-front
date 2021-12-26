@@ -13,6 +13,7 @@ function UserTagForm(props) {
 
   // space bar 누르면 값 배열에 넣고, reset input area *keyCode == 32: space bar
   const enterSearch = (e) => {
+    //e.preventDefault(); // enter 누르면 리스트 삭제하고 '완료(메인페이지)'로 이동함 왜?? 뭔가 모르겠으면 다 해보기
     if (e.keyCode === 32) {
       const copyItem = tag.concat({
         id: nextId,
@@ -23,7 +24,6 @@ function UserTagForm(props) {
       setTag(copyItem);
       setInputText("");
     }
-    // enter 누르면 리스트 삭제하고 '완료(메인페이지)'로 이동함 왜??
   };
 
   const onClickRemove = (id) => {
@@ -50,6 +50,7 @@ function UserTagForm(props) {
         onChange={TagInputHandler}
         onKeyDown={enterSearch}
         value={inputText}
+        maxLength={20}
       ></input>
       <div className="userTagForm_TagListArea">
         <ul>{tagList}</ul>

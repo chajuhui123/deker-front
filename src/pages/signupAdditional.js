@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import JobDropdown from "../components/common/jobDropdown";
 import MoodDropdown from "../components/common/moodDropdown";
@@ -6,11 +7,11 @@ import UserTagForm from "../components/common/userTagForm";
 import "./signupAdditional.css";
 
 function SignupAdditional(props) {
-  const [profilePic, setProfilePic] = useState("");
+  // const [profilePic, setProfilePic] = useState("");
 
-  const uploadProfilePicHandler = (pic) => {
-    setProfilePic(pic);
-  };
+  // const uploadProfilePicHandler = (pic) => {
+  //   setProfilePic(pic);
+  // };
 
   const submit = (accountType) => {};
 
@@ -35,7 +36,7 @@ function SignupAdditional(props) {
               <div className="userAddInfo_profilePic"></div>
               <p className="userAddInfoTitle">직군</p>
               <JobDropdown />
-              <p className="userAddInfoTitle">관심분위기</p>
+              <p className="userAddInfoTitle">관심분위기(없앰)</p>
               <MoodDropdown />
               <p className="userAddInfoTitle">태그</p>
               <div className="userAddInfo_TagArea">
