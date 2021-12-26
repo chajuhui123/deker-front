@@ -1,3 +1,4 @@
+
 import MyPresentList from "../components/account/myPresentList";
 
 const MyPresentPage = () => {
@@ -24,6 +25,7 @@ const MyPresentPage = () => {
         
   return (
   <div>
+   <h1>나의 선물함</h1>
    <MyPresentList presents = {DUMMY_DATA} />
   </div>);
 };

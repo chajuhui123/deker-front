@@ -16,6 +16,7 @@ modal.js 생성
 
 ### 2021.12.24 차주희
 
+NavBar css 변경 
 MyPresent, MyReview Page 추가 및 컴포넌트 전략 작성
   -> Page.js 에서 Data 관리 (데이터를 몇 개 보여주어야 할지, 많아질 때의 경우 등 이야기해볼 필요 있음)
   -> 컴포넌트는 List/Item 로 분리
