@@ -225,6 +225,10 @@ table {
   border-spacing: 0;
 }
 
+p {
+  margin: 0;
+}
+
 .content {
   min-height: calc(100vh - 100px);
 }
