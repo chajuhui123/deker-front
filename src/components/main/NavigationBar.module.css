@@ -108,7 +108,7 @@ a {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   .navbar {
     position: relative;
   }
@@ -125,6 +125,9 @@ a {
   .navLinks.active {
     background-color: var(--bodybackground-color);
     left: 0;
+  }
+  .navLink {
+    padding-inline-start: 25px;
   }
   .navItem {
     padding: 10px 0;

@@ -6,6 +6,8 @@
   --main_color: #4242e2;
   --background_color: #ffffff;
   --icons_color: rgb(152, 187, 201);
+  --border: 1px solid black;
+  --border-radius: 4px 4px 4px 4px;
 }
 
 .h1 {

@@ -1,0 +1,14 @@
+.signin_social {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.signin_social p {
+  margin-inline: 5px;
+}
+
+.signin_social_img img {
+  height: 69px;
+  margin-block: 30px;
+  margin-inline: 3px;
+}
