@@ -12,7 +12,8 @@ modal.js 생성
 
 1. import { useDispatch } from "react-redux";
 2. const dispatch = useDispatch();
-3. dispatch(modalAction.modalPopup({ id:'생략가능 or unique한 string', isOpen: false, cont: <Component /> }));
+3. import { modalAction } from "modal-slice"; 경로는 알아서 설정 (상대경로)
+4. dispatch(modalAction.modalPopup({ id:'생략가능 or unique한 string', isOpen: false, cont: <Component /> }));
 
 ### 2021.12.24 차주희
 
