@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+import React from "react";
 import JobDropdown from "../components/common/jobDropdown";
 import MoodDropdown from "../components/common/moodDropdown";
 import UserTagForm from "../components/common/userTagForm";
 import "./modifyUserInfo.css";
 
 function ModifyUserInfo(props) {
-  const [profilePic, setProfilePic] = useState("");
+  // const [profilePic, setProfilePic] = useState("");
 
-  const uploadProfilePicHandler = (pic) => {
-    setProfilePic(pic);
-  };
+  // const uploadProfilePicHandler = (pic) => {
+  //   setProfilePic(pic);
+  // };
 
   const submit = (accountType) => {};
 
@@ -35,7 +36,7 @@ function ModifyUserInfo(props) {
             <div className="modifyUserInfo_row2">
               <p className="userInfoTitle">직군</p>
               <JobDropdown />
-              <p className="userInfoTitle">분위기</p>
+              <p className="userInfoTitle">분위기(없앰)</p>
               <MoodDropdown />
               <p className="userInfoTitle">태그</p>
               <UserTagForm />

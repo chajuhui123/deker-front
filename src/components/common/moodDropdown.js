@@ -16,7 +16,7 @@ function MoodDropdown(props) {
 
   return (
     <div>
-      <Select options={moodOptions} defaultValue={moodOptions[0]} />
+      <Select options={moodOptions} defaultValue="분위기를 선택하세요." />
     </div>
   );
 }
