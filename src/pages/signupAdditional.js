@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import JobDropdown from "../components/common/jobDropdown";
 import MoodDropdown from "../components/common/moodDropdown";
 import UserTagForm from "../components/common/userTagForm";
-import "./signupAdditional.css";
+import "./signupAdditional.module.css";
 
 function SignupAdditional(props) {
   // const [profilePic, setProfilePic] = useState("");

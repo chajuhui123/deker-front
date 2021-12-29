@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./userTagForm.css";
+import "./userTagForm.module.css";
 
 function UserTagForm(props) {
   const [tag, setTag] = useState([]);

@@ -3,7 +3,7 @@ import React from "react";
 import JobDropdown from "../components/common/jobDropdown";
 import MoodDropdown from "../components/common/moodDropdown";
 import UserTagForm from "../components/common/userTagForm";
-import "./modifyUserInfo.css";
+import "./modifyUserInfo.module.css";
 
 function ModifyUserInfo(props) {
   // const [profilePic, setProfilePic] = useState("");
