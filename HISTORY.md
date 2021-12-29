@@ -15,6 +15,14 @@ modal.js 생성
 3. import { modalAction } from "modal-slice"; 경로는 알아서 설정 (상대경로)
 4. dispatch(modalAction.modalPopup({ id:'생략가능 or unique한 string', isOpen: false, cont: <Component /> }));
 
+### 2021.12.24. 권예림
+1) account-마이페이지 프로필 페이지 생성
+2) 저번주 페이지 수정사항 반영
+    - Layout 뒤틀리는거 className 유니크하게 지어서 수정
+    - 태그 입력 기능 추가(스페이스바를 누르면 아래에 태그 추가, x버튼 누르면 태그 삭제)
+    - 표준 정의 △ <- 나중에 다시 손봐야함
+
+
 ### 2021.12.24 차주희
 
 NavBar css 변경 
