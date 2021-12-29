@@ -2,9 +2,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import JobDropdown from "../components/common/jobDropdown";
-import MoodDropdown from "../components/common/moodDropdown";
 import UserTagForm from "../components/common/userTagForm";
-import "./signupAdditional.module.css";
+import classes from "./signupAdditional.module.css";
 
 function SignupAdditional(props) {
   // const [profilePic, setProfilePic] = useState("");
@@ -27,32 +26,30 @@ function SignupAdditional(props) {
       className="signupAdditional_submit"
       onSubmit={signupAdditionalSubmitHandler}
     >
-      <div className="signupAddLayout">
-        <div className="signupAdditional">
-          <div className="signupAdditionalInner">
-            <p className="signupAdditionalTitle">추가정보</p>
-            <div className="signupAddUserAddInfoArea">
-              <p className="userAddInfoTitle">프로필 사진</p>
-              <div className="userAddInfo_profilePic"></div>
-              <p className="userAddInfoTitle">직군</p>
+      <div className={classes.signupAddLayout}>
+        <div className={classes.signupAdditional}>
+          <div className={classes.signupAdditionalInner}>
+            <p className={classes.signupAdditionalTitle}>추가정보</p>
+            <div className={classes.signupAddUserAddInfoArea}>
+              <p className={classes.userAddInfoTitle}>프로필 사진</p>
+              <div className={classes.userAddInfo_profilePic}></div>
+              <p className={classes.userAddInfoTitle}>직군</p>
               <JobDropdown />
-              <p className="userAddInfoTitle">관심분위기(없앰)</p>
-              <MoodDropdown />
-              <p className="userAddInfoTitle">태그</p>
-              <div className="userAddInfo_TagArea">
+              <p className={classes.userAddInfoTitle}>태그</p>
+              <div className={classes.userAddInfo_TagArea}>
                 <UserTagForm />
               </div>
             </div>
           </div>
         </div>
-        <div className="signupAddBtns">
+        <div className={classes.signupAddBtns}>
           <Link to="/">
-            <button className="signupAddCmpltBtn" type="submit">
+            <button className={classes.signupAddCmpltBtn} type="submit">
               완료
             </button>
           </Link>
           <Link to="/">
-            <button className="signupAddPassBtn">건너뛰기</button>
+            <button className={classes.signupAddPassBtn}>건너뛰기</button>
           </Link>
         </div>
       </div>
