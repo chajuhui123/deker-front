@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./accountMyPage.css";
+import "./accountMyPage.module.css";
 
 function AccountMyPage(props) {
   return (
