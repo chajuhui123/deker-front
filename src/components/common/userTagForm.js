@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./userTagForm.module.css";
+import classes from "./userTagForm.module.css";
 
 function UserTagForm(props) {
   const [tag, setTag] = useState([]);
@@ -31,10 +31,10 @@ function UserTagForm(props) {
     setTag(copyItem);
   };
   const tagList = tag.map((tagElement) => (
-    <li className="userTagForm_TagList" key={tagElement.id}>
+    <li className={classes.userTagForm_TagList} key={tagElement.id}>
       {tagElement.text}
       <button
-        className="userTagForm_TagRmvBtn"
+        className={classes.userTagForm_TagRmvBtn}
         onClick={() => onClickRemove(tagElement.id)}
       >
         X
@@ -45,14 +45,14 @@ function UserTagForm(props) {
   return (
     <div>
       <input
-        className="userTagForm_TagInput"
+        className={classes.userTagForm_TagInput}
         type="text"
         onChange={TagInputHandler}
         onKeyDown={enterSearch}
         value={inputText}
         maxLength={20}
       ></input>
-      <div className="userTagForm_TagListArea">
+      <div className={classes.userTagForm_TagListArea}>
         <ul>{tagList}</ul>
       </div>
     </div>
