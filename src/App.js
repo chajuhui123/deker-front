@@ -10,15 +10,14 @@ import MyPresentPage from "./pages/MyPreentPage";
 import MyReviewPage from "./pages/MyReviewPage";
 import Footer from "./components/main/Footer";
 
-import SignupAdditional from "./pages/signupAdditional";
-import ModifyUserInfo from "./pages/modifyUserInfo";
 import SignupPage from "./pages/SignupPage";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { modalAction } from "./store/modal-slice";
 import ModalPopup from "./components/common/modal";
 import AccountMyPage from "./pages/accountMyPage";
-
+import ModifyUserInfoPage from "./pages/ModifyUserInfoPage";
+import SignupAddPage from "./pages/SignupAddPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -55,7 +54,7 @@ function App() {
           </Route>
           <Route path="/signupAdd" exact>
             <div>
-              <SignupAdditional />
+              <SignupAddPage />
             </div>
           </Route>
           <Route path="/AccountMyPage" exact>
@@ -65,7 +64,7 @@ function App() {
           </Route>
           <Route path="/modifyUserInfo" exact>
             <div>
-              <ModifyUserInfo />
+              <ModifyUserInfoPage />
             </div>
           </Route>
           <Route path="/modifyPassword" exact>
