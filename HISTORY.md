@@ -31,3 +31,11 @@ MyPresent, MyReview Page 추가 및 컴포넌트 전략 작성
   -> 컴포넌트는 List/Item 로 분리
   -> List 에서 Item 을 mapping 하여 호출
 
+### 2021.12.29. 권예림
+1) 저번주 페이지 수정사항 반영
+    - module.css로 바꾸기
+    - 회원정보 변경, 추가정보 입력 페이지에 분위기 빼기
+    - 마이페이지_프로필(accountMyPage)에 내가 올린 사진(myUploadPic) 더미 파일 만들기
+
+
+
