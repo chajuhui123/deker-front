@@ -5,6 +5,7 @@ function JobDropdown(props) {
   // 직군 select option
   const jopGroupOptions = useMemo(
     () => [
+      { value: "none", label: "직군을 선택하세요." },
       { value: "경영사무", label: "경영사무" },
       { value: "미디어", label: "미디어" },
       { value: "전문특수직", label: "전문특수직" },
@@ -25,10 +26,7 @@ function JobDropdown(props) {
 
   return (
     <div>
-      <Select
-        options={jopGroupOptions}
-        //defaultValue={jopGroupOptions[0]} <- 이거 SELECT... 인게 낫나?
-      />
+      <Select options={jopGroupOptions} defaultValue={jopGroupOptions[0]} />
     </div>
   );
 }
