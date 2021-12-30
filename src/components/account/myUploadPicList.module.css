@@ -1,0 +1,8 @@
+.myUploadPicList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 12px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
