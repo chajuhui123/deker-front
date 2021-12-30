@@ -1,7 +1,7 @@
 .accountMyPage_Layout {
   position: relative;
   width: 476px;
-  height: 911px;
+  height: 1000px; /* 이미지 갯수만큼 자동으로 늘어나게 수정 */
   border: 1px solid #707070a3;
   border-radius: 4px;
   opacity: 1;
@@ -99,5 +99,14 @@
   color: #4e4e4e;
   border-radius: 4px;
   opacity: 1;
+  opacity: 1;
+}
+
+.picarea {
+  position: relative;
+  margin-top: 60px;
+  width: 400px;
+  height: auto;
+  /* background-color: #707070a3; */
   opacity: 1;
 }
