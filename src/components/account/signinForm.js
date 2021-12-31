@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import classes from "./signinForm.module.css";
 import { isEmail, isPassword } from "../../api/check";
 // img import
