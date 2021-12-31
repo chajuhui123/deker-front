@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import SocialLogin from "../common/socialLogin";
 
 import { isPassword } from "../../api/check";
+import CommInput from "../common/input-with-title";
 
 function Signup(props) {
   const history = useHistory();
@@ -78,47 +79,38 @@ function Signup(props) {
             <SocialLogin fnCallback={fnCallback} />
           </div>
           <div className={classes.userInfoArea}>
-            <p>아이디</p>
-            <input
-              className={classes.userInput}
-              type="text"
+            <CommInput
+              title="아이디"
               value={userId}
               onChange={idInputHandler}
               ref={userIdRef}
-            ></input>
+            />
             {/* 이매일 인증 버튼 영역 */}
-            <p>비밀번호</p>
-            <h6>
-              영문, 숫자, 특수문자를 포함한 8자 이상 비밀번호로 설정해주세요.
-            </h6>
-            <input
-              className={classes.userInput}
+            <CommInput
+              title="비밀번호"
               type="password"
               value={inputPassword}
               onChange={pwInputHandler}
               ref={passwordRef}
-            ></input>
-
-            <p>비밀번호확인</p>
-            <input
-              className={classes.userInput}
+              noti="영문, 숫자, 특수문자를 포함한 8자 이상 비밀번호로 설정해주세요."
+            />
+            <CommInput
+              title="비밀번호확인"
               type="password"
               ref={rePassword}
               onChange={rePasswordHandler}
-            ></input>
+            />
             {isSame !== null && !isSame && (
               <h6 style={{ color: "red", margin: "5px" }}>
                 비밀번호가 같지 않습니다.
               </h6>
             )}
-            <p>닉네임</p>
-            <input
-              className={classes.userInput}
-              type="text"
+            <CommInput
+              title="닉네임"
               value={nickname}
               onChange={nicknameInputHandler}
               ref={nicknameRef}
-            ></input>
+            />
             <p>약관동의</p>
             <div>약관 영역</div>
           </div>
