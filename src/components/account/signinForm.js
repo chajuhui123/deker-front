@@ -1,13 +1,11 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import classes from "./signinForm.module.css";
 import { isEmail, isPassword } from "../../api/check";
 // img import
 import logoImg from "../../img/logo.png";
 
 function SigninForm() {
-  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isVaildEmail, setIsVaildEmail] = useState(true);
@@ -32,8 +30,6 @@ function SigninForm() {
     } else {
       setIsVaildPass(true);
     }
-
-    
   };
 
   return (
