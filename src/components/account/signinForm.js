@@ -7,7 +7,6 @@ import { isEmail, isPassword } from "../../api/check";
 import logoImg from "../../img/logo.png";
 
 function SigninForm() {
-  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isVaildEmail, setIsVaildEmail] = useState(true);
@@ -32,8 +31,6 @@ function SigninForm() {
     } else {
       setIsVaildPass(true);
     }
-
-    
   };
 
   return (

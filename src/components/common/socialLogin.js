@@ -1,39 +1,42 @@
 import GoogleLoginBtn from "../../oauth/google";
 import KakaoLoginBtn from "../../oauth/kakao";
 import NaverLoginBtn from "../../oauth/naver";
-import api from "../../api/testFirebase";
+import { postApi } from "../../api/fetch-api";
 
 import classes from "./socialLogin.module.css";
 
 function SocialLogin({ fnCallback }) {
   const submit = (signupData) => {
-    api("signup.json", signupData, fnCallback);
+    postApi("nmb/acct/reg/member", signupData, fnCallback);
   };
 
   const onGoogleLoginSuccessHandler = (googleId, email, name) => {
     submit({
-      memberId: email,
-      accountType: "2",
+      id: email,
+      socialId: googleId,
+      platformCode: "P02",
       nickname: name,
-      password: googleId,
+      agreeYn: "Y",
     });
   };
 
   const onKakaoLoginSuccessHandler = (kakaoId, email, name) => {
     submit({
-      memberId: email,
-      accountType: "3",
+      id: email,
+      socialId: kakaoId,
+      platformCode: "P03",
       nickname: name,
-      password: kakaoId,
+      agreeYn: "Y",
     });
   };
 
   const onNaverLoginSuccessHandler = (naverId, email, name) => {
     submit({
-      memberId: email,
-      accountType: "4",
+      id: email,
+      socialId: naverId,
+      platformCode: "P04",
       nickname: name,
-      password: naverId,
+      agreeYn: "Y",
     });
   };
   return (
