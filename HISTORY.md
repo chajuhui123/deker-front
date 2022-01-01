@@ -4,6 +4,18 @@
 
 ### 2021.12.31 김효진
 
+1. components/common/input-with-title.js (공통 input component)
+2. import CommInput from "../common/input-with-title";
+3. props :
+   title : 제목
+   noti : 제목 하단에 작게 설명 문구 넣어줌
+   type : input type (text, password, date 등)
+   value : 값
+   onChange : onChange 이벤트 핸들러
+   ref : useRef
+
+### 2021.12.31 김효진
+
 1. import { getApi, postApi } from "../../api/fetch-api";
 2. import { useDispatch } from "react-redux";
 3. import { modalAction } from "../store/modal-slice";
