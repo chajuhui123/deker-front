@@ -35,6 +35,7 @@ function ModalPopup(props) {
       isOpen={props.isOpen}
       style={customStyles}
       onRequestClose={props.onRequestClose}
+      ariaHideApp={false}
     >
       <span className={classes.close} onClick={modalCloseBtnHandler}></span>
       {props.children}
