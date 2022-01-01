@@ -28,8 +28,9 @@ function Signup(props) {
   };
   // 비밀번호 Input Handler
   const pwInputHandler = (e) => {
-    setInputPassword(e.target.value);
-    setCheckPassword(isPassword(passwordRef.current.value));
+    console.log(e);
+    //setInputPassword(e.target.value);
+    //setCheckPassword(isPassword(passwordRef.current.value));
   };
   // 닉네임 Input Handler
   const nicknameInputHandler = (e) => {
