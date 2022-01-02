@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./modalContUploadUpdateReview.module.css";
 import InfoProduct from "./infoProduct";
 import StarRating from "./starRating";
