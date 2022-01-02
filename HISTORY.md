@@ -2,6 +2,12 @@
 
 (최신을 위로 올려주세요)
 
+### 2022.01.01 김효진
+
+1. babel 오류 나는 부분 해결
+   node_modules > react-naver-login > index.js > 36 line을 아래로 변경 (naver login 에서는 sdk를 babel polyfill 옛날버전을 사용해서 오류남)
+   var NAVER_ID_SDK_URL = "https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2-nopolyfill.js";
+
 ### 2021.12.31 김효진
 
 1. components/common/input-with-title.js (공통 input component)
@@ -12,7 +18,7 @@
    type : input type (text, password, date 등)
    value : 값
    onChange : onChange 이벤트 핸들러
-   ref : useRef
+   refer : useRef
 
 ### 2021.12.31 김효진
 

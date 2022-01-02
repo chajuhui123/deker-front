@@ -28,9 +28,8 @@ function Signup(props) {
   };
   // 비밀번호 Input Handler
   const pwInputHandler = (e) => {
-    console.log(e);
-    //setInputPassword(e.target.value);
-    //setCheckPassword(isPassword(passwordRef.current.value));
+    setInputPassword(e.target.value);
+    setCheckPassword(isPassword(passwordRef.current.value));
   };
   // 닉네임 Input Handler
   const nicknameInputHandler = (e) => {
@@ -84,7 +83,7 @@ function Signup(props) {
               title="아이디"
               value={userId}
               onChange={idInputHandler}
-              ref={userIdRef}
+              refer={userIdRef}
             />
             {/* 이매일 인증 버튼 영역 */}
             <CommInput
@@ -92,13 +91,13 @@ function Signup(props) {
               type="password"
               value={inputPassword}
               onChange={pwInputHandler}
-              ref={passwordRef}
+              refer={passwordRef}
               noti="영문, 숫자, 특수문자를 포함한 8자 이상 비밀번호로 설정해주세요."
             />
             <CommInput
               title="비밀번호확인"
               type="password"
-              ref={rePassword}
+              refer={rePassword}
               onChange={rePasswordHandler}
             />
             {isSame !== null && !isSame && (
@@ -110,7 +109,7 @@ function Signup(props) {
               title="닉네임"
               value={nickname}
               onChange={nicknameInputHandler}
-              ref={nicknameRef}
+              refer={nicknameRef}
             />
             <p>약관동의</p>
             <div>약관 영역</div>

@@ -3,6 +3,7 @@ import classes from "./input-with-title.module.css";
 
 function CommInput(props) {
   const noti = props.noti;
+  const ref = props.refer;
   return (
     <div className={classes.commInput}>
       <p>{props.title}</p>
@@ -11,7 +12,7 @@ function CommInput(props) {
         type={props.type || "text"}
         value={props.value}
         onChange={props.onChange}
-        ref={props.ref}
+        ref={ref}
       ></input>
     </div>
   );
