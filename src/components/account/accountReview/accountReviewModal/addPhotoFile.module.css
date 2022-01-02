@@ -1,0 +1,35 @@
+.wrapper {
+  margin-top: 30px;
+}
+
+.title {
+  font: normal normal bolder 15px/25px Roboto;
+}
+
+.description {
+  font: normal normal lighter 13px/25px Roboto;
+  color: #777777;
+}
+
+.filebox label {
+  width: 100%;
+  display: inline-block;
+  padding-block: 10px;
+  margin-top: 10px;
+  color: #4242e2;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #4242e2;
+  border-radius: 4px 4px 4px 4px;
+}
+.filebox input[type="file"] {
+  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

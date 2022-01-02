@@ -3,7 +3,7 @@ import DeliveryTracking from "../components/account/delivery-tracking";
 
 const initialModalState = {
   modalId: "testId",
-  isOpen: true,
+  isOpen: false,
   // cont: null,
   cont: <DeliveryTracking />,
 };
