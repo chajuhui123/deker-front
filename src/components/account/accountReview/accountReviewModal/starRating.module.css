@@ -1,0 +1,13 @@
+.wrapper {
+  margin-top: 30px;
+  display: flex;
+}
+
+.title p {
+  padding-top: 5px;
+  font: normal normal bolder 15px/25px Roboto;
+}
+
+.star {
+  margin-left: 15px;
+}
