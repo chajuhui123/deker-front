@@ -1,11 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import DeliveryTracking from "../components/account/delivery-tracking";
 
 const initialModalState = {
   modalId: "testId",
   isOpen: false,
-  // cont: null,
-  cont: <DeliveryTracking />,
+  cont: null,
 };
 
 const modalSlice = createSlice({
