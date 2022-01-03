@@ -1,5 +1,9 @@
 ### HISTORY
 
+### 2022.01.03 차주희
+
+1. 리뷰 작성 및 수정 컴포넌트 작성 완료 (modalContUploadUpdateReview)
+
 ### 2022.01.02 차주희
 
 1. account/Review/Review 수정 및 작성 모달 컴포넌트 생성
