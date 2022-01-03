@@ -5,3 +5,18 @@
 .title {
   font: normal normal bolder 15px/25px Roboto;
 }
+
+.description {
+  font: normal normal lighter 13px/25px Roboto;
+  color: #777777;
+}
+
+.inputBox {
+  width: 100%;
+  height: 200px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px 4px 4px 4px;
+  outline: none;
+  padding-block: auto;
+  text-align: center;
+}

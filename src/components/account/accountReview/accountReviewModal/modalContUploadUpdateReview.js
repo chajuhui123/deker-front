@@ -5,19 +5,18 @@ import StarRating from "./starRating";
 import AddPhotoFile from "./addPhotoFile";
 import WritingReview from "./writingReview";
 
-function ModalContUploadUpdateReview() {
+function ModalContUploadUpdateReview({ isReviewed }) {
   return (
     <div className={classes.modalContReview}>
       <div className={classes.title}>
-        <p>리뷰 작성</p>
-        {/* 이미 작성된 리뷰이면 수정으로, 아니라면 리뷰 작성으로 */}
-        {/* <p>리뷰 수정</p> */}
+        {!isReviewed && <p>리뷰 작성</p>}
+        {isReviewed && <p>리뷰 수정</p>}
       </div>
       <InfoProduct />
       <StarRating />
       <AddPhotoFile />
       <WritingReview />
-      {/* <button>등록</button>  */}
+      <button className={classes.btn}>등록</button>
     </div>
   );
 }
