@@ -1,5 +1,10 @@
 ### HISTORY
 
+### 2022.01.04 차주희
+
+1. InfoProduct 컴포넌트 props 연결
+   ({prop변수명}) 으로 넘겨 받으면, 기존에 사용했던 방식 {props.prop변수명}이 아닌, 바로 {prop변수명} 으로 사용할 수 있다고 합니다! InfoProduct 컴포넌트를 참고해주세요.
+
 ### 2022.01.03 차주희
 
 1. 리뷰 작성 및 수정 컴포넌트 작성 완료 (modalContUploadUpdateReview)
