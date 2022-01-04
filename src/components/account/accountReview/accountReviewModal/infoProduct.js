@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./infoProduct.module.css";
 
-function InfoProduct({ brandName, productName, productOption }) {
+function InfoProduct({ productImg, brandName, productName, productOption }) {
   return (
     <div className={classes.prodArea}>
-      <div className={classes.prodImg}></div>
+      <img className={classes.prodImg} src={productImg} alt="상품이미지" />
       <div className={classes.prodInfoArea}>
         <div className={classes.prodBrand}>{brandName}</div>
         <div className={classes.prodName}>{productName}</div>

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { testApi } from "../../api/fetch-api";
+import { testApi } from "../../../api/fetch-api";
 import classes from "./delivery-tracking.module.css";
+import InfoProduct from "../accountReview/accountReviewModal/infoProduct";
 
 const initailData = {
   product_id: "NaN",
@@ -36,22 +37,12 @@ function DeliveryTracking(props) {
         <div className={classes.title}>
           <p>주문 정보</p>
         </div>
-        <div className={classes.prodArea}>
-          <img
-            className={classes.prodImg}
-            src={resData.product_img}
-            alt="상품이미지"
-          />
-          <div className={classes.prodInfoArea}>
-            <div className={classes.prodBrand}>{resData.product_brand}</div>
-            <div className={classes.prodName}>{resData.product_name}</div>
-            <div className={classes.prodBrand}>
-              {resData.product_options.length <= 0
-                ? "단일옵션"
-                : resData.product_options.map((op) => op)}
-            </div>
-          </div>
-        </div>
+        <InfoProduct
+          productImg={resData.product_img}
+          brandName={resData.product_brand}
+          productName={resData.product_name}
+          productOption={resData.product_option}
+        />
         <div className={classes.recUserInfoArea}>
           <div className={classes.recUserInfoTitle}>
             <p>받는 사람</p>

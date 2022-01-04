@@ -37,7 +37,7 @@ export function testApi(action, data, callback) {
     product_brand: "이이공브이샵",
     product_img:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/162338893220943458.jpg?gif=1&w=640&h=640&c=c",
-    product_options: [],
+    product_option: "단일옵션",
     rec_user_name: "홍길동",
     rec_user_addr: "서울시 동작구 한강대로1길 한강아파트 101동 202호",
     rec_deli_comp: "CJ택배",
