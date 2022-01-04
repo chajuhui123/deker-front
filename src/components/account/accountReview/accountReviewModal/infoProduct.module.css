@@ -23,7 +23,7 @@
 }
 
 .prodBrand {
-  width: 70px;
+  width: 500px;
   height: 17px;
   text-align: left;
   font: normal normal lighter 13px/25px Roboto;
@@ -32,7 +32,8 @@
 }
 
 .prodName {
-  width: 70px;
+  width: 500px;
+  max-width: 500px;
   height: 17px;
   text-align: left;
   font: normal normal bolder 15px/25px Roboto;
