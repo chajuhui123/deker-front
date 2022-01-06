@@ -1,6 +1,6 @@
 ### HISTORY
 
-### 2021.12.30. 권예림
+### 2022.01.06. 권예림
 
 1. Account My Shopping Page 작업중
    - 기간(period) Dropdown 생성,               커스터마이징 중
