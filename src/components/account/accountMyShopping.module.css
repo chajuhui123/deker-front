@@ -1,8 +1,8 @@
 .accountMyShopping_Layout {
   position: relative;
   margin: auto;
-  width: 1268px; /* 너무 두꺼운데 */
-  height: 237px;
+  width: 750px; /* 원래 1268px인데 너무 두꺼워서 주희님 myReview 페이지랑 맞춤 */
+  height: 1000px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #707070a3; /* 레이아웃 테스트용 */
   border-radius: 4px;
@@ -13,8 +13,31 @@
   width: 214px;
   height: 67px;
   text-align: left;
-  font: normal normal bold 50px/67px Roboto; /*너무 큰데..*/
+  font: normal normal bold 30px/35px Roboto; /* 50px/67px 너무 커서 바꿈*/
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
+}
+
+.acctMyShopping_SemiTitle {
+  margin-top: 100px;
+  text-align: left;
+  font: normal normal normal 20px/25px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.acctMyShopping_DelivTrack {
+  width: 750px;
+  height: 237px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 2px 2px 8px #0000001c;
+  border: 1px solid #707070a3;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.acctMyShopping_DelivTrackCondition {
+  display: flex;
+  flex-direction: row;
 }
