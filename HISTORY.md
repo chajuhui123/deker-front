@@ -1,5 +1,12 @@
 ### HISTORY
 
+### 2021.12.30. 권예림
+
+1. Account My Shopping Page 작업중
+   - 기간(period) Dropdown 생성,               커스터마이징 중
+   - 배송상태(delivery state) Dropdown 생성,   커스터마이징 중
+   - UI는 거의 다 잡았는데 더미 데이터 생성 필요
+   
 ### 2022.01.04 차주희
 
 1. InfoProduct 컴포넌트 props 연결
