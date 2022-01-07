@@ -29,13 +29,21 @@ function PeriodDropdown(props) {
       };
     },
   };
+
+  const periodDropdownSelectedHandler = (e) => {
+    const valueoption = e.label;
+    document.getElementById("result").innerText = valueoption;
+  };
+
   return (
     <div>
       <Select
         styles={periodDropdownStyles}
         options={PeriodOptions}
         defaultValue={PeriodOptions[0]}
+        onChange={periodDropdownSelectedHandler}
       />
+      <div id="result">{/* selected value 띄우기 */}</div>
     </div>
   );
 }
