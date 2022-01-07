@@ -19,6 +19,7 @@ import AccountMyPage from "./pages/accountMyPage";
 import ModifyUserInfoPage from "./pages/ModifyUserInfoPage";
 import SignupAddPage from "./pages/SignupAddPage";
 import AccountMyShoppingPage from "./pages/accountMyShoppingPage";
+import ProductSalesLink from "./pages/productSalesLinkPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -71,6 +72,11 @@ function App() {
           <Route path="/accountMyShopping" exact>
             <div>
               <AccountMyShoppingPage />
+            </div>
+          </Route>
+          <Route path="/productSalesLink" exact>
+            <div>
+              <ProductSalesLink />
             </div>
           </Route>
           <Route path="/modifyPassword" exact>
