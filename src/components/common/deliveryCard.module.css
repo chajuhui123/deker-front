@@ -1,0 +1,78 @@
+.cardArea {
+  padding: 22px;
+  margin-bottom: 15px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #777777;
+  border-radius: 21px;
+}
+
+.deliNm {
+  height: 17px;
+  text-align: left;
+  font: normal normal bold 15px/25px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.addr {
+  height: 17px;
+  margin-top: 9px;
+  text-align: left;
+  font: normal normal normal 13px/25px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.userInfo {
+  height: 17px;
+  margin-top: 4px;
+  text-align: left;
+  font: normal normal normal 13px/25px Roboto;
+  letter-spacing: 0px;
+  color: #777777;
+}
+
+.btnArea {
+  margin-top: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modiBtn {
+  width: 64px;
+  height: 37px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #777777;
+  border-radius: 16px;
+  text-align: center;
+  font: normal normal normal 13px/25px Roboto;
+  letter-spacing: 0px;
+  color: #777777;
+}
+
+.delBtn {
+  width: 64px;
+  height: 37px;
+  margin-right: 100px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #777777;
+  border-radius: 16px;
+  text-align: center;
+  font: normal normal normal 13px/25px Roboto;
+  letter-spacing: 0px;
+  color: #777777;
+}
+
+.selBtn {
+  width: 64px;
+  height: 37px;
+  background: #4242e2 0% 0% no-repeat padding-box;
+  border: 1px solid #4242e2;
+  border-radius: 16px;
+  text-align: center;
+  font: normal normal medium 13px/25px Roboto;
+  letter-spacing: 0px;
+  color: #ffffff;
+}

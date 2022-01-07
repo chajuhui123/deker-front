@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { testApi } from "../../../api/fetch-api";
 import classes from "./delivery-tracking.module.css";
 import InfoProduct from "../accountReview/accountReviewModal/infoProduct";
+import ModalTitle from "../../common/modal-title";
 
 const initailData = {
   product_id: "NaN",
@@ -30,9 +31,7 @@ function DeliveryTracking(props) {
 
   return (
     <div className={classes.deliveryTracking}>
-      <div className={classes.title}>
-        <p>배송 조회</p>
-      </div>
+      <ModalTitle title="배송 조회" />
       <div className={classes.contArea}>
         <div className={classes.title}>
           <p>주문 정보</p>

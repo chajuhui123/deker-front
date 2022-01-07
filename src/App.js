@@ -20,6 +20,7 @@ import ModifyUserInfoPage from "./pages/ModifyUserInfoPage";
 import SignupAddPage from "./pages/SignupAddPage";
 import AccountMyShoppingPage from "./pages/accountMyShoppingPage";
 import ProductSalesLink from "./pages/productSalesLinkPage";
+import ModalTest from "./pages/modalTest";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -93,6 +94,9 @@ function App() {
             <div>
               <MyReviewPage />
             </div>
+          </Route>
+          <Route path="/modalTest" exact>
+            <ModalTest />
           </Route>
         </Switch>
       </div>
