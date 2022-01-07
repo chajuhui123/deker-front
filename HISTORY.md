@@ -1,5 +1,14 @@
 ### HISTORY
 
+### 2022.01.08 김효진
+
+1. src > pages > modalTest Page (http://localhost:3000/modalTest)
+2. components > common > commBtn (import 후 mouseover 하면 document가 뜰거임)
+3. components > common > deliveryCard (import 후 mouseover 하면 document가 뜰거임)
+4. components > common > modal-title (import 후 mouseover 하면 document가 뜰거임)
+5. components > account > shop > delivery-select.js 배송지선택 팝업 작성 완료
+6. redux non-serialized 처리
+
 ### 2022.01.07. 권예림
 
 1. Product Sales Link Popup Page 생성
@@ -9,11 +18,11 @@
 ### 2022.01.06. 권예림
 
 1. Account My Shopping Page 작업중
-   - 기간(period) Dropdown 생성_________________커스터마이징 중
-   - 배송상태(delivery state) Dropdown 생성_____커스터마이징 중
+   - 기간(period) Dropdown 생성**\*\*\*\***\_**\*\*\*\***커스터마이징 중
+   - 배송상태(delivery state) Dropdown 생성**\_**커스터마이징 중
    - Layout 완성
    - Dropdown 선택값 화면출력 기능 추가
-   
+
 ### 2022.01.04 차주희
 
 1. InfoProduct 컴포넌트 props 연결
