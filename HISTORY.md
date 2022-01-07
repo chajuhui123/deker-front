@@ -3,9 +3,10 @@
 ### 2022.01.06. 권예림
 
 1. Account My Shopping Page 작업중
-   - 기간(period) Dropdown 생성,               커스터마이징 중
-   - 배송상태(delivery state) Dropdown 생성,   커스터마이징 중
-   - UI는 거의 다 잡았는데 더미 데이터 생성 필요
+   - 기간(period) Dropdown 생성_________________커스터마이징 중
+   - 배송상태(delivery state) Dropdown 생성_____커스터마이징 중
+   - Layout 완성
+   - Dropdown 선택값 화면출력 기능 추가
    
 ### 2022.01.04 차주희
 
