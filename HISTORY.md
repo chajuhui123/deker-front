@@ -1,5 +1,11 @@
 ### HISTORY
 
+### 2022.01.07. 권예림
+
+1. Product Sales Link Popup Page 생성
+   - Layout 완성
+   - 기능 작업 중
+
 ### 2022.01.06. 권예림
 
 1. Account My Shopping Page 작업중
