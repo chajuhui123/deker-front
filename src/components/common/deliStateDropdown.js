@@ -18,9 +18,19 @@ function DeliStateDropdown(props) {
     []
   );
 
+  const deliStateDropdownSelectedHandler = (e) => {
+    const valueoption = e.label;
+    document.getElementById("result").innerText = valueoption;
+  };
+
   return (
     <div>
-      <Select options={DeliStateOptions} defaultValue={DeliStateOptions[0]} />
+      <Select
+        options={DeliStateOptions}
+        defaultValue={DeliStateOptions[0]}
+        onChange={deliStateDropdownSelectedHandler}
+      />
+      <div id="result">{/* selected value 띄우기 */}</div>
     </div>
   );
 }
