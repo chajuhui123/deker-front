@@ -1,5 +1,10 @@
 ### HISTORY
 
+
+### 2022.01.08. 권예림
+1. Account My Shopping Page 작업중
+   - 기간(period) Dropdown, 배송상태(delivery state) Dropdown 선택값 바로 밑에 띠우는 기능 추가
+
 ### 2022.01.08 김효진
 
 1. src > pages > modalTest Page (http://localhost:3000/modalTest)
