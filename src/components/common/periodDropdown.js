@@ -1,8 +1,6 @@
 import React, { useMemo } from "react";
 import Select from "react-select";
 
-/******커스터마이징을 못하겠음 *****/
-
 function PeriodDropdown(props) {
   // 기간 select option
   const PeriodOptions = useMemo(
@@ -18,6 +16,7 @@ function PeriodDropdown(props) {
     []
   );
 
+  /******커스터마이징을 못하겠음 *****/
   const periodDropdownStyles = {
     control: (styles) => ({ ...styles, backgroundColor: "white" }),
     option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -30,9 +29,10 @@ function PeriodDropdown(props) {
     },
   };
 
+  // 기간이 선택되면 상위 컴포넌트(accountMyShopping)으로 보냄
   const periodDropdownSelectedHandler = (e) => {
     const valueoption = e.label;
-    document.getElementById("result").innerText = valueoption;
+    props.onCreate(valueoption);
   };
 
   return (
@@ -43,7 +43,6 @@ function PeriodDropdown(props) {
         defaultValue={PeriodOptions[0]}
         onChange={periodDropdownSelectedHandler}
       />
-      <div id="result">{/* selected value 띄우기 */}</div>
     </div>
   );
 }

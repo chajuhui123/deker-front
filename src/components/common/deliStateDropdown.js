@@ -18,9 +18,10 @@ function DeliStateDropdown(props) {
     []
   );
 
+  // 기간이 선택되면 상위 컴포넌트(accountMyShopping)으로 보냄
   const deliStateDropdownSelectedHandler = (e) => {
     const valueoption = e.label;
-    document.getElementById("result").innerText = valueoption;
+    props.onCreate(valueoption);
   };
 
   return (
@@ -30,7 +31,6 @@ function DeliStateDropdown(props) {
         defaultValue={DeliStateOptions[0]}
         onChange={deliStateDropdownSelectedHandler}
       />
-      <div id="result">{/* selected value 띄우기 */}</div>
     </div>
   );
 }
