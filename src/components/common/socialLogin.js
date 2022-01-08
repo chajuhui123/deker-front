@@ -4,18 +4,20 @@ import NaverLoginBtn from "../../oauth/naver";
 import { postApi } from "../../api/fetch-api";
 
 import classes from "./socialLogin.module.css";
+import { useDispatch } from "react-redux";
 
 function SocialLogin({ fnCallback }) {
+  const dispatch = useDispatch();
   const submit = (signupData) => {
-    postApi("nmb/acct/reg/member", signupData, fnCallback);
+    dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
   };
 
   const onGoogleLoginSuccessHandler = (googleId, email, name) => {
     submit({
       id: email,
-      socialId: googleId,
       platformCode: "P02",
       nickname: name,
+      socialId: googleId,
       agreeYn: "Y",
     });
   };
@@ -23,9 +25,9 @@ function SocialLogin({ fnCallback }) {
   const onKakaoLoginSuccessHandler = (kakaoId, email, name) => {
     submit({
       id: email,
-      socialId: kakaoId,
       platformCode: "P03",
       nickname: name,
+      socialId: kakaoId,
       agreeYn: "Y",
     });
   };
@@ -33,9 +35,9 @@ function SocialLogin({ fnCallback }) {
   const onNaverLoginSuccessHandler = (naverId, email, name) => {
     submit({
       id: email,
-      socialId: naverId,
       platformCode: "P04",
       nickname: name,
+      socialId: naverId,
       agreeYn: "Y",
     });
   };

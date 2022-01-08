@@ -57,7 +57,7 @@ function Signup(props) {
 
   const fnCallback = (res) => {
     console.log(res);
-    //history.push("/signupUserInfo");
+    history.push("/signupAdd");
   };
 
   const signupSubmitHandler = (e) => {
@@ -66,7 +66,7 @@ function Signup(props) {
   };
 
   const loginPageHandler = () => {
-    history.push("/login");
+    history.push("/signin");
   };
 
   return (
