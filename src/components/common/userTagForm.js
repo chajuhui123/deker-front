@@ -32,7 +32,7 @@ function UserTagForm(props) {
   };
   const tagList = tag.map((tagElement) => (
     <li className={classes.userTagForm_TagList} key={tagElement.id}>
-      {tagElement.text}
+      <p className={classes.userTagTextArea}> {tagElement.text}</p>
       <button
         className={classes.userTagForm_TagRmvBtn}
         onClick={() => onClickRemove(tagElement.id)}

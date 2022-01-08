@@ -32,7 +32,9 @@ function ProductSalesLink() {
           검색
         </button>
       </div>
-      <div className={classes.selectedProduct}></div>
+      <div className={classes.selectedProduct}>
+        {/* question 등록한 상품 띄우는 곳?? ui 이해가 안됨 */}
+      </div>
       <div className={classes.closeBtnArea}>
         <button className={classes.popupCloseBtn}>닫기</button>
       </div>
