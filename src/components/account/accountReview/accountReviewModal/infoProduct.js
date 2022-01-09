@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./infoProduct.module.css";
-import noImg from "../../../../img/noImg.png";
+import noImg from "img/noImg.png";
 
 function InfoProduct({ productImg, brandName, productName, productOption }) {
   return (

@@ -5,6 +5,11 @@ export const rootMenu = [
     level: 1,
     subMenu: [
       {
+        label: "메인",
+        key: "/community/main",
+        path: "/community/main",
+      },
+      {
         label: "사진",
         key: "/community/all",
         path: "/community/all",
@@ -27,9 +32,9 @@ export const rootMenu = [
     level: 1,
     subMenu: [
       {
-        label: "상품",
-        key: "/store/all",
-        path: "/store/all",
+        label: "메인",
+        key: "/store/main",
+        path: "/store/main",
       },
       {
         label: "카테고리",

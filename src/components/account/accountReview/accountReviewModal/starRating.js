@@ -8,6 +8,7 @@ function StarRating() {
 
   const handleRating = (rate) => {
     setRating(rate);
+    // current value 로 수정되어야 하는지 고려해보기
     console.log(rating);
   };
   return (
