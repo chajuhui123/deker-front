@@ -1,33 +1,63 @@
+import CommAlert from "../components/common/comm-alert";
+import { modalAction } from "../store/modal-slice";
+
 const FIREBASE_DOMAIN = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
 export function postApi(action, data, callback) {
-  const url = `${FIREBASE_DOMAIN}${action}`;
+  const url = `${FIREBASE_DOMAIN}/${action}`;
 
-  fetch(url, {
-    // method: "GET",
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((res) => {
-    res.json().then((data) => {
-      callback(data);
-    });
-  });
+  return (dispatch) => {
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("오류가 발생 했습니다.");
+        }
+      })
+      .then((data) => {
+        if (data.responseCode !== 200) {
+          throw new Error(data.message || "오류가 발생 했습니다.");
+        }
+        callback(data);
+      })
+      .catch((err) => {
+        dispatch(
+          modalAction.modalPopup({
+            isOpen: true,
+            cont: <CommAlert title="오류" message={err.message} />,
+          })
+        );
+      });
+  };
 }
 
 export function getApi(action, callback) {
-  const url = `${FIREBASE_DOMAIN}${action}`;
+  const url = `${FIREBASE_DOMAIN}/${action}`;
 
-  fetch(url, {
-    method: "GET",
-  }).then((res) => {
-    console.log(res);
-    res.json().then((data) => {
-      callback(data);
-    });
-  });
+  return (dispatch) => {
+    fetch(url, {
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("오류가 발생 했습니다.");
+        }
+      })
+      .catch((err) => {
+        dispatch(
+          modalAction.modalPopup({
+            isOpen: true,
+            cont: <CommAlert title="오류" message={err.message} />,
+          })
+        );
+      });
+  };
 }
 
 export function testApi(action, data, callback) {

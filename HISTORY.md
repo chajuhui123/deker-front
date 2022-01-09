@@ -1,7 +1,15 @@
 ### HISTORY
 
+### 2022.01.09 김효진
+
+1. fetch 공통 변경 (공통 에러창 개발 해야함)
+   - import { postApi } from "../../api/fetch-api";
+   - import { useDispatch } from "react-redux";
+   - dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
+   - const fnCallback = (res) => { history.push("/signupAdd"); };
 
 ### 2022.01.08. 권예림
+
 1. Account My Shopping Page 작업중
    - 기간(period) Dropdown, 배송상태(delivery state) Dropdown 선택값 바로 밑에 띠우는 기능 추가
 
