@@ -7,7 +7,7 @@
    - VSCode 재시작하면 적용됩니다!
    - 사용 예시
    ```
-    import { Menu } from 'components/Menu';
+    import 컴포넌트명 from 'components/store/storeBox';
     import noImg from "img/noImg.png";
     import from "api/api.js";
    ```
