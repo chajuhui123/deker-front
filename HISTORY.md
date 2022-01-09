@@ -1,7 +1,19 @@
 ### HISTORY
 
+### 2022.01.09. 차주희
+
+1. 리액트 절대 경로 지정 (jsconfig.json)
+   - 절대 경로 루트 : src
+   - VSCode 재시작하면 적용됩니다!
+   - 사용 예시
+   ```
+    import { Menu } from 'components/Menu';
+    import noImg from "img/noImg.png";
+    import from "api/api.js";
+   ```
 
 ### 2022.01.08. 권예림
+
 1. Account My Shopping Page 작업중
    - 기간(period) Dropdown, 배송상태(delivery state) Dropdown 선택값 바로 밑에 띠우는 기능 추가
 

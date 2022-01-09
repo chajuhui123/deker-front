@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import classes from "./NavigationBar.module.css";
 import { FiMenu, FiX, FiSearch } from "react-icons/fi";
 import { MdShoppingBasket } from "react-icons/md";
-import logoImg from "../../img/logo.png";
-import { rootMenu } from "../../api/rootMenu";
+import logoImg from "img/logo.png";
+import { rootMenu } from "api/rootMenu";
 
 function NavigationBar(props) {
   const [opend, setOpen] = useState(false); //false = bars, true = times
