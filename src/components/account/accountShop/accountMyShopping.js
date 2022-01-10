@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import DeliStateDropdown from "../common/deliStateDropdown";
-import PeriodDropdown from "../common/periodDropdown";
+import DeliStateDropdown from "../../common/deliStateDropdown";
+import PeriodDropdown from "../../common/periodDropdown";
+import MyReviewList from "../accountReview/myReviewList"; // request My review 말고 my product 같은걸로 바꿔서 props로 배송상태 주고 상태에 따라 띄우는거 어떤가
+
 import classes from "./accountMyShopping.module.css";
-import MyReviewList from "./myReviewList"; // request My review 말고 my product 같은걸로 바꿔서 props로 배송상태 주고 상태에 따라 띄우는거 어떤가
 
 function AccountMyShopping(props) {
   const [inqPeriod, setInqPeriod] = useState("");

@@ -1,4 +1,4 @@
-import MyReviewList from "../components/account/myReviewList";
+import MyReviewList from "components/account/accountReview/myReviewList";
 
 const MyReviewPage = () => {
   const DUMMY_DATA_UNREVIEWED = [
