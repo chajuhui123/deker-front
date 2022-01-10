@@ -1,8 +1,8 @@
 import classes from "./myReviewItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { modalAction } from "../../store/modal-slice";
-import ModalPopup from "../common/modal";
-import ModalContUploadUpdateReview from "./accountReview/accountReviewModal/modalContUploadUpdateReview";
+import { modalAction } from "../../../store/modal-slice";
+import ModalPopup from "../../common/modal";
+import ModalContUploadUpdateReview from "./accountReviewModal/modalContUploadUpdateReview";
 
 function MyReviewItem(props) {
   const isOpen = useSelector((state) => state.modal.isOpen);
