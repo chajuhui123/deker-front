@@ -12,7 +12,7 @@ function AccountMyShopping(props) {
 
   const DUMMY_DATA_UNREVIEWED = [
     {
-      id: 1,
+      id: 11,
       product_image:
         "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
       product_brand: "시디즈",
@@ -20,7 +20,7 @@ function AccountMyShopping(props) {
       product_option: "블랙",
     },
     {
-      id: 1,
+      id: 12,
       product_image:
         "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
       product_brand: "시디즈",
@@ -63,9 +63,10 @@ function AccountMyShopping(props) {
           <div className={classes.acctMyShopping_prdndelis}>
             {showInqPeriod && (
               <p className={classes.acctMyShopping_SelectedRslt}>
-                <p className={classes.acctMyShopping_selectedTextArea}>
-                  {inqPeriod}
-                </p>
+                {/* 에러나서 일단 없앰, 나중에 정식으로 손보자 */}
+                {/* <p className={classes.acctMyShopping_selectedTextArea}> */}
+                {inqPeriod}
+                {/* </p> */}
                 <button
                   className={classes.acctMyShopping_selectedRmvBtn}
                   onClick={clearPeriodValue}
@@ -76,9 +77,9 @@ function AccountMyShopping(props) {
             )}
             {showInqDeliState && (
               <p className={classes.acctMyShopping_SelectedRslt}>
-                <p className={classes.acctMyShopping_selectedTextArea}>
-                  {inqDeliState}
-                </p>
+                {/* <p className={classes.acctMyShopping_selectedTextArea}> */}
+                {inqDeliState}
+                {/* </p> */}
                 <button
                   className={classes.acctMyShopping_selectedRmvBtn}
                   onClick={clearDeliStateValue}
