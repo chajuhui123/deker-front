@@ -1,5 +1,12 @@
 ### HISTORY
 
+### 2022.01.09 김효진
+
+1. fetch 공통 변경 (공통 에러창 개발 해야함)
+   - import { postApi } from "../../api/fetch-api";
+   - import { useDispatch } from "react-redux";
+   - dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
+   - const fnCallback = (res) => { history.push("/signupAdd"); };
 
 ### 2022.01.10. 권예림
 

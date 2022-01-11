@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { testApi } from "../../../api/fetch-api";
+import { testApi } from "api/fetch-api";
 import classes from "./delivery-tracking.module.css";
-import InfoProduct from "../accountReview/accountReviewModal/infoProduct";
-import ModalTitle from "../../common/modal-title";
+import InfoProduct from "components/account/accountReview/accountReviewModal/infoProduct";
+import ModalTitle from "components/common/modal-title";
 
 const initailData = {
   product_id: "NaN",
