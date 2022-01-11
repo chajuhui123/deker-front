@@ -8,9 +8,12 @@ import SocialLogin from "../common/socialLogin";
 
 import { isPassword } from "../../api/check";
 import CommInput from "../common/input-with-title";
+import CommBtn from "components/common/commBtn";
+import { useDispatch } from "react-redux";
 
 function Signup(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [userId, setUserId] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [nickname, setNickname] = useState("");
@@ -38,10 +41,6 @@ function Signup(props) {
 
   // 비밀번호 확인 로직
   const rePasswordHandler = () => {
-    console.log(
-      "setIsSame :: ",
-      rePassword.current.value === passwordRef.current.value
-    );
     setIsSame(rePassword.current.value === passwordRef.current.value);
   };
 
@@ -52,21 +51,38 @@ function Signup(props) {
       nickname: nicknameRef.current.value,
       accountType: accountType || "1",
     };
-    postApi("nmb/acct/reg/member", signupData, fnCallback);
+    dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
   };
 
+  // back 호출 후 success callback method
   const fnCallback = (res) => {
     console.log(res);
     history.push("/signupAdd");
   };
 
+  // 회원가입 버튼 클릭 handler
   const signupSubmitHandler = (e) => {
-    e.preventDefault();
+    if (!checkPassword) {
+      passwordRef.current.focus();
+      return;
+    }
+    if (!isSame) {
+      rePassword.current.focus();
+      return;
+    }
+    if (!nickname) {
+      nicknameRef.current.focus();
+      return;
+    }
     submit();
   };
 
   const loginPageHandler = () => {
     history.push("/signin");
+  };
+
+  const emailAuthHandler = () => {
+    alert("이메일 인증 개발 중");
   };
 
   return (
@@ -85,7 +101,7 @@ function Signup(props) {
               onChange={idInputHandler}
               refer={userIdRef}
             />
-            {/* 이매일 인증 버튼 영역 */}
+            <CommBtn btnText="Email 인증" fnClick={emailAuthHandler} />
             <CommInput
               title="비밀번호"
               type="password"
@@ -116,11 +132,14 @@ function Signup(props) {
           </div>
         </div>
       </div>
-      {isSame && checkPassword && nickname && (
-        <button className={classes.signupBtn} type="submit">
-          회원가입 하기
-        </button>
-      )}
+      <CommBtn
+        btnText="회원가입 하기"
+        btnWidth="90%"
+        btnMargin="20px auto"
+        bgColor={(!isSame || !checkPassword || !nickname) && "gray"}
+        btnCursor="pointer"
+        fnClick={signupSubmitHandler}
+      />
       <div className={classes.guideArea}>
         <p className={classes.guideText}>이미 아이디가 있으신가요?</p>
         <p className={classes.loginText} onClick={loginPageHandler}>

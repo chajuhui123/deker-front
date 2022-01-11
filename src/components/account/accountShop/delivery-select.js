@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./delivery-select.module.css";
-import ModalTitle from "../../common/modal-title";
-import DeliveryCard from "../../common/deliveryCard";
-import CommBtn from "../../common/commBtn";
+import ModalTitle from "components/common/modal-title";
+import DeliveryCard from "components/common/deliveryCard";
+import CommBtn from "components/common/commBtn";
 
 const DUMMY_DATA = [
   {

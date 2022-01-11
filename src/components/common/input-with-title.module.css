@@ -1,10 +1,10 @@
 .commInput {
   width: auto;
-  margin: 10px auto;
   text-align: left;
   font: normal normal bold 20px/27px Roboto;
   letter-spacing: 0px;
   color: #000000;
+  margin-bottom: 15px;
 }
 
 .commInput p {
@@ -14,7 +14,7 @@
 .commInput input {
   padding-left: 10px;
   padding-right: 10px;
-  width: 100%;
+  width: 93%;
   height: 49px;
   font: normal normal 16px/20px Roboto;
   background: #ffffff 0% 0% no-repeat padding-box;
