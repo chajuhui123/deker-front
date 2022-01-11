@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import DeliverySelect from "../components/account/shop/delivery-select";
-import DeliveryTracking from "../components/account/shop/delivery-tracking";
+import DeliverySelect from "../components/account/accountShop/delivery-select";
+import DeliveryTracking from "../components/account/accountShop/delivery-tracking";
 import { modalAction } from "../store/modal-slice";
 
 function ModalTest(props) {

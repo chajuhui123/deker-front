@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import MyUploadPicList from "../components/account/myUploadPicLIst";
+
+import MyUploadPicList from "components/account/myPage/myUploadPicLIst";
 import classes from "./accountMyPage.module.css";
 
 const AccountMyPage = (props) => {

@@ -6,7 +6,7 @@ import NavigationBar from "./components/main/NavigationBar";
 import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/SigninPage";
 import ModifyPasswordPage from "./pages/modifyPassword";
-import MyPresentPage from "./pages/MyPreentPage";
+import MyPresentPage from "./pages/MyPresentPage";
 import MyReviewPage from "./pages/MyReviewPage";
 import Footer from "./components/main/Footer";
 

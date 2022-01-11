@@ -1,7 +1,7 @@
 // import React, { useState } from "react";
 import React from "react";
-import JobDropdown from "../common/jobDropdown";
-import UserTagForm from "../common/userTagForm";
+import UserTagForm from "../../common/userTagForm";
+import JobDropdown from "components/common/dropdown/jobDropdown";
 import classes from "./modifyUserInfo.module.css";
 
 function ModifyUserInfo(props) {

@@ -1,7 +1,7 @@
 // import React, { useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
-import JobDropdown from "../common/jobDropdown";
+import JobDropdown from "components/common/dropdown/jobDropdown";
 import UserTagForm from "../common/userTagForm";
 import classes from "./signupAdditional.module.css";
 

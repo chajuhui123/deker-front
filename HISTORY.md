@@ -8,6 +8,27 @@
    - dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
    - const fnCallback = (res) => { history.push("/signupAdd"); };
 
+### 2022.01.10. 권예림
+
+1. 폴더 정리
+   정리내용 너무 길어서 'DEKER 공유 페이지 > 프론트 TODO LIST > 폴더정리'
+   페이지 따로 만들어서 정리해뒀습니다. 내가 작업한 파일이 어딨는지 모르겠다! 하면 저 페이지에서 ctrl + F 해서 찾아보세요
+
+https://www.notion.so/4d30da6440024490a69f6bdcc621dad8
+
+
+### 2022.01.09. 차주희
+
+1. 리액트 절대 경로 지정 (jsconfig.json)
+   - 절대 경로 루트 : src
+   - VSCode 재시작하면 적용됩니다!
+   - 사용 예시
+   ```
+    import 컴포넌트명 from 'components/store/storeBox';
+    import noImg from "img/noImg.png";
+    import from "api/api.js";
+   ```
+
 ### 2022.01.08. 권예림
 
 1. Account My Shopping Page 작업중
