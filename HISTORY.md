@@ -1,5 +1,11 @@
 ### HISTORY
 
+### 2022.01.12 차주희
+
+1. subNavigation 컴포넌트 작성 중
+2. components/main 에 존재했던 footer, navigation 폴더 분리
+   - components/main/footer 와 components/main/navigation 으로 분리
+
 ### 2022.01.09 김효진
 
 1. fetch 공통 변경 (공통 에러창 개발 해야함)
@@ -15,7 +21,6 @@
    페이지 따로 만들어서 정리해뒀습니다. 내가 작업한 파일이 어딨는지 모르겠다! 하면 저 페이지에서 ctrl + F 해서 찾아보세요
 
 https://www.notion.so/4d30da6440024490a69f6bdcc621dad8
-
 
 ### 2022.01.09. 차주희
 
