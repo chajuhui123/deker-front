@@ -1,3 +1,4 @@
+import ModalTitle from "components/common/modalTitle";
 import React, { useState } from "react";
 import classes from "./productSalesLinkPage.module.css";
 
@@ -14,9 +15,7 @@ function ProductSalesLink() {
 
   return (
     <div className={classes.productSalesLinkLayout}>
-      <div className={classes.title}>
-        <p>상품링크등록</p>
-      </div>
+      <ModalTitle title="상품링크등록" />
       <div className={classes.productSearchArea}>
         <input
           className={classes.productLinkInput}

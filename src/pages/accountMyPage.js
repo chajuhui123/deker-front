@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import MyUploadPicList from "components/account/myPage/myUploadPicLIst";
 import classes from "./accountMyPage.module.css";
+import CommonPageTitle from "components/common/commPageTitle";
 
 const AccountMyPage = (props) => {
   const DUMMY_DATA = [
@@ -62,7 +63,7 @@ const AccountMyPage = (props) => {
     <form className={classes.accountMyPage_Layout}>
       <div className={classes.accountMyPage_Area}>
         <div className={classes.accountMyPage_Inner}>
-          <p className={classes.accountMyPage_Title}>마이페이지</p>
+          <CommonPageTitle title="마이페이지" />
           <hr className={classes.accountMyPage_lineD} />
           <div className={classes.accountMyPage_MainArea}>
             <div className={classes.accountMyPage_rowArea1}>

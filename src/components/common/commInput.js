@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./input-with-title.module.css";
+import classes from "./commInput.module.css";
 
 function CommInput(props) {
   const noti = props.noti;

@@ -1,15 +1,16 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-import { postApi } from "../../api/fetch-api";
+import { postApi } from "api/fetch-api";
+import { isPassword } from "api/check";
+
+import SocialLogin from "components/common/socialLogin";
+import CommInput from "components/common/commInput";
+import CommBtn from "components/common/commBtn";
+import CommonPageTitle from "components/common/commPageTitle";
 
 import classes from "./signup.module.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import SocialLogin from "../common/socialLogin";
-
-import { isPassword } from "../../api/check";
-import CommInput from "../common/input-with-title";
-import CommBtn from "components/common/commBtn";
-import { useDispatch } from "react-redux";
 
 function Signup(props) {
   const history = useHistory();
@@ -89,7 +90,7 @@ function Signup(props) {
     <form className={classes.signupForm} onSubmit={signupSubmitHandler}>
       <div className={classes.signupDiv}>
         <div className={classes.signupInner}>
-          <p className={classes.signupTitle}>회원가입</p>
+          <CommonPageTitle title="회원가입" />
           <div className={classes.snsArea}>
             <p className={classes.snsTitle}>SNS계정으로 간편 로그인/회원가입</p>
             <SocialLogin fnCallback={fnCallback} />

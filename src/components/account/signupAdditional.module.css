@@ -24,20 +24,6 @@
   height: 600px;
 }
 
-.signupAdditionalTitle {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  width: 140px;
-  height: 46px;
-  text-align: left;
-  font: normal normal bold 35px/47px Segoe UI;
-  letter-spacing: 0px;
-  color: #000000;
-  opacity: 1;
-  margin: 0px;
-}
-
 .userAddInfoTitle {
   margin-top: 50px;
   position: relative;
