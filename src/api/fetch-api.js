@@ -1,5 +1,5 @@
-import CommAlert from "../components/common/comm-alert";
-import { modalAction } from "../store/modal-slice";
+import CommAlert from "components/common/commAlert";
+import { modalAction } from "store/modal-slice";
 
 const FIREBASE_DOMAIN = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
@@ -9,6 +9,9 @@ export function postApi(action, data, callback) {
   return (dispatch) => {
     fetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(data),
     })
       .then((res) => {
@@ -19,7 +22,7 @@ export function postApi(action, data, callback) {
         }
       })
       .then((data) => {
-        if (data.responseCode !== 200) {
+        if (data.responseCode !== "200") {
           throw new Error(data.message || "오류가 발생 했습니다.");
         }
         callback(data);

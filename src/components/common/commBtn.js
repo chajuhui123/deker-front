@@ -9,6 +9,7 @@ import classes from "./commBtn.module.css";
  * @param {String} btnMargin 버튼 마진
  * @param {String} bgColor 버튼 배경색
  * @param {String} btnCursor 커서 모양
+ * @param {String} radius 둥근정도
  * @param {Function} fnClick onClick callback method
  * @returns
  */
@@ -19,6 +20,7 @@ function CommBtn({
   btnMargin,
   bgColor,
   btnCursor,
+  radius,
   fnClick,
 }) {
   const customStyle = {
@@ -27,6 +29,7 @@ function CommBtn({
     margin: btnMargin,
     backgroundColor: bgColor,
     borderColor: bgColor,
+    borderRadius: radius,
     cursor: btnCursor,
   };
   return (

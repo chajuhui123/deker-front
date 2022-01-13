@@ -1,4 +1,4 @@
-import ModalTitle from "components/common/modal-title";
+import ModalTitle from "components/common/modalTitle";
 import React, { useState } from "react";
 import classes from "./productSalesLinkPage.module.css";
 

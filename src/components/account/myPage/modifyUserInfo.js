@@ -1,9 +1,9 @@
 // import React, { useState } from "react";
 import React from "react";
-import UserTagForm from "../../common/userTagForm";
+import UserTagForm from "components/common/userTagForm";
 import JobDropdown from "components/common/dropdown/jobDropdown";
 import classes from "./modifyUserInfo.module.css";
-import ModalTitle from "components/common/modal-title";
+import ModalTitle from "components/common/modalTitle";
 
 function ModifyUserInfo(props) {
   // const [profilePic, setProfilePic] = useState("");
