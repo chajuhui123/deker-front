@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import JobDropdown from "components/common/dropdown/jobDropdown";
 import UserTagForm from "../common/userTagForm";
 import classes from "./signupAdditional.module.css";
-import CommonPageTitle from "components/common/commonPageTitle";
+import CommonPageTitle from "components/common/commPageTitle";
 
 function SignupAdditional(props) {
   // const [profilePic, setProfilePic] = useState("");

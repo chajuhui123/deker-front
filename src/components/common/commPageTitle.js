@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./commonPageTitle.module.css";
+import classes from "./commPageTitle.module.css";
 
 /**
  * 페이지 메인 TITLE component

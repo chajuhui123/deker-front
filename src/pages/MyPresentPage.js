@@ -1,4 +1,4 @@
-import CommonPageTitle from "components/common/commonPageTitle";
+import CommonPageTitle from "components/common/commPageTitle";
 import MyPresentList from "../components/account/myPresent/myPresentList";
 
 const MyPresentPage = () => {
