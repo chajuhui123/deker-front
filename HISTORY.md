@@ -6,6 +6,17 @@
    - 모달 테스트(http://localhost:3000/modaltest)에 'product sales link' 버튼 만들어서 올리기
    - 기간, 배송상태 dropdown 밑에 띄워주는 기능 없애기
    - 상세보기, 배송상태 부분 없애기
+2. 공통 컴포넌트 'Common Page Title' 생성 및 페이지 적용
+   - 각 페이지 Main Title 공통 컴포넌트
+   - 기존 코드는 주석처리 해뒀음
+   - App.js에 있는 페이지만 확인하고 바꾼거라 그 외 페이지는 필요하면 알아서!
+
+   <적용 페이지>
+   signup.js
+   accountMyShopping.js
+   accountMyPage.js
+   signupAdditional.js
+   MyPresentPage.js
 
 ### 2022.01.09 김효진
 
