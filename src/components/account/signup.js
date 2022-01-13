@@ -10,6 +10,7 @@ import { isPassword } from "../../api/check";
 import CommInput from "../common/input-with-title";
 import CommBtn from "components/common/commBtn";
 import { useDispatch } from "react-redux";
+import CommonPageTitle from "components/common/commonPageTitle";
 
 function Signup(props) {
   const history = useHistory();
@@ -89,7 +90,8 @@ function Signup(props) {
     <form className={classes.signupForm} onSubmit={signupSubmitHandler}>
       <div className={classes.signupDiv}>
         <div className={classes.signupInner}>
-          <p className={classes.signupTitle}>회원가입</p>
+          <CommonPageTitle title="회원가입" />
+          {/* <p className={classes.signupTitle}>회원가입</p> */}
           <div className={classes.snsArea}>
             <p className={classes.snsTitle}>SNS계정으로 간편 로그인/회원가입</p>
             <SocialLogin fnCallback={fnCallback} />

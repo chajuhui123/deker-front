@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import JobDropdown from "components/common/dropdown/jobDropdown";
 import UserTagForm from "../common/userTagForm";
 import classes from "./signupAdditional.module.css";
+import CommonPageTitle from "components/common/commonPageTitle";
 
 function SignupAdditional(props) {
   // const [profilePic, setProfilePic] = useState("");
@@ -29,7 +30,7 @@ function SignupAdditional(props) {
       <div className={classes.signupAddLayout}>
         <div className={classes.signupAdditional}>
           <div className={classes.signupAdditionalInner}>
-            <p className={classes.signupAdditionalTitle}>추가정보</p>
+            <CommonPageTitle title="추가정보입력" />
             <div className={classes.signupAddUserAddInfoArea}>
               <p className={classes.userAddInfoTitle}>프로필 사진</p>
               <div className={classes.userAddInfo_profilePic}></div>

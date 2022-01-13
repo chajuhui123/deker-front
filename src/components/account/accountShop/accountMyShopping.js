@@ -4,6 +4,7 @@ import PeriodDropdown from "components/common/dropdown/periodDropdown";
 import MyReviewList from "../accountReview/myReviewList"; // request My review 말고 my product 같은걸로 바꿔서 props로 배송상태 주고 상태에 따라 띄우는거 어떤가
 
 import classes from "./accountMyShopping.module.css";
+import CommonPageTitle from "components/common/commonPageTitle";
 
 function AccountMyShopping(props) {
   const [inqPeriod, setInqPeriod] = useState("");
@@ -56,7 +57,7 @@ function AccountMyShopping(props) {
   return (
     <div className={classes.accountMyShopping_Layout}>
       <div className={classes.acctMyShopping_Inner}>
-        <p className={classes.acctMyShopping_Title}>나의쇼핑</p>
+        <CommonPageTitle title="나의쇼핑" />
         <hr className={classes.acctMyShopping_LineD} />
         <div className={classes.acctMyShopping_Main}>
           <p className={classes.acctMyShopping_SemiTitle}>주문배송내역 조회</p>
