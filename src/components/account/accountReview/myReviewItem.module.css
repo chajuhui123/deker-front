@@ -4,8 +4,9 @@
   margin-block: 20px;
   padding: 20px;
   width: 750px;
-  border: var(--border);
+  /* border: var(--border); */
   border-radius: var(--border-radius);
+  box-shadow: rgb(0 0 0 / 6%) 0px 10px 40px 0px;
 }
 
 .product_img {

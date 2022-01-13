@@ -1,5 +1,19 @@
 ### HISTORY
 
+### 2022.01.13 차주희
+
+1. 네비게이션 회원 관련 아이템 컴포넌트로 분리
+   - 그 외는 시도하다가 일단 보류 ㅠ
+2. (/myReview) 파일 업로드시 이미지 미리보기 기능 추가
+   - input css 요소 추가로 꾸며야 함
+3. 카드 CSS 디자인 변경해봄
+
+### 2022.01.12 차주희
+
+1. subNavigation 컴포넌트 작성 중
+2. components/main 에 존재했던 footer, navigation 폴더 분리
+   - components/main/footer 와 components/main/navigation 으로 분리
+
 ### 2022.01.13. 권예림
 
 1. 저번주 페이지 수정사항 반영
@@ -7,16 +21,18 @@
    - 기간, 배송상태 dropdown 밑에 띄워주는 기능 없애기
    - 상세보기, 배송상태 부분 없애기
 2. 공통 컴포넌트 'Common Page Title' 생성 및 페이지 적용
+
    - 각 페이지 Main Title 공통 컴포넌트
    - 기존 코드는 주석처리 해뒀음
    - App.js에 있는 페이지만 확인하고 바꾼거라 그 외 페이지는 필요하면 알아서!
 
-   <적용 페이지>     (+각 페이지 css파일)
-      - signup.js
-      - accountMyShopping.js
-      - accountMyPage.js
-      - signupAdditional.js
-      - MyPresentPage.js
+   <적용 페이지> (+각 페이지 css파일)
+
+   - signup.js
+   - accountMyShopping.js
+   - accountMyPage.js
+   - signupAdditional.js
+   - MyPresentPage.js
 
 ### 2022.01.09 김효진
 
@@ -33,7 +49,6 @@
    페이지 따로 만들어서 정리해뒀습니다. 내가 작업한 파일이 어딨는지 모르겠다! 하면 저 페이지에서 ctrl + F 해서 찾아보세요
 
 https://www.notion.so/4d30da6440024490a69f6bdcc621dad8
-
 
 ### 2022.01.09. 차주희
 
