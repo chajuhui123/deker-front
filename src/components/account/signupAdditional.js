@@ -5,6 +5,7 @@ import JobDropdown from "components/common/dropdown/jobDropdown";
 import UserTagForm from "../common/userTagForm";
 import classes from "./signupAdditional.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
+import CommPageSemiTitle from "components/common/commPageSemiTitle";
 
 function SignupAdditional(props) {
   // const [profilePic, setProfilePic] = useState("");
@@ -32,11 +33,11 @@ function SignupAdditional(props) {
           <div className={classes.signupAdditionalInner}>
             <CommonPageTitle title="추가정보입력" />
             <div className={classes.signupAddUserAddInfoArea}>
-              <p className={classes.userAddInfoTitle}>프로필 사진</p>
+              <CommPageSemiTitle semiTitle="프로필 사진" />
               <div className={classes.userAddInfo_profilePic}></div>
-              <p className={classes.userAddInfoTitle}>직군</p>
+              <CommPageSemiTitle semiTitle="직군" />
               <JobDropdown />
-              <p className={classes.userAddInfoTitle}>태그</p>
+              <CommPageSemiTitle semiTitle="태그" />
               <div className={classes.userAddInfo_TagArea}>
                 <UserTagForm />
               </div>
