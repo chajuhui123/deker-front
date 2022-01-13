@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./modal-title.module.css";
+import classes from "./modalTitle.module.css";
 
 /**
  * 모달창 제목 component
