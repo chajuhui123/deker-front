@@ -5,23 +5,6 @@
   background: #ffffff 0% 0% no-repeat padding-box;
 }
 
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.title p {
-  width: 150px;
-  height: 33px;
-  font: normal normal bolder 23px/25px Roboto;
-  text-align: center;
-  letter-spacing: 0px;
-  color: #4242e2;
-  display: table-cell;
-  vertical-align: middle;
-}
-
 .productSearchArea {
   margin-top: 30px;
   display: flex;
