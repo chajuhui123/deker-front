@@ -3,6 +3,7 @@ import React from "react";
 import UserTagForm from "../../common/userTagForm";
 import JobDropdown from "components/common/dropdown/jobDropdown";
 import classes from "./modifyUserInfo.module.css";
+import ModalTitle from "components/common/modal-title";
 
 function ModifyUserInfo(props) {
   // const [profilePic, setProfilePic] = useState("");
@@ -26,7 +27,7 @@ function ModifyUserInfo(props) {
       onSubmit={signupAdditionalSubmitHandler}
     >
       <div className={classes.modifyUserInfo}>
-        <p className={classes.modifyUserInfoTitle}>회원정보 변경</p>
+        <ModalTitle title="회원정보 변경" />
         <div className={classes.modifyUserInfoInner}>
           <div className={classes.modifyUserInfoArea}>
             <div className={classes.modifyUserInfo_row1}>
