@@ -20,11 +20,15 @@ function Signup(props) {
   const [nickname, setNickname] = useState("");
   const [isSame, setIsSame] = useState(null);
   const [checkPassword, setCheckPassword] = useState(null);
+  const [sendEmail, setSendEmail] = useState(false);
+  const [emailCode, setEmailCode] = useState("");
+  const [emailAuth, setEmailAuth] = useState(false);
 
   const userIdRef = useRef();
   const passwordRef = useRef();
   const rePassword = useRef();
   const nicknameRef = useRef();
+  const emailCodeRef = useRef();
 
   // 아이디 Input Handler
   const idInputHandler = (e) => {
@@ -44,13 +48,18 @@ function Signup(props) {
   const rePasswordHandler = () => {
     setIsSame(rePassword.current.value === passwordRef.current.value);
   };
+  // Email 인증 코드 Input Handler
+  const emailCodeInputHandler = (e) => {
+    setEmailCode(e.target.value);
+  };
 
-  const submit = (accountType) => {
+  const submit = () => {
     const signupData = {
-      userId: userIdRef.current.value,
-      inputPassword: passwordRef.current.value,
+      id: userIdRef.current.value,
+      password: passwordRef.current.value,
       nickname: nicknameRef.current.value,
-      accountType: accountType || "1",
+      platformCode: "P01",
+      agreeYn: "Y",
     };
     dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
   };
@@ -75,6 +84,9 @@ function Signup(props) {
       nicknameRef.current.focus();
       return;
     }
+    if (!emailAuth) {
+      return;
+    }
     submit();
   };
 
@@ -83,7 +95,28 @@ function Signup(props) {
   };
 
   const emailAuthHandler = () => {
-    alert("이메일 인증 개발 중");
+    const sendData = {
+      id: userIdRef.current.value,
+    };
+    dispatch(postApi("nmb/acct/member/mail-send", sendData, emailSendCallback));
+  };
+
+  const emailSendCallback = (res) => {
+    console.log("emailSendCallback :: ", res);
+    setSendEmail(true);
+  };
+
+  const emailCodeHandler = () => {
+    const sendData = {
+      id: userIdRef.current.value,
+      checkString: emailCodeRef.current.value,
+    };
+    dispatch(postApi("nmb/acct/member/mail-send", sendData, emailCodeCallback));
+  };
+
+  const emailCodeCallback = (res) => {
+    console.log("emailCodeCallback :: ", res);
+    setEmailAuth(true);
   };
 
   return (
@@ -102,7 +135,28 @@ function Signup(props) {
               onChange={idInputHandler}
               refer={userIdRef}
             />
-            <CommBtn btnText="Email 인증" fnClick={emailAuthHandler} />
+            {(sendEmail && (
+              <>
+                <CommInput
+                  title="Email 인증 코드"
+                  type="text"
+                  value={emailCode}
+                  onChange={emailCodeInputHandler}
+                  refer={emailCodeRef}
+                />
+                <CommBtn
+                  btnText="Email 인증 코드 전송"
+                  btnCursor="pointer"
+                  fnClick={emailCodeHandler}
+                />
+              </>
+            )) || (
+              <CommBtn
+                btnText="Email 인증"
+                btnCursor="pointer"
+                fnClick={emailAuthHandler}
+              />
+            )}
             <CommInput
               title="비밀번호"
               type="password"
@@ -135,10 +189,13 @@ function Signup(props) {
       </div>
       <CommBtn
         btnText="회원가입 하기"
-        btnWidth="90%"
-        btnMargin="20px auto"
-        bgColor={(!isSame || !checkPassword || !nickname) && "gray"}
+        btnWidth="100%"
+        btnMargin="30px auto"
+        bgColor={
+          (!isSame || !checkPassword || !nickname || !emailAuth) && "gray"
+        }
         btnCursor="pointer"
+        radius="4px"
         fnClick={signupSubmitHandler}
       />
       <div className={classes.guideArea}>
