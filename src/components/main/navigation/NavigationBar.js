@@ -6,14 +6,16 @@ import { MdShoppingBasket } from "react-icons/md";
 import logoImg from "img/logo.png";
 import { rootMenu } from "api/rootMenu";
 import SubNavigationBar from "./SubNavigationBar";
+import NavigationUserItem from "./NavigationUserItem";
 
 function NavigationBar(props) {
   const [opend, setOpen] = useState(false); //false = bars, true = times
   const [clickedMenu, setClickedMenu] = useState("");
+
   const handleOnFixMenu = () => {
     setOpen(!opend);
   };
-  const clickOnMenu = (e) => {
+  const clickOnMenu = e => {
     setOpen(false);
   };
   const menuList = rootMenu.map((menu, index) => (
@@ -24,14 +26,13 @@ function NavigationBar(props) {
     </li>
   ));
 
-  // {opend} 하드코딩 영역 수정 필요
-  // 로그인 권한에 따라 보이는 메뉴 구분
   return (
     <>
       <nav className={classes.navbar}>
         <Link to="/" onClick={clickOnMenu}>
           <img className={classes.navLogo} src={logoImg} alt="로고" />
         </Link>
+
         {!opend && (
           <ul className={classes.navLinks}>
             <div className={classes.navLeft}>{menuList}</div>
@@ -47,30 +48,7 @@ function NavigationBar(props) {
               <li>
                 <MdShoppingBasket size="32" className={classes.navBasket} />
               </li>
-              {/* 추후, 로그인 정보 불러와서 조건 걸 예정 */}
-              <li className={classes.navItem}>
-                <Link
-                  to="/signup"
-                  className={classes.navLink}
-                  onClick={clickOnMenu}
-                >
-                  회원가입
-                </Link>
-              </li>
-              <li className={classes.navItem}>
-                <Link
-                  to="/signin"
-                  className={classes.navLink}
-                  onClick={clickOnMenu}
-                >
-                  로그인
-                </Link>
-              </li>
-              <li className={classes.navItem}>
-                <Link to="/" className={classes.navLink}>
-                  회원프로필
-                </Link>
-              </li>
+              <NavigationUserItem clickOnMenu={clickOnMenu} />
             </div>
           </ul>
         )}
@@ -78,35 +56,11 @@ function NavigationBar(props) {
           {opend ? <FiX /> : <FiMenu />}
         </div>
       </nav>
-      <SubNavigationBar />
 
       {opend && (
         <ul className={classes.navLinks.active}>
           {menuList}
-          {/* 추후, 로그인 정보 불러와서 조건 걸 예정 */}
-          <li className={classes.navItem}>
-            <Link
-              to="/signup"
-              className={classes.navLink}
-              onClick={clickOnMenu}
-            >
-              회원가입
-            </Link>
-          </li>
-          <li className={classes.navItem}>
-            <Link
-              to="/signin"
-              className={classes.navLink}
-              onClick={clickOnMenu}
-            >
-              로그인
-            </Link>
-          </li>
-          <li className={classes.navItem}>
-            <Link to="/" className={classes.navLink}>
-              회원프로필
-            </Link>
-          </li>
+          <NavigationUserItem clickOnMenu={clickOnMenu} />
         </ul>
       )}
     </>
