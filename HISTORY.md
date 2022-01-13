@@ -11,12 +11,12 @@
    - 기존 코드는 주석처리 해뒀음
    - App.js에 있는 페이지만 확인하고 바꾼거라 그 외 페이지는 필요하면 알아서!
 
-   <적용 페이지>
-   signup.js
-   accountMyShopping.js
-   accountMyPage.js
-   signupAdditional.js
-   MyPresentPage.js
+   <적용 페이지>     (+각 페이지 css파일)
+      - signup.js
+      - accountMyShopping.js
+      - accountMyPage.js
+      - signupAdditional.js
+      - MyPresentPage.js
 
 ### 2022.01.09 김효진
 
