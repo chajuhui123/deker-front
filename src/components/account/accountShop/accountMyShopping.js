@@ -5,6 +5,7 @@ import MyReviewList from "../accountReview/myReviewList"; // request My review �
 
 import classes from "./accountMyShopping.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
+import CommPageSemiTitle from "components/common/commPageSemiTitle";
 
 function AccountMyShopping(props) {
   const [inqPeriod, setInqPeriod] = useState("");
@@ -60,7 +61,7 @@ function AccountMyShopping(props) {
         <CommonPageTitle title="나의쇼핑" />
         <hr className={classes.acctMyShopping_LineD} />
         <div className={classes.acctMyShopping_Main}>
-          <p className={classes.acctMyShopping_SemiTitle}>주문배송내역 조회</p>
+          <CommPageSemiTitle semiTitle="주문배송내역 조회" />
           <div className={classes.acctMyShopping_DelivTrack}></div>
           <div className={classes.acctMyShopping_DelivTrackCondition}>
             <PeriodDropdown onCreate={createPeriodHandler} />
@@ -96,7 +97,7 @@ function AccountMyShopping(props) {
             )}
           </div>
             */}
-          <p className={classes.acctMyShopping_SemiTitle}>주문상품</p>
+          <CommPageSemiTitle semiTitle="주문상품" />
           <div className={classes.acctMyShopping_orderProductDetail}>
             <p>000000000 | 2022.01.01.</p>
             {/* <p className={classes.accountMyShopping_showDetail}>
@@ -105,25 +106,6 @@ function AccountMyShopping(props) {
             {/** qestion 상세보기는 페이지?? 모달?? */}
           </div>
           <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
-          {/* <p className={classes.acctMyShopping_SemiTitle}>배송상태</p>
-          <div className={classes.deliTableArea}>
-            <table className={classes.deliTable}>
-              <thead>
-                <tr>
-                  <th>날짜</th>
-                  <th>배송상태</th>
-                  <th>담당자/연락처</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>when</td>
-                  <td>state</td>
-                  <td>man</td>
-                </tr>
-              </tbody>
-            </table>
-          </div> */}
         </div>
       </div>
     </div>
