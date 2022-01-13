@@ -2,13 +2,13 @@ import { Route, Switch } from "react-router-dom";
 
 import classes from "./App.module.css";
 
-import NavigationBar from "./components/main/NavigationBar";
+import NavigationBar from "components/main/navigation/NavigationBar";
 import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/SigninPage";
 import ModifyPasswordPage from "./pages/modifyPassword";
 import MyPresentPage from "./pages/MyPresentPage";
 import MyReviewPage from "./pages/MyReviewPage";
-import Footer from "./components/main/Footer";
+import Footer from "components/main/footer/Footer";
 
 import SignupPage from "./pages/SignupPage";
 import { useSelector } from "react-redux";

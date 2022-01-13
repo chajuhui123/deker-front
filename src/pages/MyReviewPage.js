@@ -43,7 +43,7 @@ const MyReviewPage = () => {
     <div style={{ width: "750px", margin: "auto" }}>
       <h1>작성 가능한 리뷰</h1>
       <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
-      <h1>나의 리뷰</h1>
+      <h1 style={{ marginTop: "70px" }}>나의 리뷰</h1>
       <MyReviewList reviews={DUMMY_DATA_REVIEWED} />
     </div>
   );

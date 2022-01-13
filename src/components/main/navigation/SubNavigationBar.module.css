@@ -1,0 +1,23 @@
+:root {
+  --text-color: #4242e2;
+  --background-color: #ffffff;
+  --accent-color: #4242e2;
+  --icons-color: rgb(152, 187, 201);
+  --bodybackground-color: #ffffff;
+}
+
+.nav {
+  height: 43px;
+  background-color: var(--bodybackground-color);
+  color: var(--text-color);
+  border-bottom: 1px solid #70707021;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  font-size: 14px;
+  justify-content: center;
+}
+
+.navItem {
+  margin-inline: 10px;
+}
