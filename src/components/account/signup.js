@@ -10,7 +10,7 @@ import { isPassword } from "../../api/check";
 import CommInput from "../common/input-with-title";
 import CommBtn from "components/common/commBtn";
 import { useDispatch } from "react-redux";
-import CommonPageTitle from "components/common/commonPageTitle";
+import CommonPageTitle from "components/common/commPageTitle";
 
 function Signup(props) {
   const history = useHistory();

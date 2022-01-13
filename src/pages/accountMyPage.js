@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import MyUploadPicList from "components/account/myPage/myUploadPicLIst";
 import classes from "./accountMyPage.module.css";
-import CommonPageTitle from "components/common/commonPageTitle";
+import CommonPageTitle from "components/common/commPageTitle";
 
 const AccountMyPage = (props) => {
   const DUMMY_DATA = [
