@@ -22,6 +22,7 @@ export function postApi(action, data, callback) {
         }
       })
       .then((data) => {
+        console.debug("postApi :: data :: ", data);
         if (data.responseCode !== "200") {
           throw new Error(data.message || "오류가 발생 했습니다.");
         }
@@ -47,10 +48,18 @@ export function getApi(action, callback) {
     })
       .then((res) => {
         if (res.ok) {
+          console.log(res);
           return res.json();
         } else {
           throw new Error("오류가 발생 했습니다.");
         }
+      })
+      .then((data) => {
+        alert("getApi :: data :: ", data);
+        if (data.responseCode !== "200") {
+          throw new Error(data.message || "오류가 발생 했습니다.");
+        }
+        callback(data);
       })
       .catch((err) => {
         dispatch(
