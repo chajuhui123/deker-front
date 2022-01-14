@@ -1,0 +1,10 @@
+.selectTitle {
+  width: 200px;
+  height: 33px;
+  font: normal normal bolder 15px/20px Roboto;
+  letter-spacing: 0px;
+  color: #696969;
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 5px;
+}

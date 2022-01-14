@@ -1,5 +1,10 @@
 ### HISTORY
 
+### 2022.01.15 김효진
+
+1. components/common/CommSelect : 공통 select 생성
+   (기존 dropdown 통합버전임)
+
 ### 2022.01.13 차주희
 
 1. 네비게이션 회원 관련 아이템 컴포넌트로 분리
@@ -27,16 +32,17 @@
    - App.js에 있는 페이지만 확인하고 바꾼거라 그 외 페이지는 필요하면 알아서!
 
    <적용 페이지> (+각 페이지 css파일)
-      - signup.js
-      - accountMyShopping.js
-      - accountMyPage.js
-      - signupAdditional.js
-      - MyPresentPage.js
+
+   - signup.js
+   - accountMyShopping.js
+   - accountMyPage.js
+   - signupAdditional.js
+   - MyPresentPage.js
 
 3. 공통 컴포넌트 'Common Page Semi Title' 생성 및 페이지 적용
    <적용 페이지> (+각 페이지 css파일)
-      - accountMyShopping.js
-      - signupAdditional.js
+   - accountMyShopping.js
+   - signupAdditional.js
 
 ### 2022.01.09 김효진
 

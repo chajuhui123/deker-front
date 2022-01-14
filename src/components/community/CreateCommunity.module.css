@@ -1,0 +1,44 @@
+.page {
+  width: 1400px;
+  height: 800px;
+  margin: 50px auto;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.selectArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.communityArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 15px 0;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.imgArea {
+  width: 800px;
+  height: 600px;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.textArea {
+  margin-left: 15px;
+  right: 0px;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.titleArea {
+  margin-bottom: 15px;
+  width: calc(1400px - 815px);
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.contArea {
+  width: calc(1400px - 815px);
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
