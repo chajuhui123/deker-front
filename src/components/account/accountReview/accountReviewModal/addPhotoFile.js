@@ -1,8 +1,10 @@
 import React, { useState, useRef, useCallback } from "react";
-import axios from "axios";
 import classes from "./addPhotoFile.module.css";
+import { fileApi } from "api/fetch-api";
+import { useDispatch } from "react-redux";
 
 function AddPhotoFile() {
+  const dispatch = useDispatch();
   //파일 미리볼 url을 저장해줄 state
   const [fileImage, setFileImage] = useState("");
   // 파일 저장
@@ -10,12 +12,17 @@ function AddPhotoFile() {
     setFileImage(URL.createObjectURL(e.target.files[0]));
     const formData = new FormData();
     formData.appned("uploadImg", e.target.files[0]);
-    const config = {
-      headers: {
-        "Content-type": "multipart/form-data",
-      },
-    };
-    axios.post("~~~", formData, config);
+    dispatch(fileApi("", formData, fnCallback));
+    // const config = {
+    //   headers: {
+    //     "Content-type": "multipart/form-data",
+    //   },
+    // };
+    // axios.post("~~~", formData, config);
+  };
+
+  const fnCallback = (res) => {
+    console.log("fnCallback :: ", res);
   };
 
   // 파일 삭제
