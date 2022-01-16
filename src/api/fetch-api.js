@@ -72,6 +72,42 @@ export function getApi(action, callback) {
   };
 }
 
+export function fileApi(action, data, callback) {
+  const url = `${FIREBASE_DOMAIN}/${action}`;
+
+  return (dispatch) => {
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "multipart/form-data",
+      },
+      data,
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("오류가 발생 했습니다.");
+        }
+      })
+      .then((data) => {
+        console.debug("postApi :: data :: ", data);
+        if (data.responseCode !== "200") {
+          throw new Error(data.message || "오류가 발생 했습니다.");
+        }
+        callback(data);
+      })
+      .catch((err) => {
+        dispatch(
+          modalAction.modalPopup({
+            isOpen: true,
+            cont: <CommAlert title="오류" message={err.message} />,
+          })
+        );
+      });
+  };
+}
+
 export function testApi(action, data, callback) {
   const DUMMY_DATA = {
     product_id: "P0001",
