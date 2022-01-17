@@ -9,7 +9,6 @@ import ModifyPasswordPage from "./pages/modifyPassword";
 import MyPresentPage from "./pages/MyPresentPage";
 import MyReviewPage from "./pages/MyReviewPage";
 import Footer from "components/main/footer/Footer";
-
 import SignupPage from "./pages/SignupPage";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -21,6 +20,7 @@ import SignupAddPage from "pages/SignupAddPage";
 import AccountMyShoppingPage from "pages/accountMyShoppingPage";
 import ModalTest from "pages/modalTest";
 import CreateCommunityPage from "pages/CreateCommunityPage";
+import ProductDetailPage from "pages/shop/ProductDetail";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -95,6 +95,10 @@ function App() {
           </Route>
           <Route path="/modalTest" exact>
             <ModalTest />
+          </Route>
+          {/* no 로 product Detail 페이지 번호 받아올 예정 */}
+          <Route path="/productDetail/:no" exact>
+            <ProductDetailPage />
           </Route>
         </Switch>
       </div>
