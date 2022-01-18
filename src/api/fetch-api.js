@@ -35,6 +35,10 @@ export function postApi(action, data, callback) {
             cont: <CommAlert title="오류" message={err.message} />,
           })
         );
+      })
+      .finally((data) => {
+        console.log("finally :: data :: ", data);
+        callback(data);
       });
   };
 }
