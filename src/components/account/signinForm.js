@@ -1,30 +1,31 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import classes from "./signinForm.module.css";
-import { isEmail, isPassword } from "../../api/check";
-// img import
-import logoImg from "../../img/logo.png";
+import { isEmail, isPassword } from "api/check";
+import logoImg from "img/logo.png";
+import { postApi } from "api/fetch-api";
+import { API_SIGNIN } from "api/signin-api";
+import { userAction } from "store/user-slice";
+import { calculateRemainingTime } from "api/check";
 
 function SigninForm() {
+  const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isVaildEmail, setIsVaildEmail] = useState(true);
   const [isVaildPass, setIsVaildPass] = useState(true);
 
-  // 로그인 요청 핸들러
-  const SigninHandler = (event) => {
-    event.preventDefault();
+  const EmailOnChangeHandler = () => {
     const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
-
-    // 이메일 유효성 검사
     if (!isEmail(enteredEmail)) {
       setIsVaildEmail(false);
     } else {
       setIsVaildEmail(true);
     }
-
-    // 비밀번호 유효성 검사
+  };
+  const PasswordOnChangeHandler = () => {
+    const enteredPassword = passwordInputRef.current.value;
     if (!isPassword(enteredPassword)) {
       setIsVaildPass(false);
     } else {
@@ -32,12 +33,43 @@ function SigninForm() {
     }
   };
 
+  const SigninHandler = (event) => {
+    event.preventDefault();
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+    const enteredSigninForm = {
+      id: enteredEmail,
+      password: enteredPassword,
+      platformCode: "P01",
+    };
+    if (!isVaildEmail) return;
+    if (!isVaildPass) return;
+    dispatch(postApi(API_SIGNIN, enteredSigninForm, fnCallback));
+  };
+
+  const logoutHandler = () => {
+    dispatch(userAction.logout());
+    localStorage.removeItem("token");
+    localStorage.removeItem("extTokenTime");
+  };
+
+  const fnCallback = (res) => {
+    dispatch(
+      userAction.login({
+        jwtToken: res.data.jwtToken,
+      })
+    );
+    const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
+    localStorage.setItem("token", res.data.jwtToken);
+    localStorage.setItem("extTokenTime", res.data.extTokenTime);
+    setTimeout(logoutHandler, remainingDuration);
+  };
+
   return (
     <div className={classes.signin_box}>
       <Link to="/">
         <img className={classes.signin_logo} src={logoImg} alt="로고" />
       </Link>
-
       <div>
         <input
           type="email"
@@ -46,6 +78,7 @@ function SigninForm() {
           required
           placeholder="이메일"
           ref={emailInputRef}
+          onChange={EmailOnChangeHandler}
         />
       </div>
       <div>
@@ -56,6 +89,7 @@ function SigninForm() {
           className={classes.signin_password_input}
           required
           ref={passwordInputRef}
+          onChange={PasswordOnChangeHandler}
         />
       </div>
       <div className={classes.signin_valid}>

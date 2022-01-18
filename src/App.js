@@ -1,7 +1,6 @@
+import { useEffect, useCallback } from "react";
 import { Route, Switch } from "react-router-dom";
-
 import classes from "./App.module.css";
-
 import NavigationBar from "components/main/navigation/NavigationBar";
 import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/SigninPage";
@@ -10,8 +9,7 @@ import MyPresentPage from "./pages/MyPresentPage";
 import MyReviewPage from "./pages/MyReviewPage";
 import Footer from "components/main/footer/Footer";
 import SignupPage from "./pages/SignupPage";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalAction } from "./store/modal-slice";
 import ModalPopup from "components/common/modal";
 import AccountMyPage from "pages/accountMyPage";
@@ -21,6 +19,8 @@ import AccountMyShoppingPage from "pages/accountMyShoppingPage";
 import ModalTest from "pages/modalTest";
 import CreateCommunityPage from "pages/CreateCommunityPage";
 import ProductDetailPage from "pages/shop/ProductDetail";
+import { calculateRemainingTime } from "api/check";
+import { userAction } from "store/user-slice";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -30,6 +30,21 @@ function App() {
   const closeModalEventHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
+
+  const retrieveStoredToken = useCallback(() => {
+    const storedExpirationTime = localStorage.getItem("expirationTime");
+    const remainingTime = calculateRemainingTime(storedExpirationTime);
+    console.log(remainingTime);
+    if (remainingTime <= 60000) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("expirationTime");
+      dispatch(userAction.logout());
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    retrieveStoredToken();
+  }, [retrieveStoredToken]);
 
   return (
     <>
