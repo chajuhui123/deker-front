@@ -1,5 +1,11 @@
 ### HISTORY
 
+### 2022.01.18 김효진
+
+1. 공통 스피터 생성 components/common/CommSpinner
+   공통버튼에 isLoading을 true로 하면 버튼에 Spinner 적용됨
+   http://localhost:3000/modalTest 로 가면 화면에 보여짐
+
 ### 2022.01.15 김효진
 
 1. components/common/CommSelect : 공통 select 생성

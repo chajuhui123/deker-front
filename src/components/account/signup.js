@@ -11,6 +11,8 @@ import CommBtn from "components/common/commBtn";
 import CommonPageTitle from "components/common/commPageTitle";
 
 import classes from "./signup.module.css";
+import { modalAction } from "store/modal-slice";
+import CommAlert from "components/common/commAlert";
 
 function Signup(props) {
   const history = useHistory();
@@ -23,6 +25,7 @@ function Signup(props) {
   const [sendEmail, setSendEmail] = useState(false);
   const [emailCode, setEmailCode] = useState("");
   const [emailAuth, setEmailAuth] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const userIdRef = useRef();
   const passwordRef = useRef();
@@ -67,7 +70,21 @@ function Signup(props) {
   // back 호출 후 success callback method
   const fnCallback = (res) => {
     console.log(res);
-    history.push("/signupAdd");
+    if (!!res) {
+      history.push("/signupAdd");
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert
+              title="오류"
+              message="회원가입 중 오류가 발생했습니다."
+            />
+          ),
+        })
+      );
+    }
   };
 
   // 회원가입 버튼 클릭 handler
@@ -95,6 +112,7 @@ function Signup(props) {
   };
 
   const emailAuthHandler = () => {
+    setIsLoading(true);
     const sendData = {
       id: userIdRef.current.value,
     };
@@ -103,10 +121,14 @@ function Signup(props) {
 
   const emailSendCallback = (res) => {
     console.log("emailSendCallback :: ", res);
-    setSendEmail(true);
+    if (!!res) {
+      setIsLoading(false);
+      setSendEmail(true);
+    }
   };
 
   const emailCodeHandler = () => {
+    setIsLoading(true);
     const sendData = {
       id: userIdRef.current.value,
       checkString: emailCodeRef.current.value,
@@ -116,7 +138,25 @@ function Signup(props) {
 
   const emailCodeCallback = (res) => {
     console.log("emailCodeCallback :: ", res);
-    setEmailAuth(true);
+    setIsLoading(false);
+    if (!!res) {
+      console.log("setEmailAuth(true)");
+      setEmailAuth(true);
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert
+              title="오류"
+              message="인증코드가 다릅니다. 재요청 해주세요."
+            />
+          ),
+        })
+      );
+      setEmailAuth(false);
+      setSendEmail(false);
+    }
   };
 
   return (
@@ -135,28 +175,31 @@ function Signup(props) {
               onChange={idInputHandler}
               refer={userIdRef}
             />
-            {(sendEmail && (
-              <>
-                <CommInput
-                  title="Email 인증 코드"
-                  type="text"
-                  value={emailCode}
-                  onChange={emailCodeInputHandler}
-                  refer={emailCodeRef}
-                />
+            {emailAuth ||
+              (sendEmail && (
+                <>
+                  <CommInput
+                    title="인증 코드"
+                    type="text"
+                    value={emailCode}
+                    onChange={emailCodeInputHandler}
+                    refer={emailCodeRef}
+                  />
+                  <CommBtn
+                    btnText="코드 확인"
+                    btnCursor="pointer"
+                    isLoading={isLoading}
+                    fnClick={emailCodeHandler}
+                  />
+                </>
+              )) || (
                 <CommBtn
-                  btnText="Email 인증 코드 전송"
+                  btnText="Email 인증"
                   btnCursor="pointer"
-                  fnClick={emailCodeHandler}
+                  isLoading={isLoading}
+                  fnClick={emailAuthHandler}
                 />
-              </>
-            )) || (
-              <CommBtn
-                btnText="Email 인증"
-                btnCursor="pointer"
-                fnClick={emailAuthHandler}
-              />
-            )}
+              )}
             <CommInput
               title="비밀번호"
               type="password"

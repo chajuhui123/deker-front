@@ -18,7 +18,10 @@ function CreateCommunity(props) {
   }, []);
 
   useEffect(() => {
-    dispatch(postApi("nmb/cmm/post/code"), fnCallback);
+    const paramOjb = {
+      codeId: "JOB",
+    };
+    dispatch(postApi("nmb/cmm/post/code"), paramOjb, fnCallback);
   }, [dispatch, fnCallback]);
 
   const jobChangeHandler = (e) => {
@@ -48,7 +51,7 @@ function CreateCommunity(props) {
         <div className={classes.imgArea}>이미지</div>
         <div className={classes.textArea}>
           <div className={classes.titleArea}>
-            <CommInput title="제목" />
+            <CommInput />
           </div>
           <div className={classes.contArea}>내용</div>
         </div>

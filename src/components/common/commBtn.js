@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./commBtn.module.css";
+import CommSpinner from "./CommSpinner";
 
 /**
  * 공통 버튼
@@ -10,6 +11,7 @@ import classes from "./commBtn.module.css";
  * @param {String} bgColor 버튼 배경색
  * @param {String} btnCursor 커서 모양
  * @param {String} radius 둥근정도
+ * @param {boolean} isLoading Loading 여부
  * @param {Function} fnClick onClick callback method
  * @returns
  */
@@ -21,6 +23,7 @@ function CommBtn({
   bgColor,
   btnCursor,
   radius,
+  isLoading,
   fnClick,
 }) {
   const customStyle = {
@@ -34,7 +37,8 @@ function CommBtn({
   };
   return (
     <div className={classes.btnArea} style={customStyle} onClick={fnClick}>
-      <p>{btnText || "확인"}</p>
+      {isLoading || <p>{btnText || "확인"}</p>}
+      {isLoading && <CommSpinner />}
     </div>
   );
 }

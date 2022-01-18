@@ -1,7 +1,7 @@
-import GoogleLoginBtn from "../../oauth/google";
-import KakaoLoginBtn from "../../oauth/kakao";
-import NaverLoginBtn from "../../oauth/naver";
-import { postApi } from "../../api/fetch-api";
+import GoogleLoginBtn from "oauth/google";
+import KakaoLoginBtn from "oauth/kakao";
+import NaverLoginBtn from "oauth/naver";
+import { postApi } from "api/fetch-api";
 
 import classes from "./socialLogin.module.css";
 import { useDispatch } from "react-redux";
