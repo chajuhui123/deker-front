@@ -103,7 +103,6 @@ function AccountMyShopping(props) {
             {/* <p className={classes.accountMyShopping_showDetail}>
               상세보기 {">"}
             </p> */}
-            {/** qestion 상세보기는 페이지?? 모달?? */}
           </div>
           <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
         </div>
