@@ -4,6 +4,19 @@ import classes from "./productSalesLinkPage.module.css";
 
 function ProductSalesLink() {
   const [productLinkInputText, setProductLinkInputText] = useState("");
+  const [outerProductYN, setOuterProductYN] = useState(false);
+
+  const outerProductIsCheckedHandler = (e) => {
+    setOuterProductYN(!outerProductYN);
+    checkedItemHandler(e.checked);
+  };
+
+  const checkedItemHandler = (isChecked) => {
+    if (isChecked) {
+      // 페이지 바꾸기
+    } else {
+    }
+  };
 
   const productLinkkInputHandler = (e) => {
     setProductLinkInputText(e.target.value);
@@ -16,6 +29,12 @@ function ProductSalesLink() {
   return (
     <div className={classes.productSalesLinkLayout}>
       <ModalTitle title="상품링크등록" />
+      <input
+        type="checkbox"
+        checked={outerProductYN}
+        onChange={outerProductIsCheckedHandler}
+      />
+      <label>외부 상품 등록</label>
       <div className={classes.productSearchArea}>
         <input
           className={classes.productLinkInput}
