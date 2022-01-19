@@ -21,6 +21,7 @@ import SignupAddPage from "pages/SignupAddPage";
 import AccountMyShoppingPage from "pages/accountMyShoppingPage";
 import ModalTest from "pages/modalTest";
 import CreateCommunityPage from "pages/CreateCommunityPage";
+import StoreMainPage from "pages/StoreMainPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -95,6 +96,9 @@ function App() {
           </Route>
           <Route path="/modalTest" exact>
             <ModalTest />
+          </Route>
+          <Route path="/storeMain" exact>
+            <StoreMainPage />
           </Route>
         </Switch>
       </div>
