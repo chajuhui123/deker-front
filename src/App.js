@@ -21,6 +21,7 @@ import CreateCommunityPage from "pages/CreateCommunityPage";
 import ProductDetailPage from "pages/shop/ProductDetail";
 import { calculateRemainingTime } from "api/check";
 import { userAction } from "store/user-slice";
+import StoreMainPage from "pages/StoreMainPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -110,6 +111,9 @@ function App() {
           </Route>
           <Route path="/modalTest" exact>
             <ModalTest />
+          </Route>
+          <Route path="/storeMain" exact>
+            <StoreMainPage />
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route path="/productDetail/:no" exact>

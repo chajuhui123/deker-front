@@ -11,7 +11,7 @@
   flex-direction: row;
 }
 
-.productLinkInput {
+.productInput {
   width: 100%;
   height: 33px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -40,7 +40,11 @@
   height: 400px;
   background-color: #000000;
 }
-
+.empty {
+  margin-top: 30px;
+  width: 100%;
+  height: 400px;
+}
 .closeBtnArea {
   margin-top: 30px;
   width: 100%;
