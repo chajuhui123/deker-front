@@ -1,58 +1,94 @@
+import CommChckbx from "components/common/commChckbx";
 import ModalTitle from "components/common/modalTitle";
 import React, { useState } from "react";
 import classes from "./productSalesLinkPage.module.css";
 
 function ProductSalesLink() {
   const [productLinkInputText, setProductLinkInputText] = useState("");
+  const [productNameInputText, setProductNameInputText] = useState("");
   const [outerProductYN, setOuterProductYN] = useState(false);
 
-  const outerProductIsCheckedHandler = (e) => {
-    setOuterProductYN(!outerProductYN);
-    checkedItemHandler(e.checked);
+  const outerProductIsCheckedHandler = (data) => {
+    setOuterProductYN(data);
+    console.log("kwon debug: " + outerProductYN);
   };
 
-  const checkedItemHandler = (isChecked) => {
-    if (isChecked) {
-      // 페이지 바꾸기
-    } else {
-    }
-  };
-
-  const productLinkkInputHandler = (e) => {
+  // 내부 상품 등록
+  const productLinkInputHandler = (e) => {
     setProductLinkInputText(e.target.value);
   };
-
+  // 검색 버튼을 누르면 내부 상품 search 후 결과 뿌려주고 입력창 reset하면 안될거같은데?
   const productSearchHandler = () => {
-    setProductLinkInputText("");
+    // setProductLinkInputText("");
+  };
+
+  // 외부 상품 등록
+  const productNameInputHandler = (e) => {
+    setProductNameInputText(e.target.value);
+  };
+  // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
+  const productNameRegHandler = () => {
+    setProductNameInputText("");
+    // modal close
   };
 
   return (
     <div className={classes.productSalesLinkLayout}>
       <ModalTitle title="상품링크등록" />
-      <input
+      <CommChckbx
+        label="외부 상품 등록"
+        onChange={outerProductIsCheckedHandler}
+      />
+      {/* <input
         type="checkbox"
         checked={outerProductYN}
         onChange={outerProductIsCheckedHandler}
       />
-      <label>외부 상품 등록</label>
-      <div className={classes.productSearchArea}>
-        <input
-          className={classes.productLinkInput}
-          type="text"
-          value={productLinkInputText}
-          placeholder="상품 이름을 임력 해주세요."
-          onChange={productLinkkInputHandler}
-        ></input>
-        <button
-          className={classes.productSearchBtn}
-          onClick={productSearchHandler}
-        >
-          검색
-        </button>
-      </div>
-      <div className={classes.selectedProduct}>
-        {/* question 등록한 상품 띄우는 곳?? ui 이해가 안됨 */}
-      </div>
+      <label>외부 상품 등록</label> */}
+      {outerProductYN && (
+        <div>
+          <div className={classes.productSearchArea}>
+            <input
+              className={classes.productInput}
+              type="text"
+              value={productLinkInputText}
+              placeholder="상품 이름을 임력 해주세요."
+              onChange={productLinkInputHandler}
+            ></input>
+            <button
+              className={classes.productSearchBtn}
+              onClick={productSearchHandler}
+            >
+              검색
+            </button>
+          </div>
+          <div className={classes.selectedProduct}>
+            {/* question 등록한 상품 띄우는 곳?? ui 이해가 안됨 */}
+          </div>
+        </div>
+      )}
+      {!outerProductYN && (
+        <div>
+          <div className={classes.productSearchArea}>
+            <input
+              className={classes.productInput}
+              type="text"
+              value={productNameInputText}
+              placeholder="상품 이름 혹은 링크를 임력 해주세요."
+              onChange={productNameInputHandler}
+            ></input>
+            <button
+              className={classes.productSearchBtn}
+              onClick={productNameRegHandler}
+            >
+              등록
+            </button>
+          </div>
+          <div className={classes.empty}>
+            {/* 갑자기 모달 크기 확 바뀌는게 이상해서 일단 넣음 */}
+          </div>
+        </div>
+      )}
       <div className={classes.closeBtnArea}>
         <button className={classes.popupCloseBtn}>닫기</button>
       </div>
