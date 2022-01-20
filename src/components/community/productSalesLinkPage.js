@@ -28,8 +28,8 @@ function ProductSalesLink() {
   };
   // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
   const productNameRegHandler = () => {
-    setProductNameInputText("");
     // modal close
+    alert("modal close 기능 내가 props 건드려도 되는 지 확인하고 수정");
   };
 
   return (
@@ -39,12 +39,7 @@ function ProductSalesLink() {
         label="외부 상품 등록"
         onChange={outerProductIsCheckedHandler}
       />
-      {/* <input
-        type="checkbox"
-        checked={outerProductYN}
-        onChange={outerProductIsCheckedHandler}
-      />
-      <label>외부 상품 등록</label> */}
+
       {outerProductYN && (
         <div>
           <div className={classes.productSearchArea}>

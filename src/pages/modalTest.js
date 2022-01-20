@@ -6,6 +6,7 @@ import { modalAction } from "store/modal-slice";
 import ProductSalesLink from "components/community/productSalesLinkPage";
 import CommBtn from "components/common/commBtn";
 import { useState } from "react";
+import CommPopup from "components/common/commPopup";
 
 function ModalTest(props) {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function ModalTest(props) {
       modalAction.modalPopup({ isOpen: true, cont: <ProductSalesLink /> })
     );
   };
+  const commPopupTestHandler = () => {
+    dispatch(modalAction.modalPopup({ isOpen: true, cont: <CommPopup /> }));
+  };
   return (
     <div>
       <button onClick={deliveryTrackingHandler}>DeliveryTracking</button>
@@ -38,6 +42,7 @@ function ModalTest(props) {
       <button onClick={productSalesLinkHandler}>productSalesLink</button>
       <CommBtn btnText="스피너 테스트" isLoading={isLoading} btnWidth="30%" />
       <button onClick={spinnerHandler}>스피터 적용 Trigger</button>
+      <button onClick={commPopupTestHandler}>공통 팝업 테스트</button>
     </div>
   );
 }
