@@ -1,5 +1,16 @@
 ### HISTORY
 
+### 2022.01.20. 권예림
+
+1. 저번주 페이지 수정사항 반영
+   - productSalesLinkPage 외부상품 처리 : 외부상품인지 아닌지 체크박스 여부에 따라 입력 UI 달라짐
+2. commChckbx.js 생성
+   - 공통 체크박스 컴포넌트 생성
+
+### 2022.01.19. 권예림
+
+1. 스토어 메인 Page (StoreMainPage.js) 생성
+
 ### 2022.01.18 김효진
 
 1. 공통 스피터 생성 components/common/CommSpinner
