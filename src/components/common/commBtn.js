@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./commBtn.module.css";
+import classes from "./CommBtn.module.css";
 import CommSpinner from "./CommSpinner";
 
 /**
