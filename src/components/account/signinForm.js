@@ -8,8 +8,10 @@ import { postApi } from "api/fetch-api";
 import { API_SIGNIN } from "api/signin-api";
 import { userAction } from "store/user-slice";
 import { calculateRemainingTime } from "api/check";
+import { useHistory } from "react-router";
 
 function SigninForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -56,13 +58,14 @@ function SigninForm() {
   const fnCallback = (res) => {
     dispatch(
       userAction.login({
-        jwtToken: res.data.jwtToken,
+        jwtToken: res?.data?.jwtToken,
       })
     );
-    const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
-    localStorage.setItem("token", res.data.jwtToken);
-    localStorage.setItem("extTokenTime", res.data.extTokenTime);
+    const remainingDuration = calculateRemainingTime(res?.data?.extTokenTime);
+    localStorage.setItem("token", res?.data?.jwtToken);
+    localStorage.setItem("extTokenTime", res?.data?.extTokenTime);
     setTimeout(logoutHandler, remainingDuration);
+    res?.responseCode === 200 && history.push("/");
   };
 
   return (
