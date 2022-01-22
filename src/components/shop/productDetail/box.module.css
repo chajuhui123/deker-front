@@ -1,0 +1,10 @@
+.boxDiv {
+  width: 1000px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.contentTitle {
+  color: #707070;
+  font-size: 28px;
+}

@@ -1,0 +1,46 @@
+.productOptionSelectBox {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  height: 450px;
+}
+
+img {
+  height: 100%;
+}
+
+.optionSelectBox {
+  border: 1px solid #707070;
+  padding: 30px;
+  width: 450px;
+  margin-left: 20px;
+}
+
+.btnBox {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.btnBox div {
+  margin-inline: 8px;
+}
+
+.buyItemInfoDiv {
+  display: flex;
+  margin-block: 20px;
+}
+
+.buyItemInfoDiv p:first-child {
+  width: 15%;
+  margin-block: auto;
+}
+
+.inputQuantity {
+  border: 1px solid hsl(0, 0%, 80%);
+  align-items: center;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 10px;
+  width: 280px;
+}

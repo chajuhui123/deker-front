@@ -1,0 +1,27 @@
+.productReviewDiv {
+  display: flex;
+  margin-block: 40px;
+}
+
+.userImg {
+  border-radius: 100%;
+  width: 90px;
+  margin-right: 20px;
+}
+
+.reviewWriterInfoDiv {
+  color: #707070;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.productOptionDiv {
+  display: flex;
+  margin-block: 15px;
+}
+
+.productOptionDiv p {
+  color: #707070;
+  margin-right: 10px;
+}

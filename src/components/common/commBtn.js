@@ -9,6 +9,8 @@ import CommSpinner from "./CommSpinner";
  * @param {String} btnHeight 버튼 높이
  * @param {String} btnMargin 버튼 마진
  * @param {String} bgColor 버튼 배경색
+ * @param {String} bdColor 테두리 색
+ * @param {String} txColor 폰트 색상
  * @param {String} btnCursor 커서 모양
  * @param {String} radius 둥근정도
  * @param {boolean} isLoading Loading 여부
@@ -21,6 +23,8 @@ function CommBtn({
   btnHeight,
   btnMargin,
   bgColor,
+  bdColor,
+  txColor,
   btnCursor,
   radius,
   isLoading,
@@ -31,7 +35,8 @@ function CommBtn({
     height: btnHeight,
     margin: btnMargin,
     backgroundColor: bgColor,
-    borderColor: bgColor,
+    borderColor: bdColor,
+    color: txColor,
     borderRadius: radius,
     cursor: btnCursor,
   };
