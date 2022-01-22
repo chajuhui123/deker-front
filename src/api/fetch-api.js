@@ -1,4 +1,4 @@
-import CommAlert from "components/common/commAlert";
+import CommAlert from "components/common/CommAlert";
 import { modalAction } from "store/modal-slice";
 
 const FIREBASE_DOMAIN = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
@@ -35,10 +35,6 @@ export function postApi(action, data, callback) {
             cont: <CommAlert title="오류" message={err.message} />,
           })
         );
-      })
-      .finally((data) => {
-        console.log("finally :: data :: ", data);
-        callback(data);
       });
   };
 }

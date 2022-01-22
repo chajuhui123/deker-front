@@ -231,6 +231,14 @@ p {
   margin: 0;
 }
 
+textarea {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  resize: none;
+}
+
 .content {
   min-height: calc(100vh - 100px);
 }

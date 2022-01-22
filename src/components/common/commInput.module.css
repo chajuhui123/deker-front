@@ -14,7 +14,7 @@
 .commInput input {
   padding-left: 10px;
   padding-right: 10px;
-  width: 93%;
+  width: calc(100% - 20px);
   height: 49px;
   font: normal normal 16px/20px Roboto;
   background: #ffffff 0% 0% no-repeat padding-box;

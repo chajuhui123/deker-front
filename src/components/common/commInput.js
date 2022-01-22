@@ -1,5 +1,6 @@
 import React from "react";
-import classes from "./commInput.module.css";
+import classes from "./CommInput.module.css";
+import CommPageSemiTitle from "./commPageSemiTitle";
 
 /**
  *
@@ -12,11 +13,12 @@ import classes from "./commInput.module.css";
  * @returns
  */
 function CommInput(props) {
+  const title = props.title;
   const noti = props.noti;
   const ref = props.refer;
   return (
     <div className={classes.commInput}>
-      <p>{props.title}</p>
+      {title && <CommPageSemiTitle semiTitle={title} />}
       {noti && <h6>{noti}</h6>}
       <input
         type={props.type || "text"}
