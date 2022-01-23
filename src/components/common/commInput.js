@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./CommInput.module.css";
+import classes from "./commInput.module.css";
 import CommPageSemiTitle from "./commPageSemiTitle";
 
 /**

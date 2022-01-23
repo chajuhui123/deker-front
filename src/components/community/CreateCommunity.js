@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import classes from "./CreateCommunity.module.css";
 import { postApi, fileApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
-import CommInput from "components/common/CommInput";
+import CommInput from "components/common/commInput";
 import CommSelect from "components/common/CommSelect";
 import { useEffect } from "react";
-import CommBtn from "components/common/CommBtn";
+import CommBtn from "components/common/commBtn";
 
 // TODO : 이미지
 

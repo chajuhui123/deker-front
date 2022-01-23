@@ -1,4 +1,4 @@
-import CommAlert from "components/common/CommAlert";
+import CommAlert from "components/common/commAlert";
 import { modalAction } from "store/modal-slice";
 
 const FIREBASE_DOMAIN = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;

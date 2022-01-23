@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./deliverySelect.module.css";
 import ModalTitle from "components/common/modalTitle";
 import DeliveryCard from "components/common/deliveryCard";
-import CommBtn from "components/common/CommBtn";
+import CommBtn from "components/common/commBtn";
 
 const DUMMY_DATA = [
   {
