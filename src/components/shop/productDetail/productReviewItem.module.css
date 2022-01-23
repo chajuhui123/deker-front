@@ -1,6 +1,7 @@
 .productReviewDiv {
   display: flex;
-  margin-block: 40px;
+  margin-block: 60px;
+  justify-content: center;
 }
 
 .userImg {
@@ -24,4 +25,8 @@
 .productOptionDiv p {
   color: #707070;
   margin-right: 10px;
+}
+
+.productReviewText {
+  max-width: 400px;
 }

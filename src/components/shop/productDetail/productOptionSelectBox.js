@@ -9,7 +9,11 @@ function ProductOptionSelectBox() {
   const productImg = "";
   const productName = "상품명";
   const productPrice = "1000";
-  const colorOptions = ["pink", "red", "blue", "yellow"];
+  const colorOptions = [
+    { value: "pink", label: "pink" },
+    { value: "red", label: "red" },
+    { value: "blue", label: "blue" },
+  ];
   const moreOptions = ["옵션1", "옵션2", "옵션3", "옵션4"];
   const productQuantity = "10";
 
