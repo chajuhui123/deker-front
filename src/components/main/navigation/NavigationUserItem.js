@@ -13,28 +13,28 @@ function NavigationUserItem({ clickOnMenu }) {
   return (
     <>
       {/* 추후, 로그인 정보 불러와서 조건 걸 예정 */}
-      {isLoggedIn && (
+      {!isLoggedIn && (
         <li className={classes.navItem}>
           <Link to="/signup" className={classes.navLink} onClick={clickOnMenu}>
             회원가입
           </Link>
         </li>
       )}
-      {isLoggedIn && (
+      {!isLoggedIn && (
         <li className={classes.navItem}>
           <Link to="/signin" className={classes.navLink} onClick={clickOnMenu}>
             로그인
           </Link>
         </li>
       )}
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <li className={classes.navItem}>
           <Link to="/" className={classes.navLink}>
             회원프로필
           </Link>
         </li>
       )}
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <li className={classes.navItem}>
           <button onClick={logoutHandler} className={classes.navLink}>
             로그아웃

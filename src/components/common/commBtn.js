@@ -36,7 +36,7 @@ function CommBtn({
     margin: btnMargin,
     backgroundColor: bgColor,
     borderColor: bdColor,
-    color: txColor,
+    color: txColor || "white",
     borderRadius: radius,
     cursor: btnCursor,
   };

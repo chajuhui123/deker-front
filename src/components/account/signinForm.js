@@ -58,14 +58,16 @@ function SigninForm() {
   const fnCallback = (res) => {
     dispatch(
       userAction.login({
-        jwtToken: res?.data?.jwtToken,
+        jwtToken: res.data.jwtToken,
       })
     );
-    const remainingDuration = calculateRemainingTime(res?.data?.extTokenTime);
-    localStorage.setItem("token", res?.data?.jwtToken);
-    localStorage.setItem("extTokenTime", res?.data?.extTokenTime);
+    if (!!res) {
+      history.push("/");
+    }
+    const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
+    localStorage.setItem("token", res.data.jwtToken);
+    localStorage.setItem("extTokenTime", res.data.extTokenTime);
     setTimeout(logoutHandler, remainingDuration);
-    res?.responseCode === 200 && history.push("/");
   };
 
   return (

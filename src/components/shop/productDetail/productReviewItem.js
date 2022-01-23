@@ -29,7 +29,7 @@ function ProductReviewItem() {
           <p>{productColorOption}</p>
           <p>{productOption}</p>
         </div>
-        <p>{productReview}</p>
+        <p className={classes.productReviewText}>{productReview}</p>
       </div>
     </div>
   );
