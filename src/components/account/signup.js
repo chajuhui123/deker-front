@@ -6,13 +6,13 @@ import { postApi } from "api/fetch-api";
 import { isPassword } from "api/check";
 
 import SocialLogin from "components/common/socialLogin";
-import CommInput from "components/common/CommInput";
-import CommBtn from "components/common/CommBtn";
+import CommInput from "components/common/commInput";
+import CommBtn from "components/common/commBtn";
 import CommonPageTitle from "components/common/commPageTitle";
 
 import classes from "./signup.module.css";
 import { modalAction } from "store/modal-slice";
-import CommAlert from "components/common/CommAlert";
+import CommAlert from "components/common/commAlert";
 
 function Signup(props) {
   const history = useHistory();

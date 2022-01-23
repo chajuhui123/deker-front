@@ -4,7 +4,7 @@ import DeliverySelect from "components/account/accountShop/deliverySelect";
 import DeliveryTracking from "components/account/accountShop/deliveryTracking";
 import { modalAction } from "store/modal-slice";
 import ProductSalesLink from "components/community/productSalesLinkPage";
-import CommBtn from "components/common/CommBtn";
+import CommBtn from "components/common/commBtn";
 import { useState } from "react";
 import CommPopup from "components/common/commPopup";
 
