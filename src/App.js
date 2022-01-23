@@ -21,7 +21,7 @@ import CreateCommunityPage from "pages/CreateCommunityPage";
 import ProductDetailPage from "pages/shop/ProductDetail";
 import { calculateRemainingTime } from "api/check";
 import { userAction } from "store/user-slice";
-import StoreMainPage from "pages/StoreMainPage";
+import StoreMainPage from "pages/shop/StoreMainPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
