@@ -11,6 +11,8 @@ const StoreMainPage = () => {
         "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
       productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
       productPrice: "12,000",
+      // + like for 인기 정렬 => 백?
+      // + date 사람이 본 시각
     },
     {
       id: 2,
@@ -61,19 +63,28 @@ const StoreMainPage = () => {
       productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
       productPrice: "13,900",
     },
-    {
-      id: 9,
-      productImg:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      productPrice: "12,000",
-    },
+    // {
+    //   id: 9,
+    //   productImg:
+    //     "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
+    //   productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
+    //   productPrice: "12,000",
+    // },
   ];
   return (
     <div className={classes.StoreMainPage_Layout}>
       <div className={classes.HotProductSection}>
         <div className={classes.HotProductTitleArea}>
           <CommonPageTitle title="인기상품" />
+          <Link to="/" className={classes.HotProductDetail}>
+            더보기 {">"}
+          </Link>
+        </div>
+        <ProductList products={DUMMY_DATA} />
+      </div>
+      <div className={classes.HotProductSection}>
+        <div className={classes.HotProductTitleArea}>
+          <CommonPageTitle title="최근 본 상품" />
           <Link to="/" className={classes.HotProductDetail}>
             더보기 {">"}
           </Link>
