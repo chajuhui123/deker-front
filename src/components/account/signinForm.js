@@ -50,10 +50,9 @@ function SigninForm() {
   };
 
   const logoutHandler = useCallback(() => {
-    alert("로그아웃");
     dispatch(userAction.logout());
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("extTokenTime");
+    localStorage.removeItem("token");
+    localStorage.removeItem("extTokenTime");
   }, [dispatch]);
 
   const fnCallback = (res) => {
@@ -68,7 +67,6 @@ function SigninForm() {
     const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
     localStorage.setItem("token", res.data.jwtToken);
     localStorage.setItem("extTokenTime", res.data.extTokenTime);
-    console.log("signinForm :: remainingDuration :: ", remainingDuration);
     setTimeout(logoutHandler, remainingDuration);
   };
 
