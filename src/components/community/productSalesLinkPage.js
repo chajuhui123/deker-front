@@ -1,12 +1,21 @@
 import CommChckbx from "components/common/commChckbx";
 import ModalTitle from "components/common/modalTitle";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { modalAction } from "store/modal-slice";
+import OuterPrdct from "./outerPrdct";
 import classes from "./productSalesLinkPage.module.css";
 
 function ProductSalesLink() {
   const [productLinkInputText, setProductLinkInputText] = useState("");
   const [productNameInputText, setProductNameInputText] = useState("");
-  const [outerProductYN, setOuterProductYN] = useState(false);
+  const [outerProductYN, setOuterProductYN] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const outerProductHandler = () => {
+    dispatch(modalAction.modalPopup({ isOpen: true, cont: <OuterPrdct /> }));
+  };
 
   const outerProductIsCheckedHandler = (data) => {
     setOuterProductYN(data);
@@ -35,8 +44,10 @@ function ProductSalesLink() {
   return (
     <div className={classes.productSalesLinkLayout}>
       <ModalTitle title="상품링크등록" />
+      <p onClick={outerProductHandler}>+ 상품 직접 등록하기</p>
       <CommChckbx
         label="외부 상품 등록"
+        outerProductYN={outerProductYN}
         onChange={outerProductIsCheckedHandler}
       />
 
