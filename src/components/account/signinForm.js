@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import classes from "./signinForm.module.css";
@@ -49,11 +49,11 @@ function SigninForm() {
     dispatch(postApi(API_SIGNIN, enteredSigninForm, fnCallback));
   };
 
-  const logoutHandler = () => {
+  const logoutHandler = useCallback(() => {
     dispatch(userAction.logout());
     localStorage.removeItem("token");
     localStorage.removeItem("extTokenTime");
-  };
+  }, [dispatch]);
 
   const fnCallback = (res) => {
     dispatch(

@@ -34,12 +34,14 @@ function App() {
 
   const retrieveStoredToken = useCallback(() => {
     const storedExpirationTime = localStorage.getItem("expirationTime");
-    const remainingTime = calculateRemainingTime(storedExpirationTime);
-    console.log(remainingTime);
-    if (remainingTime <= 60000) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("expirationTime");
-      dispatch(userAction.logout());
+    if (!!storedExpirationTime) {
+      const remainingTime = calculateRemainingTime(storedExpirationTime);
+      console.log("App.js :: remainingTime :: ", remainingTime);
+      if (remainingTime <= 60000) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("expirationTime");
+        dispatch(userAction.logout());
+      }
     }
   }, [dispatch]);
 
