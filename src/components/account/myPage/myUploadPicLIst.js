@@ -5,13 +5,14 @@ function MyUploadPicList(props) {
   return (
     <div className={classes.myUploadPicList}>
       <ul className={classes.myUploadPicList}>
-        {props.muUploadPic.map((muUploadPic) => (
-          <MyUploadPicItem
-            key={muUploadPic.id}
-            id={muUploadPic.id}
-            pic_image={muUploadPic.pic_image}
-          />
-        ))}
+        {props.muUploadPic &&
+          props.muUploadPic.map((muUploadPic) => (
+            <MyUploadPicItem
+              key={muUploadPic.id}
+              id={muUploadPic.id}
+              pic_image={muUploadPic.pic_image}
+            />
+          ))}
       </ul>
     </div>
   );
