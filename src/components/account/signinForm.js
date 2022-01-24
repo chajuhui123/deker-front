@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import classes from "./signinForm.module.css";
@@ -49,11 +49,12 @@ function SigninForm() {
     dispatch(postApi(API_SIGNIN, enteredSigninForm, fnCallback));
   };
 
-  const logoutHandler = () => {
+  const logoutHandler = useCallback(() => {
+    alert("로그아웃");
     dispatch(userAction.logout());
-    localStorage.removeItem("token");
-    localStorage.removeItem("extTokenTime");
-  };
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("extTokenTime");
+  }, [dispatch]);
 
   const fnCallback = (res) => {
     dispatch(
@@ -67,6 +68,7 @@ function SigninForm() {
     const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
     localStorage.setItem("token", res.data.jwtToken);
     localStorage.setItem("extTokenTime", res.data.extTokenTime);
+    console.log("signinForm :: remainingDuration :: ", remainingDuration);
     setTimeout(logoutHandler, remainingDuration);
   };
 

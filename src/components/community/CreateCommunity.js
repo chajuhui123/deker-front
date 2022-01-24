@@ -107,12 +107,12 @@ function CreateCommunity(props) {
       moodCode: moodCode,
       imageFile: imageFile,
     };
-    formData.append("uploadImg", imageFile);
-    formData.append("json", dataOjb);
+    formData.append("uploadImg", imageFile); // 게시글 이미지
+    formData.append("json", dataOjb); // 게시글 제목, 내용
     for (var pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
-    dispatch(fileApi("", formData, fnCallback));
+    dispatch(fileApi("이미지url", formData, fnCallback));
   };
 
   return (
