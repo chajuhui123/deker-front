@@ -39,6 +39,7 @@ function DeliveryTracking(props) {
     // const dataOjb = {
     //   orderId: props.orderId,
     // };
+    console.log("useEffect");
     const dataOjb = {
       // TODO : TEST 용
       orderId: "odrId_99999999999999",
