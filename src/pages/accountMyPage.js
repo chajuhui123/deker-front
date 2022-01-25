@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import MyUploadPicList from "components/account/myPage/myUploadPicLIst";
 import classes from "./accountMyPage.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
+import { postApi } from "api/fetch-api";
+import { useDispatch } from "react-redux";
+
+const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
 const AccountMyPage = (props) => {
+  const dispatch = useDispatch();
+  const [profileImg, setProfileImg] = useState(null);
+  const [postList, setPostList] = useState(null);
+
+  const fnCallback = (res) => {
+    setProfileImg(`${BASEURL}${res.data.profileImg}`);
+    setPostList(`${BASEURL}${res.data.postList}`);
+    console.log(res.data);
+  };
+
+  useEffect(() => {
+    dispatch(postApi("mb/post/get/my-post-list", null, fnCallback));
+  }, [dispatch]);
+
   const DUMMY_DATA = [
     {
       id: 1,
@@ -67,7 +85,10 @@ const AccountMyPage = (props) => {
           <hr className={classes.accountMyPage_lineD} />
           <div className={classes.accountMyPage_MainArea}>
             <div className={classes.accountMyPage_rowArea1}>
-              <div className={classes.accountMyPage_ProfilePic} />
+              <img
+                className={classes.accountMyPage_ProfilePic}
+                src={profileImg}
+              />
             </div>
             <div className={classes.accountMyPage_rowArea2}>
               <div className={classes.accountMyPage_rowArea3}>
@@ -89,6 +110,7 @@ const AccountMyPage = (props) => {
             </div>
           </div>
           <div className={classes.picarea}>
+            {/* <MyUploadPicList muUploadPic={postList} /> */}
             <MyUploadPicList muUploadPic={DUMMY_DATA} />
           </div>
         </div>

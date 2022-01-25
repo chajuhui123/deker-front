@@ -82,15 +82,6 @@ const StoreMainPage = () => {
         </div>
         <ProductList products={DUMMY_DATA} />
       </div>
-      <div className={classes.HotProductSection}>
-        <div className={classes.HotProductTitleArea}>
-          <CommonPageTitle title="최근 본 상품" />
-          <Link to="/" className={classes.HotProductDetail}>
-            더보기 {">"}
-          </Link>
-        </div>
-        <ProductList products={DUMMY_DATA} />
-      </div>
       <div className={classes.CategorySection}>
         <div className={classes.HotProductTitleArea}>
           <CommonPageTitle title="카테고리" />
