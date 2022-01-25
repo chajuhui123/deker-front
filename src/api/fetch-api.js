@@ -1,8 +1,9 @@
 import CommAlert from "components/common/commAlert";
 import { modalAction } from "store/modal-slice";
+import { spinnerAction } from "store/spinner-slice";
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 
-const FIREBASE_DOMAIN = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
+const BASE_URL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
 /**
  * post api
@@ -12,10 +13,11 @@ const FIREBASE_DOMAIN = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
  * @returns
  */
 export function postApi(action, data, callback) {
-  const url = `${FIREBASE_DOMAIN}/${action}`;
+  const url = `${BASE_URL}/${action}`;
   const token = "Bearer " + localStorage.getItem("token");
 
   return (dispatch) => {
+    dispatch(spinnerAction.loading());
     fetch(url, {
       method: "POST",
       headers: {
@@ -25,6 +27,7 @@ export function postApi(action, data, callback) {
       body: JSON.stringify(data),
     })
       .then((res) => {
+        dispatch(spinnerAction.complete());
         if (res.ok) {
           return res.json();
         } else {
@@ -50,9 +53,10 @@ export function postApi(action, data, callback) {
 }
 
 export function getApi(action, callback) {
-  const url = `${FIREBASE_DOMAIN}/${action}`;
+  const url = `${BASE_URL}/${action}`;
 
   return (dispatch) => {
+    dispatch(spinnerAction.loading());
     fetch(url, {
       method: "GET",
     })
@@ -65,7 +69,7 @@ export function getApi(action, callback) {
         }
       })
       .then((data) => {
-        alert("getApi :: data :: ", data);
+        dispatch(spinnerAction.complete());
         if (data.responseCode !== "200") {
           throw new Error(data.message || "오류가 발생 했습니다.");
         }
@@ -83,9 +87,10 @@ export function getApi(action, callback) {
 }
 
 export function fileApi(action, data, callback) {
-  const url = `${FIREBASE_DOMAIN}/${action}`;
+  const url = `${BASE_URL}/${action}`;
 
   return (dispatch) => {
+    dispatch(spinnerAction.loading());
     fetch(url, {
       method: "POST",
       headers: {
@@ -94,6 +99,7 @@ export function fileApi(action, data, callback) {
       data,
     })
       .then((res) => {
+        dispatch(spinnerAction.complete());
         if (res.ok) {
           return res.json();
         } else {
@@ -115,6 +121,47 @@ export function fileApi(action, data, callback) {
           })
         );
       });
+  };
+}
+
+export function sseApi() {
+  const url = `${BASE_URL}/mb/sse-start`;
+  const token = "Bearer " + localStorage.getItem("token");
+  return (dispatch) => {
+    fetchEventSource(url, {
+      method: "POST",
+      headers: {
+        Accept: "text/event-stream",
+        Authorization: token,
+      },
+      onopen(res) {
+        if (res.ok && res.status === 200) {
+          console.log("Connection made ", res);
+        } else if (
+          res.status >= 400 &&
+          res.status < 500 &&
+          res.status !== 429
+        ) {
+          console.log("Client side error ", res);
+        }
+      },
+      onmessage(event) {
+        const parsedData = JSON.parse(event.data);
+        console.log(parsedData);
+      },
+      onclose(e) {
+        console.log("Connection closed by the server");
+      },
+      onerror(err) {
+        console.log("There was an error from server", err);
+        dispatch(
+          modalAction.modalPopup({
+            isOpen: true,
+            cont: <CommAlert title="오류" message={err} />,
+          })
+        );
+      },
+    });
   };
 }
 
@@ -151,32 +198,3 @@ export function testApi(action, data, callback) {
 
   callback(DUMMY_DATA);
 }
-
-export const fetchData = async () => {
-  const url = `${FIREBASE_DOMAIN}/mb/sse-start`;
-  const token = "Bearer " + localStorage.getItem("token");
-  await fetchEventSource(url, {
-    method: "POST",
-    headers: {
-      Accept: "text/event-stream",
-      Authorization: token,
-    },
-    onopen(res) {
-      if (res.ok && res.status === 200) {
-        console.log("Connection made ", res);
-      } else if (res.status >= 400 && res.status < 500 && res.status !== 429) {
-        console.log("Client side error ", res);
-      }
-    },
-    onmessage(event) {
-      const parsedData = JSON.parse(event.data);
-      console.log(parsedData);
-    },
-    onclose(e) {
-      console.log("Connection closed by the server");
-    },
-    onerror(err) {
-      console.log("There was an error from server", err);
-    },
-  });
-};
