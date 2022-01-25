@@ -17,6 +17,7 @@ const customStyles = {
     margin: "0px",
     padding: "0px",
     transform: "translate(-50%, -50%)",
+    border: "none",
   },
 
   overlay: {

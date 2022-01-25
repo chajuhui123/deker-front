@@ -22,14 +22,20 @@ import ProductDetailPage from "pages/shop/ProductDetail";
 import { calculateRemainingTime } from "api/check";
 import { userAction } from "store/user-slice";
 import StoreMainPage from "pages/shop/StoreMainPage";
+import LoadingSpinner from "components/common/LoadingSpinner";
+import { spinnerAction } from "store/spinner-slice";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
+  const isLoading = useSelector((state) => state.spinner.isLoading);
   const dispatch = useDispatch();
   const closeModalEventHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
+  };
+  const closeSpinnerHandler = () => {
+    dispatch(spinnerAction.complete());
   };
 
   const retrieveStoredToken = useCallback(() => {
@@ -57,6 +63,22 @@ function App() {
         onRequestClose={closeModalEventHandler}
       >
         {modalCont}
+      </ModalPopup>
+      <ModalPopup
+        id="spinner"
+        isOpen={isLoading}
+        onRequestClose={closeSpinnerHandler} // TODO : 삭제 해야함
+      >
+        <div
+          style={{
+            width: "100px",
+            height: "100px",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            border: "none",
+          }}
+        >
+          <LoadingSpinner />
+        </div>
       </ModalPopup>
       <NavigationBar />
       <div className={classes.content}>
