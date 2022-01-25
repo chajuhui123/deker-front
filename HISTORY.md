@@ -1,9 +1,23 @@
-### HISTORY
+## HISTORY
 
 ### 2022.01.25 김효진
 
 1. 로그인만료시간
 2. 공통스피너 적용 (modalTest 테스트 가능)
+3. 이메일 인증 오류 해결
+
+# INPORTANT
+
+- postApi 오류 발생 시 catch 부분에서 modal을 띄워주고 callback(null) 로 메소드를 호출 함
+- 각 callback method에서 null에 대한 처리를 해야함
+- ex)
+  const fnCallback = (res) => {
+  if (!!res) {
+  정상처리 로직
+  } else {
+  비정상처리 로직
+  }
+  }
 
 ### 2022.01.24. 권예림
 

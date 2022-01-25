@@ -133,7 +133,9 @@ function Signup(props) {
       id: userIdRef.current.value,
       checkString: emailCodeRef.current.value,
     };
-    dispatch(postApi("nmb/acct/member/mail-send", sendData, emailCodeCallback));
+    dispatch(
+      postApi("nmb/acct/get/member/mail/check", sendData, emailCodeCallback)
+    );
   };
 
   const emailCodeCallback = (res) => {
