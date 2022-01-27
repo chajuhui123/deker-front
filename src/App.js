@@ -22,6 +22,7 @@ import ProductDetailPage from "pages/shop/ProductDetail";
 import { calculateRemainingTime } from "api/check";
 import { userAction } from "store/user-slice";
 import StoreMainPage from "pages/shop/StoreMainPage";
+import PreventViewExceptPC from "components/main/preventViewExceptPC";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -49,79 +50,84 @@ function App() {
 
   return (
     <>
-      <ModalPopup
-        id={modalId}
-        isOpen={isOpen}
-        onRequestClose={closeModalEventHandler}
-      >
-        {modalCont}
-      </ModalPopup>
-      <NavigationBar />
-      <div className={classes.content}>
-        <Switch>
-          <Route path="/" exact></Route>
-          <Route path="/signup" exact>
-            <div>
-              <SignupPage />
-            </div>
-          </Route>
-          <Route path="/oauth/kakao" component={KakaoAuth} exact></Route>
-          <Route path="/signin" exact>
-            <div>
-              <SigninPage />
-            </div>
-          </Route>
-          <Route path="/signupAdd" exact>
-            <div>
-              <SignupAddPage />
-            </div>
-          </Route>
-          <Route path="/AccountMyPage" exact>
-            <div>
-              <AccountMyPage />
-            </div>
-          </Route>
-          <Route path="/modifyUserInfo" exact>
-            <div>
-              <ModifyUserInfoPage />
-            </div>
-          </Route>
-          <Route path="/accountMyShopping" exact>
-            <div>
-              <AccountMyShoppingPage />
-            </div>
-          </Route>
-          <Route path="/modifyPassword" exact>
-            <div>
-              <ModifyPasswordPage />
-            </div>
-          </Route>
-          <Route path="/myPresent" exact>
-            <div>
-              <MyPresentPage />
-            </div>
-          </Route>
-          <Route path="/myReview" exact>
-            <div>
-              <MyReviewPage />
-            </div>
-          </Route>
-          <Route path="/createCommunity" exact>
-            <CreateCommunityPage />
-          </Route>
-          <Route path="/modalTest" exact>
-            <ModalTest />
-          </Route>
-          <Route path="/storeMain" exact>
-            <StoreMainPage />
-          </Route>
-          {/* no 로 product Detail 페이지 번호 받아올 예정 */}
-          <Route path="/productDetail/:no" exact>
-            <ProductDetailPage />
-          </Route>
-        </Switch>
+      <div className={classes.preventView}>
+        <PreventViewExceptPC />
       </div>
-      <Footer />
+      <div className={classes.normalView}>
+        <ModalPopup
+          id={modalId}
+          isOpen={isOpen}
+          onRequestClose={closeModalEventHandler}
+        >
+          {modalCont}
+        </ModalPopup>
+        <NavigationBar />
+        <div className={classes.content}>
+          <Switch>
+            <Route path="/" exact></Route>
+            <Route path="/signup" exact>
+              <div>
+                <SignupPage />
+              </div>
+            </Route>
+            <Route path="/oauth/kakao" component={KakaoAuth} exact></Route>
+            <Route path="/signin" exact>
+              <div>
+                <SigninPage />
+              </div>
+            </Route>
+            <Route path="/signupAdd" exact>
+              <div>
+                <SignupAddPage />
+              </div>
+            </Route>
+            <Route path="/AccountMyPage" exact>
+              <div>
+                <AccountMyPage />
+              </div>
+            </Route>
+            <Route path="/modifyUserInfo" exact>
+              <div>
+                <ModifyUserInfoPage />
+              </div>
+            </Route>
+            <Route path="/accountMyShopping" exact>
+              <div>
+                <AccountMyShoppingPage />
+              </div>
+            </Route>
+            <Route path="/modifyPassword" exact>
+              <div>
+                <ModifyPasswordPage />
+              </div>
+            </Route>
+            <Route path="/myPresent" exact>
+              <div>
+                <MyPresentPage />
+              </div>
+            </Route>
+            <Route path="/myReview" exact>
+              <div>
+                <MyReviewPage />
+              </div>
+            </Route>
+            <Route path="/createCommunity" exact>
+              <CreateCommunityPage />
+            </Route>
+            <Route path="/modalTest" exact>
+              <ModalTest />
+            </Route>
+            <Route path="/storeMain" exact>
+              <StoreMainPage />
+            </Route>
+            {/* no 로 product Detail 페이지 번호 받아올 예정 */}
+            <Route path="/productDetail/:no" exact>
+              <ProductDetailPage />
+            </Route>
+          </Switch>
+        </div>
+        <Footer />
+      </div>
     </>
   );
 }
