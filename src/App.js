@@ -140,9 +140,11 @@ function App() {
             <StoreMainPage />
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
-          <Route path="/productDetail/:no" exact>
-            <ProductDetailPage />
-          </Route>
+          <Route
+            path="/productDetail/:productId"
+            exact
+            component={ProductDetailPage}
+          ></Route>
         </Switch>
       </div>
       <Footer />
