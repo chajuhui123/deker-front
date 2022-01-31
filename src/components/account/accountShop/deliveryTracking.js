@@ -5,17 +5,19 @@ import InfoProduct from "components/account/accountReview/accountReviewModal/inf
 import ModalTitle from "components/common/modalTitle";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import { useDispatch } from "react-redux";
+import DeliveryInfo from "./DeliveryInfo";
+import RecvUserInfo from "./RecvUserInfo";
 
 const initailData = {
   productId: "PDTID_00000000000001", // 상품아이디
-  productBrand: "deker()", // 상품브랜드명
+  productBrand: "DEKER", // 상품브랜드명
   productName: "상품명", // 상품명 (추가 해야함)
   productImg:
     "https://image.ohou.se/i/bucketplace-v2-development/uploads/deals/163186046269160074.PNG?gif=1&w=640&h=640&c=c", // 상품이미지
   productOption: ["Large", "red"], // 상품옵션 (사이즈, 색상)
-  addNmae: "김효진", // 받는사람명
-  addZip: "12345", // 받는주소 (zip, address)
-  address: "서울시 용산구 한강대로366 남산트윈시티 1304호",
+  addNmae: "홍길동", // 받는사람명
+  addZip: "000000", // 받는주소 (zip, address)
+  address: "서울시 용산구 무슨로 999동 999호",
   deliveryCode: "06", // 택배사
   deliveryName: "로젠택배",
   waybill: "31732607830", // 송장번호
@@ -74,46 +76,14 @@ function DeliveryTracking(props) {
           productName={resData.productName}
           productOption={resData.productOption}
         />
-        <div className={classes.recUserInfoArea}>
-          <div className={classes.recUserInfoTitle}>
-            <p>받는 사람</p>
-            <p>받는 주소</p>
-            <p>택배사</p>
-            <p>송장번호</p>
-          </div>
-          <div className={classes.recUserInfoComp}>
-            <p>{resData.addNmae}</p>
-            <p>
-              ({resData.addZip}) {resData.address}
-            </p>
-            <p>{resData.deliveryName}</p>
-            <p>{resData.waybill}</p>
-          </div>
-        </div>
-        <div className={classes.deliTitle}>
-          <p>배송 상태</p>
-        </div>
-        <table className={classes.deliTable}>
-          <thead>
-            <tr>
-              <th>날짜</th>
-              <th>배송 상태</th>
-              <th>위치</th>
-              <th>연락처</th>
-            </tr>
-          </thead>
-          <tbody>
-            {resData.trackingList &&
-              resData.trackingList.map((tracking, index) => (
-                <tr key={index}>
-                  <td>{tracking.timeFormat}</td>
-                  <td>{tracking.levelNm}</td>
-                  <td>{tracking.where}</td>
-                  <td>{tracking.telno}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <RecvUserInfo
+          addNmae={resData.addNmae}
+          addZip={resData.addZip}
+          address={resData.address}
+          deliveryName={resData.deliveryName}
+          waybill={resData.waybill}
+        />
+        <DeliveryInfo trackingList={resData.trackingList} />
       </div>
     </div>
   );

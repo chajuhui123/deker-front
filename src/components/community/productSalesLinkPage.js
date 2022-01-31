@@ -6,7 +6,7 @@ import { modalAction } from "store/modal-slice";
 import OuterPrdct from "./outerPrdct";
 import classes from "./productSalesLinkPage.module.css";
 
-function ProductSalesLink() {
+function ProductSalesLink(props) {
   const [productLinkInputText, setProductLinkInputText] = useState("");
   const [productNameInputText, setProductNameInputText] = useState("");
   const [outerProductYN, setOuterProductYN] = useState(true);
@@ -38,7 +38,9 @@ function ProductSalesLink() {
   // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
   const productNameRegHandler = () => {
     // modal close
-    alert("modal close 기능 내가 props 건드려도 되는 지 확인하고 수정");
+    // alert("modal close 기능 내가 props 건드려도 되는 지 확인하고 수정");
+    console.log(props.productInfoHandler);
+    props.productInfoHandler("TEST11");
   };
 
   return (
