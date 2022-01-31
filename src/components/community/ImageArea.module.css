@@ -1,0 +1,103 @@
+.imgArea {
+  width: 450px;
+  height: 450px;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
+}
+
+.imgArea input {
+  display: none;
+}
+
+.inputArea {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(247, 248, 250);
+  border: 1px dashed rgb(218, 220, 224);
+  border-radius: 4px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.inputArea svg {
+  margin: 0px 0px 12px;
+  color: rgb(164, 172, 179);
+}
+
+.inputArea span {
+  margin: 0px 0px 4px;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: bold;
+  color: rgb(130, 140, 148);
+}
+
+/* imaged preview */
+.prevImage {
+  display: table;
+  position: relative;
+  text-align: center;
+  width: 450px;
+  height: 450px;
+  padding: 2px;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.uploadDisplay {
+  display: table-cell;
+}
+
+.uploadDisplay img {
+  max-width: 450px;
+  max-height: 450px;
+  margin: auto;
+}
+
+.buttonArea {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.54));
+  transition: opacity 0.4s ease 0.3s;
+}
+
+.buttonArea button {
+  display: inline-block;
+  margin: 0px;
+  border: none;
+  background: none rgb(53, 197, 240);
+  font-style: inherit;
+  font-variant: inherit;
+  font-stretch: inherit;
+  font-family: inherit;
+  position: absolute;
+  bottom: 16px;
+  padding: 7px 12px 8px;
+  font-size: 13px;
+  line-height: 17px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  border-radius: 32px;
+  transition: background-color 0.1s ease 0s;
+  left: auto;
+  right: 15px;
+  transform: none;
+}
+
+.buttonArea button svg {
+  margin: 0px 5px 0px 3px;
+  font-size: 8px;
+  vertical-align: 1px;
+}

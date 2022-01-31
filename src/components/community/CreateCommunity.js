@@ -6,6 +6,8 @@ import CommInput from "components/common/commInput";
 import CommSelect from "components/common/CommSelect";
 import { useEffect } from "react";
 import CommBtn from "components/common/commBtn";
+import ImageArea from "./ImageArea";
+import UserTagForm from "components/common/userTagForm";
 
 // TODO : 이미지
 
@@ -19,7 +21,6 @@ function CreateCommunity(props) {
   const [moodCode, setMoodCOde] = useState(""); // 선택된 분위기 코드
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
-  const [prevImage, setPrevImage] = useState(""); // 이미지 미리보기
   const [imageFile, setImageFile] = useState(null); // 이미지 파일
   // 직업코드조회콜백
   const fnJobCallback = (res) => {
@@ -83,13 +84,7 @@ function CreateCommunity(props) {
   const contentHandler = (e) => {
     setContent(e.target.value);
   };
-  // 이미지핸들러
-  const imageHandler = (e) => {
-    if (e.target.files.length > 0) {
-      setPrevImage(URL.createObjectURL(e.target.files[0]));
-      setImageFile(e.target.files[0]);
-    }
-  };
+
   // 저장후콜백메소드
   const fnCallback = (res) => {
     console.log("fnCallback :: ", res);
@@ -138,20 +133,9 @@ function CreateCommunity(props) {
         />
       </div>
       <div className={classes.communityArea}>
-        <div className={classes.imgArea}>
-          <div className={classes.prevImage}>
-            {prevImage && (
-              <div className={classes.uploadDisplay}>
-                <img alt="sample" src={prevImage} style={{ margin: "auto" }} />
-              </div>
-            )}
-          </div>
-          <input
-            name="imgUpload"
-            type="file"
-            accept="image/*"
-            onChange={imageHandler}
-          />
+        <div className={classes.leftArea}>
+          <ImageArea setImageFile={setImageFile} margin="0 0 30px 0" />
+          <UserTagForm />
         </div>
         <div className={classes.textArea}>
           <div className={classes.titleArea}>
