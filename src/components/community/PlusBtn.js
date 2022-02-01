@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { modalAction } from "store/modal-slice";
 import classes from "./PlusBtn.module.css";
@@ -35,6 +35,8 @@ function PlusBtn(props) {
     dispatch(
       modalAction.modalPopup({
         isOpen: true,
+        top: props.top,
+        left: props.left,
         cont: <ProductSalesLink productInfoHandler={productInfoHandler} />,
       })
     );

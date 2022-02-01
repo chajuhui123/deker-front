@@ -30,6 +30,8 @@ function App() {
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
   const isLoading = useSelector((state) => state.spinner.isLoading);
+  const top = useSelector((state) => state.modal.top);
+  const left = useSelector((state) => state.modal.left);
   const dispatch = useDispatch();
   const closeModalEventHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
@@ -60,6 +62,8 @@ function App() {
       <ModalPopup
         id={modalId}
         isOpen={isOpen}
+        top={top}
+        left={left}
         onRequestClose={closeModalEventHandler}
       >
         {modalCont}
