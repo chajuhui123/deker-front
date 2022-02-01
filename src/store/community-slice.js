@@ -5,6 +5,9 @@ const initialModalState = {
   communityTitle: "", // 글제목
   communityContent: "", // 글내용
   communityImage: "", // 첨부 이미지
+  jobCode: "",
+  materialCode: "",
+  moodCode: "",
   communityTags: [], // 태그
   communityProducts: [
     // 상품정보
@@ -29,6 +32,15 @@ const communitySlice = createSlice({
       state.communityImage = action.payload.communityImage;
       state.communityTags = action.payload.communityTags;
       state.communityProducts = action.payload.communityProducts;
+    },
+    setJobCode: (state, action) => {
+      state.jobCode = action.payload.jobCode;
+    },
+    setMaterialCode: (state, action) => {
+      state.materialCode = action.payload.materialCode;
+    },
+    setMoodCode: (state, action) => {
+      state.moodCode = action.payload.moodCode;
     },
   },
 });

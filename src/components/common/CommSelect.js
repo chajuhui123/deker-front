@@ -34,6 +34,7 @@ function CommSelect({ title, options, defaultValue, onChange, placeholder }) {
       return { ...provided, opacity, transition };
     },
   };
+
   return (
     <div>
       {title && <p className={classes.selectTitle}>{title}</p>}

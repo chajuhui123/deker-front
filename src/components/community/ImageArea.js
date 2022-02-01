@@ -36,6 +36,7 @@ function ImageArea(props) {
         left: e.nativeEvent.offsetX,
       };
       setAddPoint([...addPoint, positionObect]);
+      setIsPoint(false);
     }
   };
 

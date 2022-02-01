@@ -31,6 +31,7 @@ function ModalPopup(props) {
   const modalCloseBtnHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
+
   return (
     <ReactModal
       id={props.modalId}
