@@ -1,0 +1,40 @@
+.deliTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 41px;
+}
+
+.deliTitle p {
+  text-align: left;
+  font: normal normal bold 20px/25px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.deliTable {
+  margin-top: 12px;
+  width: 614px;
+  height: auto;
+  background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.deliTable th {
+  height: 22px;
+  text-align: center;
+  vertical-align: middle;
+  font: normal normal bolder 15px/25px Roboto;
+  letter-spacing: 0px;
+  color: #4242e2;
+  border: 1px solid #4242e2;
+}
+
+.deliTable td {
+  height: 22px;
+  text-align: center;
+  vertical-align: middle;
+  font: normal normal normal 15px/25px Roboto;
+  letter-spacing: 0px;
+  color: #4242e2;
+  border: 1px solid #4242e2;
+}

@@ -5,26 +5,42 @@ import InfoProduct from "components/account/accountReview/accountReviewModal/inf
 import ModalTitle from "components/common/modalTitle";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import { useDispatch } from "react-redux";
+import DeliveryInfo from "./DeliveryInfo";
+import RecvUserInfo from "./RecvUserInfo";
 
 const initailData = {
-  productId: "PDTID_00000000000001",
-  productOptionId: "mpoId_00000000000001",
-  productBrand: "deker()",
-  productImg: null,
-  option1: "COLOR",
-  option1Data: "C01",
-  option1Nm: "색상",
-  option1DataNm: "흰색",
-  option2: "SIZE",
-  option2Data: "S01",
-  option2Nm: "사이즈",
-  option2DataNm: "260",
-  deliveryCode: "06",
+  productId: "PDTID_00000000000001", // 상품아이디
+  productBrand: "DEKER", // 상품브랜드명
+  productName: "상품명", // 상품명 (추가 해야함)
+  productImg:
+    "https://image.ohou.se/i/bucketplace-v2-development/uploads/deals/163186046269160074.PNG?gif=1&w=640&h=640&c=c", // 상품이미지
+  productOption: ["Large", "red"], // 상품옵션 (사이즈, 색상)
+  addNmae: "홍길동", // 받는사람명
+  addZip: "000000", // 받는주소 (zip, address)
+  address: "서울시 용산구 무슨로 999동 999호",
+  deliveryCode: "06", // 택배사
   deliveryName: "로젠택배",
-  addNmae: "헿",
-  addZip: "123", //우편번호
-  address: "123 123", //주소
-  waybill: "31732607830", //운송장번호
+  waybill: "31732607830", // 송장번호
+  trackingList: [
+    {
+      body: null,
+      code: null,
+      estimate: null,
+      invoiceNo: null,
+      itemName: null,
+      kind: "터미널입고",
+      level: 3,
+      levelNm: "배송중",
+      msg: null,
+      result: null,
+      telno: "",
+      time: 1642597320000,
+      timeFormat: "2022-01-19 22:02:00",
+      timeString: "2022-01-19 22:02:00",
+      trackingDetails: null,
+      where: "대구센터",
+    },
+  ],
 };
 
 function DeliveryTracking(props) {
@@ -32,14 +48,15 @@ function DeliveryTracking(props) {
   const [resData, setResData] = useState(initailData);
 
   const fnCallback = (res) => {
-    setResData(res.data);
+    if (!!res) {
+      setResData(res.data);
+    }
   };
 
   useEffect(() => {
     // const dataOjb = {
     //   orderId: props.orderId,
     // };
-    console.log("useEffect");
     const dataOjb = {
       // TODO : TEST 용
       orderId: "odrId_99999999999999",
@@ -53,47 +70,20 @@ function DeliveryTracking(props) {
       <div className={classes.contArea}>
         <CommPageSemiTitle semiTitle="주문 정보" />
         <InfoProduct
+          productId={resData.productId}
           productImg={resData.productImg}
           brandName={resData.productBrand}
-          productName={resData.product_name}
-          productOption={resData.product_option}
+          productName={resData.productName}
+          productOption={resData.productOption}
         />
-        <div className={classes.recUserInfoArea}>
-          <div className={classes.recUserInfoTitle}>
-            <p>받는 사람</p>
-            <p>받는 주소</p>
-            <p>택배사</p>
-            <p>송장번호</p>
-          </div>
-          <div className={classes.recUserInfoComp}>
-            <p>{resData.rec_user_name}</p>
-            <p>{resData.rec_user_addr}</p>
-            <p>{resData.rec_deli_comp}</p>
-            <p>{resData.rec_deli_no}</p>
-          </div>
-        </div>
-        <div className={classes.deliTitle}>
-          <p>배송 상태</p>
-        </div>
-        <table className={classes.deliTable}>
-          <thead>
-            <tr>
-              <th>날짜</th>
-              <th>배송 상태</th>
-              <th>담당자/연락처</th>
-            </tr>
-          </thead>
-          <tbody>
-            {resData.deli_arry &&
-              resData.deli_arry.map((deli) => (
-                <tr key={deli.deli_date}>
-                  <td>{deli.deli_date}</td>
-                  <td>{deli.deli_status}</td>
-                  <td>{deli.deli_tel}</td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        <RecvUserInfo
+          addNmae={resData.addNmae}
+          addZip={resData.addZip}
+          address={resData.address}
+          deliveryName={resData.deliveryName}
+          waybill={resData.waybill}
+        />
+        <DeliveryInfo trackingList={resData.trackingList} />
       </div>
     </div>
   );

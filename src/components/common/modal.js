@@ -18,6 +18,7 @@ const customStyles = {
     padding: "0px",
     transform: "translate(-50%, -50%)",
     border: "none",
+    zIndex: "1000",
   },
 
   overlay: {
@@ -30,6 +31,7 @@ function ModalPopup(props) {
   const modalCloseBtnHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
+
   return (
     <ReactModal
       id={props.modalId}

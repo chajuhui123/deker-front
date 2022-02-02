@@ -30,6 +30,8 @@ function App() {
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
   const isLoading = useSelector((state) => state.spinner.isLoading);
+  const top = useSelector((state) => state.modal.top);
+  const left = useSelector((state) => state.modal.left);
   const dispatch = useDispatch();
   const closeModalEventHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
@@ -60,6 +62,8 @@ function App() {
       <ModalPopup
         id={modalId}
         isOpen={isOpen}
+        top={top}
+        left={left}
         onRequestClose={closeModalEventHandler}
       >
         {modalCont}
@@ -124,9 +128,11 @@ function App() {
             <StoreMainPage />
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
-          <Route path="/productDetail/:no" exact>
-            <ProductDetailPage />
-          </Route>
+          <Route
+            path="/productDetail/:productId"
+            exact
+            component={ProductDetailPage}
+          ></Route>
         </Switch>
       </div>
       <Footer />

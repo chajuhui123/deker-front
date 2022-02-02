@@ -5,10 +5,10 @@ import CommSelect from "components/common/CommSelect";
 import CommonPageTitle from "components/common/commPageTitle";
 import noImg from "img/noImg.png";
 
-function ProductOptionSelectBox() {
-  const productImg = "";
-  const productName = "상품명";
-  const productPrice = "1000";
+function ProductOptionSelectBox({ productDetailObj }) {
+  const productImg = productDetailObj.productImg;
+  const productName = productDetailObj.productName;
+  const productPrice = productDetailObj.productPrice;
   const colorOptions = [
     { value: "pink", label: "pink" },
     { value: "red", label: "red" },
