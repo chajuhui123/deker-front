@@ -11,10 +11,16 @@ export function isPassword(asValue) {
 }
 
 export const calculateRemainingTime = (expirationTime) => {
-  const currentTime = new Date().getTime(); // 현재 타임스탬프가 찍히고, getTime에 의해 밀리초 단위로 변환된다.
-  const adjExpirationTime = new Date(expirationTime).getTime();
-  const remainingDuration = adjExpirationTime - currentTime;
-  console.log("현재시간", currentTime);
-  console.log("만료시간", adjExpirationTime);
-  return remainingDuration;
+  if (!!expirationTime) {
+    const currentTime = new Date().getTime(); // 현재 타임스탬프가 찍히고, getTime에 의해 밀리초 단위로 변환된다.
+    const yyyy = expirationTime.substring(0, 4);
+    const MM = parseInt(expirationTime.substring(4, 6)) - 1; // monthIndex 1~12 월 = 0~11 index
+    const dd = expirationTime.substring(6, 8);
+    const hh = expirationTime.substring(8, 10);
+    const mm = expirationTime.substring(10, 12);
+    const ss = expirationTime.substring(12, 14);
+    const adjExpirationTime = new Date(yyyy, MM, dd, hh, mm, ss).getTime();
+    const remainingDuration = adjExpirationTime - currentTime;
+    return remainingDuration;
+  }
 };
