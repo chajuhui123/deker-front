@@ -12,11 +12,11 @@ const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 const AccountMyPage = (props) => {
   const dispatch = useDispatch();
   const [profileImg, setProfileImg] = useState(null);
-  const [postList, setPostList] = useState(null);
+  // const [postList, setPostList] = useState(null);
 
   const fnCallback = (res) => {
     setProfileImg(`${BASEURL}${res.data.profileImg}`);
-    setPostList(`${BASEURL}${res.data.postList}`);
+    // setPostList(`${BASEURL}${res.data.postList}`);
     // postList.id = res.data.postList.id; // 이거 되는 지 테스트
     console.log("debug");
     console.log(res.data);
@@ -97,6 +97,7 @@ const AccountMyPage = (props) => {
               <img
                 className={classes.accountMyPage_ProfilePic}
                 src={profileImg}
+                alt={profileImg}
               />
             </div>
             <div className={classes.accountMyPage_rowArea2}>
@@ -120,7 +121,7 @@ const AccountMyPage = (props) => {
           </div>
           <div className={classes.picarea}>
             {/* <MyUploadPicList muUploadPic={postList} /> */}
-            {/* <MyUploadPicList muUploadPic={DUMMY_DATA} /> */}
+            <MyUploadPicList muUploadPic={DUMMY_DATA} />
           </div>
         </div>
       </div>
