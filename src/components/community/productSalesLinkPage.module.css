@@ -1,5 +1,5 @@
 .productSalesLinkLayout {
-  width: 680px;
+  width: 500px;
   /* line-height: 827px; */
   padding: 33px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -21,8 +21,8 @@
 
 .productSearchBtn {
   margin-left: 20px;
-  width: 50px;
-  height: 33px;
+  width: 60px;
+  height: 38px;
   background: #4242e2 0% 0% no-repeat padding-box;
   border: 1px solid #70707021;
   border-radius: 4px;
@@ -49,7 +49,7 @@
 .selectedProduct {
   margin-top: 30px;
   width: 100%;
-  height: 400px;
+  height: 300px;
   border: 1px solid #000000;
 }
 .empty {

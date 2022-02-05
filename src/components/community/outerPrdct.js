@@ -1,8 +1,18 @@
 import CommBtn from "components/common/commBtn";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { modalAction } from "store/modal-slice";
 import classes from "./outerPrdct.module.css";
+import ProductSalesLink from "./productSalesLinkPage";
 
 function OuterPrdct(props) {
+  const [outerProductText, setOuterProductText] = useState("");
+  const dispatch = useDispatch();
+  const productNameCnclHandler = () => {
+    dispatch(
+      modalAction.modalPopup({ isOpen: true, cont: <ProductSalesLink /> })
+    );
+  };
   // 외부 상품 등록
   const productNameInputHandler = (e) => {
     // setProductNameInputText(e.target.value);
@@ -10,7 +20,9 @@ function OuterPrdct(props) {
   // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
   const productNameRegHandler = () => {
     // modal close
-    alert("modal close 기능 내가 props 건드려도 되는 지 확인하고 수정");
+    alert("modal close 기능");
+    setOuterProductText();
+    props.outerProductText = outerProductText;
   };
 
   return (
@@ -34,7 +46,7 @@ function OuterPrdct(props) {
             bgColor="rgb(248, 248, 248)"
             radius="4px"
             txColor="rgb(78, 78, 78)"
-            fnClick={productNameRegHandler}
+            fnClick={productNameCnclHandler}
           />
         </div>
         <div className={classes.submitBtn}>
