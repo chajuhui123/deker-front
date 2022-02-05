@@ -4,6 +4,7 @@
 
 1. StoreMain - category 생성
 2. Store 인기상품 페이지(StoreHotSortPage.js) 생성
+3. 회원정보변경(modifyUserInfo) - 닉네임 변경가능(UI는 더 수정해야함)
 
 ### 2022.02.05. 권예림
 
