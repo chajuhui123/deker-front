@@ -1,6 +1,28 @@
 .outerPrdctLayout {
-  width: 400px;
+  width: 420px;
   /* line-height: 827px; */
   padding: 33px;
   background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.inputArea {
+  width: 400px;
+  height: 200px;
+  border: 10px solid #9797e2;
+  border-radius: 10px;
+  position: relative;
+}
+
+.btnArea {
+  margin-top: 30px;
+  width: 200px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  display: flex;
+  flex-direction: row;
+}
+
+.submitBtn {
+  margin-left: 10px;
 }

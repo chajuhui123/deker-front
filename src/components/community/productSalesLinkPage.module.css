@@ -6,7 +6,6 @@
 }
 
 .productSearchArea {
-  margin-top: 30px;
   display: flex;
   flex-direction: row;
 }
@@ -34,11 +33,24 @@
   color: #f5f5f5;
 }
 
+.outerProduct {
+  margin-top: 30px;
+  width: 140px;
+  text-align: center;
+  font: normal normal bold 15px/19px Roboto;
+  letter-spacing: 0px;
+  color: #4242e2;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  opacity: 1;
+}
+
 .selectedProduct {
   margin-top: 30px;
   width: 100%;
   height: 400px;
-  background-color: #000000;
+  border: 1px solid #000000;
 }
 .empty {
   margin-top: 30px;
