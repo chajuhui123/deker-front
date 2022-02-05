@@ -37,7 +37,12 @@ function PlusBtn(props) {
         isOpen: true,
         top: props.top,
         left: props.left,
-        cont: <ProductSalesLink productInfoHandler={productInfoHandler} />,
+        cont: (
+          <ProductSalesLink
+            id={props.id}
+            productInfoHandler={productInfoHandler}
+          />
+        ),
       })
     );
   };
