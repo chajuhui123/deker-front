@@ -1,4 +1,5 @@
 // import CommChckbx from "components/common/commChckbx";
+import CommBtn from "components/common/commBtn";
 import ModalTitle from "components/common/modalTitle";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -36,13 +37,25 @@ function ProductSalesLink(props) {
     setProductNameInputText(e.target.value);
   };
   // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
-  const productNameRegHandler = () => {
-    // modal close
-    // alert("modal close 기능 내가 props 건드려도 되는 지 확인하고 수정");
-    console.log(props.productInfoHandler);
-    props.productInfoHandler("TEST11");
-  };
+  // const productNameRegHandler = () => {
+  //   // modal close
+  //   // alert("modal close 기능 내가 props 건드려도 되는 지 확인하고 수정");
+  //   console.log(props.productInfoHandler);
+  //   const dataObject = {
+  //     id: props.id,
+  //     productId: "",
+  //   };
+  //   props.productInfoHandler(dataObject);
+  // };
 
+  const dummyClick = () => {
+    console.log(props.productInfoHandler);
+    const dataObject = {
+      id: 1,
+      productId: "dummy",
+    };
+    props.productInfoHandler(dataObject);
+  };
   return (
     <div className={classes.productSalesLinkLayout}>
       {/* <ModalTitle title="상품링크등록" /> 
@@ -75,7 +88,59 @@ function ProductSalesLink(props) {
           + 상품 직접 등록하기
         </p>
         <div className={classes.selectedProduct}>
-          {/* question 등록한 상품 띄우는 곳?? ui 이해가 안됨 */}
+          {/* 더미데이터 시작 */}
+          <div className={classes.dummy}>
+            <img
+              className={classes.productImg}
+              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
+              src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c"
+            />
+            <div className={classes.productInfo}>
+              <div>T20 TAB+ TNA200HF 메쉬의자 2types</div>
+              <div>12000</div>
+            </div>
+            <CommBtn
+              btnText="선택"
+              btnWidth="50px"
+              btnHeight="33px"
+              fnClick={dummyClick}
+            />
+          </div>
+          <div className={classes.dummy}>
+            <img
+              className={classes.productImg}
+              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
+              src="https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg"
+            />
+            <div className={classes.productInfo}>
+              <div>메쉬테이블 2types</div>
+              <div>13300</div>
+            </div>
+            <CommBtn
+              btnText="선택"
+              btnWidth="50px"
+              btnHeight="33px"
+              fnClick={dummyClick}
+            />
+          </div>
+          <div className={classes.dummy}>
+            <img
+              className={classes.productImg}
+              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
+              src="https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg"
+            />
+            <div className={classes.productInfo}>
+              <div>노트북</div>
+              <div>1200000</div>
+            </div>
+            <CommBtn
+              btnText="선택"
+              btnWidth="50px"
+              btnHeight="33px"
+              fnClick={dummyClick}
+            />
+          </div>
+          {/* 더미 끝 */}
         </div>
       </div>
       {/* )} */}
