@@ -10,19 +10,31 @@ function OuterPrdct(props) {
   const dispatch = useDispatch();
   const productNameCnclHandler = () => {
     dispatch(
-      modalAction.modalPopup({ isOpen: true, cont: <ProductSalesLink /> })
+      modalAction.modalPopup({
+        isOpen: true,
+        cont: (
+          <ProductSalesLink
+            id={props.id}
+            productInfoHandler={props.productInfoHandler}
+          />
+        ),
+      })
     );
   };
+
   // 외부 상품 등록
   const productNameInputHandler = (e) => {
-    // setProductNameInputText(e.target.value);
+    setOuterProductText(e.target.value);
   };
   // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
   const productNameRegHandler = () => {
     // modal close
     alert("modal close 기능");
-    setOuterProductText();
-    props.outerProductText = outerProductText;
+    const dataObject = {
+      id: props.id,
+      productDetail: outerProductText,
+    };
+    props.productInfoHandler(dataObject);
   };
 
   return (
@@ -31,7 +43,7 @@ function OuterPrdct(props) {
         <input
           className={classes.inputArea}
           type="text"
-          // value={productNameInputText}
+          value={outerProductText}
           placeholder="상품명/브랜드/판매처 등을 임력 해주세요. (최대 100자)"
           onChange={productNameInputHandler}
         ></input>

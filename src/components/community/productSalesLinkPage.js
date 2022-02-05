@@ -15,7 +15,17 @@ function ProductSalesLink(props) {
   const dispatch = useDispatch();
 
   const outerProductHandler = () => {
-    dispatch(modalAction.modalPopup({ isOpen: true, cont: <OuterPrdct /> }));
+    dispatch(
+      modalAction.modalPopup({
+        isOpen: true,
+        cont: (
+          <OuterPrdct
+            id={props.id}
+            productInfoHandler={props.productInfoHandler}
+          />
+        ),
+      })
+    );
   };
 
   // const outerProductIsCheckedHandler = (data) => {
@@ -51,7 +61,7 @@ function ProductSalesLink(props) {
   const dummyClick = () => {
     console.log(props.productInfoHandler);
     const dataObject = {
-      id: 1,
+      id: props.id,
       productId: "dummy",
     };
     props.productInfoHandler(dataObject);
