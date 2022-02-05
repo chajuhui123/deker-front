@@ -8,8 +8,9 @@ import CommSpinner from "./CommSpinner";
  * @param {String} btnWidth 버튼 넓이
  * @param {String} btnHeight 버튼 높이
  * @param {String} btnMargin 버튼 마진
+ * @param {String} border 버튼 테두리(사용예: "3px solid rgb(66, 66, 226)")
  * @param {String} bgColor 버튼 배경색
- * @param {String} bdColor 테두리 색
+ * @param {String} bdColor 테두리 색 <- border쓰면 이거 안써도 됨
  * @param {String} txColor 폰트 색상
  * @param {String} btnCursor 커서 모양
  * @param {String} radius 둥근정도
@@ -22,6 +23,7 @@ function CommBtn({
   btnWidth,
   btnHeight,
   btnMargin,
+  border,
   bgColor,
   bdColor,
   txColor,
@@ -34,6 +36,7 @@ function CommBtn({
     width: btnWidth,
     height: btnHeight,
     margin: btnMargin,
+    border: border,
     backgroundColor: bgColor,
     borderColor: bdColor,
     color: txColor || "white",
