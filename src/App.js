@@ -41,14 +41,18 @@ function App() {
   };
 
   const retrieveStoredToken = useCallback(() => {
-    const storedExpirationTime = localStorage.getItem("expirationTime");
+    const storedExpirationTime = localStorage.getItem("extTokenTime");
+    console.log("retrieveStoredToken()", storedExpirationTime);
     if (!!storedExpirationTime) {
       const remainingTime = calculateRemainingTime(storedExpirationTime);
       console.log("App.js :: remainingTime :: ", remainingTime);
       if (remainingTime <= 60000) {
         localStorage.removeItem("token");
-        localStorage.removeItem("expirationTime");
+        localStorage.removeItem("extTokenTime");
         dispatch(userAction.logout());
+      } else {
+        const jwtToken = localStorage.getItem("token");
+        dispatch(userAction.login({ jwtToken }));
       }
     }
   }, [dispatch]);

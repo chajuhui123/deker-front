@@ -8,6 +8,7 @@ import classes from "./deliveryCard.module.css";
  * @param {Function} fnDel 삭제버튼 method (배송코드 parameter 넣어서 호출)
  * @param {Function} fnSel 선택버튼 method (배송코드 parameter 넣어서 호출)
  * @param {String} deliNm 배송지명
+ * @param {String} zipCode 주소코드
  * @param {String} addrNm 배송지주소
  * @param {String} userNm 수신자명
  * @param {String} userPn 수신자폰번호
@@ -19,6 +20,7 @@ function DliveryCard({
   fnDel,
   fnSel,
   deliNm,
+  zipCode,
   addrNm,
   userNm,
   userPn,
@@ -35,7 +37,9 @@ function DliveryCard({
   return (
     <div className={classes.cardArea} id={deliCode}>
       <div className={classes.deliNm}>{deliNm}</div>
-      <div className={classes.addr}>{addrNm}</div>
+      <div className={classes.addr}>
+        ({zipCode}) {addrNm}
+      </div>
       <div className={classes.userInfo}>
         {userNm} {userPn}
       </div>
