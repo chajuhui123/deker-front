@@ -40,7 +40,11 @@ function ProductSalesLink(props) {
     // modal close
     // alert("modal close 기능 내가 props 건드려도 되는 지 확인하고 수정");
     console.log(props.productInfoHandler);
-    props.productInfoHandler("TEST11");
+    const dataObject = {
+      id: props.id,
+      productId: "선택된상품ID",
+    };
+    props.productInfoHandler(dataObject);
   };
 
   return (
