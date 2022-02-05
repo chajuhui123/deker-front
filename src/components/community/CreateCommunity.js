@@ -83,7 +83,6 @@ function CreateCommunity(props) {
   const contentHandler = (e) => {
     setContent(e.target.value);
   };
-
   // 저장후콜백메소드
   const fnCallback = (res) => {
     console.log("fnCallback :: ", res);

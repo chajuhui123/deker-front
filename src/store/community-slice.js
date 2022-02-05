@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialModalState = {
-  communityId: "", // 글번호
   communityTitle: "", // 글제목
   communityContent: "", // 글내용
   communityImage: "", // 첨부 이미지
-  jobCode: "",
-  materialCode: "",
-  moodCode: "",
+  jobCode: "", // 직업코드
+  materialCode: "", // 재질코드
+  moodCode: "", // 분위기코드
   communityTags: [], // 태그
   communityProducts: [
     // 상품정보
@@ -26,7 +25,6 @@ const communitySlice = createSlice({
   initialState: initialModalState,
   reducers: {
     setCommunity: (state, action) => {
-      state.communityId = action.payload.communityId;
       state.communityTitle = action.payload.communityTitle;
       state.communityContent = action.payload.communityContent;
       state.communityImage = action.payload.communityImage;
