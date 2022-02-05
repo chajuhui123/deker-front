@@ -1,5 +1,10 @@
 ## HISTORY
 
+### 2022.02.06. 권예림
+
+1. StoreMain - category 생성
+2. Store 인기상품 페이지(StoreHotSortPage.js) 생성
+
 ### 2022.02.05. 권예림
 
 1. Store Main Page price 000,000 Format 맞춰서 출력
