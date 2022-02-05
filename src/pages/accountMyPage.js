@@ -17,13 +17,22 @@ const AccountMyPage = (props) => {
   const fnCallback = (res) => {
     setProfileImg(`${BASEURL}${res.data.profileImg}`);
     setPostList(`${BASEURL}${res.data.postList}`);
+    // postList.id = res.data.postList.id; // 이거 되는 지 테스트
+    console.log("debug");
     console.log(res.data);
+    console.log("data check");
   };
 
   useEffect(() => {
     dispatch(postApi("mb/post/get/my-post-list", null, fnCallback));
   }, [dispatch]);
 
+  // const postList = [
+  //   {
+  //     id: postId,
+  //     pic_image: postImg,
+  //   },
+  // ];
   const DUMMY_DATA = [
     {
       id: 1,
@@ -111,7 +120,7 @@ const AccountMyPage = (props) => {
           </div>
           <div className={classes.picarea}>
             {/* <MyUploadPicList muUploadPic={postList} /> */}
-            <MyUploadPicList muUploadPic={DUMMY_DATA} />
+            {/* <MyUploadPicList muUploadPic={DUMMY_DATA} /> */}
           </div>
         </div>
       </div>

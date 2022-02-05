@@ -6,11 +6,11 @@ function ProductItem(props) {
       <div>
         <img
           className={classes.productImg}
-          alt={props.productNm}
+          alt={props.productName}
           src={props.productImg}
         />
         <div className={classes.productInfo}>
-          <div>{props.productNm}</div>
+          <div>{props.productName}</div>
           <div>{props.productPrice}</div>
         </div>
       </div>

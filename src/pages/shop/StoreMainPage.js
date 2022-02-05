@@ -1,9 +1,32 @@
+import { postApi } from "api/fetch-api";
 import CommonPageTitle from "components/common/commPageTitle";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import ProductList from "./productList";
 import classes from "./StoreMainPage.module.css";
 
+const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
+
 const StoreMainPage = () => {
+  const dispatch = useDispatch();
+  // const [mktProductId, setMktProductId] = useState(null);
+  const [mainProductList, setMainProductList] = useState(null);
+  // const [productName, setProductName] = useState(null);
+  // const [productPrice, setProductPrice] = useState(null);
+
+  const fnCallback = (res) => {
+    // setMktProductId(`${BASEURL}${res.data.productModels.mktProductId}`);
+    // setProductName(`${BASEURL}${res.data.productModels.productName}`);
+    // setProductPrice(`${BASEURL}${res.data.productModels.productPrice}`);
+    setMainProductList(`${BASEURL}${res.data.productModels}`);
+    console.log(res.data.productModels);
+  };
+
+  useEffect(() => {
+    dispatch(postApi("mb/mkt", null, fnCallback));
+  }, [dispatch]);
+
   const DUMMY_DATA = [
     {
       id: 1,
@@ -11,8 +34,6 @@ const StoreMainPage = () => {
         "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
       productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
       productPrice: "12,000",
-      // + like for 인기 정렬 => 백?
-      // + date 사람이 본 시각
     },
     {
       id: 2,
@@ -71,6 +92,7 @@ const StoreMainPage = () => {
     //   productPrice: "12,000",
     // },
   ];
+
   return (
     <div className={classes.StoreMainPage_Layout}>
       <div className={classes.HotProductSection}>
@@ -80,7 +102,8 @@ const StoreMainPage = () => {
             더보기 {">"}
           </Link>
         </div>
-        <ProductList products={DUMMY_DATA} />
+        {/* <ProductList products={DUMMY_DATA} /> */}
+        {/* <ProductList products={mainProductList} /> */}
       </div>
       <div className={classes.CategorySection}>
         <div className={classes.HotProductTitleArea}>
