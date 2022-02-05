@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./userTagForm.module.css";
 
+/**
+ * 공통 태그 컴포넌트
+ * @param {Function} tagOutHandler
+ * @returns
+ */
 function UserTagForm(props) {
   const [tag, setTag] = useState([]);
   const [inputText, setInputText] = useState("");
@@ -41,6 +46,10 @@ function UserTagForm(props) {
       </button>
     </li>
   ));
+
+  useEffect(() => {
+    props.tagOutHandler(tag);
+  }, [props, tag]);
 
   return (
     <div>
