@@ -64,7 +64,7 @@ function ProductSalesLink(props) {
             value={productLinkInputText}
             placeholder="상품 이름을 임력 해주세요."
             onChange={productLinkInputHandler}
-          ></input>
+          />
           <button
             className={classes.productSearchBtn}
             onClick={productSearchHandler}

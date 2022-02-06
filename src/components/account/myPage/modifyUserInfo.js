@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserTagForm from "components/common/userTagForm";
 // import JobDropdown from "components/common/dropdown/jobDropdown";
 import classes from "./modifyUserInfo.module.css";
@@ -24,8 +24,8 @@ function ModifyUserInfo(props) {
 
   const fnCallback = (res) => {
     setProfileImg(`${BASEURL}${res.data.profileImg}`);
-    setEmailPrint(`${BASEURL}${res.data.id}`);
-    setNickNm(`${BASEURL}${res.data.nickname}`);
+    setEmailPrint(res.data.id);
+    setNickNm(res.data.nickname);
   };
 
   useEffect(() => {

@@ -15,12 +15,17 @@ const AccountMyPage = (props) => {
   // const [postList, setPostList] = useState(null);
 
   const fnCallback = (res) => {
-    setProfileImg(`${BASEURL}${res.data.profileImg}`);
-    // setPostList(`${BASEURL}${res.data.postList}`);
-    // postList.id = res.data.postList.id; // 이거 되는 지 테스트
-    console.log("debug");
-    console.log(res.data);
-    console.log("data check");
+    if (!!res) {
+      setProfileImg(`${BASEURL}${res.data.profileImg}`);
+      // setPostList(`${BASEURL}${res.data.postList}`);
+      // postList.id = res.data.postList.id; // 이거 되는 지 테스트
+      console.log("debug");
+      console.log(res.data);
+      console.log("data check");
+    } else {
+      // 비정상로직
+      alert("data error");
+    }
   };
 
   useEffect(() => {
