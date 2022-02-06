@@ -28,13 +28,14 @@ function OuterPrdct(props) {
   };
   // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
   const productNameRegHandler = () => {
-    // modal close
-    alert("modal close 기능");
     const dataObject = {
       id: props.id,
       productDetail: outerProductText,
     };
     props.productInfoHandler(dataObject);
+    // modal close
+    alert("modal close 기능");
+    console.log(dataObject);
   };
 
   return (
