@@ -124,7 +124,7 @@ const StoreMainPage = () => {
       id: 4,
       categoryImg:
         "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-      categoryName: "학용품",
+      categoryName: "사무용품",
       categoryId: "C05",
     },
     {

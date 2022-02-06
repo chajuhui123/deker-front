@@ -8,6 +8,8 @@ import ProductSalesLink from "./productSalesLinkPage";
 function OuterPrdct(props) {
   const [outerProductText, setOuterProductText] = useState("");
   const dispatch = useDispatch();
+
+  // '취소'버튼 클릭시 내부상품등록 모달로 돌아감
   const productNameCnclHandler = () => {
     dispatch(
       modalAction.modalPopup({
@@ -26,14 +28,15 @@ function OuterPrdct(props) {
   const productNameInputHandler = (e) => {
     setOuterProductText(e.target.value);
   };
-  // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
+
+  // '등록' 버튼을 누르면 상품 이름 넣고 modal 닫기
   const productNameRegHandler = () => {
     const dataObject = {
       id: props.id,
       productDetail: outerProductText,
     };
     props.productInfoHandler(dataObject);
-    // modal close
+
     alert("modal close 기능");
     console.log(dataObject);
   };
@@ -45,7 +48,7 @@ function OuterPrdct(props) {
           className={classes.inputArea}
           type="text"
           value={outerProductText}
-          maxlength="100"
+          maxLength="100"
           placeholder="상품명/브랜드/판매처 등을 입력 해주세요. &#13;&#10;(최대 100자)"
           onChange={productNameInputHandler}
         />
