@@ -53,6 +53,9 @@ function ProductSalesLink(props) {
       productId: "dummy",
     };
     props.productInfoHandler(dataObject);
+
+    alert("modal close 기능");
+    console.log(dataObject);
   };
   return (
     <div className={classes.productSalesLinkLayout}>

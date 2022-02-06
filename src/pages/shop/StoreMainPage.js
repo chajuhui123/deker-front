@@ -17,11 +17,16 @@ const StoreMainPage = () => {
   // const [productPrice, setProductPrice] = useState(null);
 
   // const fnCallback = (res) => {
-  //   setMktProductId(`${BASEURL}${res.data.productModels.mktProductId}`);
-  //   setProductName(`${BASEURL}${res.data.productModels.productName}`);
-  //   setProductPrice(`${BASEURL}${res.data.productModels.productPrice}`);
-  //   setMainProductList(`${BASEURL}${res.data.productModels}`);
-  //   console.log(res.data.productModels);
+  //   if (!!res) {
+  //     setMktProductId(`${BASEURL}${res.data.productModels.mktProductId}`);
+  //     setProductName(`${BASEURL}${res.data.productModels.productName}`);
+  //     setProductPrice(`${BASEURL}${res.data.productModels.productPrice}`);
+  //     setMainProductList(`${BASEURL}${res.data.productModels}`);
+  //     console.log(res.data.productModels);
+  //   } else {
+  //     비정상로직;
+  //     alert("data error");
+  //   }
   // };
 
   // useEffect(() => {
@@ -119,7 +124,7 @@ const StoreMainPage = () => {
       id: 4,
       categoryImg:
         "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-      categoryName: "학용품",
+      categoryName: "사무용품",
       categoryId: "C05",
     },
     {
