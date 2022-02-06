@@ -6,7 +6,7 @@
   --bodybackground-color: #ffffff;
 }
 
-.nav {
+.navDiv {
   height: 43px;
   background-color: var(--bodybackground-color);
   color: var(--text-color);

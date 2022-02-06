@@ -63,7 +63,7 @@ function App() {
   }, [retrieveStoredToken]);
 
   return (
-    <>
+    <div className={classes.normalView}>
       <ModalPopup
         id={modalId}
         isOpen={isOpen}
@@ -72,22 +72,6 @@ function App() {
         onRequestClose={closeModalEventHandler}
       >
         {modalCont}
-      </ModalPopup>
-      <ModalPopup
-        id="spinner"
-        isOpen={isLoading}
-        onRequestClose={closeSpinnerHandler} // TODO : 삭제 해야함
-      >
-        <div
-          style={{
-            width: "100px",
-            height: "100px",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            border: "none",
-          }}
-        >
-          <LoadingSpinner />
-        </div>
       </ModalPopup>
       <NavigationBar />
       <div className={classes.content}>
@@ -153,14 +137,14 @@ function App() {
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route
-            path="/productDetail/:productId"
+            path="/store/:productId"
             exact
             component={ProductDetailPage}
           ></Route>
         </Switch>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -242,3 +242,15 @@ textarea {
 .content {
   min-height: calc(100vh - 100px);
 }
+
+@media screen and (min-width: 450px) {
+  .preventView {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .normalView {
+    display: none;
+  }
+}

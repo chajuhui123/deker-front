@@ -28,5 +28,6 @@
 }
 
 .productReviewText {
-  max-width: 400px;
+  min-width: 800px;
+  max-width: 800px;
 }
