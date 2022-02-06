@@ -10,8 +10,12 @@
   height: 200px;
   border: 10px solid #9797e2;
   border-radius: 10px;
+  font: normal normal normal 15px/25px Roboto;
   position: relative;
 }
+/* .inputArea::placeholder {
+  
+} */
 
 .btnArea {
   margin-top: 30px;

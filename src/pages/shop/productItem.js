@@ -1,12 +1,6 @@
 import classes from "./productItem.module.css";
 
 function ProductItem(props) {
-  // price 출력 Format- 000,000
-  Number.prototype.format = function () {
-    var n = this + "";
-    return n.replace(/(.)(?=(\d{3})+$)/g, "$1,");
-  };
-
   return (
     <div>
       <div>
@@ -17,7 +11,7 @@ function ProductItem(props) {
         />
         <div className={classes.productInfo}>
           <div>{props.productNm}</div>
-          <div>{props.productPrice.format()}</div>
+          <div>{props.productPrice.toLocaleString("ko-KR")}</div>
         </div>
       </div>
     </div>

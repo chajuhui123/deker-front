@@ -40,13 +40,14 @@ function OuterPrdct(props) {
   return (
     <div className={classes.outerPrdctLayout}>
       <div>
-        <input
+        <textarea
           className={classes.inputArea}
           type="text"
           value={outerProductText}
-          placeholder="상품명/브랜드/판매처 등을 임력 해주세요. (최대 100자)"
+          maxlength="100"
+          placeholder="상품명/브랜드/판매처 등을 입력 해주세요. &#13;&#10;(최대 100자)"
           onChange={productNameInputHandler}
-        ></input>
+        />
       </div>
       <div className={classes.btnArea}>
         <div>
