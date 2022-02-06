@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./userTagForm.module.css";
 
+/**
+ * 공통 태그 컴포넌트
+ * @param {Function} tagOutHandler
+ * @returns
+ */
 function UserTagForm(props) {
   const [tag, setTag] = useState([]);
   const [inputText, setInputText] = useState("");
-  const [nextId, setNextId] = useState("1"); // 다음 index, 1번부터 시작하니까 '1'로 세팅
+  const [nextId, setNextId] = useState(1); // 다음 index, 1번부터 시작하니까 1로 세팅
 
   // 태그 Input Handler
   const TagInputHandler = (e) => {
@@ -41,6 +46,12 @@ function UserTagForm(props) {
       </button>
     </li>
   ));
+
+  useEffect(() => {
+    if (!!props.tagOutHandler) {
+      props.tagOutHandler(tag);
+    }
+  }, [props, tag]);
 
   return (
     <div>

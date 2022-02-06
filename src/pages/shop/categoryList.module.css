@@ -1,0 +1,11 @@
+.categoryList {
+  margin-top: 20px;
+  margin-right: 18px;
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-block: 30px;
+  display: flex;
+  flex-direction: row;
+  opacity: 1;
+}

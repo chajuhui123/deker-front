@@ -1,5 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { communityAction } from "store/community-slice";
 import { modalAction } from "store/modal-slice";
 import classes from "./PlusBtn.module.css";
 import ProductSalesLink from "./productSalesLinkPage";
@@ -13,22 +14,20 @@ import ProductSalesLink from "./productSalesLinkPage";
  */
 function PlusBtn(props) {
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.community.communityProducts);
 
   const stylePosition = {
     top: props.top,
     left: props.left,
   };
 
-  // const [productInfo, setProductInfo] = useState({
-  //   id: props.id,
-  //   offsetX: props.left,
-  //   offsetY: props.top,
-  //   productId: "",
-  //   productDescription: "",
-  // });
-
   const productInfoHandler = (data) => {
-    console.log(data);
+    const communityProducts = [...products, data];
+    dispatch(
+      communityAction.setCommunity({
+        communityProducts,
+      })
+    );
   };
 
   const plusHandler = (e) => {
@@ -37,7 +36,12 @@ function PlusBtn(props) {
         isOpen: true,
         top: props.top,
         left: props.left,
-        cont: <ProductSalesLink productInfoHandler={productInfoHandler} />,
+        cont: (
+          <ProductSalesLink
+            id={props.id}
+            productInfoHandler={productInfoHandler}
+          />
+        ),
       })
     );
   };

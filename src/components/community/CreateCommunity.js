@@ -83,7 +83,16 @@ function CreateCommunity(props) {
   const contentHandler = (e) => {
     setContent(e.target.value);
   };
-
+  const tagOutHandler = (tagArry) => {
+    dispatch(
+      communityAction.setCommunity({
+        communityTitle: title,
+        communityContent: content,
+        communityTags: tagArry,
+        communityProducts: communityData.communityProducts,
+      })
+    );
+  };
   // 저장후콜백메소드
   const fnCallback = (res) => {
     console.log("fnCallback :: ", res);
@@ -91,7 +100,14 @@ function CreateCommunity(props) {
   };
   // 저장메소드
   const submit = () => {
-    // TODO : 데이터 전송 어떤 방식으로 해야하는지 백이랑 협의 해야함
+    dispatch(
+      communityAction.setCommunity({
+        communityTitle: title,
+        communityContent: content,
+        communityTags: communityData.communityTags,
+        communityProducts: communityData.communityProducts,
+      })
+    );
     const formData = new FormData();
     formData.append("uploadImg", imageFile); // 게시글 이미지
     formData.append("json", communityData); // 게시글 제목, 내용
@@ -123,7 +139,7 @@ function CreateCommunity(props) {
       <div className={classes.communityArea}>
         <div className={classes.leftArea}>
           <ImageArea setImageFile={setImageFile} margin="0 0 30px 0" />
-          <UserTagForm />
+          <UserTagForm tagOutHandler={tagOutHandler} />
         </div>
         <div className={classes.textArea}>
           <div className={classes.titleArea}>

@@ -1,0 +1,13 @@
+.StoreMainPage_Layout {
+  position: relative;
+  margin: auto;
+  width: 800px;
+  height: 2000px;
+  opacity: 1;
+}
+.HotProductTitleArea {
+  margin-top: 20px;
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+}

@@ -1,7 +1,6 @@
-// import React, { useState } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import UserTagForm from "components/common/userTagForm";
-import JobDropdown from "components/common/dropdown/jobDropdown";
+// import JobDropdown from "components/common/dropdown/jobDropdown";
 import classes from "./modifyUserInfo.module.css";
 import ModalTitle from "components/common/modalTitle";
 import { useDispatch } from "react-redux";
@@ -13,7 +12,8 @@ const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 function ModifyUserInfo(props) {
   const dispatch = useDispatch();
   const [profileImg, setProfileImg] = useState(null);
-  const [nickNm, setNickNm] = useState(null);
+  const [emailPrint, setEmailPrint] = useState("");
+  const [nickNm, setNickNm] = useState("");
   const [jobArray, setJobArray] = useState([]); // 직업코드
   const [jobCode, setJobCode] = useState(""); // 선택된 직업코드
 
@@ -24,6 +24,8 @@ function ModifyUserInfo(props) {
 
   const fnCallback = (res) => {
     setProfileImg(`${BASEURL}${res.data.profileImg}`);
+    setEmailPrint(`${BASEURL}${res.data.id}`);
+    setNickNm(`${BASEURL}${res.data.nickname}`);
   };
 
   useEffect(() => {
@@ -39,16 +41,14 @@ function ModifyUserInfo(props) {
     );
   }, [dispatch]);
 
+  const chgNickNmHandler = (e) => {
+    setNickNm(e.target.value);
+  };
+
   // 직업코드선택핸들러
   const jobChangeHandler = (e) => {
     setJobCode(e.value);
   };
-
-  // const [profilePic, setProfilePic] = useState("");
-
-  // const uploadProfilePicHandler = (pic) => {
-  //   setProfileImg(pic);
-  // };
 
   const submit = (accountType) => {};
 
@@ -57,7 +57,6 @@ function ModifyUserInfo(props) {
     submit();
   };
 
-  //<ProfilePicBtn onClick={uploadProfilePicHandler} />
   // 건너뛰기 일단 home으로 가게 함
   return (
     <form
@@ -70,18 +69,22 @@ function ModifyUserInfo(props) {
           <div className={classes.modifyUserInfoArea}>
             <div className={classes.modifyUserInfo_row1}>
               <div className={classes.userInfoTitle}>프로필 사진</div>
-              {/* <div className={classes.modifyUserInfo_profilePic}> */}
               <img
                 className={classes.modifyUserInfo_profilePic}
                 src={profileImg}
+                alt={profileImg}
               />
-              {/* </div> */}
               <div className={classes.userInfoTitle}>이메일</div>
-              <div className={classes.modifyUserInfoEmail}>email@email.com</div>
+              <div className={classes.modifyUserInfoEmail}>{emailPrint}</div>
               <div className={classes.userInfoTitle}>닉네임</div>
-              <div className={classes.modifyUserInfoEmail}>
-                ImUnique___변경버튼
-              </div>
+              <div className={classes.modifyUserInfoEmail}>{nickNm}</div>
+              <input
+                className={classes.nickInputArea}
+                type="text"
+                value={nickNm}
+                placeholder={nickNm}
+                onChange={chgNickNmHandler}
+              />
             </div>
             <div className={classes.modifyUserInfo_row2}>
               <p className={classes.userInfoTitle}>직군</p>

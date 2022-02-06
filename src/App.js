@@ -24,6 +24,7 @@ import { userAction } from "store/user-slice";
 import StoreMainPage from "pages/shop/StoreMainPage";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
+import StoreHotSortPage from "pages/shop/StoreHotSortPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -41,14 +42,18 @@ function App() {
   };
 
   const retrieveStoredToken = useCallback(() => {
-    const storedExpirationTime = localStorage.getItem("expirationTime");
+    const storedExpirationTime = localStorage.getItem("extTokenTime");
+    console.log("retrieveStoredToken()", storedExpirationTime);
     if (!!storedExpirationTime) {
       const remainingTime = calculateRemainingTime(storedExpirationTime);
       console.log("App.js :: remainingTime :: ", remainingTime);
       if (remainingTime <= 60000) {
         localStorage.removeItem("token");
-        localStorage.removeItem("expirationTime");
+        localStorage.removeItem("extTokenTime");
         dispatch(userAction.logout());
+      } else {
+        const jwtToken = localStorage.getItem("token");
+        dispatch(userAction.login({ jwtToken }));
       }
     }
   }, [dispatch]);
@@ -126,6 +131,9 @@ function App() {
           </Route>
           <Route path="/storeMain" exact>
             <StoreMainPage />
+          </Route>
+          <Route path="/storeHotSortPage" exact>
+            <StoreHotSortPage />
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route

@@ -8,6 +8,7 @@ const DUMMY_DATA = [
   {
     deliveryCode: "DV0001",
     deliveryName: "서울집",
+    deliveryZip: "12345",
     deliveryAddr: "서울시 동작구 신대방1길 48 204호",
     receiverName: "김효진",
     receiverPhNo: "010-7511-3693",
@@ -15,6 +16,7 @@ const DUMMY_DATA = [
   {
     deliveryCode: "DV0002",
     deliveryName: "서울집",
+    deliveryZip: "67890",
     deliveryAddr: "서울시 용산구 한강대로1길 트윈씨티남산 B동 2504호",
     receiverName: "김효진",
     receiverPhNo: "010-7511-3693",
@@ -49,6 +51,7 @@ function DeliverySelect(props) {
             fnDel={deleteDeliveryHandler}
             fnSel={selectDeliveryHandler}
             deliNm={deli.deliveryName}
+            zipCode={deli.deliveryZip}
             addrNm={deli.deliveryAddr}
             userNm={deli.receiverName}
             userPn={deli.receiverPhNo}
