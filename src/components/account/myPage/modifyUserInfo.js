@@ -19,13 +19,23 @@ function ModifyUserInfo(props) {
 
   // 직업코드조회콜백
   const fnJobCallback = (res) => {
-    setJobArray(res.data);
+    if (!!res) {
+      setJobArray(res.data);
+    } else {
+      // 비정상로직
+      alert("data error");
+    }
   };
 
   const fnCallback = (res) => {
-    setProfileImg(`${BASEURL}${res.data.profileImg}`);
-    setEmailPrint(res.data.id);
-    setNickNm(res.data.nickname);
+    if (!!res) {
+      setProfileImg(`${BASEURL}${res.data.profileImg}`);
+      setEmailPrint(res.data.id);
+      setNickNm(res.data.nickname);
+    } else {
+      // 비정상로직
+      alert("data error");
+    }
   };
 
   useEffect(() => {
