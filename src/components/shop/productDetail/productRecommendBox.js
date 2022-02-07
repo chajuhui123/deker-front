@@ -9,7 +9,7 @@ function ProductRecommendBox({ productRecommendObj }) {
       <h1 className={classes.contentTitle}>함께하면 좋은 상품</h1>
       <hr />
       <div style={{ display: "flex" }}>
-        {recommendsArr.map((productRecommeend) => {
+        {recommendsArr?.map((productRecommeend) => {
           return <ProductRecommendItem productRecommeend={productRecommeend} />;
         })}
       </div>

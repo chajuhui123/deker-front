@@ -88,22 +88,22 @@ function App() {
               <SigninPage />
             </div>
           </Route>
-          <Route path="/signupAdd" exact>
+          <Route path="/signup/additional" exact>
             <div>
               <SignupAddPage />
             </div>
           </Route>
-          <Route path="/AccountMyPage" exact>
+          <Route path="/mypage" exact>
             <div>
               <AccountMyPage />
             </div>
           </Route>
-          <Route path="/modifyUserInfo" exact>
+          <Route path="/mypage/modify" exact>
             <div>
               <ModifyUserInfoPage />
             </div>
           </Route>
-          <Route path="/accountMyShopping" exact>
+          <Route path="/myShopping" exact>
             <div>
               <AccountMyShoppingPage />
             </div>
@@ -123,21 +123,25 @@ function App() {
               <MyReviewPage />
             </div>
           </Route>
-          <Route path="/createCommunity" exact>
+          <Route path="/community/write" exact>
             <CreateCommunityPage />
           </Route>
           <Route path="/modalTest" exact>
             <ModalTest />
           </Route>
-          <Route path="/storeMain" exact>
+          <Route path="/market" exact>
             <StoreMainPage />
+          </Route>
+
+          <Route path="/market/rank" exact>
+            <StoreHotSortPage />
           </Route>
           <Route path="/storeSortPage/:sortId" exact component={StoreSortPage}>
             {/* <StoreSortPage /> */}
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route
-            path="/store/:productId"
+            path="/market/detail/:productId"
             exact
             component={ProductDetailPage}
           ></Route>
