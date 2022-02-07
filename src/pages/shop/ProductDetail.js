@@ -154,8 +154,9 @@ const ProductDetailPage = ({ match }) => {
   });
   const dispatch = useDispatch();
 
-  // const { productId } = match.params;
-  const productId = "PDTID_00000000000000"; // 더미데이터
+  const { productId } = match.params;
+  // const productId = "PDTID_00000000000000"; // 더미데이터
+  console.log(productId);
 
   const fnProudctDetailCallback = (res) => {
     console.log(res);

@@ -25,6 +25,7 @@ import StoreMainPage from "pages/shop/StoreMainPage";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
 import StoreSortPage from "pages/shop/StoreSortPage";
+import CommunityDetailPage from "pages/community/communityDetailPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -132,19 +133,23 @@ function App() {
           <Route path="/market" exact>
             <StoreMainPage />
           </Route>
-
+          {/* 
           <Route path="/market/rank" exact>
             <StoreHotSortPage />
-          </Route>
+          </Route> */}
           <Route path="/storeSortPage/:sortId" exact component={StoreSortPage}>
             {/* <StoreSortPage /> */}
           </Route>
-          {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route
             path="/market/detail/:productId"
             exact
             component={ProductDetailPage}
-          ></Route>
+          />
+          <Route
+            path="/community/detail/:postId"
+            exact
+            component={CommunityDetailPage}
+          />
         </Switch>
       </div>
       <Footer />
