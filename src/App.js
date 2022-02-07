@@ -24,7 +24,7 @@ import { userAction } from "store/user-slice";
 import StoreMainPage from "pages/shop/StoreMainPage";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
-import StoreHotSortPage from "pages/shop/StoreHotSortPage";
+import StoreSortPage from "pages/shop/StoreSortPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -132,8 +132,8 @@ function App() {
           <Route path="/storeMain" exact>
             <StoreMainPage />
           </Route>
-          <Route path="/storeHotSortPage" exact>
-            <StoreHotSortPage />
+          <Route path="/storeSortPage/:sortId" exact component={StoreSortPage}>
+            {/* <StoreSortPage /> */}
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route

@@ -10,6 +10,7 @@ import classes from "./StoreMainPage.module.css";
 // const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
 const StoreMainPage = () => {
+  var sortId = "rank";
   // const dispatch = useDispatch();
   // const [mktProductId, setMktProductId] = useState(null);
   // const [mainProductList, setMainProductList] = useState(null);
@@ -141,7 +142,13 @@ const StoreMainPage = () => {
       <div className={classes.HotProductSection}>
         <div className={classes.HotProductTitleArea}>
           <CommonPageTitle title="인기상품" />
-          <Link to="/storeHotSortPage" className={classes.HotProductDetail}>
+          <Link
+            to={{
+              pathname: `/storeSortPage/${sortId}`,
+              state: { sordId: sortId },
+            }}
+            className={classes.HotProductDetail}
+          >
             더보기 {">"}
           </Link>
         </div>
