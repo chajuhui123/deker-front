@@ -6,7 +6,6 @@ const StoreSortPage = (props) => {
   // sordId: 라우터 경로
   // 인기상품: rank, 카테고리01: CA01
   const { params } = props.match;
-
   const sortId = params.sortId;
 
   const DUMMY_DATA = [
