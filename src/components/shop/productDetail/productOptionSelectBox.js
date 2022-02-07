@@ -7,7 +7,7 @@ import noImg from "img/noImg.png";
 
 function ProductOptionSelectBox({ productDetailObj }) {
   const options = [];
-  productDetailObj.productDetailOptionArr.map((productDetailOption, index) => {
+  productDetailObj.productDetailOptionArr?.map((productDetailOption, index) => {
     options.push({
       value: index,
       label: `${productDetailOption.option1Name} : ${

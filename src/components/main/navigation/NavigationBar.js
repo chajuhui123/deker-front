@@ -4,7 +4,6 @@ import classes from "./NavigationBar.module.css";
 import { FiMenu, FiX, FiSearch } from "react-icons/fi";
 import { MdShoppingBasket } from "react-icons/md";
 import logoImg from "img/logo.png";
-// import { rootMenu } from "api/rootMenu";
 import SubNavigationBar from "./SubNavigationBar";
 import NavigationUserItem from "./NavigationUserItem";
 
@@ -80,6 +79,7 @@ function NavigationBar(props) {
   const menuList = MENU_DUMMY.menu.map((menu, index) => (
     <li key={index} className={classes.navItem}>
       <Link to={menu.menuUrl} className={classes.navLink} onClick={clickOnMenu}>
+        {/* <img className={classes.navLogo} src={logoImg} alt="로고" /> */}
         {menu.menuName}
       </Link>
     </li>
@@ -88,10 +88,6 @@ function NavigationBar(props) {
   return (
     <>
       <nav className={classes.navbar}>
-        <Link to="/" onClick={clickOnMenu}>
-          <img className={classes.navLogo} src={logoImg} alt="로고" />
-        </Link>
-
         {!opend && (
           <ul className={classes.navLinks}>
             <div className={classes.navLeft}>{menuList}</div>

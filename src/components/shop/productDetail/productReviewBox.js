@@ -10,7 +10,7 @@ function ProductReviewBox({ productReviewsObj }) {
         <h1 className={classes.contentTitle}>리뷰</h1>
         <hr />
         <div>
-          {reviewsArr.map((review, index) => {
+          {reviewsArr?.map((review, index) => {
             return <ProductReviewItem key={index} review={review} />;
           })}
         </div>
