@@ -4,7 +4,7 @@ import classes from "./StoreSortPage.module.css";
 
 const StoreSortPage = (props) => {
   // sordId: 라우터 경로
-  // 인기상품: rank, 카테고리01: CA01
+  // 인기상품: rank, 카테고리: C01, C02, C03, C04, C05
   const { params } = props.match;
   const sortId = params.sortId;
 
@@ -224,7 +224,11 @@ const StoreSortPage = (props) => {
           <CommonPageTitle title="인기상품" />
         </div>
         {sortId === "rank" && <ProductList products={DUMMY_DATA} />}
-        {sortId === "CA01" && <ProductList products={DUMMY_DATA2} />}
+        {sortId === "C02" && <ProductList products={DUMMY_DATA2} />}
+        {sortId === "C03" && console.log(sortId)}
+        {sortId === "C04" && <ProductList products={DUMMY_DATA2} />}
+        {sortId === "C05" && <ProductList products={DUMMY_DATA2} />}
+        {sortId === "C01" && <ProductList products={DUMMY_DATA2} />}
       </div>
     </div>
   );
