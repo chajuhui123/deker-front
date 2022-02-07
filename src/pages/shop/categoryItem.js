@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import classes from "./categoryItem.module.css";
 
 function CategoryItem(props) {
-  var sortId = "CA01";
+  var sortId = props.categoryId;
   return (
     <div>
       <Link
         to={{
           pathname: `/storeSortPage/${sortId}`,
-          state: { sordId: sortId },
+          state: { sordId: props.categoryId },
         }}
       >
         <img
