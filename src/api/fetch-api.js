@@ -89,6 +89,7 @@ export function getApi(action, callback) {
 
 export function fileApi(action, data, callback) {
   const url = `${BASE_URL}/${action}`;
+  const token = "Bearer " + localStorage.getItem("token");
 
   return (dispatch) => {
     dispatch(spinnerAction.loading());
@@ -96,6 +97,7 @@ export function fileApi(action, data, callback) {
       method: "POST",
       headers: {
         "Content-type": "multipart/form-data",
+        Authorization: token,
       },
       data,
     })
@@ -108,7 +110,7 @@ export function fileApi(action, data, callback) {
         }
       })
       .then((data) => {
-        console.debug("postApi :: data :: ", data);
+        console.debug("fileApi :: data :: ", data);
         if (data.responseCode !== "200") {
           throw new Error(data.message || "오류가 발생 했습니다.");
         }
