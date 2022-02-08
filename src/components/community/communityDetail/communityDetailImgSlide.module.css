@@ -1,0 +1,23 @@
+.slideDiv {
+  display: flex;
+  width: 40%;
+  height: 150px;
+  min-width: 500px;
+  margin: 16px auto;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.slideDiv::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+.slideImg {
+  width: 30%;
+  border-radius: 30%;
+  height: 100%;
+  margin: 0 10px 0 0;
+}
+
+.slideImg:last-child {
+  margin: 0;
+}
