@@ -74,6 +74,22 @@ function App() {
       >
         {modalCont}
       </ModalPopup>
+      <ModalPopup
+        id="spinner"
+        isOpen={isLoading}
+        onRequestClose={closeSpinnerHandler} // TODO : 삭제 해야함
+      >
+        <div
+          style={{
+            width: "100px",
+            height: "100px",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            border: "none",
+          }}
+        >
+          <LoadingSpinner />
+        </div>
+      </ModalPopup>
       <NavigationBar />
       <div className={classes.content}>
         <Switch>
@@ -133,10 +149,6 @@ function App() {
           <Route path="/market" exact>
             <StoreMainPage />
           </Route>
-          {/* 
-          <Route path="/market/rank" exact>
-            <StoreHotSortPage />
-          </Route> */}
           <Route path="/storeSortPage/:sortId" exact component={StoreSortPage}>
             {/* <StoreSortPage /> */}
           </Route>

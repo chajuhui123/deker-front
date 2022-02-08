@@ -11,8 +11,8 @@ function AddPhotoFile() {
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
     const formData = new FormData();
-    formData.appned("uploadImg", e.target.files[0]);
-    dispatch(fileApi("", formData, fnCallback));
+    formData.append("img", e.target.files[0]);
+    dispatch(fileApi("nmb/reg/img", formData, fnCallback));
     // const config = {
     //   headers: {
     //     "Content-type": "multipart/form-data",
@@ -42,7 +42,7 @@ function AddPhotoFile() {
       </div>
       <input
         className={classes.filebox}
-        name="imgUpload"
+        name="img"
         type="file"
         accept="image/*"
         onChange={saveFileImage}
