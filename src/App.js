@@ -148,13 +148,11 @@ function App() {
           <Route path="/market" exact>
             <StoreMainPage />
           </Route>
-
-          <Route path="/market/rank" exact>
-            {/* <StoreHotSortPage /> */}
-          </Route>
-          <Route path="/storeSortPage/:sortId" exact component={StoreSortPage}>
-            {/* <StoreSortPage /> */}
-          </Route>
+          <Route
+            path="/market/storeSortPage/:sortId"
+            exact
+            component={StoreSortPage}
+          ></Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route
             path="/market/detail/:productId"
