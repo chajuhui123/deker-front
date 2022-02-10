@@ -1,0 +1,40 @@
+.main {
+  margin: auto;
+  width: 800px;
+  height: 1300px;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
+}
+
+.main header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
+}
+
+.main section ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
+}
+
+.main section ul li {
+  width: 180px;
+  height: 200px;
+  margin-top: 10px;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.link {
+  color: var(--main_color);
+  margin-top: 50px;
+  padding: 0 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
+}
