@@ -1,16 +1,10 @@
 import React from "react";
 import classes from "./communityDetailLocationIcon.module.css";
 
-function CommunityDetailLocationIcon({ top, right, bottom, left }) {
+function CommunityDetailLocationIcon({ top, left }) {
   return (
-    <div
-      className={classes.locationIconWrapper}
-      style={{ top, right, bottom, left }}
-    >
-      <div
-        className={classes.locationIconDiv}
-        style={{ top, right, bottom, left }}
-      >
+    <div className={classes.locationIconWrapper} style={{ top, left }}>
+      <div className={classes.locationIconDiv} style={{ top, left }}>
         <p className={classes.locationIcon}>+</p>
         <div className={classes.locationToolTip}>
           <img

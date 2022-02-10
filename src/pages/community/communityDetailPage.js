@@ -3,6 +3,7 @@ import classes from "./communityDetailPage.module.css";
 import CommunityDetailMainImg from "components/community/communityDetail/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
+import CommunityDetailCommentBox from "components/community/communityDetail/communityDetailCommentBox";
 
 const CommunityDetailPage = ({ match }) => {
   const { postId } = match.params;
@@ -11,8 +12,9 @@ const CommunityDetailPage = ({ match }) => {
       <CommunityDetailMainImg />
       <CommunityDetailImgSlide />
       <CommunityDetailContent />
-      <div>게시물 태그</div>
-      <div>좋아요 버튼 및 댓글</div>
+      {/* 게시물 태그 */}
+      {/* 좋아요 버튼 */}
+      <CommunityDetailCommentBox /> {/* 댓글 */}
     </div>
   );
 };

@@ -11,7 +11,7 @@ function CommunityDetailMainImg() {
         alt=""
       />
       <div className={classes.locationIconDiv}>
-        <CommunityDetailLocationIcon top="10px" left="20px" />
+        <CommunityDetailLocationIcon top="0" left="0" />
       </div>
       <div className={classes.locationIconDiv}>
         <CommunityDetailLocationIcon top="10px" right="40px" />
