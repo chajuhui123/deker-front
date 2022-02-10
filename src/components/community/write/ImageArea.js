@@ -2,12 +2,15 @@ import React, { useRef, useState } from "react";
 import classes from "./ImageArea.module.css";
 import noImg from "img/noImg.png";
 import PlusBtn from "./PlusBtn";
+import { useDispatch, useSelector } from "react-redux";
+import { communityAction } from "store/community-slice";
 
 function ImageArea(props) {
+  const dispatch = useDispatch();
+  const pointArray = useSelector((state) => state.community.communityProducts);
   const photoInputRef = useRef();
   const [prevImage, setPrevImage] = useState(null); // 미리보기 이미지
   const [isPoint, setIsPoint] = useState(false); // 상품 선택 가능여부
-  const [addPoint, setAddPoint] = useState([]);
   // 이미지핸들러
   const imageHandler = (e) => {
     if (e.target.files.length > 0) {
@@ -29,13 +32,17 @@ function ImageArea(props) {
   // 상품 팝업 생성 > 상품 선택 후 x, y, productId 저장
   const addMarketHandler = (e) => {
     if (isPoint) {
-      const index = addPoint.length;
+      const index = pointArray.length;
       const positionObect = {
         id: index,
         top: e.nativeEvent.offsetY,
         left: e.nativeEvent.offsetX,
       };
-      setAddPoint([...addPoint, positionObect]);
+      dispatch(
+        communityAction.setCommunity({
+          communityProducts: [...pointArray, positionObect],
+        })
+      );
       setIsPoint(false);
     }
   };
@@ -47,8 +54,8 @@ function ImageArea(props) {
           className={classes.prevImage}
           style={{ cursor: isPoint ? "crosshair" : "default" }}
         >
-          {addPoint &&
-            addPoint.map((point) => (
+          {pointArray &&
+            pointArray.map((point) => (
               <PlusBtn
                 key={point.id}
                 id={point.id}

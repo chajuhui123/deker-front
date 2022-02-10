@@ -34,6 +34,30 @@ function App() {
   const top = useSelector((state) => state.modal.top);
   const left = useSelector((state) => state.modal.left);
   const dispatch = useDispatch();
+
+  const spinnerStyle = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      width: "auto",
+      height: "auto",
+      maxWidth: "100%",
+      maxHeight: "100%",
+      margin: "0px",
+      padding: "0px",
+      transform: "translate(-50%, -50%)",
+      border: "none",
+      background: "translate!important",
+      zIndex: "1000",
+    },
+
+    overlay: {
+      backgroundColor: "rgb(0 0 0 / 50%)",
+    },
+  };
+
   const closeModalEventHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
@@ -76,13 +100,16 @@ function App() {
       <ModalPopup
         id="spinner"
         isOpen={isLoading}
+        spinnerStyle={spinnerStyle}
         onRequestClose={closeSpinnerHandler} // TODO : 삭제 해야함
       >
         <div
           style={{
             width: "100px",
             height: "100px",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            // backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "transparent",
+
             border: "none",
           }}
         >

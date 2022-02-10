@@ -96,10 +96,9 @@ export function fileApi(action, data, callback) {
     fetch(url, {
       method: "POST",
       headers: {
-        "Content-type": "multipart/form-data",
         Authorization: token,
       },
-      data,
+      body: data,
     })
       .then((res) => {
         dispatch(spinnerAction.complete());

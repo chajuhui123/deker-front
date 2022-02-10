@@ -36,7 +36,7 @@ function ModalPopup(props) {
     <ReactModal
       id={props.modalId}
       isOpen={props.isOpen}
-      style={customStyles}
+      style={props.spinnerStyle || customStyles}
       onRequestClose={props.onRequestClose}
       ariaHideApp={false}
     >
