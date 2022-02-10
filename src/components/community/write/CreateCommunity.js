@@ -111,7 +111,7 @@ function CreateCommunity(props) {
     const formData = new FormData();
     formData.append("img", imageFile); // 게시글 이미지
     formData.append("json", JSON.stringify(communityData)); // 게시글 제목, 내용
-    dispatch(fileApi("nmb/reg/img", formData, fnCallback));
+    dispatch(fileApi("", formData, fnCallback)); // TODO : 저장 url 정해지면 처리
   };
 
   return (
