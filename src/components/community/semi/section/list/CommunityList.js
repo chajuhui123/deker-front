@@ -6,7 +6,13 @@ const CommunityList = (props) => {
     <ul>
       {props.data &&
         props.data.map((data) => {
-          return <CommunityCard data={data} key={data.communityId} />;
+          return (
+            <CommunityCard
+              key={data.communityId}
+              data={data}
+              type={props.type}
+            />
+          );
         })}
     </ul>
   );

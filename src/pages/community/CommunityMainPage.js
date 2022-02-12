@@ -1,5 +1,5 @@
-import CommunityMain from "components/community/CommunityMain";
 import React from "react";
+import CommunityMain from "components/community/main/CommunityMain";
 
 const CommunityMainPage = (props) => {
   return <CommunityMain />;

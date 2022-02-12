@@ -8,6 +8,9 @@ const DUMMY_RANK = [
     userId: "test1", // 작성자ID
     userNick: "테스트1 테스트1 테스트1 테스트1", // 작성자닉네임
     userProfileImg: "", // 작성자프로필사진
+    likeCount: 100,
+    commentCount: 123,
+    following: true,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164447023503877747.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -17,6 +20,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 90,
+    commentCount: 123,
+    following: true,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164446224883159444.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -26,6 +32,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 88,
+    commentCount: 123,
+    following: true,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164448649057424245.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -35,6 +44,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 50,
+    commentCount: 123,
+    following: true,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442021987517897.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -44,6 +56,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449311181595696.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -53,6 +68,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/video-service-prd-s3-bucket-thumbnail/6204cf22d7b3b914fbe45715/6204cf22d7b3b914fbe45715.0000001.jpg?gif=1&w=320&h=320&c=c",
   },
@@ -62,6 +80,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449560788958935.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -71,6 +92,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442006712025856.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -80,6 +104,9 @@ const DUMMY_RANK = [
     userId: "test1", // 작성자ID
     userNick: "테스트1 테스트1 테스트1 테스트1", // 작성자닉네임
     userProfileImg: "", // 작성자프로필사진
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164447023503877747.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -89,6 +116,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164446224883159444.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -98,6 +128,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164448649057424245.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -107,6 +140,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442021987517897.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -116,6 +152,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449311181595696.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -125,6 +164,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/video-service-prd-s3-bucket-thumbnail/6204cf22d7b3b914fbe45715/6204cf22d7b3b914fbe45715.0000001.jpg?gif=1&w=320&h=320&c=c",
   },
@@ -134,6 +176,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449560788958935.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -143,6 +188,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442006712025856.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -152,6 +200,9 @@ const DUMMY_RANK = [
     userId: "test1", // 작성자ID
     userNick: "테스트1 테스트1 테스트1 테스트1", // 작성자닉네임
     userProfileImg: "", // 작성자프로필사진
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164447023503877747.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -161,6 +212,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164446224883159444.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -170,6 +224,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164448649057424245.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -179,6 +236,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442021987517897.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -188,6 +248,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449311181595696.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -197,6 +260,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/video-service-prd-s3-bucket-thumbnail/6204cf22d7b3b914fbe45715/6204cf22d7b3b914fbe45715.0000001.jpg?gif=1&w=320&h=320&c=c",
   },
@@ -206,6 +272,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449560788958935.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -215,6 +284,9 @@ const DUMMY_RANK = [
     userId: "test1",
     userNick: "테스트1 테스트1 테스트1 테스트1",
     userProfileImg: "",
+    likeCount: 100,
+    commentCount: 123,
+    following: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442006712025856.jpeg?gif=1&w=320&h=320&c=c",
   },

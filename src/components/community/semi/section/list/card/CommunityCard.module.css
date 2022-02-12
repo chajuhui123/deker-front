@@ -33,26 +33,66 @@
 
 .userInfo p {
   margin: 5px;
-  font: normal normal bolder 15px/15px Roboto;
+  font: normal normal bolder 13px/13px Roboto;
   color: rgb(255, 255, 255);
-  text-shadow: -1px 0 rgb(100, 100, 100), 0 1px rgb(100, 100, 100),
-    1px 0 rgb(100, 100, 100), 0 -1px rgb(100, 100, 100);
+  text-shadow: 1px 1px 1px #000;
 }
 
 .communityTitle {
-  font: normal normal 700 18px/18px Roboto;
+  font: normal normal 700 15px/15px Roboto;
   margin: 5px;
   color: rgb(255, 255, 255);
   text-shadow: 1px 1px 1px #000;
 }
 
-.link {
-  color: var(--main_color);
-  margin-top: 50px;
-  padding: 0 10px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 15px;
+.followButton {
+  margin: 5px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #35c5f0;
+  font-size: 15px/15px;
+  font-weight: 1000;
   cursor: pointer;
-  /* border: 0.5px rgb(145, 145, 145) dotted; */
+  text-shadow: 1px 1px 1px #222222;
+}
+
+.unFollowButton {
+  margin: 5px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #e0e0e0;
+  font-size: 15px/15px;
+  font-weight: 1000;
+  cursor: pointer;
+  text-shadow: 1px 1px 1px #222222;
+}
+
+.likeArea {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.likeArea button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background: none;
+  border: none;
+  margin: 5px 0;
+}
+
+.like path {
+  fill: transparent;
+  stroke: #424242;
+  stroke-width: 1.1px;
+  transition: fill 0.1s, stroke 0.1s;
+}
+
+.likeArea button span {
+  margin-left: 5px;
 }
