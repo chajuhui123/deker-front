@@ -2,9 +2,6 @@
   display: flex;
   /* align-items: center;
   justify-content: center; */
-}
-
-.title p {
   position: relative;
   width: 300px;
   height: 46px;
