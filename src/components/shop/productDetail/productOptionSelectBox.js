@@ -7,16 +7,18 @@ import noImg from "img/noImg.png";
 
 function ProductOptionSelectBox({ productDetailObj }) {
   const options = [];
-  productDetailObj.productDetailOptionArr?.map((productDetailOption, index) => {
-    options.push({
-      value: index,
-      label: `${productDetailOption.option1Name} : ${
-        productDetailOption.option1DataName
-      } / ${productDetailOption.option2Name} : ${
-        productDetailOption.option2DataName
-      } (+${productDetailOption.productPrice.toLocaleString("ko-KR")})`,
-    });
-  });
+  productDetailObj.productDetailOptionArr?.forEach(
+    (productDetailOption, index) => {
+      options.push({
+        value: index,
+        label: `${productDetailOption.option1Name} : ${
+          productDetailOption.option1DataName
+        } / ${productDetailOption.option2Name} : ${
+          productDetailOption.option2DataName
+        } (+${productDetailOption.productPrice.toLocaleString("ko-KR")})`,
+      });
+    }
+  );
   const productQuantity = "10";
 
   return (

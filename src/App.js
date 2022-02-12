@@ -26,6 +26,7 @@ import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
 import StoreSortPage from "pages/shop/StoreSortPage";
 import CommunityMainPage from "pages/community/CommunityMainPage";
+import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -168,6 +169,11 @@ function App() {
           <Route path="/community" exact>
             <CommunityMainPage />
           </Route>
+          <Route
+            path="/community/semi/:type"
+            exact
+            component={CommunitySemiPage}
+          ></Route>
           <Route path="/community/write" exact>
             <CreateCommunityPage />
           </Route>
