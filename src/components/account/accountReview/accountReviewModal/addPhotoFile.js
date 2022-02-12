@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState } from "react";
 import classes from "./addPhotoFile.module.css";
 import { fileApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
@@ -26,10 +26,10 @@ function AddPhotoFile() {
   };
 
   // 파일 삭제
-  const deleteFileImage = () => {
-    URL.revokeObjectURL(fileImage);
-    setFileImage("");
-  };
+  // const deleteFileImage = () => {
+  //   URL.revokeObjectURL(fileImage);
+  //   setFileImage("");
+  // };
 
   return (
     <div className={classes.wrapper}>

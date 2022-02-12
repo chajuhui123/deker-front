@@ -23,17 +23,22 @@ function CreateCommunity(props) {
   const [imageFile, setImageFile] = useState(null); // 이미지 파일
   // 직업코드조회콜백
   const fnJobCallback = (res) => {
-    setJobArray(res.data);
+    if (!!res) {
+      setJobArray(res.data);
+    }
   };
   // 재질코드조회콜백
   const fnMaterialCallback = (res) => {
-    setMaterial(res.data);
+    if (!!res) {
+      setMaterial(res.data);
+    }
   };
   // 분위기코드조회콜백
   const fnMoodCallback = (res) => {
-    setMoodArray(res.data);
+    if (!!res) {
+      setMoodArray(res.data);
+    }
   };
-
   useEffect(() => {
     dispatch(
       postApi(
@@ -108,10 +113,11 @@ function CreateCommunity(props) {
         communityProducts: communityData.communityProducts,
       })
     );
+    console.log(JSON.stringify(test));
     const formData = new FormData();
     formData.append("img", imageFile); // 게시글 이미지
     formData.append("json", JSON.stringify(communityData)); // 게시글 제목, 내용
-    dispatch(fileApi("", formData, fnCallback)); // TODO : 저장 url 정해지면 처리
+    dispatch(fileApi("mb/post/reg/write-post", formData, fnCallback)); // TODO : 저장 url 정해지면 처리
   };
 
   return (
