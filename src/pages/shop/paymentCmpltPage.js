@@ -71,6 +71,7 @@ const PaymentCmpltPage = () => {
             bgColor="rgb(248, 248, 248)"
             radius="4px"
             txColor="rgb(78, 78, 78)"
+            fontSize="20px"
             fnClick={replaceEvent}
           />
           {/* </Link> */}
@@ -84,6 +85,7 @@ const PaymentCmpltPage = () => {
               border="3px solid rgb(66, 66, 226)"
               bgColor="rgbrgb(66, 66, 226)"
               radius="4px"
+              fontSize="20px"
               txColor="rgb(248, 248, 248)"
             />
           </Link>
