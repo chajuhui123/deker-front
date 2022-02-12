@@ -26,6 +26,7 @@ import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
 import StoreSortPage from "pages/shop/StoreSortPage";
 import CommunityDetailPage from "pages/community/communityDetailPage";
+import MarketCartPage from "pages/shop/cart/marketCartPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -148,6 +149,9 @@ function App() {
           </Route>
           <Route path="/market" exact>
             <StoreMainPage />
+          </Route>
+          <Route path="/market/cart" exact>
+            <MarketCartPage />
           </Route>
           <Route path="/storeSortPage/:sortId" exact component={StoreSortPage}>
             {/* <StoreSortPage /> */}
