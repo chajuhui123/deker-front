@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./NavigationBar.module.css";
 import { FiMenu, FiX, FiSearch } from "react-icons/fi";
 import { MdShoppingBasket } from "react-icons/md";
-// import logoImg from "img/logo.png";
+import logoImg from "img/logo.png";
 import SubNavigationBar from "./SubNavigationBar";
 import NavigationUserItem from "./NavigationUserItem";
 
@@ -25,6 +25,7 @@ function NavigationBar(props) {
       {
         menuName: "메인",
         menuUrl: "/nmb/cmm",
+        imgUrl: "img/logo.png",
         subMenu: [
           {
             menuName: "메인",
@@ -41,6 +42,7 @@ function NavigationBar(props) {
       {
         menuName: "커뮤니티",
         menuUrl: "/nmb/cmm",
+        imgUrl: "",
         subMenu: [
           {
             menuName: "메인",
@@ -57,6 +59,7 @@ function NavigationBar(props) {
       {
         menuName: "마켓",
         menuUrl: "/nmb/mkt",
+        imgUrl: "",
         subMenu: [
           {
             menuName: "메인",
@@ -69,18 +72,18 @@ function NavigationBar(props) {
           { menuName: "최근 본 상품", menuUrl: "/" },
         ],
       },
-      {
-        menuName: "최근 본 상품",
-        menuUrl: "/nmb/mkt/get/recent-pro",
-      },
     ],
   };
 
   const menuList = MENU_DUMMY.menu.map((menu, index) => (
     <li key={index} className={classes.navItem}>
       <Link to={menu.menuUrl} className={classes.navLink} onClick={clickOnMenu}>
-        {/* <img className={classes.navLogo} src={logoImg} alt="로고" /> */}
-        {menu.menuName}
+        {menu.imgUrl !== "" ? (
+          // 추후 로고 이미지는 서버에서 넘어져 오는 imgUrl 로 src 변경
+          <img className={classes.navLogo} src={logoImg} alt="로고" />
+        ) : (
+          <p>{menu.menuName}</p>
+        )}
       </Link>
     </li>
   ));
