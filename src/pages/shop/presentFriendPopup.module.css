@@ -1,0 +1,79 @@
+.productSalesLinkLayout {
+  width: 500px;
+  /* line-height: 827px; */
+  padding: 33px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.presentMain {
+  position: relative;
+  margin: auto;
+  width: 400px;
+  height: 400px;
+  border: 0px solid #ffffff;
+  border-radius: 1px;
+  opacity: 1;
+}
+
+.productSearchArea {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.productInput {
+  width: 100%;
+  height: 33px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #000000;
+  border-radius: 7px;
+  opacity: 1;
+}
+
+.productSearchBtn {
+  margin-left: 20px;
+  width: 60px;
+  height: 38px;
+  background: #4242e2 0% 0% no-repeat padding-box;
+  border: 1px solid #70707021;
+  border-radius: 4px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal bold 15px/20px Roboto;
+  letter-spacing: 0px;
+  color: #f5f5f5;
+}
+
+.selectedProduct {
+  margin-top: 30px;
+  width: 100%;
+  height: 300px;
+  /* border: 1px solid #000000; */
+}
+
+/* 더미데이터 시작 */
+.dummy {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.productImg {
+  /* background-color: rgb(206, 206, 206); */
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+.productInfo {
+  width: 100%;
+  display: inline-block;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /*늘어나면 ...처리*/
+  text-align: left;
+  font: normal normal normal 13px/25px Roboto;
+  /* margin-inline: 10px; */
+  /* float: left; */
+}
+/* 더미 끝 */

@@ -11,6 +11,7 @@ import CommPopup from "components/common/commPopup";
 import { postApi, sseApi } from "api/fetch-api";
 import { spinnerAction } from "store/spinner-slice";
 import CommAlert from "components/common/commAlert";
+import PresentFriendPopup from "./shop/presentFriendPopup";
 
 function ModalTest(props) {
   const dispatch = useDispatch();
@@ -34,6 +35,11 @@ function ModalTest(props) {
   const productSalesLinkHandler = () => {
     dispatch(
       modalAction.modalPopup({ isOpen: true, cont: <ProductSalesLink /> })
+    );
+  };
+  const presentLinkHandler = () => {
+    dispatch(
+      modalAction.modalPopup({ isOpen: true, cont: <PresentFriendPopup /> })
     );
   };
   const commPopupTestHandler = () => {
@@ -83,6 +89,9 @@ function ModalTest(props) {
         </li>
         <li>
           <button onClick={productSalesLinkHandler}>productSalesLink</button>
+        </li>
+        <li>
+          <button onClick={presentLinkHandler}>선물하기</button>
         </li>
         <li>
           <button onClick={spinnerHandler}>스피터 적용 Trigger</button>
