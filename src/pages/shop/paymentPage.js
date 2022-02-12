@@ -3,8 +3,11 @@ import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { modalAction } from "store/modal-slice";
 // import { Link } from "react-router-dom";
 import classes from "./paymentPage.module.css";
+import PresentFriendPopup from "./presentFriendPopup";
 
 const PaymentPage = () => {
   const [orderNm, setOerderNm] = useState("");
@@ -15,6 +18,7 @@ const PaymentPage = () => {
   const [rcvAddr, setRcvAddr] = useState("");
   const [deliMemo, setDeliMemo] = useState("");
   const [totalPayAmt, setTotalPayAmt] = useState("");
+  const dispatch = useDispatch();
 
   const replaceEvent = () => {
     setTotalPayAmt("123,000");
@@ -42,6 +46,18 @@ const PaymentPage = () => {
   const deliMemoInputHandler = (e) => {
     setDeliMemo(e.target.value);
   };
+
+  const presentLinkHandler = () => {
+    dispatch(
+      modalAction.modalPopup({ isOpen: true, cont: <PresentFriendPopup /> })
+    );
+  };
+
+  const fillSameHandler = () => {
+    setRcvNm(orderNm);
+    setRcvTelNo(telNo);
+  };
+
   const DUMMY_DATA_UNREVIEWED = [
     {
       id: 11,
@@ -67,7 +83,12 @@ const PaymentPage = () => {
       </div>
       <div className={classes.paymentMain}>
         <div className={classes.section}>
-          <CommPageSemiTitle semiTitle="주문자" />
+          <div className={classes.addpresent}>
+            <CommPageSemiTitle semiTitle="주문자" />
+            <button className={classes.present} onClick={presentLinkHandler}>
+              선물하기
+            </button>
+          </div>
           <hr className={classes.lineD} />
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>이름</div>
@@ -113,7 +134,12 @@ const PaymentPage = () => {
           </div>
         </div>
         <div className={classes.section}>
-          <CommPageSemiTitle semiTitle="배송지" />
+          <div className={classes.addpresent}>
+            <CommPageSemiTitle semiTitle="배송지" />
+            <button className={classes.same} onClick={fillSameHandler}>
+              위와 동일하게 채우기
+            </button>
+          </div>
           <hr className={classes.lineD} />
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>받는사람</div>

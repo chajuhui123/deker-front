@@ -33,6 +33,17 @@
   /* display: flex;
   flex-direction: row; */
 }
+
+.addpresent {
+  display: flex;
+  flex-direction: row;
+}
+.present {
+  margin-left: 400px;
+}
+.same {
+  margin-left: 350px;
+}
 .dtlArea {
   position: relative;
   margin: auto;
