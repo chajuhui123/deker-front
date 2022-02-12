@@ -1,11 +1,11 @@
 import CommBtn from "components/common/commBtn";
+import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
-import CommText from "components/common/commText";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import classes from "./paymentPage.module.css";
+import classes from "./paymentCmpltPage.module.css";
 
-const PaymentPage = () => {
+const PaymentCmpltPage = () => {
   const [orderNo, setOerderNo] = useState("");
   const [userId, setUserId] = useState("");
   const [deliAddr, setDeliAddr] = useState("");
@@ -30,31 +30,31 @@ const PaymentPage = () => {
         <div className={classes.paymentMain}>
           <div className={classes.orderNoArea}>
             <div>
-              <CommText text="주문번호" />
+              <CommPageSemiTitle semiTitle="주문번호" />
             </div>
             <textarea type="text" value={orderNo} />
           </div>
           <div className={classes.orderNoArea}>
             <div>
-              <CommText text="받는사람" />
+              <CommPageSemiTitle semiTitle="받는사람" />
             </div>
             <textarea type="text" value={userId} />
           </div>
           <div className={classes.orderNoArea}>
             <div>
-              <CommText text="배송지" />
+              <CommPageSemiTitle semiTitle="배송지" />
             </div>
             <textarea type="text" value={deliAddr} />
           </div>
           <div className={classes.orderNoArea}>
             <div>
-              <CommText text="배송요청사항" />
+              <CommPageSemiTitle semiTitle="배송요청사항" />
             </div>
             <textarea type="text" value={deliMemo} />
           </div>
           <div className={classes.orderNoArea}>
             <div>
-              <CommText text="총 결제 금액" />
+              <CommPageSemiTitle semiTitle="총 결제 금액" />
             </div>
             <textarea type="text" value={totalPayAmt} />
           </div>
@@ -93,4 +93,4 @@ const PaymentPage = () => {
   );
 };
 
-export default PaymentPage;
+export default PaymentCmpltPage;
