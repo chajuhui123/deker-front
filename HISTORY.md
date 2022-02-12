@@ -1,5 +1,21 @@
 ## HISTORY
 
+### 2022.02.13. 권예림
+
+1. 결제페이지(paymentPage.js) 생성
+2. 선물하기팝업(presentFriendPopup.js) 생성
+
+### 2022.02.12. 권예림
+
+1. 결제완료페이지(paymentCmpltPage.js) 생성
+
+### 2022.02.12 김효진
+1. 커뮤니티 메인, 인기, 팔로윙, 맞춤 화면개발
+2. 공통 alert 생성
+3. warning 오류 잡히는것 주석처리
+4. modalTest css 살짝 줌
+
+
 ### 2022.02.07. 권예림
 
 1. 스토어-카테고리 → 인기로 정렬한 페이지(StoreSortPage.js) 생성
