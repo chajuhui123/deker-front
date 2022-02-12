@@ -2,13 +2,27 @@ import React from "react";
 import classes from "./communityDetailCommentItem.module.css";
 import noUserImg from "img/noUserImg.png";
 
-function CommunityDetailCommentItem({ comment }) {
+function CommunityDetailCommentItem({ commentItemObject }) {
   return (
-    <div>
-      <img src={noUserImg} alt="" />
-      <div>유저네임</div>
-      <div>댓글내용</div>
-      <div>9분 전</div>
+    <div className={classes.commentItemDiv}>
+      <img
+        className={classes.commentWriterImg}
+        src={commentItemObject?.writerProfileImgUrl || noUserImg}
+        alt=""
+      />
+      <div>
+        <div className={classes.commentContentDiv}>
+          <span className={classes.writerName}>
+            {commentItemObject?.writerId}
+          </span>
+          <div className={classes.commentContent}>
+            {commentItemObject?.content}
+          </div>
+        </div>
+        <div className={classes.commentInfo}>
+          {commentItemObject?.commentUpdateYmdt}
+        </div>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,16 @@
   margin: 0 auto;
 }
 
+.commentSummaryDiv {
+  padding: 40px 0 15px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.commentCount {
+  color: var(--main_color);
+  font-weight: bold;
+}
+
 .commentInputDiv {
   display: flex;
   line-height: 40px;
@@ -11,27 +21,24 @@
 
 .commentInputImg {
   border-radius: 100%;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 0;
+  padding: 6px 0;
 }
 
 .commentInputBox {
-  padding: 0 0 0 0;
-  margin: 0 0;
-  height: 25px;
-  width: 80%;
   border-radius: 4px 0 0 4px;
-  border: 1px solid gray;
+  border: 1px solid #f0f0f0;
   border-right: none;
+  width: 82%;
 }
 
 .commentInputBtn {
-  padding: 0 0 0 0;
-  background-color: white;
-  border: 1px solid gray;
-  border-left: none;
-  margin: 0 0;
-  width: 70px;
-  height: 25px;
   border-radius: 0 4px 4px 0;
+  border: 1px solid #f0f0f0;
+  border-left: none;
+  background-color: white;
+  padding: 0 12px;
+  color: var(--main_color);
 }
