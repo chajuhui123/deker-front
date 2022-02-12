@@ -4,12 +4,25 @@
   /* border: 0.5px rgb(145, 145, 145) dotted; */
 }
 
+.main section {
+  margin-bottom: 30px;
+}
+
 .main header {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
   /* border: 0.5px rgb(145, 145, 145) dotted; */
+}
+
+.main header a {
+  color: var(--main_color);
+  padding: 0 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .main section ul {
@@ -23,6 +36,6 @@
 .main section ul li {
   width: 180px;
   max-width: 180px;
-  margin-top: 30px;
+  margin: 10px 0;
   /* border: 0.5px rgb(145, 145, 145) dotted; */
 }
