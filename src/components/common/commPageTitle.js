@@ -9,7 +9,7 @@ import classes from "./commPageTitle.module.css";
 function CommonPageTitle({ title }) {
   return (
     <div className={classes.title}>
-      <p>{title}</p>
+      <text>{title}</text>
     </div>
   );
 }

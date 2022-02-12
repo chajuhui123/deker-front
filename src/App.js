@@ -27,6 +27,7 @@ import { spinnerAction } from "store/spinner-slice";
 import StoreSortPage from "pages/shop/StoreSortPage";
 import CommunityMainPage from "pages/community/CommunityMainPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
+import PaymentPage from "pages/shop/paymentPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -188,6 +189,9 @@ function App() {
             exact
             component={StoreSortPage}
           ></Route>
+          <Route path="/payment" exact>
+            <PaymentPage />
+          </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route
             path="/market/detail/:productId"
