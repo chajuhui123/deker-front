@@ -9,6 +9,7 @@ import { useState } from "react";
 import CommPopup from "components/common/commPopup";
 import { postApi, sseApi } from "api/fetch-api";
 import { spinnerAction } from "store/spinner-slice";
+import PresentFriendPopup from "./shop/presentFriendPopup";
 
 function ModalTest(props) {
   const dispatch = useDispatch();
@@ -34,6 +35,11 @@ function ModalTest(props) {
       modalAction.modalPopup({ isOpen: true, cont: <ProductSalesLink /> })
     );
   };
+  const presentLinkHandler = () => {
+    dispatch(
+      modalAction.modalPopup({ isOpen: true, cont: <PresentFriendPopup /> })
+    );
+  };
   const commPopupTestHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: true, cont: <CommPopup /> }));
   };
@@ -57,6 +63,7 @@ function ModalTest(props) {
       <button onClick={deliveryTrackingHandler}>DeliveryTracking</button>
       <button onClick={deliverySelectHandler}>DeliverySelect</button>
       <button onClick={productSalesLinkHandler}>productSalesLink</button>
+      <button onClick={presentLinkHandler}>선물하기</button>
       <CommBtn btnText="스피너 테스트" isLoading={isLoading} btnWidth="30%" />
       <button onClick={spinnerHandler}>스피터 적용 Trigger</button>
       <button onClick={commPopupTestHandler}>공통 팝업 테스트</button>
