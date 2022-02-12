@@ -1,0 +1,49 @@
+.paymentLayout {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 1300px;
+  border: 1px solid #70707021;
+  opacity: 1;
+}
+
+.title {
+  position: relative;
+  margin-top: 50px;
+  width: 130px;
+  height: 40px;
+  text-align: center;
+}
+
+.paymentMain {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 1000px;
+  border: 1px solid #70707021;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.orderman {
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+.orderman textarea {
+  width: 400px;
+  height: 40px;
+  border: 0px solid #ffffff;
+}
+
+.goMoveBtn {
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 200px;
+  height: 80px;
+}

@@ -2,7 +2,7 @@ import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import classes from "./paymentPage.module.css";
 
 const PaymentPage = () => {
@@ -22,72 +22,55 @@ const PaymentPage = () => {
   };
 
   return (
-    <div>
-      <div className={classes.paymentLayout}>
-        <div className={classes.title}>
-          <CommonPageTitle title="주문완료" />
+    <div className={classes.paymentLayout}>
+      <div className={classes.title}>
+        <CommonPageTitle title="주문/결제" />
+      </div>
+      <div className={classes.paymentMain}>
+        <div className={classes.orderman}>
+          <div>
+            <CommPageSemiTitle semiTitle="주문자" />
+          </div>
+          <textarea type="text" value={orderNo} />
         </div>
-        <div className={classes.paymentMain}>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="주문번호" />
-            </div>
-            <textarea type="text" value={orderNo} />
+        <div className={classes.orderNoArea}>
+          <div>
+            <CommPageSemiTitle semiTitle="배송지" />
           </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="받는사람" />
-            </div>
-            <textarea type="text" value={userId} />
+          <textarea type="text" value={userId} />
+        </div>
+        <div className={classes.orderNoArea}>
+          <div>
+            <CommPageSemiTitle semiTitle="주문상품" />
           </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="배송지" />
-            </div>
-            <textarea type="text" value={deliAddr} />
+          <textarea type="text" value={deliAddr} />
+        </div>
+        <div className={classes.orderNoArea}>
+          <div>
+            <CommPageSemiTitle semiTitle="결제수단" />
           </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="배송요청사항" />
-            </div>
-            <textarea type="text" value={deliMemo} />
+          <textarea type="text" value={deliMemo} />
+        </div>
+        <div className={classes.orderNoArea}>
+          <div>
+            <CommPageSemiTitle semiTitle="결제금액" />
           </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="총 결제 금액" />
-            </div>
-            <textarea type="text" value={totalPayAmt} />
-          </div>
+          <textarea type="text" value={totalPayAmt} />
         </div>
       </div>
       <div className={classes.goMoveBtn}>
-        <div>
-          {/* <Link to="/market"> */}
-          <CommBtn
-            btnText="주문 상세보기"
-            btnWidth="200px"
-            btnHeight="80px"
-            border="3px solid rgb(66, 66, 226)"
-            bgColor="rgb(248, 248, 248)"
-            radius="4px"
-            txColor="rgb(78, 78, 78)"
-            fnClick={replaceEvent}
-          />
-          {/* </Link> */}
-        </div>
-        <div className={classes.shopContiBtn}>
-          <Link to="/market">
-            <CommBtn
-              btnText="쇼핑 계속 하기"
-              btnWidth="200px"
-              btnHeight="80px"
-              border="3px solid rgb(66, 66, 226)"
-              bgColor="rgbrgb(66, 66, 226)"
-              radius="4px"
-              txColor="rgb(248, 248, 248)"
-            />
-          </Link>
-        </div>
+        {/* <Link to="/market"> */}
+        <CommBtn
+          btnText="결제하기"
+          btnWidth="200px"
+          btnHeight="80px"
+          border="3px solid rgb(66, 66, 226)"
+          bgColor="rgbrgb(66, 66, 226)"
+          radius="4px"
+          txColor="rgb(248, 248, 248)"
+          fnClick={replaceEvent}
+        />
+        {/* </Link> */}
       </div>
     </div>
   );
