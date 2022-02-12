@@ -90,6 +90,7 @@ function ProductSalesLink(props) {
               btnText="선택"
               btnWidth="50px"
               btnHeight="33px"
+              fontSize="17px"
               fnClick={dummyClick}
             />
           </div>
@@ -107,6 +108,7 @@ function ProductSalesLink(props) {
               btnText="선택"
               btnWidth="50px"
               btnHeight="33px"
+              fontSize="17px"
               fnClick={dummyClick}
             />
           </div>
@@ -124,6 +126,7 @@ function ProductSalesLink(props) {
               btnText="선택"
               btnWidth="50px"
               btnHeight="33px"
+              fontSize="17px"
               fnClick={dummyClick}
             />
           </div>

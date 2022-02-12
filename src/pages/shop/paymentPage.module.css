@@ -3,18 +3,15 @@
   margin: auto;
   margin-top: 30px;
   width: 800px;
-  height: 720px;
-  background: #f2f5f8 0% 0% no-repeat padding-box;
-  border: 1px solid #70707021;
-  border-radius: 4px;
+  height: 2100px;
+  /* border: 1px solid #70707021; */
   opacity: 1;
 }
 
 .title {
   position: relative;
-  margin: auto;
   margin-top: 50px;
-  width: 100px;
+  width: 130px;
   height: 40px;
   text-align: center;
 }
@@ -22,25 +19,119 @@
 .paymentMain {
   position: relative;
   margin: auto;
-  margin-top: 30px;
-  width: 614px;
-  height: 536px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border: 1px solid #70707021;
+  width: 800px;
+  height: 1700px;
+  /* border: 1px solid #70707021; */
   border-radius: 4px;
   opacity: 1;
 }
 
-.orderNoArea {
+.section {
   position: relative;
   margin: auto;
+  margin-top: 100px;
+  /* display: flex;
+  flex-direction: row; */
+}
+.dtlArea {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 30px;
   display: flex;
   flex-direction: row;
 }
-.orderNoArea textarea {
+.dtlText {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal normal 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.inputArea {
+  margin-left: 50px;
+  width: 287px;
+  height: 35px;
+  border: 2px solid #4242e2;
+  font: normal normal normal 15px/25px Roboto;
+  position: relative;
+}
+.inputArea::placeholder {
+  text-align: center;
+}
+.dtlArea2 {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.dtlArea2 textarea {
+  text-align: right;
   width: 400px;
   height: 40px;
   border: 0px solid #ffffff;
+}
+.dtlText3 {
+  position: relative;
+  margin: auto;
+  margin-top: 7px;
+  text-align: center;
+  width: 40px;
+  font: normal normal normal 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.inputArea2 {
+  width: 287px;
+  height: 35px;
+  border: 2px solid #4242e2;
+  font: normal normal normal 15px/25px Roboto;
+  position: relative;
+}
+
+.dtlArea3 {
+  position: relative;
+  margin-top: 30px;
+  width: 800px;
+  height: 170px;
+  display: flex;
+  flex-direction: row;
+}
+.paymentD {
+  position: relative;
+  margin: auto;
+  width: 100px;
+  height: 150px;
+  background: #4242e229 0% 0% no-repeat padding-box;
+  border: 1px solid #4242e2;
+  opacity: 1;
+}
+.paymentAmt {
+  font: normal normal normal 18px/23px Roboto;
+}
+.paymentAmt2 {
+  font: normal normal bold 18px/23px Roboto;
+  color: #4242e2;
+}
+.dtlText2 {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal bold 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+.lineD {
+  margin-bottom: 20px;
 }
 
 .goMoveBtn {
@@ -48,12 +139,6 @@
   margin: auto;
   margin-top: 100px;
   margin-bottom: 100px;
-  width: 420px;
+  width: 200px;
   height: 80px;
-  display: flex;
-  flex-direction: row;
-}
-
-.shopContiBtn {
-  margin-left: 20px;
 }

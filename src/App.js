@@ -27,6 +27,7 @@ import { spinnerAction } from "store/spinner-slice";
 import StoreSortPage from "pages/shop/StoreSortPage";
 import CommunityMainPage from "pages/community/CommunityMainPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
+import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
 import PaymentPage from "pages/shop/paymentPage";
 
 function App() {
@@ -190,6 +191,9 @@ function App() {
           ></Route>
           <Route path="/payment" exact>
             <PaymentPage />
+          </Route>
+          <Route path="/paymentCmplt" exact>
+            <PaymentCmpltPage />
           </Route>
           {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route
