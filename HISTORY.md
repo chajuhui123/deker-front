@@ -3,6 +3,7 @@
 ### 2022.02.13. 권예림
 
 1. 결제페이지(paymentPage.js) 생성
+2. 선물하기팝업(presentFriendPopup.js) 생성
 
 ### 2022.02.12. 권예림
 
