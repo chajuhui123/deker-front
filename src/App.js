@@ -110,7 +110,6 @@ function App() {
             height: "100px",
             // backgroundColor: "rgba(0, 0, 0, 0.5)",
             backgroundColor: "transparent",
-
             border: "none",
           }}
         >
