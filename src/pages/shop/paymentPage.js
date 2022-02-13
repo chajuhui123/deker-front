@@ -1,4 +1,5 @@
 import MyReviewList from "components/account/accountReview/myReviewList";
+import DeliverySelect from "components/account/accountShop/deliverySelect";
 import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
@@ -56,6 +57,12 @@ const PaymentPage = () => {
   const fillSameHandler = () => {
     setRcvNm(orderNm);
     setRcvTelNo(telNo);
+  };
+
+  const deliverySelectHandler = () => {
+    dispatch(
+      modalAction.modalPopup({ isOpen: true, cont: <DeliverySelect /> })
+    );
   };
 
   const DUMMY_DATA_UNREVIEWED = [
@@ -165,18 +172,40 @@ const PaymentPage = () => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>주소</div>
-            <textarea
-              className={classes.inputArea}
-              type="text"
-              value={rcvAddr}
-              // maxLength="100"
-              placeholder="주소를 입력해주세요."
-              onChange={rcvAddrInputHandler}
-            />
+            <div className={classes.dtlareaAddr}>
+              <CommBtn
+                btnText="주소찾기"
+                btnWidth="70px"
+                btnHeight="35px"
+                border="3px solid rgb(66, 66, 226)"
+                bgColor="rgb(254, 254, 254)"
+                radius="8px"
+                txColor="rgb(66, 66, 226)"
+                fontSize="15px"
+                fnClick={deliverySelectHandler}
+              />
+              <textarea
+                className={classes.inputArea3}
+                type="text"
+                value={rcvAddr}
+                placeholder="우편번호"
+                onChange={rcvAddrInputHandler}
+                readOnly
+              />
+            </div>
           </div>
+          {/* 나머지 주소 */}
+          <textarea
+            className={classes.inputAreaAddr}
+            type="text"
+            value={rcvAddr}
+            placeholder=""
+            onChange={rcvAddrInputHandler}
+            readOnly
+          />
           <div className={classes.dtlArea}>
             <textarea
-              className={classes.inputArea}
+              className={classes.inputAreaDeliMemo}
               type="text"
               value={deliMemo}
               // maxLength="100"
