@@ -4,17 +4,16 @@
   width: 40%;
   min-width: 500px;
   margin: 20px auto;
-  padding: 10px 20px;
 }
 
 .payFlexBox {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 20px 20px;
 }
 
 .payFlexBox:last-child {
-  margin: 30px 0 10px 0;
+  margin: 30px 20px 20px 20px;
 }
 
 .payTitle {

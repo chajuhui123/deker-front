@@ -16,69 +16,76 @@ function NavigationBar(props) {
   };
 
   const clickOnMenu = (event) => {
+    const clickedMenuInnerText = event.target.innerText;
     setOpen(false);
-    setClickedMenu(event.target.innerText || null);
+    setClickedMenu(null);
+    if (clickedMenuInnerText === "커뮤니티" || clickedMenuInnerText === "") {
+      setClickedMenu("community");
+    }
+    if (clickedMenuInnerText === "마켓") {
+      setClickedMenu("market");
+    }
   };
 
   const MENU_DUMMY = {
     menu: [
       {
-        menuName: "메인",
-        menuUrl: "/nmb/cmm",
-        imgUrl: "img/logo.png",
-        subMenu: [
-          {
-            menuName: "메인",
-            menuUrl: "/",
-          },
-          {
-            menuName: "사진",
-            menuUrl: "/",
-          },
-          { menuName: "팔로잉", menuUrl: "/" },
-          { menuName: "맞춤", menuUrl: "/" },
-        ],
+        menuName: "",
+        menuImgUrl: "img/logo.png",
+        menuUrl: "/community",
       },
       {
         menuName: "커뮤니티",
-        menuUrl: "/nmb/cmm",
-        imgUrl: "",
-        subMenu: [
-          {
-            menuName: "메인",
-            menuUrl: "/",
-          },
-          {
-            menuName: "사진",
-            menuUrl: "/",
-          },
-          { menuName: "팔로잉", menuUrl: "/" },
-          { menuName: "맞춤", menuUrl: "/" },
-        ],
+        menuImgUrl: "",
+        menuUrl: "/community",
       },
       {
         menuName: "마켓",
-        menuUrl: "/nmb/mkt",
-        imgUrl: "",
-        subMenu: [
-          {
-            menuName: "메인",
-            menuUrl: "/",
-          },
-          {
-            menuName: "장바구니",
-            menuUrl: "/",
-          },
-          { menuName: "최근 본 상품", menuUrl: "/" },
-        ],
+        menuImgUrl: "",
+        menuUrl: "/market",
       },
     ],
+    subMenu: {
+      community: [
+        {
+          menuName: "메인",
+          menuUrl: "/community",
+        },
+        {
+          menuName: "사진",
+          menuUrl: "/community/photo",
+        },
+        {
+          menuName: "맞춤",
+          menuUrl: "/community/personal",
+        },
+        {
+          menuName: "팔로잉",
+          menuUrl: "/community/following",
+        },
+      ],
+
+      market: [
+        {
+          menuName: "메인",
+          menuUrl: "/market",
+        },
+        {
+          menuName: "장바구니",
+          menuUrl: "/market/basket",
+        },
+        {
+          menuName: "최근본상품",
+          menuUrl: "/market/view",
+        },
+      ],
+    },
   };
 
   const menuList = MENU_DUMMY.menu.map((menu, index) => (
     <li key={index} className={classes.navItem}>
       <Link to={menu.menuUrl} className={classes.navLink} onClick={clickOnMenu}>
-        {menu.imgUrl !== "" ? (
+        {menu.menuImgUrl !== "" ? (
           // 추후 로고 이미지는 서버에서 넘어져 오는 imgUrl 로 src 변경
           <img className={classes.navLogo} src={logoImg} alt="로고" />
         ) : (
@@ -122,9 +129,7 @@ function NavigationBar(props) {
         </ul>
       )}
 
-      {clickedMenu === "메인" && <SubNavigationBar />}
-      {clickedMenu === "커뮤니티" && <SubNavigationBar />}
-      {clickedMenu === "마켓" && <SubNavigationBar />}
+      <SubNavigationBar navItem={MENU_DUMMY.subMenu[clickedMenu]} />
     </>
   );
 }
