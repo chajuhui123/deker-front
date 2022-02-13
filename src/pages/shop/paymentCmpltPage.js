@@ -1,5 +1,4 @@
 import CommBtn from "components/common/commBtn";
-import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -10,14 +9,14 @@ const PaymentCmpltPage = () => {
   const [userId, setUserId] = useState("");
   const [deliAddr, setDeliAddr] = useState("");
   const [deliMemo, setDdeliMemo] = useState("");
-  const [totalPayAmt, setTotalPayAmt] = useState("");
+  const [totalPayAmt, setTotalPayAmt] = useState(0);
 
   const replaceEvent = () => {
     setOerderNo("010101011010");
     setUserId("권예림");
     setDeliAddr("서울특별시 어쩌구 저쩌동 몇동 몇호");
     setDdeliMemo("집앞에 그냥 놔둬주세요");
-    setTotalPayAmt("123,000");
+    setTotalPayAmt(123000);
     console.log("order no print: " + orderNo);
   };
 
@@ -28,35 +27,48 @@ const PaymentCmpltPage = () => {
           <CommonPageTitle title="주문완료" />
         </div>
         <div className={classes.paymentMain}>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="주문번호" />
+          <div className={classes.subMain}>
+            <div className={classes.dtlArea}>
+              <div className={classes.sectionTxt}>주문번호</div>
+              <textarea
+                className={classes.dtlText}
+                type="text"
+                value={orderNo}
+              />
             </div>
-            <textarea type="text" value={orderNo} />
-          </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="받는사람" />
+            <div className={classes.dtlArea}>
+              <div className={classes.sectionTxt}>받는사람</div>
+              <textarea
+                className={classes.dtlText}
+                type="text"
+                value={userId}
+              />
             </div>
-            <textarea type="text" value={userId} />
-          </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="배송지" />
+            <div className={classes.dtlArea}>
+              <div className={classes.sectionTxt}>배송지</div>
+              <textarea
+                className={classes.dtlText}
+                type="text"
+                value={deliAddr}
+              />
             </div>
-            <textarea type="text" value={deliAddr} />
-          </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="배송요청사항" />
+            <div className={classes.dtlArea}>
+              <div className={classes.sectionTxt}>배송요청사항</div>
+              <textarea
+                className={classes.dtlText}
+                type="text"
+                value={deliMemo}
+              />
             </div>
-            <textarea type="text" value={deliMemo} />
-          </div>
-          <div className={classes.orderNoArea}>
-            <div>
-              <CommPageSemiTitle semiTitle="총 결제 금액" />
+            <hr className={classes.lineD} />
+            <div className={classes.dtlArea}>
+              <div className={classes.sectionTxt}>총 결제 금액</div>
+              <textarea
+                className={classes.dtlText2}
+                type="text"
+                value={totalPayAmt.toLocaleString("ko-KR") + "원"}
+              />
             </div>
-            <textarea type="text" value={totalPayAmt} />
           </div>
         </div>
       </div>

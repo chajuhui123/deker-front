@@ -3,8 +3,10 @@ import DeliverySelect from "components/account/accountShop/deliverySelect";
 import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
-import { useState } from "react";
+import TotalPaymentAmt from "components/shop/totalPaymentAmt";
+import { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
+import Select from "react-select";
 import { modalAction } from "store/modal-slice";
 // import { Link } from "react-router-dom";
 import classes from "./paymentPage.module.css";
@@ -64,7 +66,15 @@ const PaymentPage = () => {
       modalAction.modalPopup({ isOpen: true, cont: <DeliverySelect /> })
     );
   };
-
+  const telhead = useMemo(
+    () => [
+      { value: "010", label: "010" },
+      { value: "011", label: "011" },
+      { value: "02", label: "02" },
+      { value: "등등", label: "등등" },
+    ],
+    []
+  );
   const DUMMY_DATA_UNREVIEWED = [
     {
       id: 11,
@@ -130,6 +140,9 @@ const PaymentPage = () => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
+            <div className={classes.select}>
+              <Select options={telhead} defaultValue={telhead[0]} />
+            </div>
             <textarea
               className={classes.inputArea}
               type="text"
@@ -234,33 +247,7 @@ const PaymentPage = () => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제금액" />
           <hr className={classes.lineD} />
-          <div className={classes.dtlArea2}>
-            <div className={classes.dtlText}>총 상품 금액</div>
-            <textarea
-              type="text"
-              className={classes.paymentAmt}
-              value={totalPayAmt}
-              readOnly
-            />
-          </div>
-          <div className={classes.dtlArea2}>
-            <div className={classes.dtlText}>배송비</div>
-            <textarea
-              type="text"
-              className={classes.paymentAmt}
-              value={totalPayAmt}
-              readOnly
-            />
-          </div>
-          <div className={classes.dtlArea2}>
-            <div className={classes.dtlText2}>최종결제금액</div>
-            <textarea
-              type="text"
-              className={classes.paymentAmt2}
-              value={totalPayAmt}
-              readOnly
-            />
-          </div>
+          <TotalPaymentAmt paymentAmt="123000" deliAmt="3000" />
         </div>
       </div>
       <div className={classes.goMoveBtn}>
