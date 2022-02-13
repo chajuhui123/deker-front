@@ -1,9 +1,16 @@
 import { useState } from "react";
 import classes from "./totalPaymentAmt.module.css";
 
+/**
+ * 페이지 메인 TITLE component
+ * @param {String} paymentAmt 총 상품 금액
+ * @param {String} deliAmt 배송비
+ * @returns
+ */
+
 const TotalPaymentAmt = (props) => {
-  var paymentAmt = props.paymentAmt;
-  var deliAmt = props.deliAmt;
+  var paymentAmt = Number(props.paymentAmt);
+  var deliAmt = Number(props.deliAmt);
   var ttlPaymentAmt = Number(paymentAmt) + Number(deliAmt);
 
   return (
