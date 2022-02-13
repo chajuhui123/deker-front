@@ -11,6 +11,7 @@
    ```
    <TotalPaymentAmt paymentAmt="123000" deliAmt="3000"/>
    ```
+4. 배송지추가 팝업 생성 (작업 중)
 
 ### 2022.02.12. 권예림
 
