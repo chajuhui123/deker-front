@@ -1,4 +1,3 @@
-import { useState } from "react";
 import classes from "./totalPaymentAmt.module.css";
 
 /**
@@ -21,7 +20,7 @@ const TotalPaymentAmt = (props) => {
           <textarea
             type="text"
             className={classes.paymentAmt}
-            value={paymentAmt.toLocaleString("ko-KR")}
+            value={paymentAmt.toLocaleString("ko-KR") + "원"}
             readOnly
           />
         </div>
@@ -32,7 +31,7 @@ const TotalPaymentAmt = (props) => {
           <textarea
             type="text"
             className={classes.paymentAmt}
-            value={deliAmt.toLocaleString("ko-KR")}
+            value={deliAmt.toLocaleString("ko-KR") + "원"}
             readOnly
           />{" "}
         </div>
@@ -43,7 +42,7 @@ const TotalPaymentAmt = (props) => {
           <textarea
             type="text"
             className={classes.paymentAmt2}
-            value={ttlPaymentAmt.toLocaleString("ko-KR")}
+            value={ttlPaymentAmt.toLocaleString("ko-KR") + "원"}
             readOnly
           />
         </div>

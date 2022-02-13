@@ -31,16 +31,55 @@
   opacity: 1;
 }
 
-.orderNoArea {
+.subMain {
   position: relative;
   margin: auto;
+  margin-top: 70px;
+  width: 450px;
+  height: 400px;
+}
+
+.dtlArea {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
 }
-.orderNoArea textarea {
-  width: 400px;
+.dtlArea textarea {
+  width: 320px;
   height: 40px;
   border: 0px solid #ffffff;
+  text-align: right;
+}
+
+.sectionTxt {
+  margin-top: 7px;
+  text-align: left;
+  width: 130px;
+  font: normal normal bold 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+.dtlText {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal normal 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.dtlText2 {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal bold 20px/23px Roboto;
+  letter-spacing: 0px;
+  color: #4242e2;
+  opacity: 1;
 }
 
 .goMoveBtn {
