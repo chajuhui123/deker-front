@@ -12,6 +12,7 @@ import { postApi, sseApi } from "api/fetch-api";
 import { spinnerAction } from "store/spinner-slice";
 import CommAlert from "components/common/commAlert";
 import PresentFriendPopup from "./shop/presentFriendPopup";
+import DeliveryAdd from "components/account/accountShop/deliveryAdd";
 
 function ModalTest(props) {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function ModalTest(props) {
     dispatch(
       modalAction.modalPopup({ isOpen: true, cont: <DeliverySelect /> })
     );
+  };
+  const deliveryAddHandler = () => {
+    dispatch(modalAction.modalPopup({ isOpen: true, cont: <DeliveryAdd /> }));
   };
   const productSalesLinkHandler = () => {
     dispatch(
@@ -86,6 +90,9 @@ function ModalTest(props) {
         </li>
         <li>
           <button onClick={deliverySelectHandler}>DeliverySelect</button>
+        </li>
+        <li>
+          <button onClick={deliveryAddHandler}>DeliveryAdd</button>
         </li>
         <li>
           <button onClick={productSalesLinkHandler}>productSalesLink</button>

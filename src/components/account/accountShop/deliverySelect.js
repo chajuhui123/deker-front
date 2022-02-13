@@ -3,6 +3,9 @@ import classes from "./deliverySelect.module.css";
 import ModalTitle from "components/common/modalTitle";
 import DeliveryCard from "components/common/deliveryCard";
 import CommBtn from "components/common/commBtn";
+import { modalAction } from "store/modal-slice";
+import { useDispatch } from "react-redux";
+import DeliveryAdd from "./deliveryAdd";
 
 const DUMMY_DATA = [
   {
@@ -24,6 +27,7 @@ const DUMMY_DATA = [
 ];
 
 function DeliverySelect(props) {
+  const dispatch = useDispatch();
   const modifyDeliveryHandler = (deliCode) => {
     console.log("modifyDeliveryHandler :: ", deliCode);
     alert("개발 중");
@@ -37,7 +41,7 @@ function DeliverySelect(props) {
     alert("개발 중");
   };
   const addDeliveryHandler = (e) => {
-    alert("개발 중");
+    dispatch(modalAction.modalPopup({ isOpen: true, cont: <DeliveryAdd /> }));
   };
   return (
     <div className={classes.deliSelArea}>
