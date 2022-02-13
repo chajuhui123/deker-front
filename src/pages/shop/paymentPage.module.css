@@ -44,6 +44,16 @@
 .same {
   margin-left: 350px;
 }
+
+.select {
+  width: 100px;
+  height: 40px;
+  margin-left: 50px;
+  border: 1px solid #4242e2;
+  border-radius: 8px;
+  opacity: 1;
+}
+
 .dtlArea {
   position: relative;
   margin: auto;

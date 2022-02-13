@@ -12,7 +12,6 @@ function SubNavigationBar({ navItem }) {
   return (
     <div className={classes.navDiv}>
       {navItemList}
-
       {/* <div className={classes.navItem}>아이템</div>
       <div className={classes.navItem}>아이템</div>
       <div className={classes.navItem}>아이템</div> */}

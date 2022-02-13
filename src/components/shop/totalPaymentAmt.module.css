@@ -1,0 +1,56 @@
+.paymentAmtArea {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.paymentAmtArea textarea {
+  text-align: right;
+  width: 400px;
+  height: 40px;
+  border: 0px solid #ffffff;
+}
+
+.dtlText {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal normal 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.dtlText2 {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal bold 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+.goRight {
+  position: relative;
+  width: 680px;
+  height: 35px;
+  float: right;
+}
+
+.paymentAmt {
+  width: 680px;
+  height: 35px;
+  font: normal normal normal 18px/23px Roboto;
+  float: right;
+}
+.paymentAmt2 {
+  position: relative;
+  width: 680px;
+  height: 35px;
+  font: normal normal bold 18px/23px Roboto;
+  color: #4242e2;
+  float: right;
+}

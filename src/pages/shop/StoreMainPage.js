@@ -145,7 +145,7 @@ const StoreMainPage = () => {
           <Link
             to={{
               pathname: `/market/storeSortPage/${sortId}`,
-              state: { sordId: sortId },
+              state: { sortId: sortId },
             }}
             className={classes.HotProductDetail}
           >
