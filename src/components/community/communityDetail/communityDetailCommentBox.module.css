@@ -1,0 +1,44 @@
+.commentBoxDiv {
+  width: 50%;
+  min-width: 500px;
+  margin: 0 auto;
+}
+
+.commentSummaryDiv {
+  padding: 40px 0 15px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.commentCount {
+  color: var(--main_color);
+  font-weight: bold;
+}
+
+.commentInputDiv {
+  display: flex;
+  line-height: 40px;
+}
+
+.commentInputImg {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin: 0 8px 0 0;
+  padding: 6px 0;
+}
+
+.commentInputBox {
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #f0f0f0;
+  border-right: none;
+  width: 82%;
+}
+
+.commentInputBtn {
+  border-radius: 0 4px 4px 0;
+  border: 1px solid #f0f0f0;
+  border-left: none;
+  background-color: white;
+  padding: 0 12px;
+  color: var(--main_color);
+}

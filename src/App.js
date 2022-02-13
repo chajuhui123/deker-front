@@ -25,6 +25,8 @@ import StoreMainPage from "pages/shop/StoreMainPage";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
 import StoreSortPage from "pages/shop/StoreSortPage";
+import CommunityDetailPage from "pages/community/communityDetailPage";
+import MarketCartPage from "pages/shop/cart/marketCartPage";
 import CommunityMainPage from "pages/community/CommunityMainPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
@@ -184,6 +186,9 @@ function App() {
           <Route path="/market" exact>
             <StoreMainPage />
           </Route>
+          <Route path="/market/cart" exact>
+            <MarketCartPage />
+          </Route>
           <Route
             path="/market/storeSortPage/:sortId"
             exact
@@ -195,12 +200,16 @@ function App() {
           <Route path="/paymentCmplt" exact>
             <PaymentCmpltPage />
           </Route>
-          {/* no 로 product Detail 페이지 번호 받아올 예정 */}
           <Route
             path="/market/detail/:productId"
             exact
             component={ProductDetailPage}
-          ></Route>
+          />
+          <Route
+            path="/community/detail/:postId"
+            exact
+            component={CommunityDetailPage}
+          />
         </Switch>
       </div>
       <Footer />

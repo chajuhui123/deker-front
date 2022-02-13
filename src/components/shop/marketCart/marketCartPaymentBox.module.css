@@ -1,0 +1,38 @@
+.cartPaymentBox {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  width: 40%;
+  min-width: 500px;
+  margin: 20px auto;
+  padding: 10px 20px;
+}
+
+.payFlexBox {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.payFlexBox:last-child {
+  margin: 30px 0 10px 0;
+}
+
+.payTitle {
+  color: #424242;
+  font-weight: 400;
+}
+
+.payCost {
+  font-weight: 500;
+}
+
+.payTotalTitle {
+  color: #424242;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.payTotalCost {
+  font-size: 18px;
+  font-weight: bold;
+}

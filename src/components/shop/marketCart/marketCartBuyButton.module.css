@@ -1,0 +1,11 @@
+.buyButton {
+  cursor: pointer;
+  min-width: 540px;
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+  background-color: var(--main_color);
+  border-radius: var(--border-radius);
+  color: white;
+  border: none;
+}
