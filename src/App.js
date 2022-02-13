@@ -17,7 +17,7 @@ import ModifyUserInfoPage from "pages/ModifyUserInfoPage";
 import SignupAddPage from "pages/SignupAddPage";
 import AccountMyShoppingPage from "pages/accountMyShoppingPage";
 import ModalTest from "pages/modalTest";
-import CreateCommunityPage from "pages/CreateCommunityPage";
+import CreateCommunityPage from "pages/community/CreateCommunityPage";
 import ProductDetailPage from "pages/shop/ProductDetail";
 import { calculateRemainingTime } from "api/check";
 import { userAction } from "store/user-slice";
@@ -27,6 +27,10 @@ import { spinnerAction } from "store/spinner-slice";
 import StoreSortPage from "pages/shop/StoreSortPage";
 import CommunityDetailPage from "pages/community/communityDetailPage";
 import MarketCartPage from "pages/shop/cart/marketCartPage";
+import CommunityMainPage from "pages/community/CommunityMainPage";
+import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
+import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
+import PaymentPage from "pages/shop/paymentPage";
 
 function App() {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -36,6 +40,30 @@ function App() {
   const top = useSelector((state) => state.modal.top);
   const left = useSelector((state) => state.modal.left);
   const dispatch = useDispatch();
+
+  const spinnerStyle = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      width: "auto",
+      height: "auto",
+      maxWidth: "100%",
+      maxHeight: "100%",
+      margin: "0px",
+      padding: "0px",
+      transform: "translate(-50%, -50%)",
+      border: "none",
+      background: "translate!important",
+      zIndex: "1000",
+    },
+
+    overlay: {
+      backgroundColor: "rgb(0 0 0 / 50%)",
+    },
+  };
+
   const closeModalEventHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
@@ -45,10 +73,8 @@ function App() {
 
   const retrieveStoredToken = useCallback(() => {
     const storedExpirationTime = localStorage.getItem("extTokenTime");
-    console.log("retrieveStoredToken()", storedExpirationTime);
     if (!!storedExpirationTime) {
       const remainingTime = calculateRemainingTime(storedExpirationTime);
-      console.log("App.js :: remainingTime :: ", remainingTime);
       if (remainingTime <= 60000) {
         localStorage.removeItem("token");
         localStorage.removeItem("extTokenTime");
@@ -78,13 +104,15 @@ function App() {
       <ModalPopup
         id="spinner"
         isOpen={isLoading}
+        spinnerStyle={spinnerStyle}
         onRequestClose={closeSpinnerHandler} // TODO : 삭제 해야함
       >
         <div
           style={{
             width: "100px",
             height: "100px",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            // backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: "transparent",
             border: "none",
           }}
         >
@@ -141,6 +169,14 @@ function App() {
               <MyReviewPage />
             </div>
           </Route>
+          <Route path="/community" exact>
+            <CommunityMainPage />
+          </Route>
+          <Route
+            path="/community/semi/:type"
+            exact
+            component={CommunitySemiPage}
+          ></Route>
           <Route path="/community/write" exact>
             <CreateCommunityPage />
           </Route>
@@ -153,8 +189,16 @@ function App() {
           <Route path="/market/cart" exact>
             <MarketCartPage />
           </Route>
-          <Route path="/storeSortPage/:sortId" exact component={StoreSortPage}>
-            {/* <StoreSortPage /> */}
+          <Route
+            path="/market/storeSortPage/:sortId"
+            exact
+            component={StoreSortPage}
+          ></Route>
+          <Route path="/payment" exact>
+            <PaymentPage />
+          </Route>
+          <Route path="/paymentCmplt" exact>
+            <PaymentCmpltPage />
           </Route>
           <Route
             path="/market/detail/:productId"

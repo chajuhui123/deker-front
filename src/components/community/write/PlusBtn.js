@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { communityAction } from "store/community-slice";
 import { modalAction } from "store/modal-slice";
 import classes from "./PlusBtn.module.css";
-import ProductSalesLink from "./productSalesLinkPage";
+import ProductSalesLink from "components/community/productSalesLinkPage";
 
 /**
  * 상품 정보 입력 플러스 버튼
@@ -22,7 +22,13 @@ function PlusBtn(props) {
   };
 
   const productInfoHandler = (data) => {
-    const communityProducts = [...products, data];
+    const communityProducts = products.concat();
+    communityProducts[data.id] = {
+      id: communityProducts[data.id].id,
+      left: communityProducts[data.id].left,
+      top: communityProducts[data.id].top,
+      productId: data.productId,
+    };
     dispatch(
       communityAction.setCommunity({
         communityProducts,

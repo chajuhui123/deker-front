@@ -67,7 +67,7 @@ function SigninForm() {
     const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
     localStorage.setItem("token", res.data.jwtToken);
     localStorage.setItem("extTokenTime", res.data.extTokenTime);
-    // setTimeout(logoutHandler, remainingDuration);
+    setTimeout(logoutHandler, remainingDuration);
   };
 
   return (

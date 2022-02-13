@@ -144,7 +144,7 @@ const StoreMainPage = () => {
           <CommonPageTitle title="인기상품" />
           <Link
             to={{
-              pathname: `/storeSortPage/${sortId}`,
+              pathname: `/market/storeSortPage/${sortId}`,
               state: { sordId: sortId },
             }}
             className={classes.HotProductDetail}

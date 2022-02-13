@@ -1,0 +1,194 @@
+.paymentLayout {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 2300px;
+  /* border: 1px solid #70707021; */
+  opacity: 1;
+}
+
+.title {
+  position: relative;
+  margin-top: 50px;
+  width: 130px;
+  height: 40px;
+  text-align: center;
+}
+
+.paymentMain {
+  position: relative;
+  margin: auto;
+  width: 800px;
+  height: 1800px;
+  /* border: 1px solid #70707021; */
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.section {
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+  /* display: flex;
+  flex-direction: row; */
+}
+
+.addpresent {
+  display: flex;
+  flex-direction: row;
+}
+.present {
+  margin-left: 400px;
+}
+.same {
+  margin-left: 350px;
+}
+.dtlArea {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+}
+.dtlText {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal normal 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.inputArea {
+  margin-left: 50px;
+  width: 287px;
+  height: 35px;
+  border: 2px solid #4242e2;
+  font: normal normal normal 15px/25px Roboto;
+  position: relative;
+}
+.inputArea::placeholder {
+  text-align: center;
+}
+.dtlArea2 {
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 800px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+}
+.dtlArea2 textarea {
+  text-align: right;
+  width: 400px;
+  height: 40px;
+  border: 0px solid #ffffff;
+}
+.dtlText3 {
+  position: relative;
+  margin: auto;
+  margin-top: 7px;
+  text-align: center;
+  width: 40px;
+  font: normal normal normal 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+.inputArea2 {
+  width: 287px;
+  height: 35px;
+  border: 2px solid #4242e2;
+  font: normal normal normal 15px/25px Roboto;
+  position: relative;
+}
+.inputArea3 {
+  margin-left: 30px;
+  width: 170px;
+  height: 35px;
+  border: 2px solid #4242e2;
+  background-color: #70707021;
+  font: normal normal normal 15px/25px Roboto;
+  position: relative;
+}
+.inputArea3::placeholder {
+  text-align: center;
+}
+.dtlareaAddr {
+  width: 500px;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.inputAreaAddr {
+  margin-left: 170px;
+  margin-top: 10px;
+  width: 600px;
+  height: 35px;
+  border: 2px solid #4242e2;
+  background-color: #70707021;
+  font: normal normal normal 15px/25px Roboto;
+  position: relative;
+}
+.inputAreaDeliMemo {
+  margin-left: 50px;
+  width: 600px;
+  height: 35px;
+  border: 2px solid #4242e2;
+  font: normal normal normal 15px/25px Roboto;
+  position: relative;
+}
+.inputAreaDeliMemo::placeholder {
+  text-align: center;
+}
+
+.dtlArea3 {
+  position: relative;
+  margin-top: 30px;
+  width: 800px;
+  height: 170px;
+  display: flex;
+  flex-direction: row;
+}
+.paymentD {
+  position: relative;
+  margin: auto;
+  width: 100px;
+  height: 150px;
+  background: #4242e229 0% 0% no-repeat padding-box;
+  border: 1px solid #4242e2;
+  opacity: 1;
+}
+.paymentAmt {
+  font: normal normal normal 18px/23px Roboto;
+}
+.paymentAmt2 {
+  font: normal normal bold 18px/23px Roboto;
+  color: #4242e2;
+}
+.dtlText2 {
+  margin-top: 7px;
+  text-align: left;
+  width: 120px;
+  font: normal normal bold 18px/23px Roboto;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+.lineD {
+  margin-bottom: 20px;
+}
+
+.goMoveBtn {
+  position: relative;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 200px;
+  height: 80px;
+}

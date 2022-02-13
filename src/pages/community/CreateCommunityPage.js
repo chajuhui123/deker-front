@@ -1,4 +1,4 @@
-import CreateCommunity from "components/community/CreateCommunity";
+import CreateCommunity from "components/community/write/CreateCommunity";
 import React from "react";
 
 function CreateCommunityPage(props) {

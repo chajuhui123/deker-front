@@ -47,15 +47,11 @@ function ProductSalesLink(props) {
   // };
 
   const dummyClick = () => {
-    console.log(props.productInfoHandler);
     const dataObject = {
       id: props.id,
       productId: "dummy",
     };
     props.productInfoHandler(dataObject);
-
-    alert("modal close 기능");
-    console.log(dataObject);
   };
   return (
     <div className={classes.productSalesLinkLayout}>
@@ -94,6 +90,7 @@ function ProductSalesLink(props) {
               btnText="선택"
               btnWidth="50px"
               btnHeight="33px"
+              fontSize="17px"
               fnClick={dummyClick}
             />
           </div>
@@ -111,6 +108,7 @@ function ProductSalesLink(props) {
               btnText="선택"
               btnWidth="50px"
               btnHeight="33px"
+              fontSize="17px"
               fnClick={dummyClick}
             />
           </div>
@@ -128,6 +126,7 @@ function ProductSalesLink(props) {
               btnText="선택"
               btnWidth="50px"
               btnHeight="33px"
+              fontSize="17px"
               fnClick={dummyClick}
             />
           </div>

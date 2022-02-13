@@ -7,7 +7,7 @@ function CategoryItem(props) {
     <div>
       <Link
         to={{
-          pathname: `/storeSortPage/${sortId}`,
+          pathname: `/market/storeSortPage/${sortId}`,
           state: { sordId: props.categoryId },
         }}
       >

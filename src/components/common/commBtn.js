@@ -14,39 +14,36 @@ import CommSpinner from "./CommSpinner";
  * @param {String} txColor 폰트 색상
  * @param {String} btnCursor 커서 모양
  * @param {String} radius 둥근정도
+ * @param {String} fontSize 글씨크기
  * @param {boolean} isLoading Loading 여부
  * @param {Function} fnClick onClick callback method
  * @returns
  */
-function CommBtn({
-  btnText,
-  btnWidth,
-  btnHeight,
-  btnMargin,
-  border,
-  bgColor,
-  bdColor,
-  txColor,
-  btnCursor,
-  radius,
-  isLoading,
-  fnClick,
-}) {
+function CommBtn(props) {
   const customStyle = {
-    width: btnWidth,
-    height: btnHeight,
-    margin: btnMargin,
-    border: border,
-    backgroundColor: bgColor,
-    borderColor: bdColor,
-    color: txColor || "white",
-    borderRadius: radius,
-    cursor: btnCursor,
+    width: props.btnWidth,
+    height: props.btnHeight,
+    margin: props.btnMargin,
+    border: props.border,
+    backgroundColor: props.bgColor,
+    borderColor: props.bdColor,
+    color: props.txColor || "white",
+    borderRadius: props.radius,
+    cursor: props.btnCursor,
   };
+  console.log(props.fontSize);
   return (
-    <div className={classes.btnArea} style={customStyle} onClick={fnClick}>
-      {isLoading || <p>{btnText || "확인"}</p>}
-      {isLoading && <CommSpinner />}
+    <div
+      className={classes.btnArea}
+      style={customStyle}
+      onClick={props.fnClick}
+    >
+      {props.isLoading || (
+        <p style={{ fontSize: props.fontSize || "20px" }}>
+          {props.btnText || "확인"}
+        </p>
+      )}
+      {props.isLoading && <CommSpinner />}
     </div>
   );
 }

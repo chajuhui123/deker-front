@@ -63,6 +63,7 @@ function OuterPrdct(props) {
             bgColor="rgb(248, 248, 248)"
             radius="4px"
             txColor="rgb(78, 78, 78)"
+            fontSize="17px"
             fnClick={productNameCnclHandler}
           />
         </div>
@@ -75,6 +76,7 @@ function OuterPrdct(props) {
             bgColor="rgb(66, 66, 226)"
             radius="4px"
             txColor="rgb(245, 245, 245)"
+            fontSize="17px"
             fnClick={productNameRegHandler}
           />
         </div>

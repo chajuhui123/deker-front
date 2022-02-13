@@ -1,10 +1,11 @@
 import React from "react";
+import classes from "./commAlert.module.css";
 
 function CommAlert(props) {
   return (
-    <div>
-      <p>{props.title}</p>
-      <p>{props.message}</p>
+    <div className={classes.commAlertArea}>
+      <div className={classes.commAlertTitle}>{props.title}</div>
+      <div className={classes.commAlertMessage}>{props.message}</div>
     </div>
   );
 }

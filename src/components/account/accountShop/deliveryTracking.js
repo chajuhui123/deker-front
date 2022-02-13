@@ -15,7 +15,6 @@ function DeliveryTracking(props) {
   const [resData, setResData] = useState(null);
 
   const fnCallback = (res) => {
-    console.log(res.data);
     if (!!res) {
       setResData(res.data);
     }

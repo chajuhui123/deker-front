@@ -6,7 +6,7 @@ import CommInput from "components/common/commInput";
 import CommSelect from "components/common/CommSelect";
 import { useEffect } from "react";
 import CommBtn from "components/common/commBtn";
-import ImageArea from "./ImageArea";
+import ImageArea from "components/community/write/ImageArea";
 import UserTagForm from "components/common/userTagForm";
 import { communityAction } from "store/community-slice";
 
@@ -23,17 +23,22 @@ function CreateCommunity(props) {
   const [imageFile, setImageFile] = useState(null); // 이미지 파일
   // 직업코드조회콜백
   const fnJobCallback = (res) => {
-    setJobArray(res.data);
+    if (!!res) {
+      setJobArray(res.data);
+    }
   };
   // 재질코드조회콜백
   const fnMaterialCallback = (res) => {
-    setMaterial(res.data);
+    if (!!res) {
+      setMaterial(res.data);
+    }
   };
   // 분위기코드조회콜백
   const fnMoodCallback = (res) => {
-    setMoodArray(res.data);
+    if (!!res) {
+      setMoodArray(res.data);
+    }
   };
-
   useEffect(() => {
     dispatch(
       postApi(
@@ -108,40 +113,11 @@ function CreateCommunity(props) {
         communityProducts: communityData.communityProducts,
       })
     );
+    console.log(JSON.stringify(test));
     const formData = new FormData();
     formData.append("img", imageFile); // 게시글 이미지
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-type": "multipart/form-data",
-      },
-    };
-    fetch("http://localhost:6012/nmb/file/test", config, formData).then(
-      (res) => {
-        res.json().then((r) => console.log(r.message));
-      }
-    );
-    // formData.append("json", communityData); // 게시글 제목, 내용
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
-    // dispatch(fileApi("nmb/reg/img", imageFile, fnCallback));
-  };
-
-  const testHandler = (e) => {
-    const formData = new FormData();
-    formData.append("img", e.target.files[0]); // 게시글 이미지
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-type": "multipart/form-data",
-      },
-    };
-    fetch("http://211.232.166.228:6012/nmb/file/test", config, formData).then(
-      (res) => {
-        res.json().then((r) => console.log(r.message));
-      }
-    );
+    formData.append("json", JSON.stringify(communityData)); // 게시글 제목, 내용
+    dispatch(fileApi("mb/post/reg/write-post", formData, fnCallback)); // TODO : 저장 url 정해지면 처리
   };
 
   return (
@@ -167,7 +143,6 @@ function CreateCommunity(props) {
         <div className={classes.leftArea}>
           <ImageArea setImageFile={setImageFile} margin="0 0 30px 0" />
           <UserTagForm tagOutHandler={tagOutHandler} />
-          <input type="file" onChange={testHandler} />
         </div>
         <div className={classes.textArea}>
           <div className={classes.titleArea}>
