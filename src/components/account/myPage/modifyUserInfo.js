@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import UserTagForm from "components/common/userTagForm";
-// import JobDropdown from "components/common/dropdown/jobDropdown";
 import classes from "./modifyUserInfo.module.css";
 import ModalTitle from "components/common/modalTitle";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
-import CommSelect from "components/common/CommSelect";
+// import CommSelect from "components/common/CommSelect";
+import JobDropdown from "components/common/dropdown/jobDropdown";
+import CommBtn from "components/common/commBtn";
 
 const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
@@ -60,35 +61,34 @@ function ModifyUserInfo(props) {
     setJobCode(e.value);
   };
 
-  const submit = (accountType) => {};
-
-  const signupAdditionalSubmitHandler = (e) => {
-    e.preventDefault();
-    submit();
+  const SubmitHandler = (e) => {
+    // e.preventDefault();
+    // warning 없애려고 넣은거
+    console.log(jobArray);
+    console.log(jobCode);
+    jobChangeHandler();
   };
 
   // 건너뛰기 일단 home으로 가게 함
   return (
-    <form
-      className={classes.modifyUserInfo}
-      onSubmit={signupAdditionalSubmitHandler}
-    >
-      <div className={classes.modifyUserInfo}>
-        <ModalTitle title="회원정보 변경" />
-        <div className={classes.modifyUserInfoInner}>
-          <div className={classes.modifyUserInfoArea}>
-            <div className={classes.modifyUserInfo_row1}>
-              <div className={classes.userInfoTitle}>프로필 사진</div>
-              <img
-                className={classes.modifyUserInfo_profilePic}
-                src={profileImg}
-                alt={profileImg}
-              />
-              <div className={classes.userInfoTitle}>이메일</div>
-              <div className={classes.modifyUserInfoEmail}>{emailPrint}</div>
-              <div className={classes.userInfoTitle}>닉네임</div>
-              <div className={classes.modifyUserInfoEmail}>{nickNm}</div>
-              <input
+    <div className={classes.modifyUserInfo}>
+      <ModalTitle title="회원정보변경" />
+      <div className={classes.modifyUserInfoInner}>
+        <img
+          className={classes.profilePic}
+          src={
+            "https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+          }
+          // src={profileImg}
+          alt={profileImg}
+        />
+        <div className={classes.modifyUserInfoArea}>
+          <div className={classes.modifyUserInfo_row1}>
+            <div className={classes.userInfoTitle}>이메일</div>
+            <div className={classes.modifyUserInfoEmail}>{emailPrint}</div>
+            <div className={classes.dtlArea}>
+              <div className={classes.nicktitle}>닉네임</div>
+              <textarea
                 className={classes.nickInputArea}
                 type="text"
                 value={nickNm}
@@ -96,27 +96,34 @@ function ModifyUserInfo(props) {
                 onChange={chgNickNmHandler}
               />
             </div>
-            <div className={classes.modifyUserInfo_row2}>
-              <p className={classes.userInfoTitle}>직군</p>
-              {/* <JobDropdown /> */}
-              <CommSelect
+            <div className={classes.modifyUserInfoEmail}>{nickNm}</div>
+          </div>
+          <div className={classes.modifyUserInfo_row2}>
+            <p className={classes.userInfoTitle}>직군</p>
+            <JobDropdown />
+            {/* <CommSelect
                 title="직업"
                 options={jobArray}
                 valueOf={jobCode}
                 onChange={jobChangeHandler}
-              />
-              <p className={classes.userInfoTitle}>태그</p>
-              <UserTagForm />
-            </div>
-          </div>
-          <div className={classes.modifyUserInfoBtn}>
-            <button className={classes.modifyUserInfoCmpltBtn} type="submit">
-              변경
-            </button>
+              /> */}
+            <p className={classes.userInfoTitle}>태그</p>
+            <UserTagForm />
           </div>
         </div>
+        <div className={classes.modifyUserInfoBtn}>
+          <CommBtn
+            btnText="변경하기"
+            btnHeight="50px"
+            bgColor="rgb(66, 66, 226)"
+            radius="4px"
+            txColor="rgb(255, 255, 255)"
+            fontSize="20px"
+            fnClick={SubmitHandler}
+          />
+        </div>
       </div>
-    </form>
+    </div>
   );
 }
 
