@@ -1,8 +1,8 @@
 .paymentLayout {
   position: relative;
   margin: auto;
-  margin-top: 30px;
-  width: 800px;
+  /* margin-top: 30px; */
+  width: 100%;
   height: 2300px;
   /* border: 1px solid #70707021; */
   opacity: 1;
@@ -10,7 +10,7 @@
 
 .title {
   position: relative;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   width: 130px;
   height: 40px;
   text-align: center;
@@ -19,7 +19,7 @@
 .paymentMain {
   position: relative;
   margin: auto;
-  width: 800px;
+  width: 100%;
   height: 1800px;
   /* border: 1px solid #70707021; */
   border-radius: 4px;

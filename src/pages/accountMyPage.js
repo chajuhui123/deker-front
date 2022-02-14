@@ -117,7 +117,7 @@ const AccountMyPage = (props) => {
                   알림
                 </Link>
               </div>
-              <Link to="/ModifyUserInfo">
+              <Link to="/mypage/modify">
                 <button className={classes.accountMyPage_ModifyUserInfoBtn}>
                   정보 수정
                 </button>
