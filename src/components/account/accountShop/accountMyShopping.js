@@ -60,13 +60,14 @@ function AccountMyShopping(props) {
       <CommonPageTitle title="나의쇼핑" />
       <hr />
       <div className={classes.acctMyShopping_Main}>
-        <CommPageSemiTitle semiTitle="주문배송내역 조회" />
-        <div className={classes.acctMyShopping_DelivTrack}></div>
-        <div className={classes.acctMyShopping_DelivTrackCondition}>
-          <PeriodDropdown onCreate={createPeriodHandler} />
-          <DeliStateDropdown onCreate={createDeliStateHandler} />
-        </div>
-        {/* 선택값 밑에 띄우기 - 필요 없어서 없애기로 했는데, 나중에 비슷한 기능 쓸지도 모르니까 일단 남겨놓음
+        <div className={classes.dtlArea}>
+          <CommPageSemiTitle semiTitle="주문배송내역 조회" />
+          <div className={classes.acctMyShopping_DelivTrack}></div>
+          <div className={classes.acctMyShopping_DelivTrackCondition}>
+            <PeriodDropdown onCreate={createPeriodHandler} />
+            <DeliStateDropdown onCreate={createDeliStateHandler} />
+          </div>
+          {/* 선택값 밑에 띄우기 - 필요 없어서 없애기로 했는데, 나중에 비슷한 기능 쓸지도 모르니까 일단 남겨놓음
           <div className={classes.acctMyShopping_prdndelis}>
             {showInqPeriod && (
               <p className={classes.acctMyShopping_SelectedRslt}>
@@ -96,14 +97,17 @@ function AccountMyShopping(props) {
             )}
           </div>
             */}
-        <CommPageSemiTitle semiTitle="주문상품" />
-        <div className={classes.acctMyShopping_orderProductDetail}>
-          <p>000000000 | 2022.01.01.</p>
-          {/* <p className={classes.accountMyShopping_showDetail}>
+        </div>
+        <div className={classes.dtlArea}>
+          <CommPageSemiTitle semiTitle="주문상품" />
+          <div className={classes.acctMyShopping_orderProductDetail}>
+            <p>000000000 | 2022.01.01.</p>
+            {/* <p className={classes.accountMyShopping_showDetail}>
               상세보기 {">"}
             </p> */}
+          </div>
+          <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
         </div>
-        <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
       </div>
     </div>
   );
