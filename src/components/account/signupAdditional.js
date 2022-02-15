@@ -1,42 +1,49 @@
-// import React, { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import JobDropdown from "components/common/dropdown/jobDropdown";
 import UserTagForm from "../common/userTagForm";
 import classes from "./signupAdditional.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
+import CommBtn from "components/common/commBtn";
 
 function SignupAdditional(props) {
+  const [profileImg, setProfileImg] = useState(null);
+
   // const [profilePic, setProfilePic] = useState("");
 
   // const uploadProfilePicHandler = (pic) => {
   //   setProfilePic(pic);
   // };
 
-  const submit = (accountType) => {};
-
-  const signupAdditionalSubmitHandler = (e) => {
-    e.preventDefault();
-    submit();
-  };
-
   //<ProfilePicBtn onClick={uploadProfilePicHandler} />
   // 건너뛰기 일단 home으로 가게 함
+
+  const UserInfoAddSbmHandler = () => {
+    setProfileImg("");
+  };
   return (
-    <form
-      className="signupAdditional_submit"
-      onSubmit={signupAdditionalSubmitHandler}
-    >
+    <div className={classes.Layout}>
       <div className={classes.signupAddLayout}>
-        <div className={classes.signupAdditional}>
-          <div className={classes.signupAdditionalInner}>
-            <CommonPageTitle title="추가정보입력" />
-            <div className={classes.signupAddUserAddInfoArea}>
+        <div className={classes.Inner}>
+          <CommonPageTitle title="추가정보입력" />
+          <div className={classes.signupAddUserAddInfoArea}>
+            <div className={classes.dtlArea}>
               <CommPageSemiTitle semiTitle="프로필 사진" />
-              <div className={classes.userAddInfo_profilePic}></div>
+              <img
+                className={classes.profilePic}
+                src={
+                  "https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
+                }
+                // src={profileImg}
+                alt={profileImg}
+              />
+            </div>
+            <div className={classes.dtlArea}>
               <CommPageSemiTitle semiTitle="직군" />
               <JobDropdown />
+            </div>
+            <div className={classes.dtlArea}>
               <CommPageSemiTitle semiTitle="태그" />
               <div className={classes.userAddInfo_TagArea}>
                 <UserTagForm />
@@ -44,18 +51,38 @@ function SignupAdditional(props) {
             </div>
           </div>
         </div>
-        <div className={classes.signupAddBtns}>
+      </div>
+      <div className={classes.signupAddBtns}>
+        <Link to="/">
+          <CommBtn
+            btnText="완료"
+            btnWidth="210px"
+            btnHeight="70px"
+            border="1px solid rgb(66, 66, 226)"
+            bgColor="rgb(66, 66, 226)"
+            radius="4px"
+            txColor="rgb(245, 245, 245)"
+            fontSize="30px"
+            fnClick={UserInfoAddSbmHandler}
+          />
+        </Link>
+        <div className={classes.goRight}>
           <Link to="/">
-            <button className={classes.signupAddCmpltBtn} type="submit">
-              완료
-            </button>
-          </Link>
-          <Link to="/">
-            <button className={classes.signupAddPassBtn}>건너뛰기</button>
+            <CommBtn
+              btnText="건너뛰기"
+              btnWidth="210px"
+              btnHeight="67px"
+              border="3px solid rgb(66, 66, 226)"
+              bgColor="rgb(248, 248, 250)"
+              radius="4px"
+              txColor="rgb(78, 78, 78)"
+              fontSize="30px"
+              fnClick={UserInfoAddSbmHandler}
+            />
           </Link>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
 
