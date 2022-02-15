@@ -1,8 +1,15 @@
 ## HISTORY
 
+### 2022.02.15. 권예림
+
+1. [화면점검] 회원가입 추가정보 입력 (signupAdd)
+   - Layout 및 UI 수정
+2. [화면점검] 나의쇼핑 (AccountMyShopping)
+   - width: 100% 적용
+
 ### 2022.02.14. 권예림
 
-1. 회원정보수정(modifyUserInfo.js) 
+1. [화면점검] 회원정보수정(modifyUserInfo.js)
    - 닉네임 변경 영역 수정, ‘변경하기’ 버튼 CommBtn으로 변경
 
 ### 2022.02.13. 권예림
