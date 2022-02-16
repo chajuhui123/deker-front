@@ -9,12 +9,15 @@ import CommBtn from "components/common/commBtn";
 import ImageArea from "components/community/write/ImageArea";
 import UserTagForm from "components/common/userTagForm";
 import { communityAction } from "store/community-slice";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 // TODO : 이미지
 
 function CreateCommunity(props) {
   const dispatch = useDispatch();
-  const communityData = useSelector((state) => state.community);
+  const history = useHistory();
+  const communityData = useSelector((state) => state.community.community);
+  const productData = useSelector((state) => state.community.product);
   const [jobArray, setJobArray] = useState([]); // 직업코드
   const [material, setMaterial] = useState([]); // 재질코드
   const [moodArray, setMoodArray] = useState([]); // 분위기코드
@@ -83,10 +86,24 @@ function CreateCommunity(props) {
   // 제목핸들러
   const titleHandler = (e) => {
     setTitle(e.target.value);
+    dispatch(
+      communityAction.setCommunity({
+        communityTitle: e.target.value,
+        communityContent: content,
+        communityTags: communityData.communityTags,
+      })
+    );
   };
   // 내용핸들러
   const contentHandler = (e) => {
     setContent(e.target.value);
+    dispatch(
+      communityAction.setCommunity({
+        communityTitle: title,
+        communityContent: e.target.value,
+        communityTags: communityData.communityTags,
+      })
+    );
   };
   const tagOutHandler = (tagArry) => {
     dispatch(
@@ -94,30 +111,27 @@ function CreateCommunity(props) {
         communityTitle: title,
         communityContent: content,
         communityTags: tagArry,
-        communityProducts: communityData.communityProducts,
       })
     );
   };
   // 저장후콜백메소드
   const fnCallback = (res) => {
-    console.log("fnCallback :: ", res);
-    // TODO : Main page로 이동
+    if (!!res) {
+      history.push("/community");
+    }
   };
   // 저장메소드
   const submit = () => {
-    dispatch(
-      communityAction.setCommunity({
-        communityTitle: title,
-        communityContent: content,
-        communityTags: communityData.communityTags,
-        communityProducts: communityData.communityProducts,
-      })
-    );
-    console.log(JSON.stringify(test));
+    const community = {
+      communityTitle: title,
+      communityContent: content,
+      communityTags: communityData.communityTags.map((tag) => tag.text),
+    };
     const formData = new FormData();
     formData.append("img", imageFile); // 게시글 이미지
-    formData.append("json", JSON.stringify(communityData)); // 게시글 제목, 내용
-    dispatch(fileApi("mb/post/reg/write-post", formData, fnCallback)); // TODO : 저장 url 정해지면 처리
+    formData.append("community", JSON.stringify(community)); // 게시글 제목, 내용
+    formData.append("product", JSON.stringify(productData)); // 게시글 상품목록
+    dispatch(fileApi("mb/post/reg/write-post", formData, fnCallback));
   };
 
   return (

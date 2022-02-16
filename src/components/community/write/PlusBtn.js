@@ -14,7 +14,9 @@ import ProductSalesLink from "components/community/productSalesLinkPage";
  */
 function PlusBtn(props) {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.community.communityProducts);
+  const products = useSelector(
+    (state) => state.community.product.communityProducts
+  );
 
   const stylePosition = {
     top: props.top,
@@ -30,7 +32,7 @@ function PlusBtn(props) {
       productId: data.productId,
     };
     dispatch(
-      communityAction.setCommunity({
+      communityAction.setProduct({
         communityProducts,
       })
     );
