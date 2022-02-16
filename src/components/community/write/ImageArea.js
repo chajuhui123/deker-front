@@ -7,7 +7,9 @@ import { communityAction } from "store/community-slice";
 
 function ImageArea(props) {
   const dispatch = useDispatch();
-  const pointArray = useSelector((state) => state.community.communityProducts);
+  const pointArray = useSelector(
+    (state) => state.community.product.communityProducts
+  );
   const photoInputRef = useRef();
   const [prevImage, setPrevImage] = useState(null); // 미리보기 이미지
   const [isPoint, setIsPoint] = useState(false); // 상품 선택 가능여부
@@ -32,15 +34,17 @@ function ImageArea(props) {
   // 상품 팝업 생성 > 상품 선택 후 x, y, productId 저장
   const addMarketHandler = (e) => {
     if (isPoint) {
-      const index = pointArray.length;
+      const index = !pointArray ? 0 : pointArray.length;
+      const productData = !pointArray ? [] : pointArray.concat();
       const positionObect = {
         id: index,
         top: e.nativeEvent.offsetY,
         left: e.nativeEvent.offsetX,
       };
+      productData.push(positionObect);
       dispatch(
-        communityAction.setCommunity({
-          communityProducts: [...pointArray, positionObect],
+        communityAction.setProduct({
+          communityProducts: productData,
         })
       );
       setIsPoint(false);

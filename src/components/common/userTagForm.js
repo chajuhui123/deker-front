@@ -35,17 +35,6 @@ function UserTagForm(props) {
     const copyItem = tag.filter((tagTg) => tagTg.id !== id);
     setTag(copyItem);
   };
-  const tagList = tag.map((tagElement) => (
-    <li className={classes.userTagForm_TagList} key={tagElement.id}>
-      <p className={classes.userTagTextArea}> {tagElement.text}</p>
-      <button
-        className={classes.userTagForm_TagRmvBtn}
-        onClick={() => onClickRemove(tagElement.id)}
-      >
-        X
-      </button>
-    </li>
-  ));
 
   useEffect(() => {
     if (!!props.tagOutHandler) {
@@ -64,7 +53,20 @@ function UserTagForm(props) {
         maxLength={20}
       ></input>
       <div className={classes.userTagForm_TagListArea}>
-        <ul>{tagList}</ul>
+        <ul>
+          {tag &&
+            tag.map((tagElement) => (
+              <li className={classes.userTagForm_TagList} key={tagElement.id}>
+                <p className={classes.userTagTextArea}> {tagElement.text}</p>
+                <button
+                  className={classes.userTagForm_TagRmvBtn}
+                  onClick={() => onClickRemove(tagElement.id)}
+                >
+                  X
+                </button>
+              </li>
+            ))}
+        </ul>
       </div>
     </div>
   );

@@ -31,7 +31,6 @@ function CommBtn(props) {
     borderRadius: props.radius,
     cursor: props.btnCursor,
   };
-  console.log(props.fontSize);
   return (
     <div
       className={classes.btnArea}

@@ -4,6 +4,12 @@ import noImg from "img/noImg.png";
 
 const CommunityCard = (props) => {
   const data = props.data;
+  const followHandler = () => {
+    alert(`${data.userId} 팔로우`);
+  };
+  const unFollowHandler = () => {
+    alert(`${data.userId} 언팔로우`);
+  };
   return (
     <li>
       <div className={classes.mainCard}>
@@ -22,9 +28,13 @@ const CommunityCard = (props) => {
                 : data.userNick}
             </p>
             {data.following ? (
-              <div className={classes.followButton}>팔로우</div>
+              <div className={classes.followButton} onClick={followHandler}>
+                팔로우
+              </div>
             ) : (
-              <div className={classes.unFollowButton}>팔로윙</div>
+              <div className={classes.unFollowButton} onClick={unFollowHandler}>
+                팔로윙
+              </div>
             )}
           </div>
         </div>
