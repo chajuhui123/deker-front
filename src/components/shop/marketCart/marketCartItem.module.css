@@ -11,7 +11,7 @@
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   display: flex;
-  width: 35%;
+  width: 100%;
   padding: 20px;
 }
 
@@ -21,6 +21,11 @@
   margin: 0 20px 0 0;
 }
 
+.cartItemInfoDiv {
+  width: 100%;
+}
+
 .cartItemFeeBox {
   display: flex;
+  justify-content: space-between;
 }
