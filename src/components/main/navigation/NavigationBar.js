@@ -32,7 +32,7 @@ function NavigationBar(props) {
       {
         menuName: "",
         menuImgUrl: "img/logo.png",
-        menuUrl: "/community",
+        menuUrl: "/",
       },
       {
         menuName: "커뮤니티",
