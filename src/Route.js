@@ -20,6 +20,7 @@ import CommunityMainPage from "pages/community/CommunityMainPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
 import PaymentPage from "pages/shop/paymentPage";
+import RecentlyProduct from "components/shop/recently/RecentlyProduct";
 
 function RouteComponent() {
   return (
@@ -116,6 +117,9 @@ function RouteComponent() {
         exact
         component={CommunityDetailPage}
       />
+      <Route path="/market/recently" exact>
+        <RecentlyProduct />
+      </Route>
     </Switch>
   );
 }
