@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import classes from "./communityDetailPage.module.css";
+import React from "react";
+// import classes from "./communityDetailPage.module.css";
 import CommunityDetailMainImg from "components/community/communityDetail/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
 import CommunityDetailCommentBox from "components/community/communityDetail/communityDetailCommentBox";
 
 const CommunityDetailPage = ({ match }) => {
-  const { postId } = match.params;
+  // const { postId } = match.params;
   return (
     <div>
       <CommunityDetailMainImg />

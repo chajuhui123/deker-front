@@ -32,7 +32,7 @@ function NavigationBar(props) {
       {
         menuName: "",
         menuImgUrl: "img/logo.png",
-        menuUrl: "/community",
+        menuUrl: "/",
       },
       {
         menuName: "커뮤니티",
@@ -72,7 +72,7 @@ function NavigationBar(props) {
         },
         {
           menuName: "장바구니",
-          menuUrl: "/market/basket",
+          menuUrl: "/market/cart",
         },
         {
           menuName: "최근본상품",

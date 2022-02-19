@@ -6,7 +6,11 @@ import classes from "./SubNavigationBar.module.css";
 function SubNavigationBar({ navItem }) {
   // // 배열 형태로 받아옴
   const navItemList = navItem?.map((item) => {
-    return <Link className={classes.navItem}>{item.menuName}</Link>;
+    return (
+      <Link to={item.menuUrl} className={classes.navItem}>
+        {item.menuName}
+      </Link>
+    );
   });
   console.log(navItem);
   return (
