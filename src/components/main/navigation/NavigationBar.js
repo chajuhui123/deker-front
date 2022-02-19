@@ -7,9 +7,9 @@ import logoImg from "img/logo.png";
 import SubNavigationBar from "./SubNavigationBar";
 import NavigationUserItem from "./NavigationUserItem";
 
-function NavigationBar(props) {
+function NavigationBar() {
   const [opend, setOpen] = useState(false); //false = bars, true = times
-  const [clickedMenu, setClickedMenu] = useState("");
+  const [clickedMenu, setClickedMenu] = useState("community");
 
   const handleOnFixMenu = () => {
     setOpen(!opend);
@@ -26,6 +26,8 @@ function NavigationBar(props) {
       setClickedMenu("market");
     }
   };
+
+  console.log("clickedMenu", clickedMenu);
 
   const MENU_DUMMY = {
     menu: [
