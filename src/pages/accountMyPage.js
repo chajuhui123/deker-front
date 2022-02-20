@@ -6,6 +6,7 @@ import classes from "./accountMyPage.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
+import CommBtn from "components/common/commBtn";
 
 const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
@@ -92,45 +93,50 @@ const AccountMyPage = (props) => {
   ];
 
   return (
-    <form className={classes.accountMyPage_Layout}>
+    <div className={classes.Layout}>
       <div className={classes.accountMyPage_Area}>
-        <div className={classes.accountMyPage_Inner}>
-          <CommonPageTitle title="마이페이지" />
-          <hr className={classes.accountMyPage_lineD} />
-          <div className={classes.accountMyPage_MainArea}>
-            <div className={classes.accountMyPage_rowArea1}>
-              <img
-                className={classes.accountMyPage_ProfilePic}
-                src={profileImg}
-                alt={profileImg}
-              />
-            </div>
-            <div className={classes.accountMyPage_rowArea2}>
-              <div className={classes.accountMyPage_rowArea3}>
-                <Link to="/" className={classes.accountMyPage_LinkTo}>
-                  팔로잉
-                </Link>
-                <Link to="/" className={classes.accountMyPage_LinkTo}>
-                  팔로워
-                </Link>
-                <Link to="/" className={classes.accountMyPage_LinkTo}>
-                  알림
-                </Link>
-              </div>
-              <Link to="/mypage/modify">
-                <button className={classes.accountMyPage_ModifyUserInfoBtn}>
-                  정보 수정
-                </button>
+        <CommonPageTitle title="마이페이지" />
+        <hr className={classes.accountMyPage_lineD} />
+        <div className={classes.MainArea}>
+          <div>
+            <img
+              className={classes.accountMyPage_ProfilePic}
+              src={profileImg}
+              alt={profileImg}
+            />
+          </div>
+          <div className={classes.rowArea2}>
+            <div className={classes.rowArea3}>
+              <Link to="/" className={classes.linkTo}>
+                팔로잉
+              </Link>
+              <Link to="/" className={classes.linkTo}>
+                팔로워
+              </Link>
+              <Link to="/" className={classes.linkTo}>
+                알림
               </Link>
             </div>
-          </div>
-          <div className={classes.picarea}>
-            {/* <MyUploadPicList muUploadPic={postList} /> */}
-            <MyUploadPicList muUploadPic={DUMMY_DATA} />
+            <Link to="/mypage/modify">
+              <CommBtn
+                btnText="정보 수정"
+                btnWidth="245px"
+                btnHeight="60px"
+                border="1px solid rgb(51, 51, 51)"
+                bgColor="rgb(248, 248, 248)"
+                radius="4px"
+                txColor="rgb(78, 78, 78)"
+                fontSize="25px"
+              />
+            </Link>
           </div>
         </div>
+        <div className={classes.picarea}>
+          {/* <MyUploadPicList muUploadPic={postList} /> */}
+          <MyUploadPicList muUploadPic={DUMMY_DATA} />
+        </div>
       </div>
-    </form>
+    </div>
   );
 };
 
