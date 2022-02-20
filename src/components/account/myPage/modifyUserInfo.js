@@ -97,8 +97,15 @@ function ModifyUserInfo(props) {
             <div className={classes.modifyUserInfoEmail}>{nickNm}</div>
           </div>
           <div className={classes.modifyUserInfo_row2}>
-            {/* <p className={classes.userInfoTitle}>직군</p> */}
-            {/* <JobDropdown /> */}
+            {/* {jobArray?.length && (
+              <CommSelect
+                title="직업"
+                options={jobArray}
+                defaultValue={jobCode || jobArray[0]}
+                // {jobCode || null}
+                onChange={jobChangeHandler}
+              />
+            )} */}
             <CommSelect
               title="직업"
               options={jobArray}
