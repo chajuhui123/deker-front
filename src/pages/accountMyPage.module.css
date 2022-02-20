@@ -1,4 +1,4 @@
-.accountMyPage_Layout {
+.Layout {
   position: relative;
   width: 476px;
   height: 1000px; /* 이미지 갯수만큼 자동으로 늘어나게 수정 */
@@ -24,7 +24,7 @@
   background-color: #707070a3;
 }
 
-.accountMyPage_MainArea {
+.MainArea {
   position: relative;
   margin-top: 60px;
   width: 400px;
@@ -43,7 +43,7 @@
   opacity: 1;
 }
 
-.accountMyPage_rowArea2 {
+.rowArea2 {
   position: relative;
   margin-left: 30px;
   width: 245px;
@@ -53,7 +53,7 @@
   opacity: 1;
 }
 
-.accountMyPage_rowArea3 {
+.rowArea3 {
   position: relative;
   width: 245px;
   height: 60px;
@@ -61,7 +61,7 @@
   flex-direction: row;
 }
 
-.accountMyPage_LinkTo {
+.linkTo {
   position: relative;
   margin: auto;
   width: 60px;
@@ -73,7 +73,7 @@
   opacity: 1;
 }
 
-.accountMyPage_ModifyUserInfoBtn {
+.ModifyUserInfoBtn {
   position: relative;
   width: 245px;
   height: 60px;
@@ -84,7 +84,6 @@
   letter-spacing: 0px;
   color: #4e4e4e;
   border-radius: 4px;
-  opacity: 1;
   opacity: 1;
 }
 
