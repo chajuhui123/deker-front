@@ -17,15 +17,28 @@
 
 .cartItemImg {
   width: 100px;
-  height: 100px;
   margin: 0 20px 0 0;
 }
 
 .cartItemInfoDiv {
   width: 100%;
+  position: relative;
+  line-height: 1.4rem;
+}
+
+.cartItemOptionUpdate {
+  font-size: 12px;
+  color: var(--gray-font-color);
+}
+
+.cartItemOptionUpdate:hover {
+  color: var(--gray-hover-font-color);
 }
 
 .cartItemFeeBox {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }

@@ -3,6 +3,8 @@ import classes from "./productRecommendItem.module.css";
 import noImg from "img/noImg.png";
 import { useHistory } from "react-router-dom";
 
+const BASE_URL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
+
 function ProductRecommendItem({ productRecommeend }) {
   const history = useHistory();
   const productDetailHandler = () => {
@@ -13,7 +15,7 @@ function ProductRecommendItem({ productRecommeend }) {
     <div className={classes.recommendItemBox} onClick={productDetailHandler}>
       <img
         className={classes.recommendItemImg}
-        src={productRecommeend.productImg || noImg}
+        src={BASE_URL + productRecommeend.productImg || noImg}
         alt="상품이미지"
       />
       <p className={classes.recommendItemText}>
