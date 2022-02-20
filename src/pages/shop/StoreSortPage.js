@@ -221,7 +221,9 @@ const StoreSortPage = (props) => {
     <div className={classes.StoreMainPage_Layout}>
       <div className={classes.HotProductSection}>
         <div className={classes.HotProductTitleArea}>
-          <CommonPageTitle title="인기상품" />
+          <CommonPageTitle
+            title={sortId === "rank" ? "인기상품" : sortId + " 인기상품"}
+          />
         </div>
         {sortId === "rank" && <ProductList products={DUMMY_DATA} />}
         {sortId === "C02" && <ProductList products={DUMMY_DATA2} />}

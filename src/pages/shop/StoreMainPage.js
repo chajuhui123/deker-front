@@ -1,7 +1,7 @@
-import CommonPageTitle from "components/common/commPageTitle";
 // import { postApi } from "api/fetch-api";
 // import { useEffect, useState } from "react";
 // import { useDispatch } from "react-redux";
+import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import { Link } from "react-router-dom";
 import CategoryList from "./categoryList";
 import ProductList from "./productList";
@@ -38,17 +38,18 @@ const StoreMainPage = () => {
     {
       id: 1,
       productImg:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      productPrice: 12000,
-    },
-    {
-      id: 2,
-      productImg:
         "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
       productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
       productPrice: 13900,
     },
+    {
+      id: 2,
+      productImg:
+        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
+      productNm: "T20 TAB+ TNA200HF 메쉬의자 2types",
+      productPrice: 12000,
+    },
+
     {
       id: 3,
       productImg:
@@ -103,17 +104,18 @@ const StoreMainPage = () => {
     {
       id: 1,
       categoryImg:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      categoryName: "가구",
-      categoryId: "C02",
-    },
-    {
-      id: 2,
-      categoryImg:
         "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
       categoryName: "가전제품",
       categoryId: "C03",
     },
+    {
+      id: 2,
+      categoryImg:
+        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
+      categoryName: "가구",
+      categoryId: "C02",
+    },
+
     {
       id: 3,
       categoryImg:
@@ -138,26 +140,27 @@ const StoreMainPage = () => {
   ];
 
   return (
-    <div className={classes.StoreMainPage_Layout}>
+    <div className={classes.Layout}>
       <div className={classes.HotProductSection}>
-        <div className={classes.HotProductTitleArea}>
-          <CommonPageTitle title="인기상품" />
+        <div className={classes.titleArea}>
+          <CommPageSemiTitle semiTitle="인기상품" />
           <Link
             to={{
               pathname: `/market/storeSortPage/${sortId}`,
               state: { sortId: sortId },
             }}
-            className={classes.HotProductDetail}
           >
-            더보기 {">"}
+            <a>더보기</a>
           </Link>
         </div>
-        <ProductList products={DUMMY_DATA} />
+        <div className={classes.productListArea}>
+          <ProductList products={DUMMY_DATA} />
+        </div>
         {/* <ProductList products={mainProductList} /> */}
       </div>
       <div className={classes.CategorySection}>
-        <div className={classes.HotProductTitleArea}>
-          <CommonPageTitle title="카테고리" />
+        <div className={classes.titleArea}>
+          <CommPageSemiTitle semiTitle="카테고리" />
         </div>
         <CategoryList categorys={DUMMY_DATA2} />
       </div>
