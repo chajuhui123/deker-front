@@ -1,4 +1,4 @@
-.modifyUserInfoInner {
+.Inner {
   position: relative;
   width: 800px;
   height: auto; /* 태그 늘어날 때마다 늘어나야하니까 auto해야할거같은데 컴포넌트들이 다 안들어온다 */
@@ -9,7 +9,7 @@
   margin: auto;
 }
 
-.modifyUserInfoArea {
+.InfoArea {
   position: relative;
   margin: auto;
   margin-top: 20px;
@@ -60,6 +60,7 @@
   border-radius: 13px;
   opacity: 1;
   margin-left: 20px;
+  margin-top: 40px;
 }
 
 .userInfoTitle {
@@ -100,8 +101,10 @@
   position: relative;
   width: 60%;
   height: 30px;
-  border: 1px solid #a6a6a7;
+  border: 2px solid #a6a6a7;
   border-radius: 8px;
+  text-align: center;
+  font: normal normal bold 15px/30px Roboto;
   opacity: 1;
 }
 
