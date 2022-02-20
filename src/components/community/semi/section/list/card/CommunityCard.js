@@ -1,9 +1,15 @@
 import React from "react";
 import classes from "./CommunityCard.module.css";
 import noImg from "img/noImg.png";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const CommunityCard = (props) => {
   const data = props.data;
+  const history = useHistory();
+  const detailPageHandler = () => {
+    const url = "community/detail/" + data.communityId;
+    history.push(url);
+  };
   const followHandler = () => {
     alert(`${data.userId} 팔로우`);
   };
@@ -13,7 +19,11 @@ const CommunityCard = (props) => {
   return (
     <li>
       <div className={classes.mainCard}>
-        <img alt="글첨부이미지" src={data.communityImage} />
+        <img
+          alt="글첨부이미지"
+          src={data.communityImage}
+          onClick={detailPageHandler}
+        />
         <div className={classes.commInfo}>
           <div className={classes.communityTitle}>
             {data.communityTitle.length > 8

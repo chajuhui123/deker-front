@@ -1,13 +1,10 @@
-import { useCookies } from "react-cookie";
 import React, { useState } from "react";
 
 const RecentlyProduct = (props) => {
+  const storageKey = "recentlyProducts";
   const [recentlyProduct, setRecentlyProduct] = useState([]);
-  const [cookies, setCookie, removeCookies] = useCookies(["productArray"]);
   const addCookieHandler = () => {
-    let addCookies = !!cookies.productArray
-      ? cookies.productArray.concat()
-      : [];
+    let addCookies = localStorage.getItem(storageKey) || [];
     for (let i = 0; i < 10; i++) {
       const obj = {
         productId: i,
@@ -17,17 +14,17 @@ const RecentlyProduct = (props) => {
       };
       addCookies = addCookies.concat(obj);
     }
-    console.log(addCookies);
-    setCookie("productArray", addCookies);
+    localStorage.setItem(storageKey, JSON.stringify(addCookies));
   };
   const removeCookieHandler = () => {
-    removeCookies("productArray");
+    localStorage.removeItem(storageKey);
   };
   const changeStateHandler = () => {
-    setRecentlyProduct(cookies.productArray);
+    setRecentlyProduct(localStorage.getItem(storageKey));
   };
   const test = () => {
-    console.log(cookies);
+    const test = localStorage.getItem(storageKey);
+    console.log(JSON.parse(test));
   };
   return (
     <div>

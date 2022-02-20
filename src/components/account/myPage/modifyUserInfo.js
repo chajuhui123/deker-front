@@ -7,6 +7,7 @@ import { postApi } from "api/fetch-api";
 // import CommSelect from "components/common/CommSelect";
 import JobDropdown from "components/common/dropdown/jobDropdown";
 import CommBtn from "components/common/commBtn";
+import CommSelect from "components/common/CommSelect";
 
 const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
@@ -99,14 +100,14 @@ function ModifyUserInfo(props) {
             <div className={classes.modifyUserInfoEmail}>{nickNm}</div>
           </div>
           <div className={classes.modifyUserInfo_row2}>
-            <p className={classes.userInfoTitle}>직군</p>
-            <JobDropdown />
-            {/* <CommSelect
-                title="직업"
-                options={jobArray}
-                valueOf={jobCode}
-                onChange={jobChangeHandler}
-              /> */}
+            {/* <p className={classes.userInfoTitle}>직군</p> */}
+            {/* <JobDropdown /> */}
+            <CommSelect
+              title="직업"
+              options={jobArray}
+              valueOf={jobCode}
+              onChange={jobChangeHandler}
+            />
             <p className={classes.userInfoTitle}>태그</p>
             <UserTagForm />
           </div>
