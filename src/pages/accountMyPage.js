@@ -23,7 +23,6 @@ const AccountMyPage = (props) => {
         : noImg;
       setProfileImg(image);
       setPostList(res.data.list);
-      // postList.id = res.data.postList.id; // 이거 되는 지 테스트
     } else {
       // 비정상로직
       alert("data error");
@@ -37,64 +36,58 @@ const AccountMyPage = (props) => {
     dispatch(postApi("mb/post/get/my-post-list", dataObject, fnCallback));
   }, [dispatch]);
 
-  // const postList = [
+  // const DUMMY_DATA = [
   //   {
-  //     id: postId,
-  //     pic_image: postImg,
+  //     id: 1,
+  //     pic_image:
+  //       "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
+  //   },
+  //   {
+  //     id: 2,
+  //     pic_image:
+  //       "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
+  //   },
+  //   {
+  //     id: 3,
+  //     pic_image:
+  //       "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
+  //   },
+  //   {
+  //     id: 4,
+  //     pic_image:
+  //       "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
+  //   },
+  //   {
+  //     id: 5,
+  //     pic_image:
+  //       "https://i.pinimg.com/736x/dc/42/5b/dc425b83adc4d8d64962455604d8c4a6--home-office-design-office-designs.jpg",
+  //   },
+  //   {
+  //     id: 6,
+  //     pic_image:
+  //       "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
+  //   },
+  //   {
+  //     id: 7,
+  //     pic_image:
+  //       "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
+  //   },
+  //   {
+  //     id: 8,
+  //     pic_image:
+  //       "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
+  //   },
+  //   {
+  //     id: 9,
+  //     pic_image:
+  //       "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
+  //   },
+  //   {
+  //     id: 10,
+  //     pic_image:
+  //       "https://i.pinimg.com/736x/dc/42/5b/dc425b83adc4d8d64962455604d8c4a6--home-office-design-office-designs.jpg",
   //   },
   // ];
-  const DUMMY_DATA = [
-    {
-      id: 1,
-      pic_image:
-        "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-    },
-    {
-      id: 2,
-      pic_image:
-        "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
-    },
-    {
-      id: 3,
-      pic_image:
-        "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
-    },
-    {
-      id: 4,
-      pic_image:
-        "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-    },
-    {
-      id: 5,
-      pic_image:
-        "https://i.pinimg.com/736x/dc/42/5b/dc425b83adc4d8d64962455604d8c4a6--home-office-design-office-designs.jpg",
-    },
-    {
-      id: 6,
-      pic_image:
-        "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-    },
-    {
-      id: 7,
-      pic_image:
-        "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
-    },
-    {
-      id: 8,
-      pic_image:
-        "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
-    },
-    {
-      id: 9,
-      pic_image:
-        "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-    },
-    {
-      id: 10,
-      pic_image:
-        "https://i.pinimg.com/736x/dc/42/5b/dc425b83adc4d8d64962455604d8c4a6--home-office-design-office-designs.jpg",
-    },
-  ];
 
   return (
     <div className={classes.Layout}>
