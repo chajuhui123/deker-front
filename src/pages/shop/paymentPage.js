@@ -188,7 +188,7 @@ const PaymentPage = () => {
               value={rcvTelNo}
               // maxLength="100"
               placeholder="남은 연락처를 입력해주세요."
-              onChange={telNoInputHandler}
+              onChange={rcvTelNoInputHandler}
             />
           </div>
           <div className={classes.dtlArea}>

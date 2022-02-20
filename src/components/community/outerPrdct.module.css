@@ -13,10 +13,9 @@
   font: normal normal normal 15px/25px Roboto;
   position: relative;
 }
-.inputArea::placeholder {
-  /* top: 50%;
-  transform: translateY(-50%); */
-}
+/* .inputArea::placeholder {
+
+} */
 
 .btnArea {
   margin-top: 30px;
