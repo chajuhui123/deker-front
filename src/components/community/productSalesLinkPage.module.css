@@ -5,44 +5,41 @@
   background: #ffffff 0% 0% no-repeat padding-box;
 }
 
+.mainArea {
+  width: 100%;
+  height: 450px;
+}
+
 .productSearchArea {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  height: 40px;
 }
 
 .productInput {
   width: 100%;
   height: 33px;
+  margin-right: 20px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #000000;
   border-radius: 7px;
   opacity: 1;
 }
 
-.productSearchBtn {
-  margin-left: 20px;
-  width: 60px;
-  height: 38px;
-  background: #4242e2 0% 0% no-repeat padding-box;
-  border: 1px solid #70707021;
-  border-radius: 4px;
-  opacity: 1;
-  text-align: center;
-  font: normal normal bold 15px/20px Roboto;
-  letter-spacing: 0px;
-  color: #f5f5f5;
-}
-
 .outerProduct {
   margin-top: 30px;
-  width: 140px;
+  width: 150px;
+  height: 20px;
   text-align: center;
+  border: #ffffff;
   font: normal normal bold 15px/19px Roboto;
   letter-spacing: 0px;
   color: #4242e2;
   position: relative;
   left: 50%;
   transform: translate(-50%, -0%);
+  cursor: pointer;
   opacity: 1;
 }
 
@@ -52,31 +49,13 @@
   height: 300px;
   border: 1px solid #000000;
 }
-.empty {
-  margin-top: 30px;
-  width: 100%;
-  height: 400px;
-}
-.closeBtnArea {
-  margin-top: 30px;
-  width: 100%;
-  height: 40px;
-}
 
-.popupCloseBtn {
-  width: 88px;
-  height: 33px;
-  background: #f8f8fa 0% 0% no-repeat padding-box;
-  border: 1px solid #4242e2;
-  opacity: 1;
-  text-align: center;
-  border-radius: 4px;
-  font: normal normal bold 20px/30px Roboto;
-  letter-spacing: 0px;
-  color: #4e4e4e;
+.closeBtnArea {
+  /* margin-top: 30px; */
+  width: 94px;
+  height: 40px;
   position: relative;
-  left: 50%;
-  transform: translate(-50%, -0%);
+  margin: auto;
 }
 
 /* 더미데이터 시작 */
@@ -84,6 +63,7 @@
   margin-top: 10px;
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .productImg {
   /* background-color: rgb(206, 206, 206); */

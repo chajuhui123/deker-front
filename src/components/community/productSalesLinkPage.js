@@ -55,7 +55,7 @@ function ProductSalesLink(props) {
   };
   return (
     <div className={classes.productSalesLinkLayout}>
-      <div>
+      <div className={classes.mainArea}>
         <div className={classes.productSearchArea}>
           <input
             className={classes.productInput}
@@ -64,16 +64,25 @@ function ProductSalesLink(props) {
             placeholder="상품 이름을 임력 해주세요."
             onChange={productLinkInputHandler}
           />
-          <button
-            className={classes.productSearchBtn}
-            onClick={productSearchHandler}
-          >
-            검색
-          </button>
+          <CommBtn
+            btnText="검색"
+            btnWidth="60px"
+            btnHeight="35px"
+            fontSize="15px"
+            radius="4px"
+            border="1px solid rgb(66, 66, 226)"
+            fnClick={productSearchHandler}
+          />
         </div>
-        <p className={classes.outerProduct} onClick={outerProductHandler}>
+        <textarea
+          className={classes.outerProduct}
+          onClick={outerProductHandler}
+        >
           + 상품 직접 등록하기
-        </p>
+        </textarea>
+        {/* <p className={classes.outerProduct} onClick={outerProductHandler}>
+          + 상품 직접 등록하기
+        </p> */}
         <div className={classes.selectedProduct}>
           {/* 더미데이터 시작 */}
           <div className={classes.dummy}>
@@ -134,7 +143,16 @@ function ProductSalesLink(props) {
         </div>
       </div>
       <div className={classes.closeBtnArea}>
-        <button className={classes.popupCloseBtn}>닫기</button>
+        <CommBtn
+          btnText="닫기"
+          btnWidth="88px"
+          btnHeight="33px"
+          border="3px solid rgb(66, 66, 226)"
+          bgColor="rgb(248, 248, 250)"
+          radius="4px"
+          txColor="rgb(78, 78, 78)"
+          fontSize="20px"
+        />
       </div>
     </div>
   );
