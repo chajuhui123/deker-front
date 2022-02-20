@@ -5,14 +5,17 @@ function MyUploadPicList(props) {
   return (
     <div className={classes.myUploadPicList}>
       <ul className={classes.myUploadPicList}>
-        {props.muUploadPic &&
+        {props.muUploadPic?.length ? (
           props.muUploadPic.map((muUploadPic) => (
             <MyUploadPicItem
               key={muUploadPic.id}
               id={muUploadPic.id}
               pic_image={muUploadPic.pic_image}
             />
-          ))}
+          ))
+        ) : (
+          <p>작성한 글이 없습니다.</p>
+        )}
       </ul>
     </div>
   );

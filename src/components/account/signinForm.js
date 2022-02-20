@@ -56,6 +56,7 @@ function SigninForm() {
   }, [dispatch]);
 
   const fnCallback = (res) => {
+    console.log(res);
     dispatch(
       userAction.login({
         jwtToken: res.data.jwtToken,

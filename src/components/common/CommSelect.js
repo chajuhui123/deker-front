@@ -6,12 +6,20 @@ import Select from "react-select";
  * 공통 select component
  * @param {String} title 제목 (생략시 영역 hidden)
  * @param {Array} options select에 들어갈 선택 사항들
+ * @param {String} valueOf select에 들어갈 값
  * @param {Object} defaultValue 최초 로딩 시 기본선택 될 옵션 {value: "", lable: ""}
  * @param {Function} onChange 선택 사항 변화 시 포인트 메소드
  * @param {String} placeholder 미선택시 보여줄 문구
  * @returns
  */
-function CommSelect({ title, options, defaultValue, onChange, placeholder }) {
+function CommSelect({
+  title,
+  options,
+  valueOf,
+  defaultValue,
+  onChange,
+  placeholder,
+}) {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -43,6 +51,7 @@ function CommSelect({ title, options, defaultValue, onChange, placeholder }) {
         styles={customStyles}
         options={options}
         onChange={onChange}
+        value={valueOf}
         defaultValue={defaultValue}
         placeholder={placeholder || "선택"}
       />

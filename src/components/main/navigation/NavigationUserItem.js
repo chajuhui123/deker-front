@@ -29,7 +29,7 @@ function NavigationUserItem({ clickOnMenu }) {
       )}
       {isLoggedIn && (
         <li className={classes.navItem}>
-          <Link to="/" className={classes.navLink}>
+          <Link to="/mypage" className={classes.navLink}>
             회원프로필
           </Link>
         </li>

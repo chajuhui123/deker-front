@@ -71,7 +71,7 @@ function Signup(props) {
   const fnCallback = (res) => {
     console.log(res);
     if (!!res) {
-      history.push("/signupAdd");
+      history.push("/signup/additional");
     } else {
       dispatch(
         modalAction.modalPopup({
