@@ -97,6 +97,7 @@ export function fileApi(action, data, callback) {
       method: "POST",
       headers: {
         Authorization: token,
+        "X-AUTH-TOKEN": token,
       },
       body: data,
     })
