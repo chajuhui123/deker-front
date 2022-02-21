@@ -52,6 +52,14 @@ function ProductSalesLink(props) {
       productId: "PDTID_00000000000000",
     };
     props.productInfoHandler(dataObject);
+
+    // modal close
+    dispatch(modalAction.modalPopup({ isOpen: false }));
+  };
+
+  const modalCloseBtnHandler = () => {
+    // modal close
+    dispatch(modalAction.modalPopup({ isOpen: false }));
   };
   return (
     <div className={classes.productSalesLinkLayout}>
@@ -152,6 +160,7 @@ function ProductSalesLink(props) {
           radius="4px"
           txColor="rgb(78, 78, 78)"
           fontSize="20px"
+          fnClick={modalCloseBtnHandler}
         />
       </div>
     </div>

@@ -37,8 +37,8 @@ function OuterPrdct(props) {
     };
     props.productInfoHandler(dataObject);
 
-    alert("modal close 기능");
     console.log(dataObject);
+    dispatch(modalAction.modalPopup({ isOpen: false }));
   };
 
   return (
