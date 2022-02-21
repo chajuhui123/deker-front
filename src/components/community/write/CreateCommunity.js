@@ -17,7 +17,9 @@ function CreateCommunity(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const communityData = useSelector((state) => state.community.community);
-  const productData = useSelector((state) => state.community.product);
+  const productData = useSelector(
+    (state) => state.community.product.communityProducts
+  );
   const [jobArray, setJobArray] = useState([]); // 직업코드
   const [material, setMaterial] = useState([]); // 재질코드
   const [moodArray, setMoodArray] = useState([]); // 분위기코드
@@ -137,9 +139,6 @@ function CreateCommunity(props) {
       "product",
       new Blob([JSON.stringify(productData)], { type: "application/json" })
     ); // 게시글 상품목록
-    for (let form in formData) {
-      console.log(form);
-    }
     dispatch(fileApi("mb/post/reg/write-post", formData, fnCallback));
   };
 

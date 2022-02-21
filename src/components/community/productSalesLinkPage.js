@@ -49,7 +49,7 @@ function ProductSalesLink(props) {
   const dummyClick = () => {
     const dataObject = {
       id: props.id,
-      productId: "dummy",
+      productId: "PDTID_00000000000000",
     };
     props.productInfoHandler(dataObject);
   };
