@@ -1,5 +1,11 @@
 ## HISTORY
 
+### 2022.02.20 차주희
+
+1. 상품 디테일 API 수정
+2. BASE URL module 파일로 분리
+   - `import { BASE_URL } from "module/common-module";`
+
 ### 2022.02.14 ~ 02.19 차주희
 
 1. 루트 CSS 반응형 적용

@@ -8,7 +8,7 @@
   background: 0% 0% no-repeat padding-box;
   background-color: #4242e2;
   border: 1px solid #4242e2;
-  border-radius: 30px;
+  border-radius: var(--border-radius);
   opacity: 1;
 }
 

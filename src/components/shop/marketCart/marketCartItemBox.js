@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import MarketCartItem from "./marketCartItem";
 import classes from "./marketCartItemBox.module.css";
 
 function MarketCartItemBox({ cartItemArray }) {
-  const [checkedList, setCheckedList] = useState([]);
+  // const [checkedList, setCheckedList] = useState([]);
 
   return (
     <div>

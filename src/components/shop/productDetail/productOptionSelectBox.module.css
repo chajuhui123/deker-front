@@ -1,18 +1,22 @@
 .productOptionSelectBox {
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   margin-top: 30px;
-  height: 450px;
+  height: 100%;
+  width: 100%;
 }
 
 img {
-  height: 100%;
+  width: 50%;
+  height: auto;
+  object-fit: cover;
 }
 
 .optionSelectBox {
-  border: 1px solid #707070;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
   padding: 30px;
-  width: 450px;
+  width: 50%;
   margin-left: 20px;
 }
 

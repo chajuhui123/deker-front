@@ -5,8 +5,7 @@ import ProductReviewBox from "components/shop/productDetail/productReviewBox";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
 import { useEffect, useState } from "react";
-
-const BASE_URL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
+import { BASE_URL } from "module/common-module";
 
 const ProductDetailPage = ({ match }) => {
   const [productDetailObj, setProductDetailObj] = useState({
@@ -52,7 +51,6 @@ const ProductDetailPage = ({ match }) => {
     console.log("review Callback ", res);
     if (!!res) {
       setProductReviewsObj({
-        isLastPage: res.data.dataisLastPage,
         reviewsArr: res.data.reviews, // 배열 내부 오브젝트 형태 [{},{},{}]
       });
     }
@@ -87,7 +85,7 @@ const ProductDetailPage = ({ match }) => {
         fnProudctReviewCallback
       )
     );
-  }, [dispatch]);
+  }, [productId, dispatch]);
 
   return (
     <div>

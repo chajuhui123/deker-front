@@ -8,7 +8,7 @@ const BASE_URL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 function ProductRecommendItem({ productRecommeend }) {
   const history = useHistory();
   const productDetailHandler = () => {
-    history.push(`/store/${productRecommeend.productId}`);
+    history.push(`/market/detail/${productRecommeend.productId}`);
   };
 
   return (
@@ -22,7 +22,7 @@ function ProductRecommendItem({ productRecommeend }) {
         {productRecommeend.productName}
       </p>
       <p className={classes.recommendItemText}>
-        {productRecommeend.productPrice} 원
+        {productRecommeend.productPrice.toLocaleString("ko-KR")} 원
       </p>
     </div>
   );

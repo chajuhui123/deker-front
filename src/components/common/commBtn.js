@@ -38,7 +38,7 @@ function CommBtn(props) {
       onClick={props.fnClick}
     >
       {props.isLoading || (
-        <p style={{ fontSize: props.fontSize || "20px" }}>
+        <p style={{ fontSize: props.fontSize || "16px" }}>
           {props.btnText || "확인"}
         </p>
       )}
