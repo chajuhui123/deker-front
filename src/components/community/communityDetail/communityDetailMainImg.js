@@ -1,21 +1,36 @@
 import React from "react";
-import CommunityDetailLocationIcon from "./communityDetailLocationIcon";
 import classes from "./communityDetailMainImg.module.css";
+import CommunityDetailLocationIcon from "./communityDetailLocationIcon";
+import noImg from "img/noImg.png";
+import { BASE_URL } from "module/common-module";
 
-function CommunityDetailMainImg() {
+function CommunityDetailMainImg({
+  communityPostObj,
+  communitySelectedProductArr,
+}) {
+  const {
+    postImg,
+    // communityContent,
+    // jobCode,
+    // materialCode,
+    // moodCode,
+    // communityTags,
+  } = communityPostObj;
   return (
     <div className={classes.imgWrapper}>
       <img
         className={classes.mainImg}
-        src="https://i.pinimg.com/originals/7d/be/38/7dbe3845b0527ef8078b301e5e3b6d27.jpg"
-        alt=""
+        src={`${BASE_URL}${postImg}` || noImg}
+        alt="커뮤니티 게시글 이미지"
       />
-      <div className={classes.locationIconDiv}>
-        <CommunityDetailLocationIcon top="0" left="0" />
-      </div>
-      <div className={classes.locationIconDiv}>
-        <CommunityDetailLocationIcon top="10px" right="40px" />
-      </div>
+      {communitySelectedProductArr?.map((selectedProduct) => (
+        <div className={classes.locationIconDiv}>
+          <CommunityDetailLocationIcon
+            top={selectedProduct?.offsetX}
+            left={selectedProduct?.offsetY}
+          />
+        </div>
+      ))}
     </div>
   );
 }
