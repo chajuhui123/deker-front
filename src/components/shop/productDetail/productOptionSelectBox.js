@@ -4,6 +4,7 @@ import CommBtn from "components/common/commBtn";
 import CommSelect from "components/common/CommSelect";
 import CommonPageTitle from "components/common/commPageTitle";
 import noImg from "img/noImg.png";
+import SelectBoxOptionDiv from "./selectBoxOptionDiv";
 
 function ProductOptionSelectBox({ productDetailObj }) {
   const options = [];
@@ -30,10 +31,22 @@ function ProductOptionSelectBox({ productDetailObj }) {
           <p>가격 </p>
           <p>{productDetailObj.productPrice.toLocaleString("ko-KR")}</p>
         </div>
-        <div className={classes.buyItemInfoDiv}>
+        {/* <BuyItemInfomation
+          text=""
+          component={
+            <CommSelect options={options} placeholder="-- 옵션 선택 --" />
+          }
+        /> */}
+        <SelectBoxOptionDiv
+          text="옵션"
+          component={
+            <CommSelect options={options} placeholder="-- 옵션 선택 --" />
+          }
+        />
+        {/* <div className={classes.buyItemInfoDiv}>
           <p>옵션</p>
           <CommSelect options={options} placeholder="-- 옵션 선택 --" />
-        </div>
+        </div> */}
         <div className={classes.buyItemInfoDiv}>
           <p>수량</p>
           <input
@@ -46,13 +59,15 @@ function ProductOptionSelectBox({ productDetailObj }) {
         </div>
         <p>주문금액</p>
         <div className={classes.btnBox}>
-          <CommBtn btnText="Buy Now" btnWidth="200px" />
           <CommBtn
-            btnText="Add Cart"
-            btnWidth="200px"
+            btnText="장바구니"
             bgColor="white"
             txColor="#4242e2"
+            btnWidth="50%"
           />
+          <CommBtn btnText="바로구매" btnWidth="50%" />
+          {/* <button>장바구니</button>
+          <button>바로구매</button> */}
         </div>
       </div>
     </div>

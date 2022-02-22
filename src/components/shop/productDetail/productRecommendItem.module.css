@@ -1,5 +1,6 @@
 .recommendItemBox {
   padding: 9px;
+  cursor: pointer;
 }
 
 .recommendItemImg {

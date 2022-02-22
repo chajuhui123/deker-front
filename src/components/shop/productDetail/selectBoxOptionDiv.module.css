@@ -1,0 +1,12 @@
+.optionDiv {
+  display: flex;
+  width: 100%;
+}
+
+.textDiv {
+  width: 100px;
+}
+
+.componentDiv {
+  /* width: 90%; */
+}
