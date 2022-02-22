@@ -5,31 +5,25 @@ function ProductList(props) {
   const productList = props.products.map((product) => (
     <li className={classes.productList}>
       <ProductItem
-        key={product.id}
-        id={product.id}
+        key={product.mktProductId}
+        id={product.mktProductId}
         productImg={product.productImg}
-        productNm={product.productNm}
+        productNm={product.productName}
         productPrice={product.productPrice}
       />
     </li>
   ));
-  return <ul>{productList}</ul>;
+  return (
+    // <div>
+    //   {props.product?.length ? (
+    <ul>{productList}</ul>
+    //   ) : (
+    //     <div className={classes.noUploadText}>
+    //       <text>작성한 글이 없습니다</text>
+    //     </div>
+    //   )}
+    // </div>
+  );
 }
-// 연결 시도하다가 실패한거
-// function ProductList(props) {
-//   const productList = props.products.map((mainProductList) => (
-//     <li className={classes.productList}>
-//       <ProductItem
-//         key={mainProductList.mktProductId}
-//         id={mainProductList.mktProductId}
-//         // productImg={product.productImg}
-//         productNm={mainProductList.productName}
-//         productPrice={mainProductList.productPrice}
-//       />
-//     </li>
-//   ));
-
-//   return <ul>{productList}</ul>;
-// }
 
 export default ProductList;

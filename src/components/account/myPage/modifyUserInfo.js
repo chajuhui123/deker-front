@@ -5,8 +5,10 @@ import ModalTitle from "components/common/modalTitle";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
 // import CommSelect from "components/common/CommSelect";
-import JobDropdown from "components/common/dropdown/jobDropdown";
+// import JobDropdown from "components/common/dropdown/jobDropdown";
 import CommBtn from "components/common/commBtn";
+import CommSelect from "components/common/CommSelect";
+import noImg from "img/noImg.png";
 
 const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
@@ -30,7 +32,10 @@ function ModifyUserInfo(props) {
 
   const fnCallback = (res) => {
     if (!!res) {
-      setProfileImg(`${BASEURL}${res.data.profileImg}`);
+      let image = res.data.profileImg
+        ? `${BASEURL}${res.data.profileImg}`
+        : noImg;
+      setProfileImg(image);
       setEmailPrint(res.data.id);
       setNickNm(res.data.nickname);
     } else {
@@ -73,16 +78,9 @@ function ModifyUserInfo(props) {
   return (
     <div className={classes.modifyUserInfo}>
       <ModalTitle title="회원정보변경" />
-      <div className={classes.modifyUserInfoInner}>
-        <img
-          className={classes.profilePic}
-          src={
-            "https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/309/59932b0eb046f9fa3e063b8875032edd_crop.jpeg"
-          }
-          // src={profileImg}
-          alt={profileImg}
-        />
-        <div className={classes.modifyUserInfoArea}>
+      <div className={classes.Inner}>
+        <img className={classes.profilePic} src={profileImg} alt={profileImg} />
+        <div className={classes.InfoArea}>
           <div className={classes.modifyUserInfo_row1}>
             <div className={classes.userInfoTitle}>이메일</div>
             <div className={classes.modifyUserInfoEmail}>{emailPrint}</div>
@@ -99,14 +97,21 @@ function ModifyUserInfo(props) {
             <div className={classes.modifyUserInfoEmail}>{nickNm}</div>
           </div>
           <div className={classes.modifyUserInfo_row2}>
-            <p className={classes.userInfoTitle}>직군</p>
-            <JobDropdown />
-            {/* <CommSelect
+            {/* {jobArray?.length && (
+              <CommSelect
                 title="직업"
                 options={jobArray}
-                valueOf={jobCode}
+                defaultValue={jobCode || jobArray[0]}
+                // {jobCode || null}
                 onChange={jobChangeHandler}
-              /> */}
+              />
+            )} */}
+            <CommSelect
+              title="직업"
+              options={jobArray}
+              valueOf={jobCode}
+              onChange={jobChangeHandler}
+            />
             <p className={classes.userInfoTitle}>태그</p>
             <UserTagForm />
           </div>

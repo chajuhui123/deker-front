@@ -17,7 +17,9 @@ function CreateCommunity(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const communityData = useSelector((state) => state.community.community);
-  const productData = useSelector((state) => state.community.product);
+  const productData = useSelector(
+    (state) => state.community.product.communityProducts
+  );
   const [jobArray, setJobArray] = useState([]); // 직업코드
   const [material, setMaterial] = useState([]); // 재질코드
   const [moodArray, setMoodArray] = useState([]); // 분위기코드
@@ -129,8 +131,14 @@ function CreateCommunity(props) {
     };
     const formData = new FormData();
     formData.append("img", imageFile); // 게시글 이미지
-    formData.append("community", JSON.stringify(community)); // 게시글 제목, 내용
-    formData.append("product", JSON.stringify(productData)); // 게시글 상품목록
+    formData.append(
+      "community",
+      new Blob([JSON.stringify(community)], { type: "application/json" })
+    ); // 게시글 제목, 내용
+    formData.append(
+      "product",
+      new Blob([JSON.stringify(productData)], { type: "application/json" })
+    ); // 게시글 상품목록
     dispatch(fileApi("mb/post/reg/write-post", formData, fnCallback));
   };
 
@@ -139,16 +147,19 @@ function CreateCommunity(props) {
       <div className={classes.selectArea}>
         <CommSelect
           title="직업"
+          width="250px"
           options={jobArray}
           onChange={jobChangeHandler}
         />
         <CommSelect
           title="책상재질"
+          width="250px"
           options={material}
           onChange={materialChangeHandler}
         />
         <CommSelect
           title="분위기"
+          width="250px"
           options={moodArray}
           onChange={moodChangeHandler}
         />

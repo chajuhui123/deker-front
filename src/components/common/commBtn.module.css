@@ -8,7 +8,12 @@
   background: 0% 0% no-repeat padding-box;
   background-color: #4242e2;
   border: 1px solid #4242e2;
+<<<<<<< HEAD
   border-radius: var(--border-radius);
+=======
+  border-radius: 30px;
+  cursor: pointer;
+>>>>>>> 791e51c0f21e85f881fe15246d3acd04b111fd58
   opacity: 1;
 }
 

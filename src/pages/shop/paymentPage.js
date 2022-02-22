@@ -75,6 +75,14 @@ const PaymentPage = () => {
     ],
     []
   );
+  const emailD = useMemo(
+    () => [
+      { value: "emailD1", label: "gamil.com" },
+      { value: "emailD2", label: "naver.com" },
+      { value: "emailD3", label: "등등" },
+    ],
+    []
+  );
   const DUMMY_DATA_UNREVIEWED = [
     {
       id: 11,
@@ -102,9 +110,13 @@ const PaymentPage = () => {
         <div className={classes.section}>
           <div className={classes.addpresent}>
             <CommPageSemiTitle semiTitle="주문자" />
-            <button className={classes.present} onClick={presentLinkHandler}>
-              선물하기
-            </button>
+            <div>
+              <img
+                src="https://cdn.w600.comps.canstockphoto.co.kr/%EC%83%81%EC%9E%90-%EC%99%84%EC%A0%84%ED%95%9C-%EC%84%A0%EB%AC%BC-pictogram-%EB%8B%A8%EC%9D%BC%EC%9D%98-48x48-%EB%B2%A1%ED%84%B0-eps-%EB%B2%A1%ED%84%B0_csp53157584.jpg"
+                alt="선물하기img"
+              />
+              <a onClick={presentLinkHandler}>선물하기</a>
+            </div>
           </div>
           <hr className={classes.lineD} />
           <div className={classes.dtlArea}>
@@ -129,14 +141,9 @@ const PaymentPage = () => {
               onChange={emailInputHandler}
             />
             <div className={classes.dtlText3}>@</div>
-            <textarea
-              className={classes.inputArea2}
-              type="text"
-              value={orderNm}
-              // maxLength="100"
-              placeholder="선택해주세요."
-              onChange={orderNmInputHandler}
-            />
+            <div className={classes.select2}>
+              <Select options={emailD} defaultValue={emailD[0]} />
+            </div>
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
@@ -148,7 +155,7 @@ const PaymentPage = () => {
               type="text"
               value={telNo}
               // maxLength="100"
-              placeholder="연락처를 입력해주세요."
+              placeholder="남은 연락처를 입력해주세요."
               onChange={telNoInputHandler}
             />
           </div>
@@ -156,9 +163,7 @@ const PaymentPage = () => {
         <div className={classes.section}>
           <div className={classes.addpresent}>
             <CommPageSemiTitle semiTitle="배송지" />
-            <button className={classes.same} onClick={fillSameHandler}>
-              위와 동일하게 채우기
-            </button>
+            <a onClick={fillSameHandler}>위와 동일하게 채우기</a>
           </div>
           <hr className={classes.lineD} />
           <div className={classes.dtlArea}>
@@ -174,12 +179,15 @@ const PaymentPage = () => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
+            <div className={classes.select}>
+              <Select options={telhead} defaultValue={telhead[0]} />
+            </div>
             <textarea
               className={classes.inputArea}
               type="text"
               value={rcvTelNo}
               // maxLength="100"
-              placeholder="연락처를 입력해주세요."
+              placeholder="남은 연락처를 입력해주세요."
               onChange={rcvTelNoInputHandler}
             />
           </div>
