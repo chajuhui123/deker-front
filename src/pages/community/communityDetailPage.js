@@ -29,14 +29,15 @@ const CommunityDetailPage = ({ match }) => {
   };
 
   useEffect(() => {
+    const communityPostIdObj = { communityPostId: communityPostId };
     dispatch(
       postApi(
-        "nmb/post-detail",
-        { communityPostId: communityPostId },
+        "nmb/post/get/post-detail",
+        communityPostIdObj,
         fnCommunityDetailCallback
       )
     );
-  }, [communityPostId, dispatch]);
+  }, [dispatch, communityPostId]);
 
   console.log(communityPostObj);
   console.log(communitySelectedProductArr);
