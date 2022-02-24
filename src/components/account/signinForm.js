@@ -1,7 +1,8 @@
+import CommAlert from "components/common/commAlert";
+import classes from "./signinForm.module.css";
 import { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import classes from "./signinForm.module.css";
 import { isEmail, isPassword } from "api/check";
 import logoImg from "img/logo.png";
 import { postApi } from "api/fetch-api";
@@ -9,6 +10,7 @@ import { API_SIGNIN } from "api/signin-api";
 import { userAction } from "store/user-slice";
 import { calculateRemainingTime } from "api/check";
 import { useHistory } from "react-router";
+import { modalAction } from "store/modal-slice";
 
 function SigninForm() {
   const history = useHistory();
@@ -64,11 +66,20 @@ function SigninForm() {
     );
     if (!!res) {
       history.push("/");
+      const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
+      localStorage.setItem("token", res.data.jwtToken);
+      localStorage.setItem("extTokenTime", res.data.extTokenTime);
+      setTimeout(logoutHandler, remainingDuration);
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert title="오류" message="로그인 중 오류가 발생했습니다." />
+          ),
+        })
+      );
     }
-    const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
-    localStorage.setItem("token", res.data.jwtToken);
-    localStorage.setItem("extTokenTime", res.data.extTokenTime);
-    setTimeout(logoutHandler, remainingDuration);
   };
 
   return (

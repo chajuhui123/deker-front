@@ -4,9 +4,11 @@ import CommBtn from "components/common/commBtn";
 import CommSelect from "components/common/CommSelect";
 import CommonPageTitle from "components/common/commPageTitle";
 import noImg from "img/noImg.png";
-import SelectBoxOptionDiv from "./selectBoxOptionDiv";
+// import SelectBoxOptionDiv from "./selectBoxOptionDiv";
+import { useState } from "react";
 
 function ProductOptionSelectBox({ productDetailObj }) {
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const options = [];
   productDetailObj.productDetailOptionArr?.forEach(
     (productDetailOption, index) => {
@@ -29,24 +31,18 @@ function ProductOptionSelectBox({ productDetailObj }) {
         <CommonPageTitle title={productDetailObj.productName} />
         <div className={classes.buyItemInfoDiv}>
           <p>가격 </p>
-          <p>{productDetailObj.productPrice.toLocaleString("ko-KR")}</p>
+          <p>{productDetailObj.productPrice.toLocaleString("ko-KR")} 원</p>
         </div>
-        {/* <BuyItemInfomation
-          text=""
-          component={
-            <CommSelect options={options} placeholder="-- 옵션 선택 --" />
-          }
-        /> */}
-        <SelectBoxOptionDiv
-          text="옵션"
-          component={
-            <CommSelect options={options} placeholder="-- 옵션 선택 --" />
-          }
-        />
-        {/* <div className={classes.buyItemInfoDiv}>
+        <div className={classes.buyItemInfoDiv}>
           <p>옵션</p>
-          <CommSelect options={options} placeholder="-- 옵션 선택 --" />
-        </div> */}
+          <div>
+            <CommSelect
+              width="100%"
+              options={options}
+              placeholder="-- 옵션 선택 --"
+            />
+          </div>
+        </div>
         <div className={classes.buyItemInfoDiv}>
           <p>수량</p>
           <input
@@ -55,9 +51,21 @@ function ProductOptionSelectBox({ productDetailObj }) {
             min="1"
             max={productQuantity}
             defaultValue="0"
+            onChange={(event) => {
+              setSelectedQuantity(parseInt(event.target.value));
+              console.log(typeof selectedQuantity);
+            }}
           />
         </div>
-        <p>주문금액</p>
+        <div className={classes.buyItemInfoDiv}>
+          <p>주문금액</p>
+          <p>
+            {(productDetailObj.productPrice * selectedQuantity).toLocaleString(
+              "ko-KR"
+            )}
+            원
+          </p>
+        </div>
         <div className={classes.btnBox}>
           <CommBtn
             btnText="장바구니"
@@ -66,8 +74,6 @@ function ProductOptionSelectBox({ productDetailObj }) {
             btnWidth="50%"
           />
           <CommBtn btnText="바로구매" btnWidth="50%" />
-          {/* <button>장바구니</button>
-          <button>바로구매</button> */}
         </div>
       </div>
     </div>

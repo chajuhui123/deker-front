@@ -113,7 +113,7 @@ function RouteComponent() {
         component={ProductDetailPage}
       />
       <Route
-        path="/community/detail/:postId"
+        path="/community/detail/:communityPostId"
         exact
         component={CommunityDetailPage}
       />

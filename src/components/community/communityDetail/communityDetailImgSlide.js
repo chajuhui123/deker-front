@@ -1,15 +1,21 @@
 import React from "react";
 import classes from "./communityDetailImgSlide.module.css";
+import { BASE_URL } from "module/common-module";
+import { useHistory } from "react-router";
 
-function CommunityDetailImgSlide() {
-  const imgArray = [
-    "https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fdailylife%2F50e606b8f8ff41628b4440ca2a0017ef.jpg",
-    "https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fdailylife%2F50e606b8f8ff41628b4440ca2a0017ef.jpg",
-    "https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fdailylife%2F50e606b8f8ff41628b4440ca2a0017ef.jpg",
-    "https://img1.daumcdn.net/thumb/R720x0/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Fdailylife%2F50e606b8f8ff41628b4440ca2a0017ef.jpg",
-  ];
-  const imgArrayComponent = imgArray.map((img) => {
-    return <img className={classes.slideImg} src={img} alt="" />;
+function CommunityDetailImgSlide({ communitySelectedProductArr }) {
+  const history = useHistory();
+  const imgArrayComponent = communitySelectedProductArr?.map((productItem) => {
+    return (
+      <img
+        className={classes.slideImg}
+        src={`${BASE_URL}${productItem.productImgUrl}`}
+        alt="상품이미지"
+        onClick={() => {
+          history.push(`/market/detail/${productItem.productId}`);
+        }}
+      />
+    );
   });
   return <div className={classes.slideDiv}>{imgArrayComponent}</div>;
 }

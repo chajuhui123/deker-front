@@ -3,40 +3,12 @@ import classes from "./communityDetailCommentBox.module.css";
 import CommunityDetailCommentItem from "./communityDetailCommentItem";
 import noUserImg from "img/noUserImg.png";
 
-function communityDetailCommentBox() {
-  //  Comment정렬은 최신순
-  const commentObject = {
-    communityPostingId: 1,
-    totalCommentCount: 3,
-    commentList: [
-      {
-        commentUpdateYmdt: "22-02-03",
-        writerId: "id123",
-        writerProfileImgUrl: "",
-        content: "댓글 예시입니다.",
-      },
-      {
-        commentUpdateYmdt: "22-02-02",
-        writerId: "id123",
-        writerProfileImgUrl: "",
-        content: "댓글 예시입니다.",
-      },
-      {
-        commentUpdateYmdt: "22-02-01",
-        writerId: "id123",
-        writerProfileImgUrl: "",
-        content: "댓글 예시입니다.",
-      },
-    ],
-  };
-
+function communityDetailCommentBox({ commentList }) {
   return (
     <div className={classes.commentBoxDiv}>
       <div className={classes.commentSummaryDiv}>
         댓글{" "}
-        <span className={classes.commentCount}>
-          ({commentObject.totalCommentCount})
-        </span>
+        <span className={classes.commentCount}>({commentList.length})</span>
       </div>
       <form className={classes.commentInputDiv}>
         {/* 작성자 프로필 img src */}
@@ -46,16 +18,14 @@ function communityDetailCommentBox() {
       </form>
 
       <div>
-        {commentObject?.commentList?.map(
-          (commentItemObject, commentItemIndex) => {
-            return (
-              <CommunityDetailCommentItem
-                key={commentItemIndex}
-                commentItemObject={commentItemObject}
-              />
-            );
-          }
-        )}
+        {commentList?.map((commentItemObject, commentItemIndex) => {
+          return (
+            <CommunityDetailCommentItem
+              key={commentItemIndex}
+              commentItemObject={commentItemObject}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -10,17 +10,18 @@ function CommunityDetailMainImg({
 }) {
   const {
     postImg,
-    // communityContent,
     // jobCode,
     // materialCode,
     // moodCode,
     // communityTags,
   } = communityPostObj;
+
+  console.log(postImg);
   return (
     <div className={classes.imgWrapper}>
       <img
         className={classes.mainImg}
-        src={`${BASE_URL}${postImg}` || noImg}
+        src={`${BASE_URL}/${postImg}` || noImg}
         alt="커뮤니티 게시글 이미지"
       />
       {communitySelectedProductArr?.map((selectedProduct) => (

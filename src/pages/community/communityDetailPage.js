@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import classes from "./communityDetailPage.module.css";
 import CommunityDetailMainImg from "components/community/communityDetail/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
@@ -12,34 +11,51 @@ const CommunityDetailPage = ({ match }) => {
   const [communityPostObj, setCommunityPostObj] = useState({});
   const [communitySelectedProductArr, setCommunitySelectedProductArr] =
     useState([]);
+  const [commentPageNum, setCommentPageNum] = useState(1);
+  const [commentList, setCommentList] = useState([]);
   const { communityPostId } = match.params;
 
   const fnCommunityDetailCallback = (res) => {
     if (!!res) {
+      const communityPostData = res?.data?.communityPost;
       setCommunityPostObj({
-        postImg: res?.postImg,
-        communityContent: res?.communityContent,
-        jobCode: res?.jobCode,
-        materialCode: res?.materialCode,
-        moodCode: res?.moodCode,
-        communityTags: res?.communityTags, //array
+        postImg: communityPostData?.postImg,
+        communityContent: communityPostData?.communityContent,
+        jobCode: communityPostData?.jobCode,
+        materialCode: communityPostData?.materialCode,
+        moodCode: communityPostData?.moodCode,
+        communityTags: communityPostData?.communityTags, //array
       });
-      setCommunitySelectedProductArr(res?.communityPostSelectedProduct); // Array
+      setCommunitySelectedProductArr(res?.data?.communityPostSelectedProduct); // Array
+    }
+  };
+
+  const fnCommunityCommentCallback = (res) => {
+    if (!!res) {
+      setCommentList(res?.data?.list);
     }
   };
 
   useEffect(() => {
+    const communityPostIdObj = { communityPostId: communityPostId };
     dispatch(
       postApi(
-        "nmb/post-detail",
-        { communityPostId: communityPostId },
+        "nmb/post/get/post-detail",
+        communityPostIdObj,
         fnCommunityDetailCallback
       )
     );
-  }, [communityPostId, dispatch]);
-
-  console.log(communityPostObj);
-  console.log(communitySelectedProductArr);
+    dispatch(
+      postApi(
+        "nmb/post/comments",
+        {
+          currentPageNo: commentPageNum,
+          communityId: communityPostId,
+        },
+        fnCommunityCommentCallback
+      )
+    );
+  }, [dispatch, communityPostId, commentPageNum]);
 
   return (
     <div>
@@ -47,11 +63,13 @@ const CommunityDetailPage = ({ match }) => {
         communityPostObj={communityPostObj}
         communitySelectedProductArr={communitySelectedProductArr}
       />
-      <CommunityDetailImgSlide />
-      <CommunityDetailContent />
+      <CommunityDetailImgSlide
+        communitySelectedProductArr={communitySelectedProductArr}
+      />
+      <CommunityDetailContent communityPostObj={communityPostObj} />
       {/* 게시물 태그 */}
       {/* 좋아요 버튼 */}
-      <CommunityDetailCommentBox /> {/* 댓글 */}
+      <CommunityDetailCommentBox commentList={commentList} /> {/* 댓글 */}
     </div>
   );
 };
