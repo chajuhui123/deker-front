@@ -11,6 +11,8 @@ const CommunityDetailPage = ({ match }) => {
   const [communityPostObj, setCommunityPostObj] = useState({});
   const [communitySelectedProductArr, setCommunitySelectedProductArr] =
     useState([]);
+  const [commentPageNum, setCommentPageNum] = useState(1);
+  const [commentList, setCommentList] = useState([]);
   const { communityPostId } = match.params;
 
   const fnCommunityDetailCallback = (res) => {
@@ -28,6 +30,12 @@ const CommunityDetailPage = ({ match }) => {
     }
   };
 
+  const fnCommunityCommentCallback = (res) => {
+    if (!!res) {
+      setCommentList(res?.data?.list);
+    }
+  };
+
   useEffect(() => {
     const communityPostIdObj = { communityPostId: communityPostId };
     dispatch(
@@ -37,7 +45,17 @@ const CommunityDetailPage = ({ match }) => {
         fnCommunityDetailCallback
       )
     );
-  }, [dispatch, communityPostId]);
+    dispatch(
+      postApi(
+        "nmb/post/comments",
+        {
+          currentPageNo: commentPageNum,
+          communityId: communityPostId,
+        },
+        fnCommunityCommentCallback
+      )
+    );
+  }, [dispatch, communityPostId, commentPageNum]);
 
   return (
     <div>
@@ -51,7 +69,7 @@ const CommunityDetailPage = ({ match }) => {
       <CommunityDetailContent communityPostObj={communityPostObj} />
       {/* 게시물 태그 */}
       {/* 좋아요 버튼 */}
-      <CommunityDetailCommentBox /> {/* 댓글 */}
+      <CommunityDetailCommentBox commentList={commentList} /> {/* 댓글 */}
     </div>
   );
 };
