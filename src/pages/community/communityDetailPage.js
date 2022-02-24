@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import classes from "./communityDetailPage.module.css";
 import CommunityDetailMainImg from "components/community/communityDetail/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
@@ -16,15 +15,16 @@ const CommunityDetailPage = ({ match }) => {
 
   const fnCommunityDetailCallback = (res) => {
     if (!!res) {
+      const communityPostData = res?.data?.communityPost;
       setCommunityPostObj({
-        postImg: res?.postImg,
-        communityContent: res?.communityContent,
-        jobCode: res?.jobCode,
-        materialCode: res?.materialCode,
-        moodCode: res?.moodCode,
-        communityTags: res?.communityTags, //array
+        postImg: communityPostData?.postImg,
+        communityContent: communityPostData?.communityContent,
+        jobCode: communityPostData?.jobCode,
+        materialCode: communityPostData?.materialCode,
+        moodCode: communityPostData?.moodCode,
+        communityTags: communityPostData?.communityTags, //array
       });
-      setCommunitySelectedProductArr(res?.communityPostSelectedProduct); // Array
+      setCommunitySelectedProductArr(res?.data?.communityPostSelectedProduct); // Array
     }
   };
 
@@ -39,17 +39,16 @@ const CommunityDetailPage = ({ match }) => {
     );
   }, [dispatch, communityPostId]);
 
-  console.log(communityPostObj);
-  console.log(communitySelectedProductArr);
-
   return (
     <div>
       <CommunityDetailMainImg
         communityPostObj={communityPostObj}
         communitySelectedProductArr={communitySelectedProductArr}
       />
-      <CommunityDetailImgSlide />
-      <CommunityDetailContent />
+      <CommunityDetailImgSlide
+        communitySelectedProductArr={communitySelectedProductArr}
+      />
+      <CommunityDetailContent communityPostObj={communityPostObj} />
       {/* 게시물 태그 */}
       {/* 좋아요 버튼 */}
       <CommunityDetailCommentBox /> {/* 댓글 */}

@@ -1,26 +1,9 @@
 import React from "react";
 import classes from "./communityDetailContent.module.css";
 
-function CommunityDetailContent() {
-  return (
-    <div className={classes.contentDiv}>
-      본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문
-      내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용
-      더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미
-      데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터
-      본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문
-      내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용
-      더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미
-      데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터
-      본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문
-      내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용
-      더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미
-      데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터
-      본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문
-      내용 더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터 본문 내용
-      더미 데이터 본문 내용 더미 데이터 본문 내용 더미 데이터
-    </div>
-  );
+function CommunityDetailContent({ communityPostObj }) {
+  const { communityContent } = communityPostObj;
+  return <div className={classes.contentDiv}>{communityContent}</div>;
 }
 
 export default CommunityDetailContent;
