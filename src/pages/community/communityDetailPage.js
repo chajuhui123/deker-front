@@ -68,7 +68,12 @@ const CommunityDetailPage = ({ match }) => {
         communitySelectedProductArr={communitySelectedProductArr}
       />
       <CommunityDetailContent communityPostObj={communityPostObj} />
-      <CommunityDetailTags />
+      <CommunityDetailTags
+        communityTags={communityPostObj?.communityTags}
+        jobCode={communityPostObj?.jobCode}
+        materialCode={communityPostObj?.materialCode}
+        moodCode={communityPostObj?.moodCode}
+      />
       {/* 좋아요 버튼 */}
       <CommunityDetailCommentBox commentList={commentList} /> {/* 댓글 */}
     </div>

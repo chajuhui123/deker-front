@@ -24,14 +24,16 @@ function CommunityDetailMainImg({
         src={`${BASE_URL}/${postImg}` || noImg}
         alt="커뮤니티 게시글 이미지"
       />
-      {communitySelectedProductArr?.map((selectedProduct) => (
-        <div className={classes.locationIconDiv}>
-          <CommunityDetailLocationIcon
-            top={selectedProduct?.offsetX}
-            left={selectedProduct?.offsetY}
-          />
-        </div>
-      ))}
+      {communitySelectedProductArr?.map(
+        (selectedProduct, selectedProductIndex) => (
+          <div key={selectedProductIndex} className={classes.locationIconDiv}>
+            <CommunityDetailLocationIcon
+              top={selectedProduct?.offsetX}
+              left={selectedProduct?.offsetY}
+            />
+          </div>
+        )
+      )}
     </div>
   );
 }
