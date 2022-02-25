@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CommunityDetailMainImg from "components/community/communityDetail/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
+import CommunityDetailTags from "components/community/communityDetail/communityDetailTags";
 import CommunityDetailCommentBox from "components/community/communityDetail/communityDetailCommentBox";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
@@ -67,7 +68,7 @@ const CommunityDetailPage = ({ match }) => {
         communitySelectedProductArr={communitySelectedProductArr}
       />
       <CommunityDetailContent communityPostObj={communityPostObj} />
-      {/* 게시물 태그 */}
+      <CommunityDetailTags />
       {/* 좋아요 버튼 */}
       <CommunityDetailCommentBox commentList={commentList} /> {/* 댓글 */}
     </div>
