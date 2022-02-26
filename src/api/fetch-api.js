@@ -12,12 +12,14 @@ const BASE_URL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
  * @param {Function} callback : 콜백 메소드
  * @returns
  */
-export function postApi(action, data, callback) {
+export function postApi(action, data, callback, spinner) {
   const url = `${BASE_URL}/${action}`;
   const token = "Bearer " + localStorage.getItem("token");
 
   return (dispatch) => {
-    dispatch(spinnerAction.loading());
+    if (!!spinner) {
+      dispatch(spinnerAction.loading());
+    }
     fetch(url, {
       method: "POST",
       headers: {

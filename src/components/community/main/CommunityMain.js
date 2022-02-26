@@ -1,5 +1,8 @@
 import classes from "./CommunityMain.module.css";
 import CommunitySection from "../semi/section/CommunitySection";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postApi } from "api/fetch-api";
 
 const DUMMY_RANK = [
   {
@@ -101,19 +104,35 @@ const DUMMY_RANK = [
 ];
 
 const CommunityMain = (props) => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [ranks, setRanks] = useState([]);
+  const [follow, setFollow] = useState([]);
+  const [custom, setCustom] = useState([]);
+  const fnCallback = (res) => {
+    console.log("CommunityMain :: res :: ", res);
+    if (!!res) {
+      setRanks(res.data.ranks);
+      setFollow(res.data.follow);
+      setCustom(res.data.custom);
+    }
+  };
+  useEffect(() => {
+    let url = isLoggedIn ? "mb/post/get" : "";
+    if (isLoggedIn) {
+      // TODO : 비회원 url 생성되면 조건문 삭제
+      dispatch(postApi(url, null, fnCallback));
+    } else {
+      setRanks(DUMMY_RANK);
+      setFollow(DUMMY_RANK.slice(0, 4));
+      setCustom(DUMMY_RANK.slice(4, 8));
+    }
+  }, [dispatch, isLoggedIn]);
   return (
     <div className={classes.main}>
-      <CommunitySection type="rank" page="main" data={DUMMY_RANK} />
-      <CommunitySection
-        type="follow"
-        page="main"
-        data={DUMMY_RANK.slice(0, 4)}
-      />
-      <CommunitySection
-        type="custom"
-        page="main"
-        data={DUMMY_RANK.slice(4, 8)}
-      />
+      <CommunitySection type="rank" page="main" data={ranks} />
+      <CommunitySection type="follow" page="main" data={follow} />
+      <CommunitySection type="custom" page="main" data={custom} />
     </div>
   );
 };

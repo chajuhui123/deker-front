@@ -58,13 +58,13 @@ function SigninForm() {
   }, [dispatch]);
 
   const fnCallback = (res) => {
-    console.log(res);
-    dispatch(
-      userAction.login({
-        jwtToken: res.data.jwtToken,
-      })
-    );
+    console.log("signinForm :: res :: ", res);
     if (!!res) {
+      dispatch(
+        userAction.login({
+          jwtToken: res.data.jwtToken,
+        })
+      );
       history.push("/");
       const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
       localStorage.setItem("token", res.data.jwtToken);
