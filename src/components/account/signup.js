@@ -26,6 +26,7 @@ function Signup(props) {
   const [emailCode, setEmailCode] = useState("");
   const [emailAuth, setEmailAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [agreeYn, setAgreeYn] = useState(false);
 
   const userIdRef = useRef();
   const passwordRef = useRef();
@@ -55,6 +56,10 @@ function Signup(props) {
   const emailCodeInputHandler = (e) => {
     setEmailCode(e.target.value);
   };
+  // 약관동의 Input checkbox Handler
+  const agreeYnHandler = () => {
+    setAgreeYn((prev) => !prev);
+  };
 
   const submit = () => {
     const signupData = {
@@ -69,7 +74,7 @@ function Signup(props) {
 
   // back 호출 후 success callback method
   const fnCallback = (res) => {
-    console.log(res);
+    console.log("signup :: res :: ", res);
     if (!!res) {
       history.push("/signup/additional");
     } else {
@@ -116,15 +121,17 @@ function Signup(props) {
     const sendData = {
       id: userIdRef.current.value,
     };
-    dispatch(postApi("nmb/acct/member/mail-send", sendData, emailSendCallback));
+    dispatch(
+      postApi("nmb/acct/member/mail-send", sendData, emailSendCallback, false)
+    );
   };
 
   const emailSendCallback = (res) => {
     console.log("emailSendCallback :: ", res);
     if (!!res) {
-      setIsLoading(false);
       setSendEmail(true);
     }
+    setIsLoading(false);
   };
 
   const emailCodeHandler = () => {
@@ -134,13 +141,17 @@ function Signup(props) {
       checkString: emailCodeRef.current.value,
     };
     dispatch(
-      postApi("nmb/acct/get/member/mail/check", sendData, emailCodeCallback)
+      postApi(
+        "nmb/acct/get/member/mail/check",
+        sendData,
+        emailCodeCallback,
+        false
+      )
     );
   };
 
   const emailCodeCallback = (res) => {
     console.log("emailCodeCallback :: ", res);
-    setIsLoading(false);
     if (!!res) {
       console.log("setEmailAuth(true)");
       setEmailAuth(true);
@@ -159,6 +170,7 @@ function Signup(props) {
       setEmailAuth(false);
       setSendEmail(false);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -227,8 +239,29 @@ function Signup(props) {
               onChange={nicknameInputHandler}
               refer={nicknameRef}
             />
-            <p>약관동의</p>
-            <div>약관 영역</div>
+            <div>
+              <p>약관동의</p>
+              <div className={classes.agreeArea}>
+                <div>
+                  <label>
+                    <div>
+                      <input
+                        type="checkbox"
+                        name="agree"
+                        onChange={agreeYnHandler}
+                        value={agreeYn}
+                      />
+                    </div>
+                    <span className={classes.agreeCont}>
+                      <div>
+                        이용약관
+                        <span>(필수)</span>
+                      </div>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -237,12 +270,14 @@ function Signup(props) {
         btnWidth="100%"
         btnMargin="30px auto"
         bgColor={
-          (!isSame || !checkPassword || !nickname || !emailAuth) && "gray"
+          (!isSame || !checkPassword || !nickname || !emailAuth || !agreeYn) &&
+          "gray"
         }
         btnCursor="pointer"
         radius="4px"
         fnClick={signupSubmitHandler}
       />
+
       <div className={classes.guideArea}>
         <p className={classes.guideText}>이미 아이디가 있으신가요?</p>
         <p className={classes.loginText} onClick={loginPageHandler}>
