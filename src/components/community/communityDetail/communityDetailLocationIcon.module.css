@@ -20,9 +20,10 @@
   background-color: var(--main_color);
 }
 .locationToolTip {
+  z-index: 1;
   display: none;
   position: absolute;
-  margin: 6px 0 0 0;
+  margin: 6px 0;
   left: -150px;
   text-align: center;
   border-radius: 4px;
@@ -32,7 +33,20 @@
   box-shadow: 0 5px 5px rgba(81, 83, 90, 0.103);
   padding: 9px;
 }
+
+.locationToolTip::after {
+  content: " "; /* 정사각형 영역 사용 */
+  position: absolute; /* 절대 위치 사용 */
+  border-style: solid;
+  border-width: 5px; /* 테두리 넓이를 5px 로 설정 */
+}
+
 .locationIcon:hover + .locationToolTip {
+  display: flex;
+}
+
+.locationToolTip:hover {
+  cursor: pointer;
   display: flex;
 }
 .toolTipImg {

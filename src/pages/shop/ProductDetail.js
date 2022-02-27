@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { BASE_URL } from "module/common-module";
 
 const ProductDetailPage = ({ match }) => {
+  const [pageNo, setPageNo] = useState(1);
   const [productDetailObj, setProductDetailObj] = useState({
     productName: "",
     productPrice: 0,
@@ -25,7 +26,6 @@ const ProductDetailPage = ({ match }) => {
   const dispatch = useDispatch();
 
   const { productId } = match.params;
-  // const productId = "PDTID_00000000000000"; // 더미데이터
 
   const fnProudctDetailCallback = (res) => {
     if (!!res) {
@@ -51,7 +51,10 @@ const ProductDetailPage = ({ match }) => {
     console.log("review Callback ", res);
     if (!!res) {
       setProductReviewsObj({
-        reviewsArr: res.data.reviews, // 배열 내부 오브젝트 형태 [{},{},{}]
+        totalCount: res.data.totalCount,
+        linkPagesArr: res.data.linkPages,
+        currentPageNo: res.data.currentPageNo,
+        reviewsArr: res.data.list, // 배열 내부 오브젝트 형태 [{},{},{}]
       });
     }
   };
@@ -92,7 +95,11 @@ const ProductDetailPage = ({ match }) => {
       <ProductOptionSelectBox productDetailObj={productDetailObj} />
       <ProductDetailInfo productDetailObj={productDetailObj} />
       <ProductRecommendBox productRecommendObj={productRecommendObj} />
-      <ProductReviewBox productReviewsObj={productReviewsObj} />
+      <ProductReviewBox
+        pageNo={pageNo}
+        setPageNo={setPageNo}
+        productReviewsObj={productReviewsObj}
+      />
     </div>
   );
 };

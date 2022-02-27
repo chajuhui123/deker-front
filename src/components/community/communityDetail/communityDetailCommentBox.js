@@ -27,6 +27,8 @@ function communityDetailCommentBox({ commentList }) {
           );
         })}
       </div>
+
+      <div></div>
     </div>
   );
 }

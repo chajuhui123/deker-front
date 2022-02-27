@@ -8,28 +8,24 @@ function CommunityDetailMainImg({
   communityPostObj,
   communitySelectedProductArr,
 }) {
-  const {
-    postImg,
-    // jobCode,
-    // materialCode,
-    // moodCode,
-    // communityTags,
-  } = communityPostObj;
+  const { postImg } = communityPostObj;
 
   console.log(postImg);
   return (
     <div className={classes.imgWrapper}>
       <img
         className={classes.mainImg}
-        src={`${BASE_URL}/${postImg}` || noImg}
+        // src={`${BASE_URL}/${postImg}` || noImg}
+        src={noImg}
         alt="커뮤니티 게시글 이미지"
       />
       {communitySelectedProductArr?.map(
-        (selectedProduct, selectedProductIndex) => (
+        (selectedProductObj, selectedProductIndex) => (
           <div key={selectedProductIndex} className={classes.locationIconDiv}>
             <CommunityDetailLocationIcon
-              top={selectedProduct?.offsetX}
-              left={selectedProduct?.offsetY}
+              selectedProductObj={selectedProductObj}
+              top={selectedProductObj?.offsetX}
+              left={selectedProductObj?.offsetY}
             />
           </div>
         )

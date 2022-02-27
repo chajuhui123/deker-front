@@ -9,3 +9,12 @@
   color: #707070;
   font-size: 28px;
 }
+
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paginationBox:hover {
+  cursor: pointer;
+}
