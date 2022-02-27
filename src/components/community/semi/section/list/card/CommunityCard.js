@@ -37,7 +37,7 @@ const CommunityCard = (props) => {
                 ? data.userNick.slice(0, 4).replace(" ", "") + "..."
                 : data.userNick}
             </p>
-            {data.following ? (
+            {data.followingCheck ? (
               <div className={classes.followButton} onClick={followHandler}>
                 팔로우
               </div>
