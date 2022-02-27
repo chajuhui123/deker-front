@@ -81,6 +81,24 @@ function ModalTest(props) {
   const alertCloseHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
+  const arrayTest = () => {
+    const array = [
+      { id: 1, isFollow: false },
+      { id: 2, isFollow: false },
+      { id: 1, isFollow: false },
+      { id: 4, isFollow: false },
+      { id: 5, isFollow: false },
+      { id: 1, isFollow: false },
+      { id: 7, isFollow: false },
+      { id: 8, isFollow: false },
+    ];
+    array.forEach((i) => {
+      if (i.id === 1) {
+        i.isFollow = true;
+      }
+    });
+    console.log(array);
+  };
   return (
     <div className={classes.modalTest}>
       <CommBtn btnText="스피너 테스트" isLoading={isLoading} btnWidth="30%" />
@@ -117,6 +135,9 @@ function ModalTest(props) {
         </li>
         <li>
           <button onClick={testCommAlert}>공통얼럿</button>
+        </li>
+        <li>
+          <button onClick={arrayTest}>배열테스트</button>
         </li>
       </ul>
     </div>

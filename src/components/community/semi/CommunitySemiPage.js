@@ -1,3 +1,6 @@
+import { postApi } from "api/fetch-api";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./CommunitySemiPage.module.css";
 import CommunitySection from "./section/CommunitySection";
 
@@ -295,9 +298,55 @@ const DUMMY_RANK = [
 const CommunitySemiPage = (props) => {
   const { params } = props.match;
   const type = params.type;
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [list, setList] = useState([]);
+  // TODO : Back 생성 후 연결 해야함
+  // const dispatch = useDispatch();
+  const followingHandler = (userId) => {
+    const data = {
+      userId,
+    };
+    console.log(data);
+    // dispatch(postApi("", data, fnCallback));
+  };
+  const fnFollowCallback = (res) => {
+    console.log(`CommunitySemiPage :: res :: ${JSON.stringify(res)}`);
+    if (!!res) {
+      setList((prev) =>
+        prev.map((item) => {
+          if (item.userId === res.data.userId) {
+            item.followingCheck = res.data.followingCheck;
+          }
+          return item;
+        })
+      );
+    }
+  };
+  const fnCallback = (res) => {
+    console.log("CommunityMain :: res :: ", res);
+    if (!!res) {
+      setList(res.data.ranks);
+    }
+  };
+  useEffect(() => {
+    let url = isLoggedIn ? "mb/post/get" : "nmb/post/get";
+    console.log(`isLoggedIn :: ${isLoggedIn}`);
+    if (isLoggedIn) {
+      // TODO : 비회원 url 생성되면 조건문 삭제
+      dispatch(postApi(url, null, fnCallback));
+    } else {
+      setList(DUMMY_RANK);
+    }
+  }, [dispatch, isLoggedIn]);
+
   return (
     <div className={classes.main}>
-      <CommunitySection type={type} data={DUMMY_RANK} />
+      <CommunitySection
+        type={type}
+        data={list}
+        followingHandler={followingHandler}
+      />
     </div>
   );
 };
