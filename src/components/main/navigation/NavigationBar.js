@@ -1,18 +1,24 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import classes from "./NavigationBar.module.css";
-import { FiMenu, FiX, FiSearch } from "react-icons/fi";
-import { MdShoppingBasket } from "react-icons/md";
 import logoImg from "img/logo.png";
 import SubNavigationBar from "./SubNavigationBar";
 import NavigationUserItem from "./NavigationUserItem";
+import { FiMenu, FiX, FiSearch } from "react-icons/fi";
+import { MdShoppingBasket } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { postApi } from "api/fetch-api";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function NavigationBar() {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
   const [opend, setOpen] = useState(false); //false = bars, true = times
   const [clickedMenu, setClickedMenu] = useState("community");
 
-  const handleOnFixMenu = () => {
-    setOpen(!opend);
+  const navigationBarCallBack = (res) => {
+    console.log("네비게이션 아이템", res);
   };
 
   const clickOnMenu = (event) => {
@@ -26,8 +32,6 @@ function NavigationBar() {
       setClickedMenu("market");
     }
   };
-
-  console.log("clickedMenu", clickedMenu);
 
   const MENU_DUMMY = {
     menu: [
@@ -97,6 +101,11 @@ function NavigationBar() {
     </li>
   ));
 
+  useEffect(() => {
+    const navbarGetUrl = isLoggedIn ? "mb/" : "nmb/";
+    dispatch(postApi(navbarGetUrl, null, navigationBarCallBack));
+  }, [dispatch, isLoggedIn]);
+
   return (
     <>
       <nav className={classes.navbar}>
@@ -119,9 +128,8 @@ function NavigationBar() {
             </div>
           </ul>
         )}
-        <div className={classes.navIcon} onClick={handleOnFixMenu}>
-          {opend ? <FiX /> : <FiMenu />}
-        </div>
+        {/* <div className={classes.navIcon} onClick={handleOnFixMenu}> */}
+        <div className={classes.navIcon}>{opend ? <FiX /> : <FiMenu />}</div>
       </nav>
 
       {opend && (
