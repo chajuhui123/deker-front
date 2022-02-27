@@ -3,103 +3,69 @@ import classes from "./NavigationBar.module.css";
 import logoImg from "img/logo.png";
 import SubNavigationBar from "./SubNavigationBar";
 import NavigationUserItem from "./NavigationUserItem";
-import { FiMenu, FiX, FiSearch } from "react-icons/fi";
-import { MdShoppingBasket } from "react-icons/md";
+import { RiShoppingBasketLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { postApi } from "api/fetch-api";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { BASE_URL } from "module/common-module";
 
 function NavigationBar() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
+  const [mainNavMenu, setMainNavMenu] = useState([]);
+  const [subNavMenu, setSubNavMenu] = useState({});
+  const [isMoreMenu, setIsMoreMenu] = useState(false);
+
   const [opend, setOpen] = useState(false); //false = bars, true = times
   const [clickedMenu, setClickedMenu] = useState("community");
 
+  const handleMoreMenu = () => {
+    setIsMoreMenu(!isMoreMenu);
+  };
+
   const navigationBarCallBack = (res) => {
-    console.log("네비게이션 아이템", res);
-  };
-
-  const clickOnMenu = (event) => {
-    const clickedMenuInnerText = event.target.innerText;
-    setOpen(false);
-    setClickedMenu(null);
-    if (clickedMenuInnerText === "커뮤니티" || clickedMenuInnerText === "") {
-      setClickedMenu("community");
-    }
-    if (clickedMenuInnerText === "마켓") {
-      setClickedMenu("market");
+    if (!!res) {
+      setMainNavMenu(res.data.menu);
+      setSubNavMenu({
+        community: res.data.subMenu.community,
+        market: res.data.subMenu.market,
+      });
     }
   };
 
-  const MENU_DUMMY = {
-    menu: [
-      {
-        menuName: "",
-        menuImgUrl: "img/logo.png",
-        menuUrl: "/",
-      },
-      {
-        menuName: "커뮤니티",
-        menuImgUrl: "",
-        menuUrl: "/community",
-      },
-      {
-        menuName: "마켓",
-        menuImgUrl: "",
-        menuUrl: "/market",
-      },
-    ],
-    subMenu: {
-      community: [
-        {
-          menuName: "메인",
-          menuUrl: "/community",
-        },
-        {
-          menuName: "사진",
-          menuUrl: "/community/photo",
-        },
-        {
-          menuName: "맞춤",
-          menuUrl: "/community/personal",
-        },
-        {
-          menuName: "팔로잉",
-          menuUrl: "/community/following",
-        },
-      ],
+  // const clickOnMenu = (event) => {
+  //   const clickedMenuInnerText = event.target.innerText;
+  //   setOpen(false);
+  //   setClickedMenu(null);
+  //   if (clickedMenuInnerText === "커뮤니티" || clickedMenuInnerText === "") {
+  //     setClickedMenu("community");
+  //   }
+  //   if (clickedMenuInnerText === "마켓") {
+  //     setClickedMenu("market");
+  //   }
+  // };
 
-      market: [
-        {
-          menuName: "메인",
-          menuUrl: "/market",
-        },
-        {
-          menuName: "장바구니",
-          menuUrl: "/market/cart",
-        },
-        {
-          menuName: "최근본상품",
-          menuUrl: "/market/view",
-        },
-      ],
-    },
-  };
-
-  const menuList = MENU_DUMMY.menu.map((menu, index) => (
-    <li key={index} className={classes.navItem}>
-      <Link to={menu.menuUrl} className={classes.navLink} onClick={clickOnMenu}>
-        {menu.menuImgUrl !== "" ? (
-          // 추후 로고 이미지는 서버에서 넘어져 오는 imgUrl 로 src 변경
-          <img className={classes.navLogo} src={logoImg} alt="로고" />
+  const mainNavMenuList = mainNavMenu.map((navItem, navItemIndex) => {
+    return (
+      <Link
+        key={navItemIndex}
+        to={navItem.menuUrl}
+        className={classes.menuItem}
+      >
+        {!!navItem.menuImgUrl ? (
+          <img
+            className={classes.logoImg}
+            src={`${BASE_URL}${navItem.menuImgUrl}`}
+            alt="DEKER"
+          />
         ) : (
-          <p>{menu.menuName}</p>
+          <div>{navItem.menuName}</div>
         )}
       </Link>
-    </li>
-  ));
+    );
+  });
 
   useEffect(() => {
     const navbarGetUrl = isLoggedIn ? "mb/" : "nmb/";
@@ -107,40 +73,59 @@ function NavigationBar() {
   }, [dispatch, isLoggedIn]);
 
   return (
-    <>
-      <nav className={classes.navbar}>
-        {!opend && (
-          <ul className={classes.navLinks}>
-            <div className={classes.navLeft}>{menuList}</div>
-            <div className={classes.navRight}>
-              <li className={classes.navItem}>
-                <form>
-                  <input placeholder="Search" className={classes.navInput} />
-                  <button className={classes.navBtn}>
-                    <FiSearch />
-                  </button>
-                </form>
-              </li>
-              <li>
-                <MdShoppingBasket size="32" className={classes.navBasket} />
-              </li>
-              <NavigationUserItem clickOnMenu={clickOnMenu} />
-            </div>
-          </ul>
-        )}
-        {/* <div className={classes.navIcon} onClick={handleOnFixMenu}> */}
-        <div className={classes.navIcon}>{opend ? <FiX /> : <FiMenu />}</div>
-      </nav>
+    // <>
+    //   <nav className={classes.navbar}>
+    //     {!opend && (
+    //       <ul className={classes.navLinks}>
+    //         <div className={classes.navLeft}>{menuList}</div>
+    //         <div className={classes.navRight}>
+    //           <li className={classes.navItem}>
+    //             <form>
+    //               <input placeholder="Search" className={classes.navInput} />
+    //               <button className={classes.navBtn}>
+    //                 <FiSearch />
+    //               </button>
+    //             </form>
+    //           </li>
+    //           <li>
+    //             <MdShoppingBasket size="32" className={classes.navBasket} />
+    //           </li>
+    //           <NavigationUserItem clickOnMenu={clickOnMenu} />
+    //         </div>
+    //       </ul>
+    //     )}
+    //     {/* <div className={classes.navIcon} onClick={handleOnFixMenu}> */}
+    //     <div className={classes.navIcon}>{opend ? <FiX /> : <FiMenu />}</div>
+    //   </nav>
 
-      {opend && (
-        <ul className={classes.navLinks.active}>
-          {menuList}
-          <NavigationUserItem clickOnMenu={clickOnMenu} />
-        </ul>
+    //   {opend && (
+    //     <ul className={classes.navLinks.active}>
+    //       {menuList}
+    //       <NavigationUserItem clickOnMenu={clickOnMenu} />
+    //     </ul>
+    //   )}
+
+    //   <SubNavigationBar navItem={MENU_DUMMY.subMenu[clickedMenu]} />
+    // </>
+    <div className={classes.navBarDiv}>
+      <div className={classes.navBarMenu}>{mainNavMenuList}</div>
+      <div className={classes.navBarUserMenu}>
+        <RiShoppingBasketLine size={25} className={classes.basketIcon} />
+        <Link to="/signin">로그인</Link>
+        <Link to="/signup">회원가입</Link>
+        <div onClick={handleMoreMenu}>더보기</div>
+      </div>
+      {!!isMoreMenu && (
+        <div className={classes.moreMenuToolTip}>
+          <div>글쓰기</div>
+          <div>마이페이지</div>
+          <div>나의쇼핑</div>
+          <div>나의선물함</div>
+          <div>회원정보수정</div>
+          <div>로그아웃</div>
+        </div>
       )}
-
-      <SubNavigationBar navItem={MENU_DUMMY.subMenu[clickedMenu]} />
-    </>
+    </div>
   );
 }
 

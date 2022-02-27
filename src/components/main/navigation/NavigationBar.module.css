@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --text-color: #4242e2;
   --background-color: #ffffff;
   --accent-color: #4242e2;
@@ -135,4 +135,68 @@ a {
   .navIcon {
     display: flex;
   }
+} */
+
+.navBarDiv {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  /* width: 100%; */
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 30px;
+}
+
+.navBarMenu {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.logoImg {
+  width: 120px;
+  margin: 0 10px 0 0;
+}
+
+.menuItem {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--main_color);
+}
+.menuItem:hover {
+  color: var(--main-color-500);
+}
+
+.navBarUserMenu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navBarUserMenu a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--gray-font-color);
+}
+
+.basketIcon {
+  color: var(--gray-font-color);
+  padding: 4px;
+}
+.basketIcon:hover {
+  background-color: var(--main_color);
+  color: var(--border-color);
+  border-radius: 100%;
+}
+
+.moreMenuToolTip {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  width: 100px;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  background-color: var(--border-color);
+  color: var(--gray-font-color);
 }
