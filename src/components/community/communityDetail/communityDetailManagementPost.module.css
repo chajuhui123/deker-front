@@ -1,0 +1,11 @@
+.managementDiv {
+  color: var(--gray-hover-font-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.managementDiv p {
+  cursor: pointer;
+}

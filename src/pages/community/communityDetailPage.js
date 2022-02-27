@@ -6,6 +6,8 @@ import CommunityDetailTags from "components/community/communityDetail/communityD
 import CommunityDetailCommentBox from "components/community/communityDetail/communityDetailCommentBox";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
+import CommunityDetailLike from "components/community/communityDetail/communityDetailLike";
+import CommunityDetailManagementPost from "components/community/communityDetail/communityDetailManagementPost";
 
 const CommunityDetailPage = ({ match }) => {
   const dispatch = useDispatch();
@@ -74,8 +76,17 @@ const CommunityDetailPage = ({ match }) => {
         materialCode={communityPostObj?.materialCode}
         moodCode={communityPostObj.moodCode}
       />
-      {/* 좋아요 버튼 */}
-      <CommunityDetailCommentBox commentList={commentList} /> {/* 댓글 */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "40px 0 20px 0",
+        }}
+      >
+        <CommunityDetailLike />
+        <CommunityDetailManagementPost communityPostId={communityPostId} />
+      </div>
+      <CommunityDetailCommentBox commentList={commentList} />
     </div>
   );
 };

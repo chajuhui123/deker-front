@@ -1,0 +1,14 @@
+.likeBtn {
+  cursor: pointer;
+  display: flex;
+  padding: 10px 13px;
+  border-radius: var(--border-radius);
+  align-items: center;
+  justify-content: center;
+  background-color: var(--border-color);
+}
+
+.likeBtn p {
+  color: var(--gray-font-color);
+  margin: 0 0 0 6px;
+}
