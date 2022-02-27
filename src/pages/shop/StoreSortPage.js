@@ -231,6 +231,12 @@ const StoreSortPage = (props) => {
         {sortId === "C04" && <ProductList products={DUMMY_DATA2} />}
         {sortId === "C05" && <ProductList products={DUMMY_DATA2} />}
         {sortId === "C01" && <ProductList products={DUMMY_DATA2} />}
+        {sortId !== "rank" &&
+          sortId !== "C02" &&
+          sortId !== "C03" &&
+          sortId !== "C04" &&
+          sortId !== "C05" &&
+          sortId !== "C01" && <div>유효한요청이아닙니다</div>}
       </div>
     </div>
   );
