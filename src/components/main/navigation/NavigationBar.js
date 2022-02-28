@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./NavigationBar.module.css";
-import logoImg from "img/logo.png";
-import SubNavigationBar from "./SubNavigationBar";
-import NavigationUserItem from "./NavigationUserItem";
+// import SubNavigationBar from "./SubNavigationBar";
+// import NavigationUserItem from "./NavigationUserItem";
 import { RiShoppingBasketLine } from "react-icons/ri";
+import { BiGift } from "react-icons/bi";
+import { IoIosAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { postApi } from "api/fetch-api";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { BASE_URL } from "module/common-module";
+import MoreMenuToolTip from "./MoreMenuToolTip";
 
-function NavigationBar() {
+function NavigationBar({ match }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
@@ -18,8 +20,8 @@ function NavigationBar() {
   const [subNavMenu, setSubNavMenu] = useState({});
   const [isMoreMenu, setIsMoreMenu] = useState(false);
 
-  const [opend, setOpen] = useState(false); //false = bars, true = times
-  const [clickedMenu, setClickedMenu] = useState("community");
+  // const [opend, setOpen] = useState(false); //false = bars, true = times
+  // const [clickedMenu, setClickedMenu] = useState("community");
 
   const handleMoreMenu = () => {
     setIsMoreMenu(!isMoreMenu);
@@ -110,21 +112,18 @@ function NavigationBar() {
     <div className={classes.navBarDiv}>
       <div className={classes.navBarMenu}>{mainNavMenuList}</div>
       <div className={classes.navBarUserMenu}>
-        <RiShoppingBasketLine size={25} className={classes.basketIcon} />
+        <BiGift className={classes.menuIcon} size={25} />
+        <RiShoppingBasketLine className={classes.menuIcon} size={25} />
         <Link to="/signin">로그인</Link>
         <Link to="/signup">회원가입</Link>
-        <div onClick={handleMoreMenu}>더보기</div>
+        <IoIosAddCircle
+          className={classes.moreIcon}
+          size={32}
+          onClick={handleMoreMenu}
+        />
+        {/* <div onClick={handleMoreMenu}>더보기</div> */}
       </div>
-      {!!isMoreMenu && (
-        <div className={classes.moreMenuToolTip}>
-          <div>글쓰기</div>
-          <div>마이페이지</div>
-          <div>나의쇼핑</div>
-          <div>나의선물함</div>
-          <div>회원정보수정</div>
-          <div>로그아웃</div>
-        </div>
-      )}
+      {!!isMoreMenu && <MoreMenuToolTip />}
     </div>
   );
 }

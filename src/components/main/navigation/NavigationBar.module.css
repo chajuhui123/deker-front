@@ -180,23 +180,16 @@ a {
   color: var(--gray-font-color);
 }
 
-.basketIcon {
+.menuIcon {
   color: var(--gray-font-color);
   padding: 4px;
 }
-.basketIcon:hover {
+.menuIcon:hover {
   background-color: var(--main_color);
   color: var(--border-color);
   border-radius: 100%;
 }
 
-.moreMenuToolTip {
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  width: 100px;
-  padding: 10px;
-  border-radius: var(--border-radius);
-  background-color: var(--border-color);
-  color: var(--gray-font-color);
+.moreIcon {
+  color: var(--main_color);
 }
