@@ -3,6 +3,12 @@ import CommunitySection from "../semi/section/CommunitySection";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postApi } from "api/fetch-api";
+import Carousel from "react-material-ui-carousel";
+import { Paper } from "@mui/material";
+import slide1 from "img/main/slide1.jpg";
+import slide2 from "img/main/slide2.jpg";
+import slide3 from "img/main/slide3.jpg";
+import slide4 from "img/main/slide4.jpg";
 
 const DUMMY_RANK = [
   {
@@ -176,8 +182,33 @@ const CommunityMain = (props) => {
       setCustom(DUMMY_RANK.slice(4, 8));
     }
   }, [dispatch, isLoggedIn]);
+
+  const mainSlideImage = [slide1, slide2, slide3, slide4];
+
   return (
     <div className={classes.main}>
+      <div className={classes.slider}>
+        <Carousel
+          animation="slide"
+          duration={1100}
+          autoPlay={false}
+          stopAutoPlayOnHover={true}
+          navButtonsAlwaysVisible={true}
+          fullHeightHover={true}
+        >
+          {mainSlideImage.map((item, i) => {
+            return (
+              <Paper key={i}>
+                <img
+                  style={{ width: "800px", height: "600px" }}
+                  alt={`이미지`}
+                  src={item}
+                />
+              </Paper>
+            );
+          })}
+        </Carousel>
+      </div>
       <CommunitySection
         type="rank"
         page="main"
