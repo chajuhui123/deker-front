@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./NavigationBar.module.css";
 // import SubNavigationBar from "./SubNavigationBar";
@@ -14,6 +14,7 @@ import MoreMenuToolTip from "./MoreMenuToolTip";
 
 function NavigationBar() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   const [mainNavMenu, setMainNavMenu] = useState([]);
@@ -123,8 +124,20 @@ function NavigationBar() {
         )}
         {!!isLoggedIn && (
           <>
-            <BiGift className={classes.menuIcon} size={25} />
-            <RiShoppingBasketLine className={classes.menuIcon} size={25} />
+            <BiGift
+              className={classes.menuIcon}
+              size={25}
+              onClick={() => {
+                history.push("/mypresent");
+              }}
+            />
+            <RiShoppingBasketLine
+              className={classes.menuIcon}
+              size={25}
+              onClick={() => {
+                history.push("/market/cart");
+              }}
+            />
             <IoIosAddCircle
               className={classes.moreIcon}
               size={32}

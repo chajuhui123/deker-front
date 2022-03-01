@@ -89,13 +89,11 @@ function RouteComponent() {
           <ModifyPasswordPage />
         </div>
       </Route>
-      <RestrictRoute
-        path="/myPresent"
-        exact
-        isLoggedIn={!isLoggedIn}
-        component={MyPresentPage}
-        fallback={RedriectMain}
-      />
+      <Route path="/mypresent" exact>
+        <div>
+          <MyPresentPage />
+        </div>
+      </Route>
       <RestrictRoute
         path="/myReview"
         exact

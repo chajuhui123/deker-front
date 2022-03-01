@@ -181,6 +181,7 @@ a {
 }
 
 .menuIcon {
+  cursor: pointer;
   color: var(--gray-font-color);
   padding: 4px;
 }
@@ -191,5 +192,6 @@ a {
 }
 
 .moreIcon {
+  cursor: pointer;
   color: var(--main_color);
 }
