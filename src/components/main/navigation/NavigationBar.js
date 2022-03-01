@@ -12,7 +12,7 @@ import { postApi } from "api/fetch-api";
 import { BASE_URL } from "module/common-module";
 import MoreMenuToolTip from "./MoreMenuToolTip";
 
-function NavigationBar({ match }) {
+function NavigationBar() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
@@ -69,6 +69,9 @@ function NavigationBar({ match }) {
     );
   });
 
+  console.log(subNavMenu.community);
+  console.log(subNavMenu.market);
+
   useEffect(() => {
     const navbarGetUrl = isLoggedIn ? "mb/" : "nmb/";
     dispatch(postApi(navbarGetUrl, null, navigationBarCallBack));
@@ -112,20 +115,27 @@ function NavigationBar({ match }) {
     <div className={classes.navBarDiv}>
       <div className={classes.navBarMenu}>{mainNavMenuList}</div>
       <div className={classes.navBarUserMenu}>
-        <BiGift className={classes.menuIcon} size={25} />
-        <RiShoppingBasketLine className={classes.menuIcon} size={25} />
-        <Link to="/signin">로그인</Link>
-        <Link to="/signup">회원가입</Link>
-        <IoIosAddCircle
-          className={classes.moreIcon}
-          size={32}
-          onClick={handleMoreMenu}
-        />
-        {/* <div onClick={handleMoreMenu}>더보기</div> */}
+        {!isLoggedIn && (
+          <>
+            <Link to="/signin">로그인</Link>
+            <Link to="/signup">회원가입</Link>
+          </>
+        )}
+        {!!isLoggedIn && (
+          <>
+            <BiGift className={classes.menuIcon} size={25} />
+            <RiShoppingBasketLine className={classes.menuIcon} size={25} />
+            <IoIosAddCircle
+              className={classes.moreIcon}
+              size={32}
+              onClick={handleMoreMenu}
+            />
+          </>
+        )}
       </div>
       {!!isMoreMenu && <MoreMenuToolTip />}
     </div>
   );
 }
 
-export default NavigationBar;
+export default NavigationBar; //
