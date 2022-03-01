@@ -16,6 +16,11 @@
    - Q. 직업, 재질, 분위기 태그도 함께? 클릭하면 어디로 이동?
 2. Array map key 경고 제거
 
+### 2022.02.27. 권예림
+
+1. StoreMainPage - Back 연결 (근데 좀 이상하게 동작함)
+2. StoreMainPage - productDetail 연결
+
 ### 2022.02.24 차주희
 
 1. [진행 중] 커뮤니티 상세 API 연결

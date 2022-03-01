@@ -14,15 +14,16 @@ function ProductList(props) {
     </li>
   ));
   return (
-    // <div>
-    //   {props.product?.length ? (
-    <ul>{productList}</ul>
-    //   ) : (
-    //     <div className={classes.noUploadText}>
-    //       <text>작성한 글이 없습니다</text>
-    //     </div>
-    //   )}
-    // </div>
+    <div>
+      {props.products?.length ? (
+        <ul>{productList}</ul>
+      ) : (
+        <div className={classes.noUploadText}>
+          <text>작성한 글이 없습니다</text>
+          {console.log("product: " + props.products)}
+        </div>
+      )}
+    </div>
   );
 }
 

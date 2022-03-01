@@ -140,16 +140,16 @@ const StoreMainPage = () => {
           </Link>
         </div>
         <div className={classes.productListArea}>
-          <ProductList products={DUMMY_DATA} />
-          {/* <ProductList products={productLists} /> */}
+          {/* <ProductList products={DUMMY_DATA} /> */}
+          <ProductList products={productLists} />
         </div>
       </div>
       <div className={classes.CategorySection}>
         <div className={classes.titleArea}>
           <CommPageSemiTitle semiTitle="카테고리" />
         </div>
-        <CategoryList categorys={DUMMY_DATA2} />
-        {/* <CategoryList categorys={marketCategories} /> */}
+        {/* <CategoryList categorys={DUMMY_DATA2} /> */}
+        <CategoryList categorys={marketCategories} />
       </div>
     </div>
   );

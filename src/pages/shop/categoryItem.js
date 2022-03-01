@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import classes from "./categoryItem.module.css";
+import noImg from "img/noImg.png";
+import { BASE_URL } from "module/common-module";
 
 function CategoryItem(props) {
   var sortId = props.categoryId;
@@ -8,13 +10,13 @@ function CategoryItem(props) {
       <Link
         to={{
           pathname: `/market/storeSortPage/${sortId}`,
-          state: { sordId: props.categoryId },
+          state: { sortId: props.categoryId },
         }}
       >
         <img
           className={classes.categoryImg}
           alt={props.categoryName}
-          src={props.categoryImg}
+          src={`${BASE_URL}${props.categoryImg}` || noImg}
         />
       </Link>
     </div>
