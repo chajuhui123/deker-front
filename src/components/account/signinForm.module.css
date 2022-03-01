@@ -8,6 +8,7 @@
 .signin_logo {
   margin-top: 100px;
   height: 80px;
+  width: 100%;
 }
 
 .signin_email_input {
