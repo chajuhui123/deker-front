@@ -11,6 +11,7 @@ const CommunityList = (props) => {
               key={data.communityId}
               data={data}
               type={props.type}
+              followingHandler={props.followingHandler}
             />
           );
         })}

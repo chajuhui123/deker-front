@@ -3,6 +3,12 @@ import CommunitySection from "../semi/section/CommunitySection";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postApi } from "api/fetch-api";
+import Carousel from "react-material-ui-carousel";
+import { Paper } from "@mui/material";
+import slide1 from "img/main/slide1.jpg";
+import slide2 from "img/main/slide2.jpg";
+import slide3 from "img/main/slide3.jpg";
+import slide4 from "img/main/slide4.jpg";
 
 const DUMMY_RANK = [
   {
@@ -13,31 +19,31 @@ const DUMMY_RANK = [
     userProfileImg: "", // 작성자프로필사진
     likeCount: 123,
     commentCount: 13,
-    following: false,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164447023503877747.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
   {
     communityId: "2",
     communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
+    userId: "test2",
     userNick: "테스트2",
     userProfileImg: "",
     likeCount: 115,
     commentCount: 22,
-    following: true,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164446224883159444.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
   {
     communityId: "3",
     communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
+    userId: "test3",
     userNick: "테스트3",
     userProfileImg: "",
     likeCount: 110,
     commentCount: 5,
-    following: false,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164448649057424245.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
@@ -49,43 +55,43 @@ const DUMMY_RANK = [
     userProfileImg: "",
     likeCount: 95,
     commentCount: 18,
-    following: false,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442021987517897.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
   },
   {
     communityId: "5",
     communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
+    userId: "test2",
     userNick: "테스트5",
     userProfileImg: "",
     likeCount: 45,
     commentCount: 0,
-    following: false,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449311181595696.jpeg?gif=1&w=320&h=320&c=c",
   },
   {
     communityId: "6",
     communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
+    userId: "test3",
     userNick: "테스트6",
     userProfileImg: "",
     likeCount: 30,
     commentCount: 0,
-    following: false,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/video-service-prd-s3-bucket-thumbnail/6204cf22d7b3b914fbe45715/6204cf22d7b3b914fbe45715.0000001.jpg?gif=1&w=320&h=320&c=c",
   },
   {
     communityId: "7",
     communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
+    userId: "test4",
     userNick: "테스트7",
     userProfileImg: "",
     likeCount: 27,
     commentCount: 2,
-    following: false,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449560788958935.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -97,7 +103,7 @@ const DUMMY_RANK = [
     userProfileImg: "",
     likeCount: 3,
     commentCount: 1,
-    following: false,
+    followingCheck: false,
     communityImage:
       "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442006712025856.jpeg?gif=1&w=320&h=320&c=c",
   },
@@ -109,6 +115,53 @@ const CommunityMain = (props) => {
   const [ranks, setRanks] = useState([]);
   const [follow, setFollow] = useState([]);
   const [custom, setCustom] = useState([]);
+
+  // TODO : Back 생성 후 연결 해야함
+  // const dispatch = useDispatch();
+  const followingHandler = (userId) => {
+    const data = {
+      userId,
+      followingCheck: true,
+    };
+    console.log(data);
+    // TODO : TEST 용 삭제 해야함 ##################
+    const res = {
+      data,
+    };
+    fnFollowCallback(res);
+    // ############################################
+    // dispatch(postApi("", data, fnFollowCallback));
+  };
+  const fnFollowCallback = (res) => {
+    console.log(`CommunitySemiPage :: res :: ${JSON.stringify(res)}`);
+    if (!!res) {
+      setRanks((prev) =>
+        prev.map((item) => {
+          if (item.userId === res.data.userId) {
+            item.followingCheck = res.data.followingCheck;
+          }
+          return item;
+        })
+      );
+      setFollow((prev) =>
+        prev.map((item) => {
+          if (item.userId === res.data.userId) {
+            item.followingCheck = res.data.followingCheck;
+          }
+          return item;
+        })
+      );
+      setCustom((prev) =>
+        prev.map((item) => {
+          if (item.userId === res.data.userId) {
+            item.followingCheck = res.data.followingCheck;
+          }
+          return item;
+        })
+      );
+    }
+  };
+
   const fnCallback = (res) => {
     console.log("CommunityMain :: res :: ", res);
     if (!!res) {
@@ -118,7 +171,8 @@ const CommunityMain = (props) => {
     }
   };
   useEffect(() => {
-    let url = isLoggedIn ? "mb/post/get" : "";
+    let url = isLoggedIn ? "mb/post/get" : "nmb/post/get";
+    console.log(`isLoggedIn :: ${isLoggedIn}`);
     if (isLoggedIn) {
       // TODO : 비회원 url 생성되면 조건문 삭제
       dispatch(postApi(url, null, fnCallback));
@@ -128,11 +182,51 @@ const CommunityMain = (props) => {
       setCustom(DUMMY_RANK.slice(4, 8));
     }
   }, [dispatch, isLoggedIn]);
+
+  const mainSlideImage = [slide1, slide2, slide3, slide4];
+
   return (
     <div className={classes.main}>
-      <CommunitySection type="rank" page="main" data={ranks} />
-      <CommunitySection type="follow" page="main" data={follow} />
-      <CommunitySection type="custom" page="main" data={custom} />
+      <div className={classes.slider}>
+        <Carousel
+          animation="slide"
+          duration={1100}
+          autoPlay={false}
+          stopAutoPlayOnHover={true}
+          navButtonsAlwaysVisible={true}
+          fullHeightHover={true}
+        >
+          {mainSlideImage.map((item, i) => {
+            return (
+              <Paper key={i}>
+                <img
+                  style={{ width: "800px", height: "600px" }}
+                  alt={`이미지`}
+                  src={item}
+                />
+              </Paper>
+            );
+          })}
+        </Carousel>
+      </div>
+      <CommunitySection
+        type="rank"
+        page="main"
+        data={ranks}
+        followingHandler={followingHandler}
+      />
+      <CommunitySection
+        type="follow"
+        page="main"
+        data={follow}
+        followingHandler={followingHandler}
+      />
+      <CommunitySection
+        type="custom"
+        page="main"
+        data={custom}
+        followingHandler={followingHandler}
+      />
     </div>
   );
 };

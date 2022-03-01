@@ -11,10 +11,7 @@ const CommunityCard = (props) => {
     history.push(url);
   };
   const followHandler = () => {
-    alert(`${data.userId} 팔로우`);
-  };
-  const unFollowHandler = () => {
-    alert(`${data.userId} 언팔로우`);
+    props.followingHandler(data.userId);
   };
   return (
     <li>
@@ -37,12 +34,12 @@ const CommunityCard = (props) => {
                 ? data.userNick.slice(0, 4).replace(" ", "") + "..."
                 : data.userNick}
             </p>
-            {data.followingCheck ? (
+            {!data.followingCheck ? (
               <div className={classes.followButton} onClick={followHandler}>
                 팔로우
               </div>
             ) : (
-              <div className={classes.unFollowButton} onClick={unFollowHandler}>
+              <div className={classes.unFollowButton} onClick={followHandler}>
                 팔로윙
               </div>
             )}
