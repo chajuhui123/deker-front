@@ -2,6 +2,15 @@
 
 ### 2022.02.27. 권예림
 
+1. modifyUserInfo
+- Back 연결 받아오기
+- 프로필이미지 선택
+- UI 세로 정렬
+2. storeMainPage
+- 페이지 리로드 연결 에러 수정
+
+### 2022.02.27. 권예림
+
 1. StoreMainPage - Back 연결  (근데 좀 이상하게 동작함)
 2. StoreMainPage - productDetail 연결
 
