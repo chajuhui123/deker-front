@@ -115,7 +115,12 @@ const PaymentPage = () => {
                 src="https://cdn.w600.comps.canstockphoto.co.kr/%EC%83%81%EC%9E%90-%EC%99%84%EC%A0%84%ED%95%9C-%EC%84%A0%EB%AC%BC-pictogram-%EB%8B%A8%EC%9D%BC%EC%9D%98-48x48-%EB%B2%A1%ED%84%B0-eps-%EB%B2%A1%ED%84%B0_csp53157584.jpg"
                 alt="선물하기img"
               />
-              <a onClick={presentLinkHandler}>선물하기</a>
+              <div
+                className={classes.presentPopup}
+                onClick={presentLinkHandler}
+              >
+                선물하기
+              </div>
             </div>
           </div>
           <hr className={classes.lineD} />
@@ -163,7 +168,9 @@ const PaymentPage = () => {
         <div className={classes.section}>
           <div className={classes.addpresent}>
             <CommPageSemiTitle semiTitle="배송지" />
-            <a onClick={fillSameHandler}>위와 동일하게 채우기</a>
+            <div className={classes.presentPopup} onClick={fillSameHandler}>
+              위와 동일하게 채우기
+            </div>
           </div>
           <hr className={classes.lineD} />
           <div className={classes.dtlArea}>

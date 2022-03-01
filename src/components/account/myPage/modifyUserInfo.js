@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import UserTagForm from "components/common/userTagForm";
 import classes from "./modifyUserInfo.module.css";
 import ModalTitle from "components/common/modalTitle";
 import { useDispatch } from "react-redux";
-import { postApi } from "api/fetch-api";
-// import CommSelect from "components/common/CommSelect";
-// import JobDropdown from "components/common/dropdown/jobDropdown";
+import { fileApi, postApi } from "api/fetch-api";
 import CommBtn from "components/common/commBtn";
 import CommSelect from "components/common/CommSelect";
 import noImg from "img/noImg.png";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
 function ModifyUserInfo(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const photoInputRef = useRef();
   const [profileImg, setProfileImg] = useState(null);
+  const [prevImage, setPrevImage] = useState(null); // 미리보기 이미지
   const [emailPrint, setEmailPrint] = useState("");
   const [nickNm, setNickNm] = useState("");
   const [jobArray, setJobArray] = useState([]); // 직업코드
   const [jobCode, setJobCode] = useState(""); // 선택된 직업코드
+  const [tag, setTag] = useState([]);
 
   // 직업코드조회콜백
   const fnJobCallback = (res) => {
@@ -36,8 +39,10 @@ function ModifyUserInfo(props) {
         ? `${BASEURL}${res.data.profileImg}`
         : noImg;
       setProfileImg(image);
+      setPrevImage(image);
       setEmailPrint(res.data.id);
       setNickNm(res.data.nickname);
+      setJobCode(res.data.jobCode);
     } else {
       // 비정상로직
       alert("data error");
@@ -57,6 +62,18 @@ function ModifyUserInfo(props) {
     );
   }, [dispatch]);
 
+  // 이미지핸들러
+  const imageHandler = (e) => {
+    if (e.target.files.length > 0) {
+      setPrevImage(URL.createObjectURL(e.target.files[0]));
+      setProfileImg(e.target.files[0]);
+    }
+  };
+  // 이미지 파일추가 팝업
+  const imageInputHandler = (e) => {
+    photoInputRef.current.click();
+  };
+
   const chgNickNmHandler = (e) => {
     setNickNm(e.target.value);
   };
@@ -66,26 +83,64 @@ function ModifyUserInfo(props) {
     setJobCode(e.value);
   };
 
-  const SubmitHandler = (e) => {
-    // e.preventDefault();
-    // warning 없애려고 넣은거
-    console.log(jobArray);
-    console.log(jobCode);
-    jobChangeHandler();
+  const tagOutHandler = (tagArry) => {
+    setTag(tagArry);
   };
 
-  // 건너뛰기 일단 home으로 가게 함
+  // 저장후콜백메소드
+  const fnSbmtCallback = (res) => {
+    if (!!res) {
+      history.push("/mypage");
+    }
+  };
+
+  const SubmitHandler = (e) => {
+    console.log(jobCode);
+    console.log(nickNm);
+
+    const formData = new FormData();
+    formData.append("profileImg", profileImg); // 프로필 이미지
+
+    const myAccountInfo = {
+      nickname: nickNm,
+      id: emailPrint,
+      jobCode: jobCode,
+      tag: tag,
+    };
+    formData.append(
+      "myAccountInfo",
+      new Blob([JSON.stringify(myAccountInfo)], { type: "application/json" })
+    );
+
+    dispatch(fileApi("mb/acct/mod/member-info", formData, fnSbmtCallback));
+  };
+
   return (
     <div className={classes.modifyUserInfo}>
       <ModalTitle title="회원정보변경" />
       <div className={classes.Inner}>
-        <img className={classes.profilePic} src={profileImg} alt={profileImg} />
+        <input
+          className={classes.profileImgInput}
+          name="imgUpload"
+          type="file"
+          accept="image/*"
+          ref={photoInputRef}
+          onChange={imageHandler}
+        />
+        <img
+          className={classes.profilePic}
+          src={prevImage}
+          alt={prevImage}
+          onClick={imageInputHandler}
+        />
         <div className={classes.InfoArea}>
           <div className={classes.modifyUserInfo_row1}>
-            <div className={classes.userInfoTitle}>이메일</div>
-            <div className={classes.modifyUserInfoEmail}>{emailPrint}</div>
             <div className={classes.dtlArea}>
-              <div className={classes.nicktitle}>닉네임</div>
+              <div className={classes.userInfoTitle2}>이메일</div>
+              <div className={classes.modifyUserInfoEmail}>{emailPrint}</div>
+            </div>
+            <div className={classes.dtlArea}>
+              <div className={classes.userInfoTitle2}>닉네임</div>
               <textarea
                 className={classes.nickInputArea}
                 type="text"
@@ -94,26 +149,22 @@ function ModifyUserInfo(props) {
                 onChange={chgNickNmHandler}
               />
             </div>
-            <div className={classes.modifyUserInfoEmail}>{nickNm}</div>
-          </div>
-          <div className={classes.modifyUserInfo_row2}>
-            {/* {jobArray?.length && (
-              <CommSelect
-                title="직업"
-                options={jobArray}
-                defaultValue={jobCode || jobArray[0]}
-                // {jobCode || null}
-                onChange={jobChangeHandler}
-              />
-            )} */}
-            <CommSelect
-              title="직업"
-              options={jobArray}
-              valueOf={jobCode}
-              onChange={jobChangeHandler}
-            />
-            <p className={classes.userInfoTitle}>태그</p>
-            <UserTagForm />
+            <div className={classes.dtlArea2}>
+              {jobArray?.length && (
+                <CommSelect
+                  width="100%"
+                  title="직업"
+                  options={jobArray}
+                  defaultValue={jobCode || "선택"}
+                  value={jobCode}
+                  onChange={jobChangeHandler}
+                />
+              )}
+            </div>
+            <div className={classes.dtlArea2}>
+              <p className={classes.userInfoTitle}>태그</p>
+              <UserTagForm tagOutHandler={tagOutHandler} />
+            </div>
           </div>
         </div>
         <div className={classes.modifyUserInfoBtn}>

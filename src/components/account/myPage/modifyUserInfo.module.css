@@ -1,6 +1,6 @@
 .Inner {
   position: relative;
-  width: 800px;
+  width: 400px;
   height: auto; /* 태그 늘어날 때마다 늘어나야하니까 auto해야할거같은데 컴포넌트들이 다 안들어온다 */
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #707070;
@@ -8,12 +8,15 @@
   opacity: 1;
   margin: auto;
 }
+.profileImgInput {
+  display: none;
+}
 
 .InfoArea {
   position: relative;
   margin: auto;
   margin-top: 20px;
-  width: 90%;
+  width: 80%;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -32,8 +35,8 @@
 }
 
 .modifyUserInfo_row1 {
-  width: 50%;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   background: #ffffff 0% 0% no-repeat padding-box;
   /* border: 1px solid #BABABA; */
   border-radius: 13px;
@@ -52,17 +55,6 @@
   opacity: 1;
 }
 
-.modifyUserInfo_row2 {
-  width: 50%;
-  height: 400px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  /* border: 1px solid #BABABA; */
-  border-radius: 13px;
-  opacity: 1;
-  margin-left: 20px;
-  margin-top: 40px;
-}
-
 .userInfoTitle {
   margin-top: 50px;
   margin-bottom: 10px;
@@ -71,37 +63,46 @@
   text-align: left;
   font: normal normal bold 15px/25px Roboto;
   letter-spacing: 0px;
-  color: #000000;
+  color: #696969;
   opacity: 1;
 }
 
 .modifyUserInfoEmail {
+  position: relative;
+  width: 60%;
+  height: 30px;
   text-align: center;
+  font: normal normal bold 15px/30px Roboto;
+  opacity: 1;
 }
 
 .dtlArea {
   margin-top: 50px;
   position: relative;
   width: 100%;
-  height: 30px;
   display: flex;
   flex-direction: row;
 }
-.nicktitle {
+.dtlArea2 {
+  margin-top: 50px;
+  position: relative;
+  width: 100%;
+}
+.userInfoTitle2 {
   margin-bottom: 10px;
   width: 30%;
   height: 20px;
   text-align: left;
   font: normal normal bold 15px/25px Roboto;
   letter-spacing: 0px;
-  color: #000000;
+  color: #696969;
   opacity: 1;
 }
 .nickInputArea {
   position: relative;
   width: 60%;
   height: 30px;
-  border: 2px solid #a6a6a7;
+  border: 1px solid #a6a6a7;
   border-radius: 8px;
   text-align: center;
   font: normal normal bold 15px/30px Roboto;
@@ -121,6 +122,7 @@
   position: relative;
   margin-bottom: 50px;
   margin: auto;
+  margin-top: 50px;
   width: 60%;
   height: 100px;
 }
