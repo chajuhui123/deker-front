@@ -133,7 +133,7 @@ function NavigationBar() {
           </>
         )}
       </div>
-      {!!isMoreMenu && <MoreMenuToolTip />}
+      {!!isMoreMenu && <MoreMenuToolTip handleMoreMenu={handleMoreMenu} />}
     </div>
   );
 }

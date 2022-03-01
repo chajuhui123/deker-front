@@ -1,15 +1,19 @@
 import React from "react";
 import classes from "./MoreMenuToolTip.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userAction } from "store/user-slice";
 
-function MoreMenuToolTip() {
+function MoreMenuToolTip({ handleMoreMenu }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("extTokenTime");
     dispatch(userAction.logout());
+    handleMoreMenu();
+    history.push("/");
   };
   return (
     <div className={classes.moreMenuToolTip}>

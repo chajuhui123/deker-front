@@ -66,42 +66,40 @@ function RouteComponent() {
       <RestrictRoute
         path="/mypage"
         exact
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={!isLoggedIn}
         component={AccountMyPage}
         fallback={RedriectMain}
       />
       <RestrictRoute
         path="/mypage/modify"
         exact
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={!isLoggedIn}
         component={ModifyUserInfoPage}
         fallback={RedriectMain}
       />
       <RestrictRoute
         path="/myShopping"
         exact
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={!isLoggedIn}
         component={AccountMyShoppingPage}
         fallback={RedriectMain}
       />
-      <RestrictRoute
-        path="/modifyPassword"
-        exact
-        isLoggedIn={isLoggedIn}
-        component={ModifyPasswordPage}
-        fallback={RedriectMain}
-      />
+      <Route path="/modifyPassword" exact>
+        <div>
+          <ModifyPasswordPage />
+        </div>
+      </Route>
       <RestrictRoute
         path="/myPresent"
         exact
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={!isLoggedIn}
         component={MyPresentPage}
         fallback={RedriectMain}
       />
       <RestrictRoute
         path="/myReview"
         exact
-        isLoggedIn={isLoggedIn}
+        isLoggedIn={!isLoggedIn}
         component={MyReviewPage}
         fallback={RedriectMain}
       />
