@@ -1,5 +1,8 @@
 ## HISTORY
 
+### 2022.03.01 김효진
+1. Community Main Slider 생성
+
 ### 2022.03.01. 권예림
 
 1. modifyUserInfo
