@@ -4,10 +4,11 @@ import CommunityDetailImgSlide from "components/community/communityDetail/commun
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
 import CommunityDetailTags from "components/community/communityDetail/communityDetailTags";
 import CommunityDetailCommentBox from "components/community/communityDetail/communityDetailCommentBox";
-import { postApi } from "api/fetch-api";
-import { useDispatch } from "react-redux";
 import CommunityDetailLike from "components/community/communityDetail/communityDetailLike";
 import CommunityDetailManagementPost from "components/community/communityDetail/communityDetailManagementPost";
+import { postApi } from "api/fetch-api";
+import { useDispatch } from "react-redux";
+import { useInView } from "react-intersection-observer";
 
 const CommunityDetailPage = ({ match }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,8 @@ const CommunityDetailPage = ({ match }) => {
   const [commentPageNum, setCommentPageNum] = useState(1);
   const [commentList, setCommentList] = useState([]);
   const { communityPostId } = match.params;
+
+  const [ref, inView] = useInView();
 
   const fnCommunityDetailCallback = (res) => {
     if (!!res) {
@@ -35,7 +38,7 @@ const CommunityDetailPage = ({ match }) => {
 
   const fnCommunityCommentCallback = (res) => {
     if (!!res) {
-      setCommentList(res?.data?.list);
+      setCommentList((prevList) => [...prevList, ...res?.data?.list]);
     }
   };
 
@@ -48,6 +51,9 @@ const CommunityDetailPage = ({ match }) => {
         fnCommunityDetailCallback
       )
     );
+  }, [dispatch, communityPostId]);
+
+  useEffect(() => {
     dispatch(
       postApi(
         "nmb/post/comments",
@@ -59,6 +65,13 @@ const CommunityDetailPage = ({ match }) => {
       )
     );
   }, [dispatch, communityPostId, commentPageNum]);
+
+  useEffect(() => {
+    // isLastPage 체크
+    if (inView) {
+      setCommentPageNum((prevState) => prevState + 1);
+    }
+  }, [inView]);
 
   return (
     <div>
@@ -86,7 +99,8 @@ const CommunityDetailPage = ({ match }) => {
         <CommunityDetailLike />
         <CommunityDetailManagementPost communityPostId={communityPostId} />
       </div>
-      <CommunityDetailCommentBox commentList={commentList} />
+      <CommunityDetailCommentBox commentList={commentList} ref={ref} />
+      <div ref={ref}>무한 스크롤 구현용 REF</div>
     </div>
   );
 };
