@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import CommunityDetailMainImg from "components/community/communityDetail/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
+import CommunityDetailTags from "components/community/communityDetail/communityDetailTags";
 import CommunityDetailCommentBox from "components/community/communityDetail/communityDetailCommentBox";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
+import CommunityDetailLike from "components/community/communityDetail/communityDetailLike";
+import CommunityDetailManagementPost from "components/community/communityDetail/communityDetailManagementPost";
 
 const CommunityDetailPage = ({ match }) => {
   const dispatch = useDispatch();
@@ -67,9 +70,23 @@ const CommunityDetailPage = ({ match }) => {
         communitySelectedProductArr={communitySelectedProductArr}
       />
       <CommunityDetailContent communityPostObj={communityPostObj} />
-      {/* 게시물 태그 */}
-      {/* 좋아요 버튼 */}
-      <CommunityDetailCommentBox commentList={commentList} /> {/* 댓글 */}
+      <CommunityDetailTags
+        communityTags={communityPostObj?.communityTags}
+        jobCode={communityPostObj?.jobCode}
+        materialCode={communityPostObj?.materialCode}
+        moodCode={communityPostObj.moodCode}
+      />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "40px 0 20px 0",
+        }}
+      >
+        <CommunityDetailLike />
+        <CommunityDetailManagementPost communityPostId={communityPostId} />
+      </div>
+      <CommunityDetailCommentBox commentList={commentList} />
     </div>
   );
 };

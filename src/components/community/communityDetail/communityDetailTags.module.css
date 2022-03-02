@@ -1,0 +1,16 @@
+.tagsDiv {
+  width: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px 0px;
+  margin: auto;
+}
+.tagItem {
+  color: var(--main-color-500);
+  margin: 0 4px;
+}
+.tagItem:hover {
+  color: var(--main-color-600);
+  cursor: pointer;
+}

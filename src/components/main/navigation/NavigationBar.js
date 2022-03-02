@@ -1,139 +1,154 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./NavigationBar.module.css";
-import { FiMenu, FiX, FiSearch } from "react-icons/fi";
-import { MdShoppingBasket } from "react-icons/md";
-import logoImg from "img/logo.png";
-import SubNavigationBar from "./SubNavigationBar";
-import NavigationUserItem from "./NavigationUserItem";
+// import SubNavigationBar from "./SubNavigationBar";
+// import NavigationUserItem from "./NavigationUserItem";
+import { RiShoppingBasketLine } from "react-icons/ri";
+import { BiGift } from "react-icons/bi";
+import { IoIosAddCircle } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { postApi } from "api/fetch-api";
+import { BASE_URL } from "module/common-module";
+import MoreMenuToolTip from "./MoreMenuToolTip";
 
 function NavigationBar() {
-  const [opend, setOpen] = useState(false); //false = bars, true = times
-  const [clickedMenu, setClickedMenu] = useState("community");
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
-  const handleOnFixMenu = () => {
-    setOpen(!opend);
+  const [mainNavMenu, setMainNavMenu] = useState([]);
+  const [subNavMenu, setSubNavMenu] = useState({});
+  const [isMoreMenu, setIsMoreMenu] = useState(false);
+
+  // const [opend, setOpen] = useState(false); //false = bars, true = times
+  // const [clickedMenu, setClickedMenu] = useState("community");
+
+  const handleMoreMenu = () => {
+    setIsMoreMenu(!isMoreMenu);
   };
 
-  const clickOnMenu = (event) => {
-    const clickedMenuInnerText = event.target.innerText;
-    setOpen(false);
-    setClickedMenu(null);
-    if (clickedMenuInnerText === "커뮤니티" || clickedMenuInnerText === "") {
-      setClickedMenu("community");
+  const navigationBarCallBack = (res) => {
+    if (!!res) {
+      setMainNavMenu(res.data.menu);
+      setSubNavMenu({
+        community: res.data.subMenu.community,
+        market: res.data.subMenu.market,
+      });
     }
-    if (clickedMenuInnerText === "마켓") {
-      setClickedMenu("market");
-    }
   };
 
-  console.log("clickedMenu", clickedMenu);
+  // const clickOnMenu = (event) => {
+  //   const clickedMenuInnerText = event.target.innerText;
+  //   setOpen(false);
+  //   setClickedMenu(null);
+  //   if (clickedMenuInnerText === "커뮤니티" || clickedMenuInnerText === "") {
+  //     setClickedMenu("community");
+  //   }
+  //   if (clickedMenuInnerText === "마켓") {
+  //     setClickedMenu("market");
+  //   }
+  // };
 
-  const MENU_DUMMY = {
-    menu: [
-      {
-        menuName: "",
-        menuImgUrl: "img/logo.png",
-        menuUrl: "/",
-      },
-      {
-        menuName: "커뮤니티",
-        menuImgUrl: "",
-        menuUrl: "/community",
-      },
-      {
-        menuName: "마켓",
-        menuImgUrl: "",
-        menuUrl: "/market",
-      },
-    ],
-    subMenu: {
-      community: [
-        {
-          menuName: "메인",
-          menuUrl: "/community",
-        },
-        {
-          menuName: "사진",
-          menuUrl: "/community/photo",
-        },
-        {
-          menuName: "맞춤",
-          menuUrl: "/community/personal",
-        },
-        {
-          menuName: "팔로잉",
-          menuUrl: "/community/following",
-        },
-      ],
-
-      market: [
-        {
-          menuName: "메인",
-          menuUrl: "/market",
-        },
-        {
-          menuName: "장바구니",
-          menuUrl: "/market/cart",
-        },
-        {
-          menuName: "최근본상품",
-          menuUrl: "/market/view",
-        },
-      ],
-    },
-  };
-
-  const menuList = MENU_DUMMY.menu.map((menu, index) => (
-    <li key={index} className={classes.navItem}>
-      <Link to={menu.menuUrl} className={classes.navLink} onClick={clickOnMenu}>
-        {menu.menuImgUrl !== "" ? (
-          // 추후 로고 이미지는 서버에서 넘어져 오는 imgUrl 로 src 변경
-          <img className={classes.navLogo} src={logoImg} alt="로고" />
+  const mainNavMenuList = mainNavMenu.map((navItem, navItemIndex) => {
+    return (
+      <Link
+        key={navItemIndex}
+        to={navItem.menuUrl}
+        className={classes.menuItem}
+      >
+        {!!navItem.menuImgUrl ? (
+          <img
+            className={classes.logoImg}
+            src={`${BASE_URL}${navItem.menuImgUrl}`}
+            alt="DEKER"
+          />
         ) : (
-          <p>{menu.menuName}</p>
+          <div>{navItem.menuName}</div>
         )}
       </Link>
-    </li>
-  ));
+    );
+  });
+
+  console.log(subNavMenu.community);
+  console.log(subNavMenu.market);
+
+  useEffect(() => {
+    const navbarGetUrl = isLoggedIn ? "mb/" : "nmb/";
+    dispatch(postApi(navbarGetUrl, null, navigationBarCallBack));
+  }, [dispatch, isLoggedIn]);
 
   return (
-    <>
-      <nav className={classes.navbar}>
-        {!opend && (
-          <ul className={classes.navLinks}>
-            <div className={classes.navLeft}>{menuList}</div>
-            <div className={classes.navRight}>
-              <li className={classes.navItem}>
-                <form>
-                  <input placeholder="Search" className={classes.navInput} />
-                  <button className={classes.navBtn}>
-                    <FiSearch />
-                  </button>
-                </form>
-              </li>
-              <li>
-                <MdShoppingBasket size="32" className={classes.navBasket} />
-              </li>
-              <NavigationUserItem clickOnMenu={clickOnMenu} />
-            </div>
-          </ul>
+    // <>
+    //   <nav className={classes.navbar}>
+    //     {!opend && (
+    //       <ul className={classes.navLinks}>
+    //         <div className={classes.navLeft}>{menuList}</div>
+    //         <div className={classes.navRight}>
+    //           <li className={classes.navItem}>
+    //             <form>
+    //               <input placeholder="Search" className={classes.navInput} />
+    //               <button className={classes.navBtn}>
+    //                 <FiSearch />
+    //               </button>
+    //             </form>
+    //           </li>
+    //           <li>
+    //             <MdShoppingBasket size="32" className={classes.navBasket} />
+    //           </li>
+    //           <NavigationUserItem clickOnMenu={clickOnMenu} />
+    //         </div>
+    //       </ul>
+    //     )}
+    //     {/* <div className={classes.navIcon} onClick={handleOnFixMenu}> */}
+    //     <div className={classes.navIcon}>{opend ? <FiX /> : <FiMenu />}</div>
+    //   </nav>
+
+    //   {opend && (
+    //     <ul className={classes.navLinks.active}>
+    //       {menuList}
+    //       <NavigationUserItem clickOnMenu={clickOnMenu} />
+    //     </ul>
+    //   )}
+
+    //   <SubNavigationBar navItem={MENU_DUMMY.subMenu[clickedMenu]} />
+    // </>
+    <div className={classes.navBarDiv}>
+      <div className={classes.navBarMenu}>{mainNavMenuList}</div>
+      <div className={classes.navBarUserMenu}>
+        {!isLoggedIn && (
+          <>
+            <Link to="/signin">로그인</Link>
+            <Link to="/signup">회원가입</Link>
+          </>
         )}
-        <div className={classes.navIcon} onClick={handleOnFixMenu}>
-          {opend ? <FiX /> : <FiMenu />}
-        </div>
-      </nav>
-
-      {opend && (
-        <ul className={classes.navLinks.active}>
-          {menuList}
-          <NavigationUserItem clickOnMenu={clickOnMenu} />
-        </ul>
-      )}
-
-      <SubNavigationBar navItem={MENU_DUMMY.subMenu[clickedMenu]} />
-    </>
+        {!!isLoggedIn && (
+          <>
+            <BiGift
+              className={classes.menuIcon}
+              size={25}
+              onClick={() => {
+                history.push("/mypresent");
+              }}
+            />
+            <RiShoppingBasketLine
+              className={classes.menuIcon}
+              size={25}
+              onClick={() => {
+                history.push("/market/cart");
+              }}
+            />
+            <IoIosAddCircle
+              className={classes.moreIcon}
+              size={32}
+              onClick={handleMoreMenu}
+            />
+          </>
+        )}
+      </div>
+      {!!isMoreMenu && <MoreMenuToolTip handleMoreMenu={handleMoreMenu} />}
+    </div>
   );
 }
 
-export default NavigationBar;
+export default NavigationBar; //

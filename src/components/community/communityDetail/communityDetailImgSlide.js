@@ -5,18 +5,21 @@ import { useHistory } from "react-router";
 
 function CommunityDetailImgSlide({ communitySelectedProductArr }) {
   const history = useHistory();
-  const imgArrayComponent = communitySelectedProductArr?.map((productItem) => {
-    return (
-      <img
-        className={classes.slideImg}
-        src={`${BASE_URL}${productItem.productImgUrl}`}
-        alt="상품이미지"
-        onClick={() => {
-          history.push(`/market/detail/${productItem.productId}`);
-        }}
-      />
-    );
-  });
+  const imgArrayComponent = communitySelectedProductArr?.map(
+    (productItem, productItemIndex) => {
+      return (
+        <img
+          key={productItemIndex}
+          className={classes.slideImg}
+          src={`${BASE_URL}${productItem.productImgUrl}`}
+          alt="상품이미지"
+          onClick={() => {
+            history.push(`/market/detail/${productItem.productId}`);
+          }}
+        />
+      );
+    }
+  );
   return <div className={classes.slideDiv}>{imgArrayComponent}</div>;
 }
 

@@ -1,21 +1,41 @@
 ## HISTORY
 
+### 2022.02.28~03.01 차주희
+
+1. [진행중] 네비게이션 메뉴 구성 변경 및 스타일 수정
+   - Tootip -> 로그아웃 시 라우터 이동 및 툴팁 닫히는 기능 추가
+2. 로그아웃 세션 지우는 코드 추가
+3. 로그인 상태에 따른 라우터 제한
+   - `components/common/RestrictRoute` 참고
+4. 로그인 화면 로고 사이즈 수정
+
 ### 2022.03.01 김효진
+
 1. Community Main Slider 생성
 
 ### 2022.03.01. 권예림
 
 1. modifyUserInfo
+
 - Back 연결 받아오기
 - 프로필이미지 선택
 - UI 세로 정렬
+
 2. storeMainPage
+
 - 페이지 리로드 연결 에러 수정
 
 ### 2022.02.27. 권예림
 
-1. StoreMainPage - Back 연결  (근데 좀 이상하게 동작함)
+1. StoreMainPage - Back 연결 (근데 좀 이상하게 동작함)
 2. StoreMainPage - productDetail 연결
+
+### 2022.02.26 차주희
+
+1. [진행 중] 커뮤니티 상세 API 연결
+   - 태그 컴포넌트 구현
+   - Q. 직업, 재질, 분위기 태그도 함께? 클릭하면 어디로 이동?
+2. Array map key 경고 제거
 
 ### 2022.02.24 차주희
 

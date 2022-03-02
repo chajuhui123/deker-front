@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import React from "react";
 import KakaoAuth from "./oauth/kakao";
 import SigninPage from "./pages/SigninPage";
 import ModifyPasswordPage from "./pages/modifyPassword";
@@ -21,8 +21,13 @@ import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
 import PaymentPage from "pages/shop/paymentPage";
 import RecentlyProduct from "components/shop/recently/RecentlyProduct";
+import RestrictRoute from "components/common/RestrictRoute";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function RouteComponent() {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const RedriectMain = () => <Redirect to="/" />;
   return (
     <Switch>
       <Route path="/" exact>
@@ -30,52 +35,72 @@ function RouteComponent() {
           <CommunityMainPage />
         </div>
       </Route>
-      <Route path="/signup" exact>
-        <div>
-          <SignupPage />
-        </div>
-      </Route>
-      <Route path="/oauth/kakao" component={KakaoAuth} exact></Route>
-      <Route path="/signin" exact>
-        <div>
-          <SigninPage />
-        </div>
-      </Route>
-      <Route path="/signup/additional" exact>
-        <div>
-          <SignupAddPage />
-        </div>
-      </Route>
-      <Route path="/mypage" exact>
-        <div>
-          <AccountMyPage />
-        </div>
-      </Route>
-      <Route path="/mypage/modify" exact>
-        <div>
-          <ModifyUserInfoPage />
-        </div>
-      </Route>
-      <Route path="/myShopping" exact>
-        <div>
-          <AccountMyShoppingPage />
-        </div>
-      </Route>
+      <RestrictRoute
+        path="/signup"
+        exact
+        isLoggedIn={isLoggedIn}
+        component={SignupPage}
+        fallback={RedriectMain}
+      />
+      <RestrictRoute
+        path="/signup/additional"
+        exact
+        isLoggedIn={isLoggedIn}
+        component={SignupAddPage}
+        fallback={RedriectMain}
+      />
+      <RestrictRoute
+        path="/signin"
+        exact
+        isLoggedIn={isLoggedIn}
+        component={SigninPage}
+        fallback={RedriectMain}
+      />
+      <RestrictRoute
+        path="/oauth/kakao"
+        exact
+        isLoggedIn={isLoggedIn}
+        component={KakaoAuth}
+        fallback={RedriectMain}
+      />
+      <RestrictRoute
+        path="/mypage"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={AccountMyPage}
+        fallback={RedriectMain}
+      />
+      <RestrictRoute
+        path="/mypage/modify"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={ModifyUserInfoPage}
+        fallback={RedriectMain}
+      />
+      <RestrictRoute
+        path="/myShopping"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={AccountMyShoppingPage}
+        fallback={RedriectMain}
+      />
       <Route path="/modifyPassword" exact>
         <div>
           <ModifyPasswordPage />
         </div>
       </Route>
-      <Route path="/myPresent" exact>
+      <Route path="/mypresent" exact>
         <div>
           <MyPresentPage />
         </div>
       </Route>
-      <Route path="/myReview" exact>
-        <div>
-          <MyReviewPage />
-        </div>
-      </Route>
+      <RestrictRoute
+        path="/myReview"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={MyReviewPage}
+        fallback={RedriectMain}
+      />
       <Route path="/community" exact>
         <CommunityMainPage />
       </Route>
