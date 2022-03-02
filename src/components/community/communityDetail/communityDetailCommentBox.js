@@ -3,7 +3,7 @@ import classes from "./communityDetailCommentBox.module.css";
 import CommunityDetailCommentItem from "./communityDetailCommentItem";
 import noUserImg from "img/noUserImg.png";
 
-function communityDetailCommentBox({ commentList }) {
+function communityDetailCommentBox({ commentList, ref }) {
   return (
     <div className={classes.commentBoxDiv}>
       <div className={classes.commentSummaryDiv}>
@@ -16,7 +16,6 @@ function communityDetailCommentBox({ commentList }) {
         <input className={classes.commentInputBox} />
         <button className={classes.commentInputBtn}>등록</button>
       </form>
-
       <div>
         {commentList?.map((commentItemObject, commentItemIndex) => {
           return (
@@ -27,8 +26,6 @@ function communityDetailCommentBox({ commentList }) {
           );
         })}
       </div>
-
-      <div></div>
     </div>
   );
 }
