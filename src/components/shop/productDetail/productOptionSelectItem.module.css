@@ -1,0 +1,34 @@
+.selectItemDiv {
+  position: relative;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  width: 250px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  padding: 0 5px;
+  color: gray;
+}
+
+.selectableList {
+  position: absolute;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: white;
+}
+
+.selectableItem {
+  padding: 3px 10px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--border-color);
+}
+.selectableItem:hover {
+  background-color: var(--main-color-600);
+  color: white;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.selectableItem:last-child {
+  border-bottom: none;
+}

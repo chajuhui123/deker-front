@@ -9,13 +9,13 @@ function CommunityDetailMainImg({
   communitySelectedProductArr,
 }) {
   const { postImg } = communityPostObj;
+  console.log(communityPostObj);
 
-  console.log(postImg);
   return (
     <div className={classes.imgWrapper}>
       <img
         className={classes.mainImg}
-        // src={`${BASE_URL}/${postImg}` || noImg}
+        // src={`${BASE_URL}${postImg}` || noImg}
         src={noImg}
         alt="커뮤니티 게시글 이미지"
       />

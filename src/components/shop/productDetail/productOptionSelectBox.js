@@ -1,15 +1,17 @@
 import React from "react";
 import classes from "./productOptionSelectBox.module.css";
 import CommBtn from "components/common/commBtn";
-import CommSelect from "components/common/CommSelect";
 import CommonPageTitle from "components/common/commPageTitle";
 import noImg from "img/noImg.png";
 // import SelectBoxOptionDiv from "./selectBoxOptionDiv";
 import { useState } from "react";
+import ProductOptionSelectItem from "./productOptionSelectItem";
 
 function ProductOptionSelectBox({ productDetailObj }) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+
   const options = [];
+
   productDetailObj.productDetailOptionArr?.forEach(
     (productDetailOption, index) => {
       options.push({
@@ -22,6 +24,7 @@ function ProductOptionSelectBox({ productDetailObj }) {
       });
     }
   );
+
   const productQuantity = "10";
 
   return (
@@ -35,13 +38,7 @@ function ProductOptionSelectBox({ productDetailObj }) {
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>옵션</p>
-          <div>
-            <CommSelect
-              width="100%"
-              options={options}
-              placeholder="-- 옵션 선택 --"
-            />
-          </div>
+          <ProductOptionSelectItem options={options} />
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>수량</p>
