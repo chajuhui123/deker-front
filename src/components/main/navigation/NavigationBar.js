@@ -74,7 +74,9 @@ function NavigationBar() {
   console.log(subNavMenu.market);
 
   useEffect(() => {
-    const navbarGetUrl = isLoggedIn ? "mb/" : "nmb/";
+    const navbarGetUrl = isLoggedIn
+      ? "mb/cmm/get/nav-menu"
+      : "nmb/cmm/get/nav-menu";
     dispatch(postApi(navbarGetUrl, null, navigationBarCallBack));
   }, [dispatch, isLoggedIn]);
 
