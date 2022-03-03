@@ -4,6 +4,7 @@
 
 1. 태그 디자인 수정 (userTagForm)
 2. [개발중] 상품등록 (productSalesLink) Back 연결
+3. 배송지선택(deliverySelect) 팝업 - 주소조회 API 적용
 
 
 ### 2022.03.02 차주희
