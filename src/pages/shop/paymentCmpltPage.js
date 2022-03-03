@@ -1,10 +1,11 @@
 import CommBtn from "components/common/commBtn";
 import CommonPageTitle from "components/common/commPageTitle";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./paymentCmpltPage.module.css";
 
 const PaymentCmpltPage = () => {
+  const history = useHistory();
   const [orderNo, setOerderNo] = useState("");
   const [userId, setUserId] = useState("");
   const [deliAddr, setDeliAddr] = useState("");
@@ -18,6 +19,11 @@ const PaymentCmpltPage = () => {
     setDdeliMemo("집앞에 그냥 놔둬주세요");
     setTotalPayAmt(123000);
     console.log("order no print: " + orderNo);
+    // history.push("/market");
+  };
+
+  const shoppingContinueBtnHandler = () => {
+    history.push("/market");
   };
 
   return (
@@ -74,7 +80,6 @@ const PaymentCmpltPage = () => {
       </div>
       <div className={classes.goMoveBtn}>
         <div>
-          {/* <Link to="/market"> */}
           <CommBtn
             btnText="주문 상세보기"
             btnWidth="200px"
@@ -86,21 +91,19 @@ const PaymentCmpltPage = () => {
             fontSize="20px"
             fnClick={replaceEvent}
           />
-          {/* </Link> */}
         </div>
         <div className={classes.shopContiBtn}>
-          <Link to="/market">
-            <CommBtn
-              btnText="쇼핑 계속 하기"
-              btnWidth="200px"
-              btnHeight="80px"
-              border="3px solid rgb(66, 66, 226)"
-              bgColor="rgbrgb(66, 66, 226)"
-              radius="4px"
-              fontSize="20px"
-              txColor="rgb(248, 248, 248)"
-            />
-          </Link>
+          <CommBtn
+            btnText="쇼핑 계속 하기"
+            btnWidth="200px"
+            btnHeight="80px"
+            border="3px solid rgb(66, 66, 226)"
+            bgColor="rgbrgb(66, 66, 226)"
+            radius="4px"
+            fontSize="20px"
+            txColor="rgb(248, 248, 248)"
+            fnClick={shoppingContinueBtnHandler}
+          />
         </div>
       </div>
     </div>
