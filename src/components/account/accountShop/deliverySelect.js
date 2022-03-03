@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./deliverySelect.module.css";
 import ModalTitle from "components/common/modalTitle";
 import DeliveryCard from "components/common/deliveryCard";
 import CommBtn from "components/common/commBtn";
-import { modalAction } from "store/modal-slice";
-import { useDispatch } from "react-redux";
-import DeliveryAdd from "./deliveryAdd";
 
 const DUMMY_DATA = [
   {
@@ -27,7 +24,6 @@ const DUMMY_DATA = [
 ];
 
 function DeliverySelect(props) {
-  const dispatch = useDispatch();
   const modifyDeliveryHandler = (deliCode) => {
     console.log("modifyDeliveryHandler :: ", deliCode);
     alert("개발 중");
@@ -40,9 +36,40 @@ function DeliverySelect(props) {
     console.log("selectDeliveryHandler :: ", deliCode);
     alert("개발 중");
   };
-  const addDeliveryHandler = (e) => {
-    dispatch(modalAction.modalPopup({ isOpen: true, cont: <DeliveryAdd /> }));
+
+  // 주소 조회 daum API 사용 시작
+  const id = "daum-postcode"; // script가 이미 rending 되어 있는지 확인하기 위한 ID
+  const src = "//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js";
+  const DUMMY_DATA2 = [];
+
+  // const postcodeRef = (useRef < HTMLDivElement) | (null > null);
+  const addDeliveryHandler = () => {
+    window.daum.postcode.load(() => {
+      const postcode = new window.daum.Postcode({
+        oncomplete: function (data) {
+          console.log(data);
+          DUMMY_DATA2.push(data);
+        },
+      });
+      postcode.open();
+    });
   };
+  useEffect(() => {
+    const isAlready = document.getElementById(id);
+
+    if (!isAlready) {
+      const script = document.createElement("script");
+      script.src = src;
+      script.id = id;
+      document.body.append(script);
+    }
+  }, []);
+
+  const pushclick = () => {
+    console.log(DUMMY_DATA2[0]);
+  };
+  // 주소 조회 daum API 사용 끝
+
   return (
     <div className={classes.deliSelArea}>
       <ModalTitle title="배송 조회" />
@@ -61,8 +88,18 @@ function DeliverySelect(props) {
             userPn={deli.receiverPhNo}
           />
         ))}
+        {/* {DUMMY_DATA2?.length && (
+          <DeliveryCard
+            key={DUMMY_DATA2[0].zonecode}
+            deliCode={DUMMY_DATA2[0].zonecode}
+            deliNm="내집"
+            zipCode={DUMMY_DATA2[0].zonecode}
+            addrNm={DUMMY_DATA2[0].address}
+          />
+        )} */}
       </div>
       <CommBtn btnText="배송지 추가" fnClick={addDeliveryHandler} />
+      <button onClick={pushclick}>push</button>
     </div>
   );
 }
