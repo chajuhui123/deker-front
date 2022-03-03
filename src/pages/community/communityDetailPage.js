@@ -17,6 +17,7 @@ const CommunityDetailPage = ({ match }) => {
     useState([]);
   const [commentPageNum, setCommentPageNum] = useState(1);
   const [commentList, setCommentList] = useState([]);
+  const [isLastComment, setIsLastComment] = useState(false);
   const { communityPostId } = match.params;
 
   const [ref, inView] = useInView();
@@ -39,6 +40,7 @@ const CommunityDetailPage = ({ match }) => {
   const fnCommunityCommentCallback = (res) => {
     if (!!res) {
       setCommentList((prevList) => [...prevList, ...res?.data?.list]);
+      setIsLastComment(res?.data?.lastPage);
     }
   };
 
@@ -67,11 +69,10 @@ const CommunityDetailPage = ({ match }) => {
   }, [dispatch, communityPostId, commentPageNum]);
 
   useEffect(() => {
-    // isLastPage 체크
-    if (inView) {
+    if (!isLastComment && inView) {
       setCommentPageNum((prevState) => prevState + 1);
     }
-  }, [inView]);
+  }, [inView, isLastComment]);
 
   return (
     <div>
@@ -99,8 +100,14 @@ const CommunityDetailPage = ({ match }) => {
         <CommunityDetailLike />
         <CommunityDetailManagementPost communityPostId={communityPostId} />
       </div>
-      <CommunityDetailCommentBox commentList={commentList} ref={ref} />
-      <div ref={ref}>무한 스크롤 구현용 REF</div>
+      <CommunityDetailCommentBox commentList={commentList} />
+      <div
+        style={{
+          width: "100%",
+          height: "10px",
+        }}
+        ref={ref}
+      ></div>
     </div>
   );
 };
