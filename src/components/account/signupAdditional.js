@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import JobDropdown from "components/common/dropdown/jobDropdown";
 import UserTagForm from "../common/userTagForm";
 import classes from "./signupAdditional.module.css";
@@ -8,6 +8,7 @@ import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommBtn from "components/common/commBtn";
 
 function SignupAdditional(props) {
+  const history = useHistory();
   const [profileImg, setProfileImg] = useState(null);
 
   // const [profilePic, setProfilePic] = useState("");
@@ -21,6 +22,7 @@ function SignupAdditional(props) {
 
   const UserInfoAddSbmHandler = () => {
     setProfileImg("");
+    history.push("/");
   };
   return (
     <div className={classes.Layout}>
@@ -53,33 +55,29 @@ function SignupAdditional(props) {
         </div>
       </div>
       <div className={classes.signupAddBtns}>
-        <Link to="/">
+        <CommBtn
+          btnText="완료"
+          btnWidth="210px"
+          btnHeight="70px"
+          border="1px solid rgb(66, 66, 226)"
+          bgColor="rgb(66, 66, 226)"
+          radius="4px"
+          txColor="rgb(245, 245, 245)"
+          fontSize="30px"
+          fnClick={UserInfoAddSbmHandler}
+        />
+        <div className={classes.goRight}>
           <CommBtn
-            btnText="완료"
+            btnText="건너뛰기"
             btnWidth="210px"
-            btnHeight="70px"
-            border="1px solid rgb(66, 66, 226)"
-            bgColor="rgb(66, 66, 226)"
+            btnHeight="67px"
+            border="3px solid rgb(66, 66, 226)"
+            bgColor="rgb(248, 248, 250)"
             radius="4px"
-            txColor="rgb(245, 245, 245)"
+            txColor="rgb(78, 78, 78)"
             fontSize="30px"
             fnClick={UserInfoAddSbmHandler}
           />
-        </Link>
-        <div className={classes.goRight}>
-          <Link to="/">
-            <CommBtn
-              btnText="건너뛰기"
-              btnWidth="210px"
-              btnHeight="67px"
-              border="3px solid rgb(66, 66, 226)"
-              bgColor="rgb(248, 248, 250)"
-              radius="4px"
-              txColor="rgb(78, 78, 78)"
-              fontSize="30px"
-              fnClick={UserInfoAddSbmHandler}
-            />
-          </Link>
         </div>
       </div>
     </div>

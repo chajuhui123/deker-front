@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import MyUploadPicList from "components/account/myPage/myUploadPicLIst";
 import classes from "./accountMyPage.module.css";
@@ -13,6 +13,7 @@ const BASEURL = `${process.env.REACT_APP_BACKEND_ENDPOINT}`;
 
 const AccountMyPage = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [profileImg, setProfileImg] = useState(null);
   const [postList, setPostList] = useState(null);
 
@@ -35,6 +36,20 @@ const AccountMyPage = (props) => {
     };
     dispatch(postApi("mb/post/get/my-post-list", dataObject, fnCallback));
   }, [dispatch]);
+
+  const followingBtnHandler = () => {
+    history.push("/");
+  };
+  const followerBtnHandler = () => {
+    history.push("/");
+  };
+  const alertBtnHandler = () => {
+    history.push("/");
+  };
+
+  const modifyUserInfoBtnHandler = () => {
+    history.push("/mypage/modify");
+  };
 
   // const DUMMY_DATA = [
   //   {
@@ -107,28 +122,27 @@ const AccountMyPage = (props) => {
             </div>
             <div className={classes.rowArea2}>
               <div className={classes.rowArea3}>
-                <Link to="/" className={classes.linkTo}>
+                <div className={classes.linkTo} onClick={followingBtnHandler}>
                   팔로잉
-                </Link>
-                <Link to="/" className={classes.linkTo}>
+                </div>
+                <div className={classes.linkTo} onClick={followerBtnHandler}>
                   팔로워
-                </Link>
-                <Link to="/" className={classes.linkTo}>
+                </div>
+                <div className={classes.linkTo} onClick={alertBtnHandler}>
                   알림
-                </Link>
+                </div>
               </div>
-              <Link to="/mypage/modify">
-                <CommBtn
-                  btnText="정보 수정"
-                  btnWidth="245px"
-                  btnHeight="60px"
-                  border="1px solid rgb(51, 51, 51)"
-                  bgColor="rgb(248, 248, 248)"
-                  radius="4px"
-                  txColor="rgb(78, 78, 78)"
-                  fontSize="25px"
-                />
-              </Link>
+              <CommBtn
+                btnText="정보 수정"
+                btnWidth="245px"
+                btnHeight="60px"
+                border="1px solid rgb(51, 51, 51)"
+                bgColor="rgb(248, 248, 248)"
+                radius="4px"
+                txColor="rgb(78, 78, 78)"
+                fontSize="25px"
+                fnClick={modifyUserInfoBtnHandler}
+              />
             </div>
           </div>
         </div>
