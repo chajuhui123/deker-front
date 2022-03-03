@@ -11,6 +11,7 @@ import { modalAction } from "store/modal-slice";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
+import PayBy from "./payBy";
 
 const PaymentPage = () => {
   const history = useHistory();
@@ -255,14 +256,7 @@ const PaymentPage = () => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제수단" />
           <hr className={classes.lineD} />
-          <div className={classes.dtlArea3}>
-            <div className={classes.paymentD}>카드</div>
-            <div className={classes.paymentD}>무통장입금</div>
-            <div className={classes.paymentD}>카카오페이</div>
-            <div className={classes.paymentD}>네이버페이</div>
-            <div className={classes.paymentD}>페이코</div>
-            <div className={classes.paymentD}>토스</div>
-          </div>
+          <PayBy />
         </div>
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제금액" />
