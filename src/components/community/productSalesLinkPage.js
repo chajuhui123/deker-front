@@ -1,5 +1,6 @@
-// import CommChckbx from "components/common/commChckbx";
+import { postApi } from "api/fetch-api";
 import CommBtn from "components/common/commBtn";
+import ProductList from "pages/shop/productList";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { modalAction } from "store/modal-slice";
@@ -7,9 +8,16 @@ import OuterPrdct from "./outerPrdct";
 import classes from "./productSalesLinkPage.module.css";
 
 function ProductSalesLink(props) {
-  const [productLinkInputText, setProductLinkInputText] = useState("");
-
   const dispatch = useDispatch();
+  const [productLinkInputText, setProductLinkInputText] = useState("");
+  const [productLists, setProductLists] = useState(null);
+  // 상품 선택 props로 받아오는 이벤트 일단 주석
+  // const [productClick, setProductClick] = useState(false);
+
+  const productClickHandler = (data) => {
+    //   setProductClick(data);
+    //   console.log(productClick);
+  };
 
   const outerProductHandler = () => {
     dispatch(
@@ -32,19 +40,25 @@ function ProductSalesLink(props) {
 
   // back 통신해서 받아오기
   const productSearchHandler = () => {
-    // back 통신해서 받아오기
+    console.log("keyword보기: " + productLinkInputText);
+    const formData = new FormData();
+    formData.append("keyword", productLinkInputText);
+
+    // FormData의 값 확인
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+    dispatch(postApi("nmb/mkt/get/reg-product", formData, fnCallback));
   };
 
-  // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
-  // const productNameRegHandler = () => {
-  //   // modal close
-  //   console.log(props.productInfoHandler);
-  //   const dataObject = {
-  //     id: props.id,
-  //     productId: "",
-  //   };
-  //   props.productInfoHandler(dataObject);
-  // };
+  const fnCallback = (res) => {
+    if (!!res) {
+      setProductLists(res.data.productModels);
+    } else {
+      // 비정상로직;
+      alert("data error");
+    }
+  };
 
   const dummyClick = () => {
     const dataObject = {
@@ -88,11 +102,13 @@ function ProductSalesLink(props) {
         >
           + 상품 직접 등록하기
         </textarea>
-        {/* <p className={classes.outerProduct} onClick={outerProductHandler}>
-          + 상품 직접 등록하기
-        </p> */}
         <div className={classes.selectedProduct}>
           {/* 더미데이터 시작 */}
+          <ProductList
+            products={productLists}
+            departure={"productSalesLink"}
+            productClickHandler={productClickHandler}
+          />
           <div className={classes.dummy}>
             <img
               className={classes.productImg}

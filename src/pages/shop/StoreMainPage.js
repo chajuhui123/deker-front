@@ -32,8 +32,8 @@ const StoreMainPage = () => {
   //     id: 1,
   //     productImg:
   //       "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
-  //     productName: "T20 TAB+ TNA200HF 메쉬의자 2types",
-  //     productPrice: 13900,
+  //     productBrand: "IKEA 메쉬의자 2types",
+  //     // productPrice: 13900,
   //   },
   //   {
   //     id: 2,
@@ -141,7 +141,7 @@ const StoreMainPage = () => {
         </div>
         <div className={classes.productListArea}>
           {/* <ProductList products={DUMMY_DATA} /> */}
-          <ProductList products={productLists} />
+          <ProductList products={productLists} departure={"storeMain"} />
         </div>
       </div>
       <div className={classes.CategorySection}>

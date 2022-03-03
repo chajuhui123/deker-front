@@ -57,7 +57,8 @@ function UserTagForm(props) {
           {tag &&
             tag.map((tagElement) => (
               <li className={classes.userTagForm_TagList} key={tagElement.id}>
-                <p className={classes.userTagTextArea}> {tagElement.text}</p>
+                <div className={classes.sharpArea}>#</div>
+                <div className={classes.userTagTextArea}>{tagElement.text}</div>
                 <button
                   className={classes.userTagForm_TagRmvBtn}
                   onClick={() => onClickRemove(tagElement.id)}
