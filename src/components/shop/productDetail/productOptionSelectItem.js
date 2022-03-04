@@ -17,18 +17,18 @@ function ProductOptionSelectItem({ options }) {
     <>
       <div className={classes.selectItemDiv} onClick={setVisibleList}>
         {selectedItem}
+        {isVisible && (
+          <div className={classes.selectableList}>
+            {options.map((item) => {
+              return (
+                <div className={classes.selectableItem} onClick={selectItem}>
+                  {item.label}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
-      {isVisible && (
-        <div className={classes.selectableList}>
-          {options.map((item) => {
-            return (
-              <div className={classes.selectableItem} onClick={selectItem}>
-                {item.label}
-              </div>
-            );
-          })}
-        </div>
-      )}
     </>
   );
 }
