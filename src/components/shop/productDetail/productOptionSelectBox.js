@@ -10,21 +10,6 @@ import ProductOptionSelectItem from "./productOptionSelectItem";
 function ProductOptionSelectBox({ productDetailObj }) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
 
-  const options = [];
-
-  productDetailObj.productDetailOptionArr?.forEach(
-    (productDetailOption, index) => {
-      options.push({
-        value: index,
-        label: `${productDetailOption.option1Name} : ${
-          productDetailOption.option1DataName
-        } / ${productDetailOption.option2Name} : ${
-          productDetailOption.option2DataName
-        } (+${productDetailOption.productPrice.toLocaleString("ko-KR")})`,
-      });
-    }
-  );
-
   const productQuantity = "10";
 
   return (
@@ -38,7 +23,9 @@ function ProductOptionSelectBox({ productDetailObj }) {
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>옵션</p>
-          <ProductOptionSelectItem options={options} />
+          <ProductOptionSelectItem
+            options={productDetailObj.productDetailOptionArr}
+          />
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>수량</p>
