@@ -1,15 +1,8 @@
-// import { useState } from "react";
 import ProductItem from "./productItem";
 import classes from "./productList.module.css";
 import classes2 from "./productList2.module.css";
 
 function ProductList(props) {
-  // const [productClick, setProductClick] = useState(false);
-  // const productClickHandler = (data) => {
-  //   setProductClick(data);
-  //   props.productClickHandler(productClick);
-  // };
-
   var departure = props.departure;
   var cssClass = classes;
   // storeMain 페이지에서 product List를 조회할 때 사용할 css 파일
@@ -35,7 +28,9 @@ function ProductList(props) {
                 productPrice={product.productPrice}
                 productBrand={product.productBrand}
                 departure={props.departure}
-                // productClickHandler={productClickHandler}
+                plusId={props.plusId}
+                productClickHandler={props.productClickHandler}
+                productInfoHandler={props.productInfoHandler}
               />
             </li>
           ))}

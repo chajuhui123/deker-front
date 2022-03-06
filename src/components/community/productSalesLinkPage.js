@@ -12,11 +12,10 @@ function ProductSalesLink(props) {
   const [productLinkInputText, setProductLinkInputText] = useState("");
   const [productLists, setProductLists] = useState(null);
   // 상품 선택 props로 받아오는 이벤트 일단 주석
-  // const [productClick, setProductClick] = useState(false);
 
-  const productClickHandler = (data) => {
-    //   setProductClick(data);
-    //   console.log(productClick);
+  const productClickHandler = () => {
+    // modal close
+    dispatch(modalAction.modalPopup({ isOpen: false }));
   };
 
   const outerProductHandler = () => {
@@ -58,17 +57,6 @@ function ProductSalesLink(props) {
     }
   };
 
-  const dummyClick = () => {
-    const dataObject = {
-      id: props.id,
-      productId: "PDTID_00000000000000",
-    };
-    props.productInfoHandler(dataObject);
-
-    // modal close
-    dispatch(modalAction.modalPopup({ isOpen: false }));
-  };
-
   const modalCloseBtnHandler = () => {
     // modal close
     dispatch(modalAction.modalPopup({ isOpen: false }));
@@ -105,25 +93,9 @@ function ProductSalesLink(props) {
             products={productLists}
             departure={"productSalesLink"}
             productClickHandler={productClickHandler}
+            plusId={props.id}
+            productInfoHandler={props.productInfoHandler}
           />
-          {/* <div className={classes.dummy}>
-            <img
-              className={classes.productImg}
-              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
-              src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c"
-            />
-            <div className={classes.productInfo}>
-              <div>T20 TAB+ TNA200HF 메쉬의자 2types</div>
-              <div>12000</div>
-            </div>
-            <CommBtn
-              btnText="선택"
-              btnWidth="50px"
-              btnHeight="33px"
-              fontSize="17px"
-              fnClick={dummyClick}
-            />
-          </div> */}
         </div>
       </div>
       <div className={classes.closeBtnArea}>
