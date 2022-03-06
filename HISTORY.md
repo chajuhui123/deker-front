@@ -1,5 +1,11 @@
 ## HISTORY
 
+### 2022.03.06. 권예림
+
+1. 상품등록 (productSalesLink)
+   - Back 연결
+   - Community Write 연결 (productId 값 넘겨주기)
+
 ### 2022.03.03. 권예림
 
 1. 태그 디자인 수정 (userTagForm)
