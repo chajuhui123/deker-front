@@ -1,5 +1,6 @@
-// import CommChckbx from "components/common/commChckbx";
+import { postApi } from "api/fetch-api";
 import CommBtn from "components/common/commBtn";
+import ProductList from "pages/shop/productList";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { modalAction } from "store/modal-slice";
@@ -7,9 +8,15 @@ import OuterPrdct from "./outerPrdct";
 import classes from "./productSalesLinkPage.module.css";
 
 function ProductSalesLink(props) {
-  const [productLinkInputText, setProductLinkInputText] = useState("");
-
   const dispatch = useDispatch();
+  const [productLinkInputText, setProductLinkInputText] = useState("");
+  const [productLists, setProductLists] = useState(null);
+  // 상품 선택 props로 받아오는 이벤트 일단 주석
+
+  const productClickHandler = () => {
+    // modal close
+    dispatch(modalAction.modalPopup({ isOpen: false }));
+  };
 
   const outerProductHandler = () => {
     dispatch(
@@ -30,31 +37,24 @@ function ProductSalesLink(props) {
     setProductLinkInputText(e.target.value);
   };
 
-  // back 통신해서 받아오기
+  // back 통신해서 검색한 가구 리스트 받아오기
   const productSearchHandler = () => {
-    // back 통신해서 받아오기
+    dispatch(
+      postApi(
+        "nmb/mkt/get/reg-product",
+        { keyword: productLinkInputText },
+        fnCallback
+      )
+    );
   };
 
-  // 등록 버튼을 누르면 상품 이름 넣고 modal 닫기
-  // const productNameRegHandler = () => {
-  //   // modal close
-  //   console.log(props.productInfoHandler);
-  //   const dataObject = {
-  //     id: props.id,
-  //     productId: "",
-  //   };
-  //   props.productInfoHandler(dataObject);
-  // };
-
-  const dummyClick = () => {
-    const dataObject = {
-      id: props.id,
-      productId: "PDTID_00000000000000",
-    };
-    props.productInfoHandler(dataObject);
-
-    // modal close
-    dispatch(modalAction.modalPopup({ isOpen: false }));
+  const fnCallback = (res) => {
+    if (!!res) {
+      setProductLists(res.data.productModels);
+    } else {
+      // 비정상로직;
+      alert("data error");
+    }
   };
 
   const modalCloseBtnHandler = () => {
@@ -88,66 +88,14 @@ function ProductSalesLink(props) {
         >
           + 상품 직접 등록하기
         </textarea>
-        {/* <p className={classes.outerProduct} onClick={outerProductHandler}>
-          + 상품 직접 등록하기
-        </p> */}
         <div className={classes.selectedProduct}>
-          {/* 더미데이터 시작 */}
-          <div className={classes.dummy}>
-            <img
-              className={classes.productImg}
-              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
-              src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c"
-            />
-            <div className={classes.productInfo}>
-              <div>T20 TAB+ TNA200HF 메쉬의자 2types</div>
-              <div>12000</div>
-            </div>
-            <CommBtn
-              btnText="선택"
-              btnWidth="50px"
-              btnHeight="33px"
-              fontSize="17px"
-              fnClick={dummyClick}
-            />
-          </div>
-          <div className={classes.dummy}>
-            <img
-              className={classes.productImg}
-              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
-              src="https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg"
-            />
-            <div className={classes.productInfo}>
-              <div>메쉬테이블 2types</div>
-              <div>13300</div>
-            </div>
-            <CommBtn
-              btnText="선택"
-              btnWidth="50px"
-              btnHeight="33px"
-              fontSize="17px"
-              fnClick={dummyClick}
-            />
-          </div>
-          <div className={classes.dummy}>
-            <img
-              className={classes.productImg}
-              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
-              src="https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg"
-            />
-            <div className={classes.productInfo}>
-              <div>노트북</div>
-              <div>1200000</div>
-            </div>
-            <CommBtn
-              btnText="선택"
-              btnWidth="50px"
-              btnHeight="33px"
-              fontSize="17px"
-              fnClick={dummyClick}
-            />
-          </div>
-          {/* 더미 끝 */}
+          <ProductList
+            products={productLists}
+            departure={"productSalesLink"}
+            productClickHandler={productClickHandler}
+            plusId={props.id}
+            productInfoHandler={props.productInfoHandler}
+          />
         </div>
       </div>
       <div className={classes.closeBtnArea}>

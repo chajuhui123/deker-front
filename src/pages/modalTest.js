@@ -12,7 +12,6 @@ import { postApi, sseApi } from "api/fetch-api";
 import { spinnerAction } from "store/spinner-slice";
 import CommAlert from "components/common/commAlert";
 import PresentFriendPopup from "./shop/presentFriendPopup";
-import DeliveryAdd from "components/account/accountShop/deliveryAdd";
 import CommSelect from "components/common/CommSelect";
 
 function ModalTest(props) {
@@ -33,9 +32,6 @@ function ModalTest(props) {
     dispatch(
       modalAction.modalPopup({ isOpen: true, cont: <DeliverySelect /> })
     );
-  };
-  const deliveryAddHandler = () => {
-    dispatch(modalAction.modalPopup({ isOpen: true, cont: <DeliveryAdd /> }));
   };
   const productSalesLinkHandler = () => {
     dispatch(
@@ -127,9 +123,6 @@ function ModalTest(props) {
           <button onClick={deliverySelectHandler}>DeliverySelect</button>
         </li>
         <li>
-          <button onClick={deliveryAddHandler}>DeliveryAdd</button>
-        </li>
-        <li>
           <button onClick={productSalesLinkHandler}>productSalesLink</button>
         </li>
         <li>
@@ -159,7 +152,7 @@ function ModalTest(props) {
         <li>
           <CommSelect
             options={selectArray}
-            defaultValue={selectArray.filter((s) => s.includes("J01"))}
+            // defaultValue={selectArray.filter((s) => s.includes("J01"))}
           ></CommSelect>
         </li>
       </ul>

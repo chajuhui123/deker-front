@@ -1,5 +1,5 @@
 .productSalesLinkLayout {
-  width: 500px;
+  width: 400px;
   /* line-height: 827px; */
   padding: 33px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -24,6 +24,8 @@
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #000000;
   border-radius: 7px;
+  font: normal normal normal 14px/20px Roboto;
+  padding-left: 10px;
   opacity: 1;
 }
 

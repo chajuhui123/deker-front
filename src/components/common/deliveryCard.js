@@ -1,3 +1,4 @@
+import { phoneNumberFormatter } from "api/check";
 import React from "react";
 import classes from "./deliveryCard.module.css";
 
@@ -7,6 +8,7 @@ import classes from "./deliveryCard.module.css";
  * @param {Function} fnModi 수정버튼 method (배송코드 parameter 넣어서 호출)
  * @param {Function} fnDel 삭제버튼 method (배송코드 parameter 넣어서 호출)
  * @param {Function} fnSel 선택버튼 method (배송코드 parameter 넣어서 호출)
+ * @param {Function} fnSet 대표배송지버튼 method (배송코드 parameter 넣어서 호출)
  * @param {String} deliNm 배송지명
  * @param {String} zipCode 주소코드
  * @param {String} addrNm 배송지주소
@@ -19,9 +21,12 @@ function DliveryCard({
   fnModi,
   fnDel,
   fnSel,
+  fnSet,
   deliNm,
   zipCode,
   addrNm,
+  addrDetailNm,
+  addMain,
   userNm,
   userPn,
 }) {
@@ -34,26 +39,36 @@ function DliveryCard({
   const selectDeliveryHandler = (e) => {
     fnSel(deliCode);
   };
+  const setDevlieryMainHandler = (e) => {
+    fnSet(deliCode);
+  };
   return (
     <div className={classes.cardArea} id={deliCode}>
       <div className={classes.deliNm}>{deliNm}</div>
       <div className={classes.addr}>
-        ({zipCode}) {addrNm}
+        ({zipCode}) {addrNm} {addrDetailNm}
       </div>
       <div className={classes.userInfo}>
-        {userNm} {userPn}
+        {userNm} {phoneNumberFormatter(userPn)}
       </div>
-      <div className={classes.btnArea}>
-        <button className={classes.modiBtn} onClick={modifyDeliveryHandler}>
-          수정
-        </button>
-        <button className={classes.delBtn} onClick={deleteDeliveryHandler}>
-          삭제
-        </button>
-        <button className={classes.selBtn} onClick={selectDeliveryHandler}>
-          선택
-        </button>
-      </div>
+      {addMain === "Y" ? (
+        <div className={classes.btnArea}>
+          <button onClick={modifyDeliveryHandler}>수정</button>
+          <button onClick={deleteDeliveryHandler}>삭제</button>
+          <button className={classes.selBtn} onClick={selectDeliveryHandler}>
+            선택
+          </button>
+        </div>
+      ) : (
+        <div className={classes.btnArea}>
+          <button onClick={modifyDeliveryHandler}>수정</button>
+          <button onClick={deleteDeliveryHandler}>삭제</button>
+          <button onClick={setDevlieryMainHandler}>대표배송지 선택</button>
+          <button className={classes.selBtn} onClick={selectDeliveryHandler}>
+            선택
+          </button>
+        </div>
+      )}
     </div>
   );
 }

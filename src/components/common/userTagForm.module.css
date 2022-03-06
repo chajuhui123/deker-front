@@ -4,23 +4,19 @@
   height: 30px;
   border: 1px solid #a6a6a7;
   border-radius: 8px;
+  font: normal normal bold 14px/20px Roboto;
   opacity: 1;
 }
-
-/* .userTagForm_TagListArea {
-  position: relative;
-  width: 100%;
-  height: auto;
-} */
 
 .userTagForm_TagList {
   margin-top: 20px;
   margin-right: 10px;
-  max-width: 400px; /*200px넘는 글자 넣으면 x버튼 없어짐 수정*/
+  max-width: 400px;
   height: 24px;
   float: left;
-  border: 2px solid #4242e2;
-  border-radius: 13px;
+  background: #f5f5f5 0% 0% no-repeat padding-box;
+  border: 2px solid #f5f5f5;
+  border-radius: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; /*늘어나면 ...처리*/
@@ -33,9 +29,13 @@
   opacity: 1;
 }
 
-.userTagTextArea {
+.sharpArea {
   margin-left: 10px;
-  margin-right: 5px;
+  font: normal normal bold 15px/25px Roboto;
+}
+.userTagTextArea {
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 .userTagForm_TagRmvBtn {
@@ -44,15 +44,16 @@
   margin-top: 2px;
   width: 20px;
   height: 20px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border: 2px solid #4242e2;
+  background: #f5f5f5 0% 0% no-repeat padding-box;
+  border: 2px solid #f5f5f5;
   border-radius: 50%;
   text-align: center;
   line-height: 10px;
   letter-spacing: 0px;
-  font: normal normal bold 10px/14px Roboto;
+  font: normal normal bold 13px/14px Roboto;
   letter-spacing: 0px;
   float: right;
-  color: #4242e2;
+  color: #5d5d5d;
+  cursor: pointer;
   opacity: 1;
 }

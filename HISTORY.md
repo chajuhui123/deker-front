@@ -1,5 +1,21 @@
 ## HISTORY
 
+### 2022.03.06 김효진
+
+1. 배송지 관련 개발 완료 css는 조금 손 봐야함
+
+### 2022.03.06. 권예림
+
+1. 상품등록 (productSalesLink)
+   - Back 연결
+   - Community Write 연결 (productId 값 넘겨주기)
+
+### 2022.03.03. 권예림
+
+1. 태그 디자인 수정 (userTagForm)
+2. [개발중] 상품등록 (productSalesLink) Back 연결
+3. 배송지선택(deliverySelect) 팝업 - 주소조회 API 적용
+
 ### 2022.03.03 차주희
 
 1. [진행중] 마켓 상품 디테일 장바구니 API 연동 진행 중
