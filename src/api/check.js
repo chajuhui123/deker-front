@@ -10,6 +10,15 @@ export function isPassword(asValue) {
   return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
 }
 
+export const isPhoneNumber = (pn) => {
+  var regExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+  return regExp.test(pn);
+};
+
+export const phoneNumberFormatter = (pn) => {
+  return pn.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+};
+
 export const calculateRemainingTime = (expirationTime) => {
   if (!!expirationTime) {
     const currentTime = new Date().getTime(); // 현재 타임스탬프가 찍히고, getTime에 의해 밀리초 단위로 변환된다.

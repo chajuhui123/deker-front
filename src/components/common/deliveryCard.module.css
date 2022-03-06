@@ -40,39 +40,19 @@
   justify-content: space-between;
 }
 
-.modiBtn {
-  width: 64px;
+.btnArea button {
+  padding: 0 15px;
   height: 37px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #777777;
-  border-radius: 16px;
+  border-radius: 10px;
   text-align: center;
   font: normal normal normal 13px/25px Roboto;
   letter-spacing: 0px;
   color: #777777;
 }
 
-.delBtn {
-  width: 64px;
-  height: 37px;
-  margin-right: 100px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border: 1px solid #777777;
-  border-radius: 16px;
-  text-align: center;
-  font: normal normal normal 13px/25px Roboto;
-  letter-spacing: 0px;
-  color: #777777;
-}
-
-.selBtn {
-  width: 64px;
-  height: 37px;
+.btnArea .selBtn {
   background: #4242e2 0% 0% no-repeat padding-box;
-  border: 1px solid #4242e2;
-  border-radius: 16px;
-  text-align: center;
-  font: normal normal medium 13px/25px Roboto;
-  letter-spacing: 0px;
   color: #ffffff;
 }

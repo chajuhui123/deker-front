@@ -1,5 +1,9 @@
 ## HISTORY
 
+### 2022.03.06 김효진
+
+1. 배송지 관련 개발 완료 css는 조금 손 봐야함
+
 ### 2022.03.06. 권예림
 
 1. 상품등록 (productSalesLink)
@@ -11,7 +15,6 @@
 1. 태그 디자인 수정 (userTagForm)
 2. [개발중] 상품등록 (productSalesLink) Back 연결
 3. 배송지선택(deliverySelect) 팝업 - 주소조회 API 적용
-
 
 ### 2022.03.02 차주희
 
@@ -36,6 +39,7 @@
 ### 2022.03.01. 권예림
 
 1. modifyUserInfo
+
 - Back 연결 받아오기
 - 프로필이미지 선택
 - UI 세로 정렬
