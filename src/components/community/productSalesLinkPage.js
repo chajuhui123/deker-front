@@ -38,17 +38,15 @@ function ProductSalesLink(props) {
     setProductLinkInputText(e.target.value);
   };
 
-  // back 통신해서 받아오기
+  // back 통신해서 검색한 가구 리스트 받아오기
   const productSearchHandler = () => {
-    console.log("keyword보기: " + productLinkInputText);
-    const formData = new FormData();
-    formData.append("keyword", productLinkInputText);
-
-    // FormData의 값 확인
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
-    dispatch(postApi("nmb/mkt/get/reg-product", formData, fnCallback));
+    dispatch(
+      postApi(
+        "nmb/mkt/get/reg-product",
+        { keyword: productLinkInputText },
+        fnCallback
+      )
+    );
   };
 
   const fnCallback = (res) => {
@@ -103,13 +101,12 @@ function ProductSalesLink(props) {
           + 상품 직접 등록하기
         </textarea>
         <div className={classes.selectedProduct}>
-          {/* 더미데이터 시작 */}
           <ProductList
             products={productLists}
             departure={"productSalesLink"}
             productClickHandler={productClickHandler}
           />
-          <div className={classes.dummy}>
+          {/* <div className={classes.dummy}>
             <img
               className={classes.productImg}
               alt="T20 TAB+ TNA200HF 메쉬의자 2types"
@@ -126,44 +123,7 @@ function ProductSalesLink(props) {
               fontSize="17px"
               fnClick={dummyClick}
             />
-          </div>
-          <div className={classes.dummy}>
-            <img
-              className={classes.productImg}
-              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
-              src="https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg"
-            />
-            <div className={classes.productInfo}>
-              <div>메쉬테이블 2types</div>
-              <div>13300</div>
-            </div>
-            <CommBtn
-              btnText="선택"
-              btnWidth="50px"
-              btnHeight="33px"
-              fontSize="17px"
-              fnClick={dummyClick}
-            />
-          </div>
-          <div className={classes.dummy}>
-            <img
-              className={classes.productImg}
-              alt="T20 TAB+ TNA200HF 메쉬의자 2types"
-              src="https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg"
-            />
-            <div className={classes.productInfo}>
-              <div>노트북</div>
-              <div>1200000</div>
-            </div>
-            <CommBtn
-              btnText="선택"
-              btnWidth="50px"
-              btnHeight="33px"
-              fontSize="17px"
-              fnClick={dummyClick}
-            />
-          </div>
-          {/* 더미 끝 */}
+          </div> */}
         </div>
       </div>
       <div className={classes.closeBtnArea}>

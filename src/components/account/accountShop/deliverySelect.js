@@ -66,7 +66,7 @@ function DeliverySelect(props) {
   }, []);
 
   const pushclick = () => {
-    console.log(DUMMY_DATA2[0]);
+    console.log(DUMMY_DATA2);
   };
   // 주소 조회 daum API 사용 끝
 
@@ -88,15 +88,15 @@ function DeliverySelect(props) {
             userPn={deli.receiverPhNo}
           />
         ))}
-        {/* {DUMMY_DATA2?.length && (
+        {DUMMY_DATA2 && (
           <DeliveryCard
-            key={DUMMY_DATA2[0].zonecode}
-            deliCode={DUMMY_DATA2[0].zonecode}
+            key={DUMMY_DATA2.zonecode}
+            deliCode={DUMMY_DATA2.zonecode}
             deliNm="내집"
-            zipCode={DUMMY_DATA2[0].zonecode}
-            addrNm={DUMMY_DATA2[0].address}
+            zipCode={DUMMY_DATA2.zonecode}
+            addrNm={DUMMY_DATA2.address}
           />
-        )} */}
+        )}
       </div>
       <CommBtn btnText="배송지 추가" fnClick={addDeliveryHandler} />
       <button onClick={pushclick}>push</button>

@@ -17,3 +17,32 @@
   /* margin-inline: 10px; */
   /* float: left; */
 }
+
+/* productSalesLink CSS */
+.productArea2 {
+  margin-top: 10px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+.productImg2 {
+  /* background-color: rgb(206, 206, 206); */
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.productInfo2 {
+  margin-left: 10px;
+  width: 100%;
+  display: inline-block;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /*늘어나면 ...처리*/
+  text-align: left;
+  font: normal normal normal 13px/25px Roboto;
+  /* margin-inline: 10px; */
+  /* float: left; */
+}

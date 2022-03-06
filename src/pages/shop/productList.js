@@ -1,6 +1,7 @@
 // import { useState } from "react";
 import ProductItem from "./productItem";
 import classes from "./productList.module.css";
+import classes2 from "./productList2.module.css";
 
 function ProductList(props) {
   // const [productClick, setProductClick] = useState(false);
@@ -9,16 +10,23 @@ function ProductList(props) {
   //   props.productClickHandler(productClick);
   // };
 
-  // const productList = props.products?.map((product) => (
-  // 앞에서 state로 관리하니까 여기서 상수로 박으면 로딩 잘 안됨
-  // ));
   var departure = props.departure;
+  var cssClass = classes;
+  // storeMain 페이지에서 product List를 조회할 때 사용할 css 파일
+  if (departure === "storeMain") {
+    cssClass = classes;
+  }
+  // productSalesLink 페이지에서 product List를 조회할 때 사용할 css 파일
+  else if (departure === "productSalesLink") {
+    cssClass = classes2;
+  }
+
   return (
     <div>
       {props.products?.length ? (
-        <ul>
+        <ul className={cssClass.productListArea}>
           {props.products.map((product) => (
-            <li className={classes.productList}>
+            <li className={cssClass.productList}>
               <ProductItem
                 key={product.mktProductId}
                 id={product.mktProductId}
@@ -33,11 +41,11 @@ function ProductList(props) {
           ))}
         </ul>
       ) : { departure } === "storeMain" ? (
-        <div className={classes.noUploadText}>
+        <div className={cssClass.noUploadText}>
           <text>작성한 글이 없습니다</text>
         </div>
       ) : (
-        <div className={classes.noUploadText}>
+        <div className={cssClass.noUploadText}>
           <text>해당하는 상품이 없습니다.</text>
         </div>
       )}
