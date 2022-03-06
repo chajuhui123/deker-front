@@ -1,0 +1,23 @@
+.modalMain {
+  width: 560px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.addArea p {
+  margin: 15px 0;
+}
+
+.addRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addZip {
+  width: 100px;
+}
+
+.address {
+  width: calc(100% - 240px);
+}

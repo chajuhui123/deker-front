@@ -152,7 +152,7 @@ function ModalTest(props) {
         <li>
           <CommSelect
             options={selectArray}
-            defaultValue={selectArray.filter((s) => s.includes("J01"))}
+            // defaultValue={selectArray.filter((s) => s.includes("J01"))}
           ></CommSelect>
         </li>
       </ul>

@@ -9,6 +9,8 @@ import CommPageSemiTitle from "./commPageSemiTitle";
  * @param {String} refer input창 reference
  * @param {String} type input type
  * @param {String} value input value
+ * @param {String} placeholder placeholder
+ * @param {Boolean} readOnly readOnly
  * @param {String} onChange input onChange pointer method
  * @returns
  */
@@ -25,6 +27,8 @@ function CommInput(props) {
         value={props.value}
         onChange={props.onChange}
         ref={ref}
+        placeholder={props.placeholder}
+        readOnly={props.readOnly || false}
       ></input>
     </div>
   );
