@@ -9,23 +9,23 @@ import ProductOptionSelectItem from "./productOptionSelectItem";
 
 function ProductOptionSelectBox({ productDetailObj }) {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-
   const productQuantity = "10";
+
+  const { productImg, productName, productPrice, productDetailOptionArr } =
+    productDetailObj;
 
   return (
     <div className={classes.productOptionSelectBox}>
-      <img src={productDetailObj.productImg || noImg} alt="상품이미지" />
+      <img src={productImg || noImg} alt="상품이미지" />
       <div className={classes.optionSelectBox}>
-        <CommonPageTitle title={productDetailObj.productName} />
+        <CommonPageTitle title={productName ?? ""} />
         <div className={classes.buyItemInfoDiv}>
           <p>가격 </p>
-          <p>{productDetailObj.productPrice.toLocaleString("ko-KR")} 원</p>
+          <p>{productPrice?.toLocaleString("ko-KR") ?? 0} 원</p>
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>옵션</p>
-          <ProductOptionSelectItem
-            options={productDetailObj.productDetailOptionArr}
-          />
+          <ProductOptionSelectItem options={productDetailOptionArr} />
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>수량</p>
@@ -37,17 +37,13 @@ function ProductOptionSelectBox({ productDetailObj }) {
             defaultValue="0"
             onChange={(event) => {
               setSelectedQuantity(parseInt(event.target.value));
-              console.log(typeof selectedQuantity);
             }}
           />
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>주문금액</p>
           <p>
-            {(productDetailObj.productPrice * selectedQuantity).toLocaleString(
-              "ko-KR"
-            )}
-            원
+            {(productPrice ?? 0 * selectedQuantity).toLocaleString("ko-KR")}원
           </p>
         </div>
         <div className={classes.btnBox}>
