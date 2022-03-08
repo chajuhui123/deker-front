@@ -97,7 +97,7 @@ const CommunityDetailPage = ({ match }) => {
           margin: "40px 0 20px 0",
         }}
       >
-        <CommunityDetailLike />
+        <CommunityDetailLike communityPostId={communityPostId} />
         <CommunityDetailManagementPost communityPostId={communityPostId} />
       </div>
       <CommunityDetailCommentBox commentList={commentList} />
