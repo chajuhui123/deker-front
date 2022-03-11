@@ -103,7 +103,7 @@ function ModifyUserInfo(props) {
 
     const myAccountInfo = {
       nickname: nickNm,
-      id: emailPrint,
+      // id: emailPrint,
       jobCode: jobCode,
       tag: tag,
     };
