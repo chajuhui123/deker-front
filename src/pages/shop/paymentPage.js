@@ -254,7 +254,7 @@ const PaymentPage = () => {
           <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
         </div>
         <div className={classes.section}>
-          <CommPageSemiTitle semiTitle="결제수단" />
+          <CommPageSemiTitle semiTitle="결제가능수단" />
           <hr className={classes.lineD} />
           <PayBy />
         </div>

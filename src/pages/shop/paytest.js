@@ -1,8 +1,12 @@
 import React from "react";
 import jQuery from "jquery";
+import { useDispatch } from "react-redux";
+import { postApi } from "api/fetch-api";
 window.$ = window.jQuery = jQuery;
 
 function Paytest() {
+  const dispatch = useDispatch();
+
   const payBtnHandler = () => {
     /* 1. 가맹점 식별 */
     var { IMP } = window; // 생략 가능
@@ -13,7 +17,7 @@ function Paytest() {
       // param
       pg: "html5_inicis", // PG사
       pay_method: "card", //결제수단
-      merchant_uid: "ORD20180131-0000011", // 주문번호
+      merchant_uid: "ORD20180131-0000015", // 주문번호
       name: "노르웨이 회전 의자", // 주문명
       amount: 100, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
@@ -31,7 +35,37 @@ function Paytest() {
   function callback(rsp) {
     if (rsp.success) {
       // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-      var msg = "결제가 완료되었습니다.";
+      var msg = "결제결과";
+
+      // 결제 금액 등 결제 내용 Back 통신으로 확인
+      dispatch(
+        postApi(
+          "nmb/mkt/get/reg-product",
+          {
+            buyer_addr: rsp.buyer_addr,
+            buyer_email: rsp.buyer_email,
+            buyer_name: rsp.buyer_name,
+            buyer_postcode: rsp.buyer_postcode,
+            buyer_tel: rsp.buyer_tel,
+            card_name: rsp.card_name,
+            card_number: rsp.card_number,
+            currency: rsp.currency,
+            merchant_uid: rsp.merchant_uid,
+            name: rsp.name,
+            paid_amount: rsp.paid_amount,
+            pay_method: rsp.pay_method,
+            success: true,
+          },
+          function (res) {
+            if (!!res) {
+              msg = "결제가 완료되었습니다.";
+            } else {
+              // 비정상로직;
+              alert("data error");
+            }
+          }
+        )
+      );
       // jQuery로 HTTP 요청
       // jQuery
       //   .ajax({
@@ -45,6 +79,7 @@ function Paytest() {
       //   })
       //   .done(function (data) {
       //     //   가맹점 서버 결제 API 성공시 로직
+      //     alert("success");
       //   });
     } else {
       msg = "결제에 실패하였습니다.";
