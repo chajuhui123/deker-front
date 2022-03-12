@@ -8,14 +8,12 @@ import { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { modalAction } from "store/modal-slice";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
 import PayBtn from "./payBtn";
 
 const PaymentPage = () => {
-  const history = useHistory();
   const [orderNm, setOerderNm] = useState("");
   const [email, setEmail] = useState("");
   const [telNo, setTelNo] = useState("");
@@ -23,17 +21,8 @@ const PaymentPage = () => {
   const [rcvTelNo, setRcvTelNo] = useState("");
   const [rcvAddr, setRcvAddr] = useState("");
   const [deliMemo, setDeliMemo] = useState("");
-  const [totalPayAmt, setTotalPayAmt] = useState("");
+  // const [totalPayAmt, setTotalPayAmt] = useState(0);
   const dispatch = useDispatch();
-
-  // 결제하기 버튼 이벤트 핸들러
-  const paymentBtnHandler = () => {
-    setTotalPayAmt("123,000");
-    console.log(totalPayAmt);
-
-    // 버튼 누르고 결제 성공하면 이동하는 페이지(결제완료페이지/paymentCmplt)
-    history.push("/paymentCmplt");
-  };
 
   const orderNmInputHandler = (e) => {
     setOerderNm(e.target.value);
@@ -229,7 +218,6 @@ const PaymentPage = () => {
               />
             </div>
           </div>
-          {/* 나머지 주소 */}
           <textarea
             className={classes.inputAreaAddr}
             type="text"

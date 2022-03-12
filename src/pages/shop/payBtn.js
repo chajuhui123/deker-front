@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
+import CommBtn from "components/common/commBtn";
 import classes from "./payBtn.module.css";
 
 import jQuery from "jquery";
-import CommBtn from "components/common/commBtn";
+import { Link } from "@mui/material";
+import { Route } from "react-router-dom";
 window.$ = window.jQuery = jQuery;
 
 function PayBtn() {
   const dispatch = useDispatch();
+  const [paydata, setPaydata] = useState(null);
 
   const payBtnHandler = () => {
     /* 1. 가맹점 식별 */
@@ -20,7 +23,7 @@ function PayBtn() {
       // param
       pg: "html5_inicis", // PG사
       pay_method: "card", //결제수단
-      merchant_uid: "ORD20180131-0000016", // 주문번호
+      merchant_uid: "ORD20180131-0000018", // 주문번호
       name: "노르웨이 회전 의자", // 주문명
       amount: 100, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
@@ -38,7 +41,8 @@ function PayBtn() {
   function callback(rsp) {
     if (rsp.success) {
       // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-      var msg = "결제결과";
+      var msg = "결제가 완료되었습니다.";
+      setPaydata(rsp);
 
       // 결제 금액 등 결제 내용 Back 통신으로 확인
       dispatch(
@@ -61,7 +65,19 @@ function PayBtn() {
           },
           function (res) {
             if (!!res) {
-              msg = "결제가 완료되었습니다.";
+              // 결제 완료 페이지로 이동
+              // <Route path="/payment/paymentCmplt" component={paydata} />;
+              <Link
+                to={{
+                  pathname: "/payment/paymentCmplt", // StoreSortPage
+                  state: {
+                    merchant_uid: rsp.merchant_uid,
+                    name: rsp.name,
+                    paid_amount: rsp.paid_amount,
+                    buyer_addr: rsp.buyer_addr,
+                  },
+                }}
+              />;
             } else {
               // 비정상로직;
               alert("data error");

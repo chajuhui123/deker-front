@@ -4,7 +4,10 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./paymentCmpltPage.module.css";
 
-const PaymentCmpltPage = () => {
+const PaymentCmpltPage = (props) => {
+  // 결제페이지에서 넘어오는 결제 데이터
+  const payData = props;
+
   const history = useHistory();
   const [orderNo, setOerderNo] = useState("");
   const [userId, setUserId] = useState("");
@@ -39,7 +42,7 @@ const PaymentCmpltPage = () => {
               <textarea
                 className={classes.dtlText}
                 type="text"
-                value={orderNo}
+                value={payData.merchant_uid}
               />
             </div>
             <div className={classes.dtlArea}>

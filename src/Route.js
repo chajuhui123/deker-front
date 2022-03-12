@@ -129,7 +129,7 @@ function RouteComponent() {
       <Route path="/payment" exact>
         <PaymentPage />
       </Route>
-      <Route path="/paymentCmplt" exact>
+      <Route path="/payment/paymentCmplt" exact>
         <PaymentCmpltPage />
       </Route>
       <Route
