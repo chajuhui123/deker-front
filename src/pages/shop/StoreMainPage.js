@@ -141,7 +141,7 @@ const StoreMainPage = () => {
         </div>
         <div className={classes.productListArea}>
           {/* <ProductList products={DUMMY_DATA} /> */}
-          <ProductList products={productLists} departure={"storeMain"} />
+          <ProductList products={productLists} departure={"store"} />
         </div>
       </div>
       <div className={classes.CategorySection}>

@@ -24,7 +24,6 @@ import RecentlyProduct from "components/shop/recently/RecentlyProduct";
 import RestrictRoute from "components/common/RestrictRoute";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Paytest from "pages/shop/paytest";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -130,7 +129,7 @@ function RouteComponent() {
       <Route path="/payment" exact>
         <PaymentPage />
       </Route>
-      <Route path="/paymentCmplt" exact>
+      <Route path="/payment/paymentCmplt" exact>
         <PaymentCmpltPage />
       </Route>
       <Route
@@ -145,10 +144,6 @@ function RouteComponent() {
       />
       <Route path="/market/recently" exact>
         <RecentlyProduct />
-      </Route>
-      {/* 결제 기능 테스트 페이지 */}
-      <Route path="/paytest" exact>
-        <Paytest />
       </Route>
     </Switch>
   );

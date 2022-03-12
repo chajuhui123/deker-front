@@ -8,13 +8,12 @@ import { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { modalAction } from "store/modal-slice";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
+import PayBtn from "./payBtn";
 
 const PaymentPage = () => {
-  const history = useHistory();
   const [orderNm, setOerderNm] = useState("");
   const [email, setEmail] = useState("");
   const [telNo, setTelNo] = useState("");
@@ -22,17 +21,8 @@ const PaymentPage = () => {
   const [rcvTelNo, setRcvTelNo] = useState("");
   const [rcvAddr, setRcvAddr] = useState("");
   const [deliMemo, setDeliMemo] = useState("");
-  const [totalPayAmt, setTotalPayAmt] = useState("");
+  // const [totalPayAmt, setTotalPayAmt] = useState(0);
   const dispatch = useDispatch();
-
-  // 결제하기 버튼 이벤트 핸들러
-  const paymentBtnHandler = () => {
-    setTotalPayAmt("123,000");
-    console.log(totalPayAmt);
-
-    // 버튼 누르고 결제 성공하면 이동하는 페이지(결제완료페이지/paymentCmplt)
-    history.push("/paymentCmplt");
-  };
 
   const orderNmInputHandler = (e) => {
     setOerderNm(e.target.value);
@@ -228,7 +218,6 @@ const PaymentPage = () => {
               />
             </div>
           </div>
-          {/* 나머지 주소 */}
           <textarea
             className={classes.inputAreaAddr}
             type="text"
@@ -254,7 +243,7 @@ const PaymentPage = () => {
           <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
         </div>
         <div className={classes.section}>
-          <CommPageSemiTitle semiTitle="결제수단" />
+          <CommPageSemiTitle semiTitle="결제가능수단" />
           <hr className={classes.lineD} />
           <PayBy />
         </div>
@@ -264,18 +253,8 @@ const PaymentPage = () => {
           <TotalPaymentAmt paymentAmt="123000" deliAmt="3000" />
         </div>
       </div>
-      <div className={classes.goMoveBtn}>
-        <CommBtn
-          btnText="결제하기"
-          btnWidth="200px"
-          btnHeight="80px"
-          border="3px solid rgb(66, 66, 226)"
-          bgColor="rgbrgb(66, 66, 226)"
-          radius="4px"
-          txColor="rgb(248, 248, 248)"
-          fnClick={paymentBtnHandler}
-        />
-      </div>
+      {/* 결제 데이터 넘겨야 함 */}
+      <PayBtn />
     </div>
   );
 };
