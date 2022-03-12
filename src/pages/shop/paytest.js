@@ -5,8 +5,8 @@ window.$ = window.jQuery = jQuery;
 function Paytest() {
   const payBtnHandler = () => {
     /* 1. 가맹점 식별 */
-    var IMP = window.IMP; // 생략 가능
-    IMP.init("{imp83459588}"); // 예: imp00000000
+    var { IMP } = window; // 생략 가능
+    IMP.init("imp83459588"); // 예: imp00000000
 
     /* 2. 결제 데이터 정의 */
     const data = {
@@ -15,7 +15,7 @@ function Paytest() {
       pay_method: "card", //결제수단
       merchant_uid: "ORD20180131-0000011", // 주문번호
       name: "노르웨이 회전 의자", // 주문명
-      amount: 64900, // 결제금액
+      amount: 100, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
       buyer_name: "홍길동", // 구매자 이름
       buyer_tel: "010-4242-4242", // 구매자 전화번호
@@ -31,28 +31,26 @@ function Paytest() {
   function callback(rsp) {
     if (rsp.success) {
       // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+      var msg = "결제가 완료되었습니다.";
       // jQuery로 HTTP 요청
-
-      const { success, merchant_uid, error_msg } = rsp;
-
-      console.log("check111111111111111111111111111111");
-      /** 일단 주석 */
-      jQuery
-        .ajax({
-          url: "{서버의 결제 정보를 받는 endpoint}", // 예: https://www.myservice.com/payments/complete
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          data: {
-            imp_uid: rsp.imp_uid,
-            merchant_uid: rsp.merchant_uid,
-          },
-        })
-        .done(function (data) {
-          //   가맹점 서버 결제 API 성공시 로직
-        });
+      // jQuery
+      //   .ajax({
+      //     url: "{http://localhost:3000/paytest}", // 예: https://www.myservice.com/payments/complete
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     data: {
+      //       imp_uid: rsp.imp_uid,
+      //       merchant_uid: rsp.merchant_uid,
+      //     },
+      //   })
+      //   .done(function (data) {
+      //     //   가맹점 서버 결제 API 성공시 로직
+      //   });
     } else {
-      alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+      msg = "결제에 실패하였습니다.";
+      msg += "에러내용 : " + rsp.error_msg;
     }
+    alert(msg);
   }
   return <button onClick={payBtnHandler}>결제하기</button>;
 }
