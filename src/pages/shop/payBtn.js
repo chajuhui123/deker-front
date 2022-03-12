@@ -1,10 +1,13 @@
 import React from "react";
-import jQuery from "jquery";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
+import classes from "./payBtn.module.css";
+
+import jQuery from "jquery";
+import CommBtn from "components/common/commBtn";
 window.$ = window.jQuery = jQuery;
 
-function Paytest() {
+function PayBtn() {
   const dispatch = useDispatch();
 
   const payBtnHandler = () => {
@@ -17,7 +20,7 @@ function Paytest() {
       // param
       pg: "html5_inicis", // PG사
       pay_method: "card", //결제수단
-      merchant_uid: "ORD20180131-0000015", // 주문번호
+      merchant_uid: "ORD20180131-0000016", // 주문번호
       name: "노르웨이 회전 의자", // 주문명
       amount: 100, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
@@ -87,7 +90,20 @@ function Paytest() {
     }
     alert(msg);
   }
-  return <button onClick={payBtnHandler}>결제하기</button>;
+  return (
+    <div className={classes.goMoveBtn}>
+      <CommBtn
+        btnText="결제하기"
+        btnWidth="200px"
+        btnHeight="80px"
+        border="3px solid rgb(66, 66, 226)"
+        bgColor="rgbrgb(66, 66, 226)"
+        radius="4px"
+        txColor="rgb(248, 248, 248)"
+        fnClick={payBtnHandler}
+      />
+    </div>
+  );
 }
 
-export default Paytest;
+export default PayBtn;

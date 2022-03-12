@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
+import PayBtn from "./payBtn";
 
 const PaymentPage = () => {
   const history = useHistory();
@@ -264,18 +265,8 @@ const PaymentPage = () => {
           <TotalPaymentAmt paymentAmt="123000" deliAmt="3000" />
         </div>
       </div>
-      <div className={classes.goMoveBtn}>
-        <CommBtn
-          btnText="결제하기"
-          btnWidth="200px"
-          btnHeight="80px"
-          border="3px solid rgb(66, 66, 226)"
-          bgColor="rgbrgb(66, 66, 226)"
-          radius="4px"
-          txColor="rgb(248, 248, 248)"
-          fnClick={paymentBtnHandler}
-        />
-      </div>
+      {/* 결제 데이터 넘겨야 함 */}
+      <PayBtn />
     </div>
   );
 };

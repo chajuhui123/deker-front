@@ -11,7 +11,17 @@
   margin: auto;
   width: 100px;
   height: 150px;
-  background: #4242e229 0% 0% no-repeat padding-box;
-  border: 1px solid #4242e2;
+  background: #ffffff 0% 0% no-repeat padding-box; /* 연보라: #4242e229*/
+  border: 1px solid #d5d5d5;
+  font: normal normal bold 18px/23px Roboto;
+  text-align: center;
+  color: #707070;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
   opacity: 1;
+}
+
+.paymentD img {
+  margin-top: 30px;
 }
