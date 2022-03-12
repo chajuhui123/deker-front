@@ -6,7 +6,7 @@ function ProductList(props) {
   var departure = props.departure;
   var cssClass = classes;
   // storeMain 페이지에서 product List를 조회할 때 사용할 css 파일
-  if (departure === "storeMain") {
+  if (departure === "store") {
     cssClass = classes;
   }
   // productSalesLink 페이지에서 product List를 조회할 때 사용할 css 파일
@@ -35,7 +35,7 @@ function ProductList(props) {
             </li>
           ))}
         </ul>
-      ) : { departure } === "storeMain" ? (
+      ) : { departure } === "store" ? (
         <div className={cssClass.noUploadText}>
           <text>작성한 글이 없습니다</text>
         </div>
