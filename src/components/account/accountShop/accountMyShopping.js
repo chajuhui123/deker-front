@@ -12,7 +12,7 @@ import MyShoppingCnt from "./myshoppingCnt";
 
 function AccountMyShopping(props) {
   const dispatch = useDispatch();
-  const [inqPeriod, setInqPeriod] = useState("20220120");
+  const [inqPeriod, setInqPeriod] = useState("month");
   const [inqDeliState, setInqDeliState] = useState("6");
 
   const [currentPageNo, setCurrentPageNo] = useState(1);
@@ -121,8 +121,11 @@ function AccountMyShopping(props) {
         </div>
         <div className={classes.dtlArea}>
           <CommPageSemiTitle semiTitle="주문상품" />
+          {/* 이 부분도 나중에 back 제대로 연결되면 컴포넌트로 분리 */}
           <div className={classes.acctMyShopping_orderProductDetail}>
-            <p>000000000 | 2022.01.01.</p>
+            <div>00000000</div>
+            <div className={classes.d}>{` | `}</div>
+            <div> 2022.01.01.</div>
           </div>
           <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
         </div>
