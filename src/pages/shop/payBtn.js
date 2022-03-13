@@ -66,6 +66,7 @@ function PayBtn() {
           function (res) {
             if (!!res) {
               // 결제 완료 페이지로 이동
+              // 둘 다 이동을 안함 왜지
               // <Route path="/payment/paymentCmplt" component={paydata} />;
               <Link
                 to={{

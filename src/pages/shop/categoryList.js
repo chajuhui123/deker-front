@@ -12,8 +12,9 @@ function CategoryList(props) {
             {props.categorys.map((category) => (
               <li className={classes.categoryList}>
                 <CategoryItem
-                  key={category.categoryName}
-                  id={category.categoryName}
+                  key={category.categoryId}
+                  id={category.categoryId}
+                  categoryId={category.categoryId}
                   categoryImg={category.categoryImg}
                   categoryName={category.categoryName}
                 />
@@ -24,7 +25,7 @@ function CategoryList(props) {
       ) : (
         <div className={classes.noUploadText}>
           <text>작성한 글이 없습니다</text>
-          {console.log("category: " + props.categorys)}
+          {/* {console.log("category: " + props.categorys)} */}
         </div>
       )}
     </div>
