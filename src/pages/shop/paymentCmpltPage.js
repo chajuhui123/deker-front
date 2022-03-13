@@ -6,7 +6,7 @@ import classes from "./paymentCmpltPage.module.css";
 
 const PaymentCmpltPage = (props) => {
   // 결제페이지에서 넘어오는 결제 데이터
-  const payData = props;
+  const { location } = props;
 
   const history = useHistory();
   const [orderNo, setOerderNo] = useState("");
@@ -42,7 +42,7 @@ const PaymentCmpltPage = (props) => {
               <textarea
                 className={classes.dtlText}
                 type="text"
-                value={payData.merchant_uid}
+                value={location.state.merchant_uid}
               />
             </div>
             <div className={classes.dtlArea}>
