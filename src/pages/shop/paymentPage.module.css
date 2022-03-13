@@ -215,12 +215,3 @@
 .lineD {
   margin-bottom: 20px;
 }
-
-.goMoveBtn {
-  position: relative;
-  margin: auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  width: 200px;
-  height: 80px;
-}

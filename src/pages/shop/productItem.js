@@ -21,7 +21,7 @@ function ProductItem(props) {
 
   return (
     <div>
-      {departure === "storeMain" && (
+      {departure === "store" && (
         // storeMain 페이지에서 product List를 조회할 때
         <div>
           <Link

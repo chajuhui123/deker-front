@@ -1,23 +1,41 @@
 import React, { useState } from "react";
 import classes from "./productOptionSelectItem.module.css";
 
-function ProductOptionSelectItem({ options }) {
-  const [selectedItem, setSelectedItem] = useState("옵션을 선택해주세요");
+function ProductOptionSelectItem({
+  productPrice: orginalPrice,
+  options,
+  selectedOption,
+  setSelectedOption,
+}) {
   const [isVisible, setIsVisible] = useState(false);
 
   const setVisibleList = () => {
     setIsVisible(!isVisible);
   };
-  const selectItem = (value) => {
+
+  const selectItem = (
+    option1Name,
+    option1DataName,
+    option2Name,
+    option2DataName,
+    productPrice
+  ) => {
     setIsVisible(!isVisible);
-    setSelectedItem(value.target.innerText);
+    setSelectedOption(
+      selectedOption.concat({
+        option1Name,
+        option1DataName,
+        option2Name,
+        option2DataName,
+        productPrice,
+      })
+    );
   };
 
-  console.log(options);
   return (
     <>
       <div className={classes.selectItemDiv} onClick={setVisibleList}>
-        {selectedItem}
+        <div>--- 옵션을 선택해주세요 ---</div>
         {isVisible && (
           <div className={classes.selectableList}>
             {options.map((optionItem) => {
@@ -28,9 +46,19 @@ function ProductOptionSelectItem({ options }) {
                 option2DataName,
                 productPrice,
               } = optionItem;
-              console.log(optionItem);
               return (
-                <div className={classes.selectableItem} onClick={selectItem}>
+                <div
+                  className={classes.selectableItem}
+                  onClick={() =>
+                    selectItem(
+                      option1Name,
+                      option1DataName,
+                      option2Name,
+                      option2DataName,
+                      productPrice
+                    )
+                  }
+                >
                   {option1Name}: {option1DataName} / {option2Name}:{" "}
                   {option2DataName} (+{productPrice.toLocaleString("ko-KR")})
                 </div>
