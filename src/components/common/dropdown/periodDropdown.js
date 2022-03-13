@@ -19,7 +19,7 @@ function PeriodDropdown(props) {
   // 기간이 선택되면 상위 컴포넌트(accountMyShopping)으로 보냄
   const periodDropdownSelectedHandler = (e) => {
     const valueoption = e.label;
-    props.onCreate(valueoption);
+    props.inqPeriodChgHandler(valueoption);
   };
 
   return (
