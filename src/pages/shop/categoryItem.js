@@ -4,13 +4,17 @@ import noImg from "img/noImg.png";
 import { BASE_URL } from "module/common-module";
 
 function CategoryItem(props) {
-  var sortId = props.categoryName;
+  var sortId = props.categoryId;
+
   return (
     <div>
       <Link
         to={{
           pathname: `/market/storeSortPage/${sortId}`,
-          state: { sortId: props.categoryName },
+          state: {
+            sortId: props.categoryId,
+            sortCtgryName: props.categoryName,
+          },
         }}
       >
         <img
