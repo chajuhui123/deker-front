@@ -7,7 +7,7 @@ import classes from "./StoreSortPage.module.css";
 
 const StoreSortPage = (props) => {
   // sordId: 라우터 경로
-  // 인기상품: rank, 카테고리: C01, C02, C03, C04, C05
+  // 인기상품: rank | 카테고리: C01, C02, C03, C04, C05 | 최근본상품:
   const { params } = props.match;
   const sortId = params.sortId;
 
@@ -246,12 +246,16 @@ const StoreSortPage = (props) => {
             title={sortId === "rank" ? "인기상품" : sortId + " 인기상품"}
           />
         </div>
+        {/* 인기상품 조회 */}
         {sortId === "rank" && <ProductList products={productLists} />}
+        {/* 카테고리별 조회 */}
         {sortId === "C02" && <ProductList products={DUMMY_DATA2} />}
         {sortId === "C03" && console.log(sortId)}
         {sortId === "C04" && <ProductList products={DUMMY_DATA2} />}
         {sortId === "C05" && <ProductList products={DUMMY_DATA2} />}
         {sortId === "C01" && <ProductList products={marketCategories} />}
+        {/* 최근본상품별 조회 */}
+        {/* 아무 라우터 값 없을 때 */}
         {sortId !== "rank" &&
           sortId !== "C02" &&
           sortId !== "C03" &&
