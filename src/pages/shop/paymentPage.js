@@ -13,7 +13,11 @@ import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
 import PayBtn from "./payBtn";
 
-const PaymentPage = () => {
+const PaymentPage = (props) => {
+  // const { location } = props;
+  // 이거 왜 안되냐
+  // console.log(prevProps.location.paymentAmt);
+
   const [orderNm, setOerderNm] = useState("");
   const [email, setEmail] = useState("");
   const [telNo, setTelNo] = useState("");
@@ -250,7 +254,11 @@ const PaymentPage = () => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제금액" />
           <hr className={classes.lineD} />
-          <TotalPaymentAmt paymentAmt="123000" deliAmt="3000" />
+          {/* <TotalPaymentAmt
+            paymentAmt={location.state.paymentAmt}
+            deliAmt={location.state.deliAmt}
+          /> */}
+          <TotalPaymentAmt paymentAmt="12000" deliAmt="2000" />
         </div>
       </div>
       {/* 결제 데이터 넘겨야 함 */}
