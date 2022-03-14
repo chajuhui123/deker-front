@@ -64,16 +64,3 @@
   color: #4242e2;
   opacity: 1;
 }
-
-.acctMyShopping_orderProductDetail {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-}
-
-.d {
-  width: 10px;
-  text-align: center;
-  font: normal normal bold 15px/15px Roboto;
-  color: #737373b5;
-}
