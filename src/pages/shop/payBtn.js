@@ -23,7 +23,7 @@ function PayBtn() {
       // param
       pg: "html5_inicis", // PG사
       pay_method: "card", //결제수단
-      merchant_uid: "ORD20180131-0000022", // 주문번호
+      merchant_uid: "ORD20180131-0000025", // 주문번호
       name: "노르웨이 회전 의자", // 주문명
       amount: 100, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
@@ -42,7 +42,7 @@ function PayBtn() {
     if (rsp.success) {
       // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
       var msg = "결제가 완료되었습니다.";
-      // setPaydata(rsp);
+      setPaydata(rsp);
 
       // 결제 금액 등 결제 내용 Back 통신으로 확인
       dispatch(
@@ -65,9 +65,13 @@ function PayBtn() {
           },
           function (res) {
             if (!!res) {
+              console.log("2222222222222222222222222222222222222");
               // 결제 완료 페이지로 이동
               // 일단 back 연결 후 진행
-              // <Route path="/payment/paymentCmplt" component={paydata} />;
+              <Route path="/payment/paymentCmplt" component={paydata} />;
+              console.log(
+                "4444444444444444444444444444444444444444444444444444"
+              );
               <Link
                 to={{
                   pathname: "/payment/paymentCmplt",
@@ -106,6 +110,23 @@ function PayBtn() {
       msg += "에러내용 : " + rsp.error_msg;
     }
     alert(msg);
+    console.log("33333333333333333333333333333333333333333333333");
+    // 결제 완료 페이지로 이동
+    // 일단 back 연결 후 진행
+    <Route path="/payment/paymentCmplt" component={paydata} />;
+    console.log("55555555555555555555555555555555555");
+    <Link
+      to={{
+        pathname: "/payment/paymentCmplt",
+        state: {
+          merchant_uid: rsp.merchant_uid,
+          name: rsp.name,
+          paid_amount: rsp.paid_amount,
+          buyer_addr: rsp.buyer_addr,
+        },
+      }}
+    />;
+    // 3 -> 5 -> 2 -> 4 순으로 출력되고 페이지 이동은 안됨
   }
   return (
     <div className={classes.goMoveBtn}>

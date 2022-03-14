@@ -9,6 +9,7 @@ import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
 import MyShoppingCnt from "./myshoppingCnt";
+import MyOrderPrdt from "./myOrderPrdt";
 
 function AccountMyShopping(props) {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ function AccountMyShopping(props) {
   };
   // 기간 및 배송상태 값이 선택되면 Back에 받아와서 새로 조회
   const inqPeriodChgHandler = (data) => {
-    setInqPeriod("20200101");
+    setInqPeriod(data);
     console.log(inqPeriod); // for debug
 
     dispatch(
@@ -121,13 +122,7 @@ function AccountMyShopping(props) {
         </div>
         <div className={classes.dtlArea}>
           <CommPageSemiTitle semiTitle="주문상품" />
-          {/* 이 부분도 나중에 back 제대로 연결되면 컴포넌트로 분리 */}
-          <div className={classes.acctMyShopping_orderProductDetail}>
-            <div>00000000</div>
-            <div className={classes.d}>{` | `}</div>
-            <div> 2022.01.01.</div>
-          </div>
-          <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
+          <MyOrderPrdt product={DUMMY_DATA_UNREVIEWED} />
         </div>
       </div>
     </div>
