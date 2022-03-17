@@ -28,7 +28,7 @@ function SelectBoxOptionDiv({ option }) {
           //   setSelectedQuantity(parseInt(event.target.value));
           // }}
         />
-        <div>{productPrice.toLocaleString("ko-KR")}원</div>
+        {/* <div>{productPrice.toLocaleString("ko-KR")}원</div> */}
       </div>
     </div>
   );

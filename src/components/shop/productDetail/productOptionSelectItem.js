@@ -17,8 +17,7 @@ function ProductOptionSelectItem({
     option1Name,
     option1DataName,
     option2Name,
-    option2DataName,
-    productPrice
+    option2DataName
   ) => {
     setIsVisible(!isVisible);
     setSelectedOption(
@@ -27,7 +26,6 @@ function ProductOptionSelectItem({
         option1DataName,
         option2Name,
         option2DataName,
-        productPrice,
       })
     );
   };
