@@ -1,49 +1,50 @@
 import React from "react";
 import classes from "./productOptionSelectBox.module.css";
-import CommBtn from "components/common/commBtn";
-import CommSelect from "components/common/CommSelect";
-import CommonPageTitle from "components/common/commPageTitle";
-import noImg from "img/noImg.png";
-// import SelectBoxOptionDiv from "./selectBoxOptionDiv";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import noImg from "img/noImg.png";
+import CommBtn from "components/common/commBtn";
+import CommonPageTitle from "components/common/commPageTitle";
+import SelectBoxOptionDiv from "./selectBoxOptionDiv";
+import ProductOptionSelectItem from "./productOptionSelectItem";
+import { postApi } from "api/fetch-api";
 
 function ProductOptionSelectBox({ productDetailObj }) {
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const options = [];
-  productDetailObj.productDetailOptionArr?.forEach(
-    (productDetailOption, index) => {
-      options.push({
-        value: index,
-        label: `${productDetailOption.option1Name} : ${
-          productDetailOption.option1DataName
-        } / ${productDetailOption.option2Name} : ${
-          productDetailOption.option2DataName
-        } (+${productDetailOption.productPrice.toLocaleString("ko-KR")})`,
-      });
-    }
-  );
-  const productQuantity = "10";
+  const dispatch = useDispatch();
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [totalProductPice, setTotalProductPice] = useState(0);
+
+  const { productImg, productName, productPrice, productDetailOptionArr } =
+    productDetailObj;
+
+  const fnCallbackAddOptionsToCart = () => {
+    // TO DO : 장바구니 router 이동
+  };
+  const handleAddOptionsToCart = () => {
+    dispatch(
+      postApi("mb/mkt/reg/add-cart", selectedOption, fnCallbackAddOptionsToCart)
+    );
+  };
 
   return (
     <div className={classes.productOptionSelectBox}>
-      <img src={productDetailObj.productImg || noImg} alt="상품이미지" />
+      <img src={productImg || noImg} alt="상품이미지" />
       <div className={classes.optionSelectBox}>
-        <CommonPageTitle title={productDetailObj.productName} />
+        <CommonPageTitle title={productName ?? ""} />
         <div className={classes.buyItemInfoDiv}>
           <p>가격 </p>
-          <p>{productDetailObj.productPrice.toLocaleString("ko-KR")} 원</p>
+          <p>{productPrice?.toLocaleString("ko-KR") ?? 0} 원</p>
         </div>
         <div className={classes.buyItemInfoDiv}>
           <p>옵션</p>
-          <div>
-            <CommSelect
-              width="100%"
-              options={options}
-              placeholder="-- 옵션 선택 --"
-            />
-          </div>
+          <ProductOptionSelectItem
+            productPrice={productPrice}
+            options={productDetailOptionArr}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+          />
         </div>
-        <div className={classes.buyItemInfoDiv}>
+        {/* <div className={classes.buyItemInfoDiv}>
           <p>수량</p>
           <input
             className={classes.inputQuantity}
@@ -53,18 +54,15 @@ function ProductOptionSelectBox({ productDetailObj }) {
             defaultValue="0"
             onChange={(event) => {
               setSelectedQuantity(parseInt(event.target.value));
-              console.log(typeof selectedQuantity);
             }}
           />
-        </div>
+        </div> */}
+        {selectedOption.map((option) => {
+          return <SelectBoxOptionDiv option={option} />;
+        })}
         <div className={classes.buyItemInfoDiv}>
           <p>주문금액</p>
-          <p>
-            {(productDetailObj.productPrice * selectedQuantity).toLocaleString(
-              "ko-KR"
-            )}
-            원
-          </p>
+          <p>{(totalProductPice ?? 0).toLocaleString("ko-KR")}원</p>
         </div>
         <div className={classes.btnBox}>
           <CommBtn
@@ -72,6 +70,7 @@ function ProductOptionSelectBox({ productDetailObj }) {
             bgColor="white"
             txColor="#4242e2"
             btnWidth="50%"
+            fnClick={handleAddOptionsToCart}
           />
           <CommBtn btnText="바로구매" btnWidth="50%" />
         </div>

@@ -3,7 +3,7 @@ import classes from "./communityDetailCommentBox.module.css";
 import CommunityDetailCommentItem from "./communityDetailCommentItem";
 import noUserImg from "img/noUserImg.png";
 
-function communityDetailCommentBox({ commentList, ref }) {
+function communityDetailCommentBox({ commentList }) {
   return (
     <div className={classes.commentBoxDiv}>
       <div className={classes.commentSummaryDiv}>

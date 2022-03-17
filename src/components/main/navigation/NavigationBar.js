@@ -17,6 +17,7 @@ function NavigationBar() {
   const history = useHistory();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
+  const [menuImgUrl, setMenuImgUrl] = useState("");
   const [mainNavMenu, setMainNavMenu] = useState([]);
   const [subNavMenu, setSubNavMenu] = useState({});
   const [isMoreMenu, setIsMoreMenu] = useState(false);
@@ -30,6 +31,7 @@ function NavigationBar() {
 
   const navigationBarCallBack = (res) => {
     if (!!res) {
+      setMenuImgUrl(res.data.menuImgUrl);
       setMainNavMenu(res.data.menu);
       setSubNavMenu({
         community: res.data.subMenu.community,
@@ -60,7 +62,7 @@ function NavigationBar() {
         {!!navItem.menuImgUrl ? (
           <img
             className={classes.logoImg}
-            src={`${BASE_URL}${navItem.menuImgUrl}`}
+            src={`${BASE_URL}${menuImgUrl}`}
             alt="DEKER"
           />
         ) : (
@@ -69,9 +71,6 @@ function NavigationBar() {
       </Link>
     );
   });
-
-  console.log(subNavMenu.community);
-  console.log(subNavMenu.market);
 
   useEffect(() => {
     const navbarGetUrl = isLoggedIn

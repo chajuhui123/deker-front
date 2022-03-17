@@ -2,20 +2,20 @@ import React from "react";
 import classes from "./communityDetailMainImg.module.css";
 import CommunityDetailLocationIcon from "./communityDetailLocationIcon";
 import noImg from "img/noImg.png";
-import { BASE_URL } from "module/common-module";
+// import { BASE_URL } from "module/common-module";
 
 function CommunityDetailMainImg({
   communityPostObj,
   communitySelectedProductArr,
 }) {
-  const { postImg } = communityPostObj;
+  // const { postImg } = communityPostObj;
+  console.log(communityPostObj);
 
-  console.log(postImg);
   return (
     <div className={classes.imgWrapper}>
       <img
         className={classes.mainImg}
-        // src={`${BASE_URL}/${postImg}` || noImg}
+        // src={`${BASE_URL}${postImg}` || noImg}
         src={noImg}
         alt="커뮤니티 게시글 이미지"
       />

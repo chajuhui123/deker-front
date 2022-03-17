@@ -1,12 +1,20 @@
 .optionDiv {
+  background-color: var(--border-color);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: var(--border-radius);
+}
+.infoDiv {
   display: flex;
-  width: 100%;
+  justify-content: space-between;
+  margin: 0 0 20px 0;
+}
+.optionInfoText {
+  width: 80%;
+  color: var(--gray-font-color);
 }
 
-.textDiv {
-  width: 100px;
-}
-
-.componentDiv {
-  /* width: 90%; */
+.priceDiv {
+  display: flex;
+  justify-content: space-between;
 }
