@@ -35,28 +35,34 @@ function ProductOptionSelectBox({ productDetailObj }) {
           <p>가격 </p>
           <p>{productPrice?.toLocaleString("ko-KR") ?? 0} 원</p>
         </div>
-        <div className={classes.buyItemInfoDiv}>
-          <p>옵션</p>
-          <ProductOptionSelectItem
-            productPrice={productPrice}
-            options={productDetailOptionArr}
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
-          />
-        </div>
-        {/* <div className={classes.buyItemInfoDiv}>
-          <p>수량</p>
-          <input
-            className={classes.inputQuantity}
-            type="number"
-            min="1"
-            max={productQuantity}
-            defaultValue="0"
-            onChange={(event) => {
-              setSelectedQuantity(parseInt(event.target.value));
-            }}
-          />
-        </div> */}
+        {productDetailOptionArr.length > 0 ? (
+          // 옵션 존재시, 옵션 셀렉트 박스
+          <div className={classes.buyItemInfoDiv}>
+            <p>옵션</p>
+            <ProductOptionSelectItem
+              productPrice={productPrice}
+              options={productDetailOptionArr}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+          </div>
+        ) : (
+          // 옵션 미존재시, 수량 선택 박스
+          <div className={classes.buyItemInfoDiv}>
+            <p>수량</p>
+            <input
+              className={classes.inputQuantity}
+              type="number"
+              min="1"
+              // max={productQuantity}
+              defaultValue="0"
+              onChange={(event) => {
+                // setSelectedQuantity(parseInt(event.target.value));
+              }}
+            />
+          </div>
+        )}
+
         {selectedOption.map((option) => {
           return <SelectBoxOptionDiv option={option} />;
         })}
