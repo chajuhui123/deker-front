@@ -1,9 +1,13 @@
+import CommonPageTitle from "components/common/commPageTitle";
 import MarketCartBuyButton from "components/shop/marketCart/marketCartBuyButton";
 import MarketCartItemBox from "components/shop/marketCart/marketCartItemBox";
 // import MarketCartPaymentBox from "components/shop/marketCart/marketCartPaymentBox";
 import TotalPaymentAmt from "components/shop/totalPaymentAmt";
 
 const MarketCartPage = () => {
+  var dummy_paymentAmt = 13000;
+  var dummy_deliAmt = 3000;
+
   // 장바구니에 있는 아이템
   const CART_ITEM_ARRAY_DUMMY = [
     {
@@ -27,8 +31,13 @@ const MarketCartPage = () => {
   ];
   return (
     <div>
-      <TotalPaymentAmt />
-      <MarketCartBuyButton />
+      <CommonPageTitle title="장바구니" />
+      <TotalPaymentAmt paymentAmt={dummy_paymentAmt} deliAmt={dummy_deliAmt} />
+      <MarketCartBuyButton
+        paymentAmt={dummy_paymentAmt}
+        deliAmt={dummy_deliAmt}
+        cartItemArray={CART_ITEM_ARRAY_DUMMY}
+      />
       <MarketCartItemBox cartItemArray={CART_ITEM_ARRAY_DUMMY} />
     </div>
   );
