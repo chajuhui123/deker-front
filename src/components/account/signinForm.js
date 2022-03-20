@@ -60,16 +60,16 @@ function SigninForm() {
   const fnCallback = (res) => {
     console.log("signinForm :: res :: ", res);
     if (!!res) {
+      const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
+      localStorage.setItem("token", res.data.jwtToken);
+      localStorage.setItem("extTokenTime", res.data.extTokenTime);
+      setTimeout(logoutHandler, remainingDuration);
       dispatch(
         userAction.login({
           jwtToken: res.data.jwtToken,
         })
       );
       history.push("/");
-      const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
-      localStorage.setItem("token", res.data.jwtToken);
-      localStorage.setItem("extTokenTime", res.data.extTokenTime);
-      setTimeout(logoutHandler, remainingDuration);
     } else {
       dispatch(
         modalAction.modalPopup({

@@ -12,6 +12,7 @@ const CommunityList = (props) => {
               data={data}
               type={props.type}
               followingHandler={props.followingHandler}
+              likeHandler={props.likeHandler}
             />
           );
         })}

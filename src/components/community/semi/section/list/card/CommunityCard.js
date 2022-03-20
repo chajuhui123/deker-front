@@ -2,53 +2,61 @@ import React from "react";
 import classes from "./CommunityCard.module.css";
 import noImg from "img/noImg.png";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { BASE_URL } from "module/common-module";
+import { useSelector } from "react-redux";
 
 const CommunityCard = (props) => {
   const data = props.data;
   const history = useHistory();
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const detailPageHandler = () => {
     const url = "community/detail/" + data.communityId;
     history.push(url);
   };
   const followHandler = () => {
-    props.followingHandler(data.userId);
+    props.followingHandler(data.userId, data.followingCheck);
   };
+  const likeHandler = () => {
+    props.likeHandler(data.communityId, data.isLiked);
+  };
+
   return (
     <li>
       <div className={classes.mainCard}>
         <img
-          alt="글첨부이미지"
-          src={data.communityImage}
+          alt=""
+          src={`${BASE_URL}${data.communityImage}`}
           onClick={detailPageHandler}
         />
         <div className={classes.commInfo}>
           <div className={classes.communityTitle}>
-            {data.communityTitle.length > 8
+            {data.communityTitle && data.communityTitle.length > 8
               ? data.communityTitle.slice(0, 6).replace(" ", "") + "..."
               : data.communityTitle}
           </div>
           <div className={classes.userInfo}>
-            <img alt="작성자프로필이미지" src={data.userProfileImg || noImg} />
+            <img alt="" src={`${BASE_URL}${data.userProfileImg}` || noImg} />
             <p>
               {data.userNick.length > 4
                 ? data.userNick.slice(0, 4).replace(" ", "") + "..."
                 : data.userNick}
             </p>
-            {!data.followingCheck ? (
-              <div className={classes.followButton} onClick={followHandler}>
-                팔로우
-              </div>
-            ) : (
-              <div className={classes.unFollowButton} onClick={followHandler}>
-                팔로윙
-              </div>
-            )}
+            {isLoggedIn &&
+              (!data.followingCheck ? (
+                <div className={classes.followButton} onClick={followHandler}>
+                  팔로우
+                </div>
+              ) : (
+                <div className={classes.unFollowButton} onClick={followHandler}>
+                  팔로윙
+                </div>
+              ))}
           </div>
         </div>
       </div>
       {props.type === "rank" && (
         <aside className={classes.likeArea}>
-          <button type="button">
+          <button type="button" onClick={likeHandler}>
             <svg
               className={classes.like}
               width="24"

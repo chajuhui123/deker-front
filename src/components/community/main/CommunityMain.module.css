@@ -5,6 +5,7 @@
 
 .slider {
   margin-bottom: 100px;
+  z-index: 0;
 }
 
 .main section {
