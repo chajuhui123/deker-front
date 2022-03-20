@@ -11,8 +11,11 @@ import { postApi } from "api/fetch-api";
 
 function ProductOptionSelectBox({ productDetailObj }) {
   const dispatch = useDispatch();
+
   const [selectedOption, setSelectedOption] = useState([]);
-  const [totalProductPice, setTotalProductPice] = useState(0);
+  const [totalProductPrice, setTotalProductPrice] = useState(0);
+
+  let opitonIdinBasket = [];
 
   const { productImg, productName, productPrice, productDetailOptionArr } =
     productDetailObj;
@@ -20,11 +23,14 @@ function ProductOptionSelectBox({ productDetailObj }) {
   const fnCallbackAddOptionsToCart = () => {
     // TO DO : 장바구니 router 이동
   };
+
   const handleAddOptionsToCart = () => {
     dispatch(
       postApi("mb/mkt/reg/add-cart", selectedOption, fnCallbackAddOptionsToCart)
     );
   };
+
+  console.log("selectedOption", selectedOption);
 
   return (
     <div className={classes.productOptionSelectBox}>
@@ -35,6 +41,7 @@ function ProductOptionSelectBox({ productDetailObj }) {
           <p>가격 </p>
           <p>{productPrice?.toLocaleString("ko-KR") ?? 0} 원</p>
         </div>
+
         {productDetailOptionArr.length > 0 ? (
           // 옵션 존재시, 옵션 셀렉트 박스
           <div className={classes.buyItemInfoDiv}>
@@ -44,6 +51,7 @@ function ProductOptionSelectBox({ productDetailObj }) {
               options={productDetailOptionArr}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
+              opitonIdinBasket={opitonIdinBasket}
             />
           </div>
         ) : (
@@ -64,12 +72,20 @@ function ProductOptionSelectBox({ productDetailObj }) {
         )}
 
         {selectedOption.map((option) => {
-          return <SelectBoxOptionDiv option={option} />;
+          return (
+            <SelectBoxOptionDiv
+              option={option}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+            />
+          );
         })}
+
         <div className={classes.buyItemInfoDiv}>
           <p>주문금액</p>
-          <p>{(totalProductPice ?? 0).toLocaleString("ko-KR")}원</p>
+          <p>{(totalProductPrice ?? 0).toLocaleString("ko-KR")}원</p>
         </div>
+
         <div className={classes.btnBox}>
           <CommBtn
             btnText="장바구니"
