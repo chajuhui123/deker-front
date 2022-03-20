@@ -11,6 +11,7 @@ const CommunitySection = (props) => {
         data={props.data}
         type={props.type}
         followingHandler={props.followingHandler}
+        likeHandler={props.likeHandler}
       />
     </section>
   );
