@@ -1,4 +1,4 @@
-import AccountMyShopping from "../components/account/accountShop/accountMyShopping";
+import AccountMyShopping from "components/account/accountShop/accountMyShopping";
 
 const AccountMyShoppingPage = () => {
   return (

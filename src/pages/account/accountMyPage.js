@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import MyUploadPicList from "components/account/myPage/myUploadPicLIst";
 import classes from "./accountMyPage.module.css";
@@ -37,12 +37,6 @@ const AccountMyPage = (props) => {
     dispatch(postApi("mb/post/get/my-post-list", dataObject, fnCallback));
   }, [dispatch]);
 
-  const followingBtnHandler = () => {
-    history.push("/");
-  };
-  const followerBtnHandler = () => {
-    history.push("/");
-  };
   const alertBtnHandler = () => {
     history.push("/");
   };
@@ -122,11 +116,26 @@ const AccountMyPage = (props) => {
             </div>
             <div className={classes.rowArea2}>
               <div className={classes.rowArea3}>
-                <div className={classes.linkTo} onClick={followingBtnHandler}>
-                  팔로잉
+                <div className={classes.linkTo}>
+                  <Link
+                    to={{
+                      pathname: "/mypage/following",
+                      state: { follow: "following" },
+                    }}
+                    // style={{ textDecoration: "none" }}
+                  >
+                    팔로잉
+                  </Link>
                 </div>
-                <div className={classes.linkTo} onClick={followerBtnHandler}>
-                  팔로워
+                <div className={classes.linkTo}>
+                  <Link
+                    to={{
+                      pathname: "/mypage/follower",
+                      state: { follow: "follower" },
+                    }}
+                  >
+                    팔로워
+                  </Link>
                 </div>
                 <div className={classes.linkTo} onClick={alertBtnHandler}>
                   알림

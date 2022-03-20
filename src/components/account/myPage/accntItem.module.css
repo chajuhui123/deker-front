@@ -1,0 +1,28 @@
+.accntDtl {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.profileImg {
+  /* background-color: rgb(206, 206, 206); */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.nickname {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /*늘어나면 ...처리*/
+  text-align: left;
+  font: normal normal bold 13px/20px Roboto;
+  /* margin-inline: 10px; */
+  /* float: left; */
+}
+
+.isFollowBtn {
+  margin-top: 5px;
+}
