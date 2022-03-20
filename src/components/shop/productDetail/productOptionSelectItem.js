@@ -6,7 +6,8 @@ function ProductOptionSelectItem({
   options,
   selectedOption,
   setSelectedOption,
-  opitonIdinBasket,
+  opitonIdInBasket,
+  setOptionIdInBasket,
 }) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -15,17 +16,17 @@ function ProductOptionSelectItem({
   };
 
   const handleSelectItem = (optionItem) => {
-    const { option1Name, option1DataName, option2Name, option2DataName } =
-      optionItem;
+    const { mktProductId } = optionItem;
 
     setIsVisible(!isVisible);
 
-    // 추가되어지지 않은 옵션이라면
-
-    // if (!opitonIdinBasket.includes(optionId)) {
-    setSelectedOption(selectedOption.concat(optionItem));
-    //   opitonIdinBasket.push(optionId); // 추후 옵션에서 제거할 때 optionId 지우기
-    // }
+    // 아래 존재하지 않는 옵션이라면 추가 가능
+    if (!opitonIdInBasket.includes(mktProductId)) {
+      setSelectedOption(
+        selectedOption.concat({ ...optionItem, orderQuantity: 1 })
+      );
+      setOptionIdInBasket((prev) => [...prev, mktProductId]); // 추후 옵션에서 제거할 때 optionId 지우기
+    }
   };
 
   return (
@@ -36,6 +37,7 @@ function ProductOptionSelectItem({
           <div className={classes.selectableList}>
             {options.map((optionItem) => {
               const {
+                mktProductId,
                 option1Name,
                 option1DataName,
                 option2Name,
@@ -44,6 +46,7 @@ function ProductOptionSelectItem({
               } = optionItem;
               return (
                 <div
+                  key={mktProductId}
                   className={classes.selectableItem}
                   onClick={() => handleSelectItem(optionItem)}
                 >

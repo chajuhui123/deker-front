@@ -12,10 +12,9 @@ import { postApi } from "api/fetch-api";
 function ProductOptionSelectBox({ productDetailObj }) {
   const dispatch = useDispatch();
 
+  const [opitonIdInBasket, setOptionIdInBasket] = useState([]);
   const [selectedOption, setSelectedOption] = useState([]);
   const [totalProductPrice, setTotalProductPrice] = useState(0);
-
-  let opitonIdinBasket = [];
 
   const { productImg, productName, productPrice, productDetailOptionArr } =
     productDetailObj;
@@ -30,7 +29,7 @@ function ProductOptionSelectBox({ productDetailObj }) {
     );
   };
 
-  console.log("selectedOption", selectedOption);
+  console.log("productDetailObj", productDetailObj);
 
   return (
     <div className={classes.productOptionSelectBox}>
@@ -42,8 +41,8 @@ function ProductOptionSelectBox({ productDetailObj }) {
           <p>{productPrice?.toLocaleString("ko-KR") ?? 0} 원</p>
         </div>
 
-        {productDetailOptionArr.length > 0 ? (
-          // 옵션 존재시, 옵션 셀렉트 박스
+        {/* 옵션은 Back에서 무조건 1개이상 보내기로 결정 */}
+        {productDetailOptionArr.length > 0 && (
           <div className={classes.buyItemInfoDiv}>
             <p>옵션</p>
             <ProductOptionSelectItem
@@ -51,22 +50,8 @@ function ProductOptionSelectBox({ productDetailObj }) {
               options={productDetailOptionArr}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
-              opitonIdinBasket={opitonIdinBasket}
-            />
-          </div>
-        ) : (
-          // 옵션 미존재시, 수량 선택 박스
-          <div className={classes.buyItemInfoDiv}>
-            <p>수량</p>
-            <input
-              className={classes.inputQuantity}
-              type="number"
-              min="1"
-              // max={productQuantity}
-              defaultValue="0"
-              onChange={(event) => {
-                // setSelectedQuantity(parseInt(event.target.value));
-              }}
+              opitonIdInBasket={opitonIdInBasket}
+              setOptionIdInBasket={setOptionIdInBasket}
             />
           </div>
         )}

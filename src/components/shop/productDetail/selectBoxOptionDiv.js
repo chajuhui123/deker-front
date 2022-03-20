@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { TiDeleteOutline } from "react-icons/ti";
 import classes from "./selectBoxOptionDiv.module.css";
 
 function SelectBoxOptionDiv({ option, selectedOption, setSelectedOption }) {
@@ -11,7 +12,6 @@ function SelectBoxOptionDiv({ option, selectedOption, setSelectedOption }) {
     productQuantity,
   } = option;
 
-  let thisOptionQuantity = useRef(1);
   const [thisOptionPrice, setThisOptionPrice] = useState(productPrice);
 
   const handleDeleteOption = () => {
@@ -22,15 +22,26 @@ function SelectBoxOptionDiv({ option, selectedOption, setSelectedOption }) {
     setSelectedOption(sortedOptions);
   };
 
+  const handleUpdateOptionQuantity = (event) => {
+    const tempSelectedOption = selectedOption;
+    const updateOptionIndex = selectedOption.indexOf(option);
+    tempSelectedOption[updateOptionIndex].orderQuantity = parseInt(
+      event.target.value
+    );
+    setSelectedOption(tempSelectedOption);
+    setThisOptionPrice(event.target.value * productPrice);
+  };
+
   return (
     <div className={classes.optionDiv}>
       <div className={classes.infoDiv}>
         <div className={classes.optionInfoText}>
           {`${option1Name} : ${option1DataName} / ${option2Name} : ${option2DataName}`}
         </div>
-        <div onClick={handleDeleteOption}>삭제아이콘</div>
+        <div className={classes.deleteBtn} onClick={handleDeleteOption}>
+          <TiDeleteOutline />
+        </div>
       </div>
-
       <div className={classes.priceDiv}>
         <input
           type="number"
@@ -38,8 +49,7 @@ function SelectBoxOptionDiv({ option, selectedOption, setSelectedOption }) {
           max={productQuantity}
           defaultValue="1"
           onChange={(event) => {
-            thisOptionQuantity = parseInt(event.target.value);
-            setThisOptionPrice(thisOptionQuantity * productPrice);
+            handleUpdateOptionQuantity(event);
           }}
         />
         <div>{thisOptionPrice.toLocaleString("ko-KR")}원</div>
