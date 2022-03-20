@@ -1,20 +1,10 @@
-import AccntList from "components/account/myPage/accntList";
-import CommPageSemiTitle from "components/common/commPageSemiTitle";
-import React, { useState } from "react";
-import classes from "./presentFriendPopup.module.css";
+import CommonPageTitle from "components/common/commPageTitle";
+import AccntList from "../../components/account/myPage/accntList";
+import classes from "./accountFollowing.module.css";
 
-function PresentFriendPopup(props) {
-  const [productLinkInputText, setProductLinkInputText] = useState("");
-
-  // 내부 상품 등록
-  const productLinkInputHandler = (e) => {
-    setProductLinkInputText(e.target.value);
-  };
-
-  // back 통신해서 받아오기
-  const productSearchHandler = () => {
-    // back 통신해서 받아오기
-  };
+const AcctFllwngPage = (props) => {
+  const { location } = props;
+  // console.log(" following: " + location.state.follow);
 
   const DUMMY_DATA = [
     {
@@ -131,30 +121,17 @@ function PresentFriendPopup(props) {
     },
   ];
   return (
-    <div className={classes.productSalesLinkLayout}>
-      <CommPageSemiTitle semiTitle="선물할 친구를 선택해주세요" />
-      <div className={classes.presentMain}>
-        <div className={classes.productSearchArea}>
-          <input
-            className={classes.productInput}
-            type="text"
-            value={productLinkInputText}
-            placeholder="친구 검색"
-            onChange={productLinkInputHandler}
-          />
-          <button
-            className={classes.productSearchBtn}
-            onClick={productSearchHandler}
-          >
-            검색
-          </button>
-        </div>
-        <div className={classes.selectedProduct}>
-          <AccntList accntLists={DUMMY_DATA} departure="present" />
-        </div>
+    <div className={classes.layout}>
+      <div className={classes.title}>
+        {location.state.follow === "following" ? (
+          <CommonPageTitle title="팔로잉" />
+        ) : (
+          <CommonPageTitle title="팔로워" />
+        )}
       </div>
+      <AccntList accntLists={DUMMY_DATA} departure={location.state.follow} />
     </div>
   );
-}
+};
 
-export default PresentFriendPopup;
+export default AcctFllwngPage;

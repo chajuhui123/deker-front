@@ -5,10 +5,8 @@ import ModifyPasswordPage from "./pages/modifyPassword";
 import MyPresentPage from "./pages/MyPresentPage";
 import MyReviewPage from "./pages/MyReviewPage";
 import SignupPage from "./pages/SignupPage";
-import AccountMyPage from "pages/accountMyPage";
 import ModifyUserInfoPage from "pages/ModifyUserInfoPage";
 import SignupAddPage from "pages/SignupAddPage";
-import AccountMyShoppingPage from "pages/accountMyShoppingPage";
 import ModalTest from "pages/modalTest";
 import CreateCommunityPage from "pages/community/CreateCommunityPage";
 import ProductDetailPage from "pages/shop/ProductDetail";
@@ -24,6 +22,9 @@ import RecentlyProduct from "components/shop/recently/RecentlyProduct";
 import RestrictRoute from "components/common/RestrictRoute";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import AcctFllwngPage from "pages/account/accountFollowingPage";
+import AccountMyPage from "pages/account/accountMyPage";
+import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -68,6 +69,20 @@ function RouteComponent() {
         exact
         isLoggedIn={!isLoggedIn}
         component={AccountMyPage}
+        fallback={RedriectMain}
+      />
+      <Route
+        path="/mypage/following"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={AcctFllwngPage}
+        fallback={RedriectMain}
+      />
+      <Route
+        path="/mypage/follower"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={AcctFllwngPage}
         fallback={RedriectMain}
       />
       <RestrictRoute

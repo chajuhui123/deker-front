@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalContUploadUpdateReview from "../accountReview/accountReviewModal/modalContUploadUpdateReview";
 import ModalPopup from "components/common/modal";
 import noImg from "img/noImg.png";
+import { BASE_URL } from "module/common-module";
 import { modalAction } from "store/modal-slice";
 
 function MyOrderPrdtItem(props) {
@@ -34,7 +35,8 @@ function MyOrderPrdtItem(props) {
         <div
           className={classes.product_img}
           alt={props.productImg}
-          src={props.productImg || noImg}
+          // src={props.productImg || noImg}
+          src={`${BASE_URL}${props.productImg}` || noImg}
         />
         <div className={classes.btn_info_box}>
           <div className={classes.product_info}>

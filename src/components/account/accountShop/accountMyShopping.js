@@ -196,7 +196,7 @@ function AccountMyShopping(props) {
         </div>
         <div className={classes.dtlArea}>
           <CommPageSemiTitle semiTitle="주문상품" />
-          <MyOrderPrdtList orderedProductList={DUMMY_DATA} />
+          <MyOrderPrdtList orderedProductList={list} />
         </div>
       </div>
     </div>
