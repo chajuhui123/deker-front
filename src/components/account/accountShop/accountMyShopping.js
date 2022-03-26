@@ -21,6 +21,7 @@ function AccountMyShopping(props) {
   const [objectData, setObjectData] = useState(null);
   const [list, setList] = useState(null);
 
+  // 처음 페이지를 로딩했을 때, defalut값으로 조회 => 기간: 전체조회, 배송상태: 배송완료
   useEffect(() => {
     dispatch(
       postApi(
@@ -166,7 +167,7 @@ function AccountMyShopping(props) {
     <div className={classes.Layout}>
       <CommonPageTitle title="나의쇼핑" />
       <hr />
-      <div className={classes.acctMyShopping_Main}>
+      <div>
         <div className={classes.dtlArea}>
           <CommPageSemiTitle semiTitle="주문배송내역 조회" />
           <MyShoppingCnt countData={objectData} />

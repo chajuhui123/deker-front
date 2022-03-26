@@ -1,8 +1,9 @@
 .Layout {
   position: relative;
   margin: auto;
+  min-width: 600px;
   width: 100%; /* 원래 1268px인데 너무 두꺼워서 주희님 myReview 페이지랑 맞춤 */
-  height: 1300px;
+  height: auto;
   background: #ffffff 0% 0% no-repeat padding-box;
   /* border: 1px solid #707070a3; 레이아웃 테스트용 */
   border-radius: 4px;
@@ -19,7 +20,7 @@
   display: flex;
   flex-direction: row;
 }
-
+/*
 .acctMyShopping_prdndelis {
   margin-top: 13px;
   display: flex;
@@ -64,3 +65,4 @@
   color: #4242e2;
   opacity: 1;
 }
+*/
