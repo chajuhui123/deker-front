@@ -5,15 +5,31 @@ import classes from "./accntItem.module.css";
 const AccntItem = (props) => {
   //   console.log(props.departure);
   const [isFollowing, setIsFollowing] = useState(true);
+  // console.log(isFollowing);
+  const [isDelete, setIsDelete] = useState(false);
 
   // 팔로잉, 언팔로잉 버튼 이벤트
   const followingChangeBtnHandler = () => {
-    setIsFollowing(!isFollowing);
+    setIsFollowing(!isFollowing); // follow, unfollow toggle change
+
+    const dataObject = {
+      userId: props.userId,
+      isFollowing: isFollowing,
+    };
+
+    props.isUnFollowBtnHandler(dataObject);
   };
 
   // 팔로워 삭제 버튼 이벤트
   const followerDltChangeBtnHandler = () => {
-    // 팝업: 정말 삭제하시겠습니까? 상대방은 내가 팔로워 취소한 사실을 알 수 없습니다.
+    setIsDelete(true); // 해당 계정 팔로워 취소, 한번하면 되돌릴 수 없어서 state 아님
+
+    props.isDeleteBtnHandler(props.userId);
+  };
+
+  // 선물할 친구 선택 버튼 이벤트
+  const presentSelectBtnHandler = () => {
+    props.presentSelectHandler(props.userId);
   };
 
   return (
@@ -36,8 +52,8 @@ const AccntItem = (props) => {
           <div className={classes.nickname}>{props.nick_name}</div>
         </div>
         <div className={classes.isFollowBtn}>
-          {props.departure === "following" ? (
-            isFollowing ? (
+          {props.departure === "following" &&
+            (isFollowing ? (
               <CommBtn
                 btnText="팔로잉"
                 btnWidth="50px"
@@ -61,9 +77,9 @@ const AccntItem = (props) => {
                 fontSize="13px"
                 fnClick={followingChangeBtnHandler}
               />
-            )
-          ) : (
-            props.departure === "follower" && (
+            ))}
+          {props.departure === "follower" &&
+            (!isDelete ? (
               <CommBtn
                 btnText="삭제"
                 btnWidth="50px"
@@ -75,7 +91,30 @@ const AccntItem = (props) => {
                 fontSize="13px"
                 fnClick={followerDltChangeBtnHandler}
               />
-            )
+            ) : (
+              <CommBtn
+                btnText="삭제"
+                btnWidth="50px"
+                btnHeight="30px"
+                border="1px solid rgb(66, 66, 226)"
+                bgColor="rgb(248, 248, 248)"
+                radius="4px"
+                txColor="rgb(78, 78, 78)"
+                fontSize="13px"
+              />
+            ))}
+          {props.departure === "present" && (
+            <CommBtn
+              btnText="선택"
+              btnWidth="50px"
+              btnHeight="30px"
+              border="1px solid rgb(66, 66, 226)"
+              bgColor="rgb(66, 66, 226)"
+              radius="4px"
+              txColor="rgb(245, 245, 245)"
+              fontSize="13px"
+              fnClick={presentSelectBtnHandler}
+            />
           )}
         </div>
       </div>

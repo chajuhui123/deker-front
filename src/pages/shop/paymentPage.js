@@ -18,6 +18,7 @@ const PaymentPage = (props) => {
   // 이거 왜 안되냐
   // console.log(prevProps.location.paymentAmt);
 
+  const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
   const [email, setEmail] = useState("");
   const [telNo, setTelNo] = useState("");
@@ -52,7 +53,10 @@ const PaymentPage = (props) => {
 
   const presentLinkHandler = () => {
     dispatch(
-      modalAction.modalPopup({ isOpen: true, cont: <PresentFriendPopup /> })
+      modalAction.modalPopup({
+        isOpen: true,
+        cont: <PresentFriendPopup userId={props.userId} />,
+      })
     );
   };
 
@@ -63,9 +67,19 @@ const PaymentPage = (props) => {
 
   const deliverySelectHandler = () => {
     dispatch(
-      modalAction.modalPopup({ isOpen: true, cont: <DeliverySelect /> })
+      modalAction.modalPopup({
+        isOpen: true,
+        cont: <DeliverySelect presentUserIdHandler={presentUserIdHandler} />,
+      })
     );
   };
+
+  // userId 받아오는거 못함
+  const presentUserIdHandler = (data) => {
+    setPresentUserId(data);
+    console.log(presentUserId);
+  };
+
   const telhead = useMemo(
     () => [
       { value: "010", label: "010" },
