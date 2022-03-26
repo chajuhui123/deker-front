@@ -26,7 +26,7 @@ function PeriodDropdown(props) {
     <div>
       <Select
         options={PeriodOptions}
-        defaultValue={PeriodOptions[3]}
+        defaultValue={PeriodOptions[6]}
         onChange={periodDropdownSelectedHandler}
       />
     </div>

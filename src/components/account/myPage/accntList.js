@@ -16,6 +16,9 @@ const AccntList = (props) => {
                 profile_img={accntList.profile_img}
                 nick_name={accntList.nick_name}
                 departure={props.departure}
+                userId={props.userId}
+                isUnFollowBtnHandler={props.isUnFollowBtnHandler}
+                isDeleteBtnHandler={props.isDeleteBtnHandler}
               />
             </li>
           ))}
