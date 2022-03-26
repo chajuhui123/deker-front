@@ -16,9 +16,10 @@ const AccntList = (props) => {
                 profile_img={accntList.profile_img}
                 nick_name={accntList.nick_name}
                 departure={props.departure}
-                userId={props.userId}
+                userId={accntList.userId}
                 isUnFollowBtnHandler={props.isUnFollowBtnHandler}
                 isDeleteBtnHandler={props.isDeleteBtnHandler}
+                presentSelectHandler={props.presentSelectHandler}
               />
             </li>
           ))}

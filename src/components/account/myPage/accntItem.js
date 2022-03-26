@@ -27,6 +27,11 @@ const AccntItem = (props) => {
     props.isDeleteBtnHandler(props.userId);
   };
 
+  // 선물할 친구 선택 버튼 이벤트
+  const presentSelectBtnHandler = () => {
+    props.presentSelectHandler(props.userId);
+  };
+
   return (
     <div>
       <div className={classes.accntDtl}>
@@ -47,8 +52,8 @@ const AccntItem = (props) => {
           <div className={classes.nickname}>{props.nick_name}</div>
         </div>
         <div className={classes.isFollowBtn}>
-          {props.departure === "following" ? (
-            isFollowing ? (
+          {props.departure === "following" &&
+            (isFollowing ? (
               <CommBtn
                 btnText="팔로잉"
                 btnWidth="50px"
@@ -72,9 +77,8 @@ const AccntItem = (props) => {
                 fontSize="13px"
                 fnClick={followingChangeBtnHandler}
               />
-            )
-          ) : (
-            props.departure === "follower" &&
+            ))}
+          {props.departure === "follower" &&
             (!isDelete ? (
               <CommBtn
                 btnText="삭제"
@@ -98,7 +102,19 @@ const AccntItem = (props) => {
                 txColor="rgb(78, 78, 78)"
                 fontSize="13px"
               />
-            ))
+            ))}
+          {props.departure === "present" && (
+            <CommBtn
+              btnText="선택"
+              btnWidth="50px"
+              btnHeight="30px"
+              border="1px solid rgb(66, 66, 226)"
+              bgColor="rgb(66, 66, 226)"
+              radius="4px"
+              txColor="rgb(245, 245, 245)"
+              fontSize="13px"
+              fnClick={presentSelectBtnHandler}
+            />
           )}
         </div>
       </div>
