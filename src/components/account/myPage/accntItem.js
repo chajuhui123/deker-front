@@ -1,6 +1,8 @@
 import CommBtn from "components/common/commBtn";
+import { BASE_URL } from "module/common-module";
 import { useState } from "react";
 import classes from "./accntItem.module.css";
+import noImg from "img/noImg.png";
 
 const AccntItem = (props) => {
   //   console.log(props.departure);
@@ -36,19 +38,12 @@ const AccntItem = (props) => {
     <div>
       <div className={classes.accntDtl}>
         <div>
-          {/* <Link
-          to={{
-            pathname: `/market/detail/${productId}`,
-            state: { productId: props.id },
-          }}
-        > */}
           <img
             className={classes.profileImg}
             alt={props.profile_img}
-            //   src={`${BASE_URL}${props.productImg}` || noImg}
-            src={props.profile_img}
+            src={`${BASE_URL}${props.productImg}` || noImg}
+            // src={props.profile_img}
           />
-          {/* </Link> */}
           <div className={classes.nickname}>{props.nick_name}</div>
         </div>
         <div className={classes.isFollowBtn}>

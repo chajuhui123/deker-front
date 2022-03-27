@@ -11,7 +11,7 @@ function CommunityDetailManagementPost({ communityPostId }) {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const history = useHistory();
   const hadleCommunityPostUpdate = () => {
-    history.push(`/community/write/${communityPostId}`);
+    history.push(`/community/mod/${communityPostId}`);
   };
 
   const handleDeletePost = () => {

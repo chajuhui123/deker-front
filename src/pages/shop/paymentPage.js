@@ -1,4 +1,3 @@
-import MyReviewList from "components/account/accountReview/myReviewList";
 import DeliverySelect from "components/account/accountShop/deliverySelect";
 import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
@@ -12,6 +11,7 @@ import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
 import PayBtn from "./payBtn";
+import MyOrderPrdtList from "components/account/accountShop/myOrderPrdtList";
 
 const PaymentPage = (props) => {
   // const { location } = props;
@@ -55,7 +55,12 @@ const PaymentPage = (props) => {
     dispatch(
       modalAction.modalPopup({
         isOpen: true,
-        cont: <PresentFriendPopup userId={props.userId} />,
+        cont: (
+          <PresentFriendPopup
+            userId={props.userId}
+            presentUserIdHandler={presentUserIdHandler}
+          />
+        ),
       })
     );
   };
@@ -69,12 +74,12 @@ const PaymentPage = (props) => {
     dispatch(
       modalAction.modalPopup({
         isOpen: true,
-        cont: <DeliverySelect presentUserIdHandler={presentUserIdHandler} />,
+        cont: <DeliverySelect />,
       })
     );
   };
 
-  // userId 받아오는거 못함
+  // 선물할 계정 받아옴
   const presentUserIdHandler = (data) => {
     setPresentUserId(data);
     console.log(presentUserId);
@@ -97,24 +102,82 @@ const PaymentPage = (props) => {
     ],
     []
   );
-  const DUMMY_DATA_UNREVIEWED = [
+
+  const DUMMY_DATA = [
     {
-      id: 11,
-      product_image:
-        "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
+      productId: "PDTID_00000000000002",
+      orderId: "odrId_99999999999997",
+      productImg:
+        "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
+      productBrand: "deker",
+      productName: "네이처 디퓨저",
+      option1: "COLOR",
+      option1Data: "C01",
+      option1Nm: "색상",
+      option1DataNm: "흰색",
+      option2: "SIZE",
+      option2Data: "S01",
+      option2Nm: "사이즈",
+      option2DataNm: "260",
+      optionList: ["흰색", "260"],
+      orderNumber: "99999999999997",
+      createDt: "2022-01-20T12:38:41.000+00:00",
+      stringDt: "20220120",
+      orderState: "6",
+      orderStateNm: "배송 완료",
+      orderPrice: 30000,
+      orderQuantity: 9,
     },
     {
-      id: 12,
-      product_image:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
+      productId: "PDTID_00000000000001",
+      orderId: "odrId_99999999999998",
+      productImg:
+        "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
+      productBrand: "deker",
+      productName: "플라워 디퓨저",
+      option1: "COLOR",
+      option1Data: "C01",
+      option1Nm: "색상",
+      option1DataNm: "흰색",
+      option2: "SIZE",
+      option2Data: "S02",
+      option2Nm: "사이즈",
+      option2DataNm: "255",
+      optionList: ["흰색", "255"],
+      orderNumber: "99999999999998",
+      createDt: "2022-01-20T12:38:41.000+00:00",
+      stringDt: "20220120",
+      orderState: "6",
+      orderStateNm: "배송 완료",
+      orderPrice: 30000,
+      orderQuantity: 2,
+    },
+    {
+      productId: "PDTID_00000000000001",
+      orderId: "odrId_99999999999999",
+      productImg:
+        "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
+      productBrand: "deker",
+      productName: "플라워 디퓨저",
+      option1: "COLOR",
+      option1Data: "C02",
+      option1Nm: "색상",
+      option1DataNm: "검은색",
+      option2: "SIZE",
+      option2Data: "S01",
+      option2Nm: "사이즈",
+      option2DataNm: "260",
+      optionList: ["검은색", "260"],
+      orderNumber: "99999999999999",
+      createDt: "2022-01-20T12:38:41.000+00:00",
+      stringDt: "20220122",
+      orderState: "6",
+      orderStateNm: "배송 완료",
+      orderPrice: 30000,
+      orderQuantity: 9,
     },
   ];
+
   return (
     <div className={classes.paymentLayout}>
       <div className={classes.title}>
@@ -258,7 +321,10 @@ const PaymentPage = (props) => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="주문상품" />
           <hr className={classes.lineD} />
-          <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
+          <MyOrderPrdtList
+            orderedProductList={DUMMY_DATA}
+            departure="productListToPay"
+          />
         </div>
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제가능수단" />

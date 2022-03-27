@@ -27,8 +27,8 @@ function PlusBtn(props) {
     const communityProducts = products.concat();
     communityProducts[data.id] = {
       id: communityProducts[data.id].id,
-      left: communityProducts[data.id].left,
-      top: communityProducts[data.id].top,
+      offsetX: communityProducts[data.id].offsetX,
+      offsetY: communityProducts[data.id].offsetY,
       productId: data.productId,
     };
     dispatch(
