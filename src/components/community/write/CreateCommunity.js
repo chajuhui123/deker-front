@@ -12,7 +12,7 @@ import { communityAction } from "store/community-slice";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function CreateCommunity(props) {
-  const communityPostId = props.match?.param?.communityPostId;
+  const communityPostId = props?.communityPostId;
   const dispatch = useDispatch();
   const history = useHistory();
   const communityData = useSelector((state) => state.community.community);
@@ -78,15 +78,19 @@ function CreateCommunity(props) {
         fnMoodCallback
       )
     );
-    if (!!communityPostId) {
-      const param = {
-        communityPostId,
-      };
-      dispatch(
-        postApi("mb/post/get/post-detail", param, fnSearchCommunityCallback)
-      );
-    }
-  }, [communityPostId, dispatch]);
+    console.log(communityPostId);
+    // if (!!communityPostId) {
+    // const param = {
+    //   communityPostId,
+    // };
+    // const param = {
+    //   communityPostId: "cmId_000000000000003",
+    // };
+    // dispatch(
+    //   postApi("mb/post/get/post-detail", param, fnSearchCommunityCallback)
+    // );
+    // }
+  }, [dispatch]);
   // 직업코드선택핸들러
   const jobChangeHandler = (e) => {
     dispatch(communityAction.setJobCode({ jobCode: e.value }));

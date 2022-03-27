@@ -124,9 +124,11 @@ function RouteComponent() {
         exact
         component={CommunitySemiPage}
       ></Route>
-      <Route path="/community/write" exact>
-        <CreateCommunityPage />
-      </Route>
+      <Route
+        path="/community/write/:communityPostId"
+        exact
+        component={CreateCommunityPage}
+      ></Route>
       <Route path="/modalTest" exact>
         <ModalTest />
       </Route>

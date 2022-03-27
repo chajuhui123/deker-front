@@ -41,7 +41,7 @@ const CommunityMain = (props) => {
     );
     let url = isLoggedIn ? "mb/post/get" : "nmb/post/get";
     dispatch(postApi(url, null, fnCallback));
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch, isLoggedIn, token]);
   const fnCallback = (res) => {
     console.log("CommunityMain :: res :: ", res);
     if (!!res) {
