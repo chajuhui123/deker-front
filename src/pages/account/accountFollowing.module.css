@@ -1,0 +1,10 @@
+.layout {
+  position: relative;
+  width: 600px;
+  height: auto;
+  margin: auto;
+}
+
+.title {
+  margin-bottom: 30px;
+}

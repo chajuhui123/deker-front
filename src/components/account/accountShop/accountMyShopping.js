@@ -12,7 +12,7 @@ import MyOrderPrdtList from "./myOrderPrdtList";
 
 function AccountMyShopping(props) {
   const dispatch = useDispatch();
-  const [inqPeriod, setInqPeriod] = useState("month");
+  const [inqPeriod, setInqPeriod] = useState("all"); // default: month
   const [inqDeliState, setInqDeliState] = useState("6");
 
   const [currentPageNo, setCurrentPageNo] = useState(1);
@@ -21,6 +21,7 @@ function AccountMyShopping(props) {
   const [objectData, setObjectData] = useState(null);
   const [list, setList] = useState(null);
 
+  // 처음 페이지를 로딩했을 때, defalut값으로 조회 => 기간: 전체조회, 배송상태: 배송완료
   useEffect(() => {
     dispatch(
       postApi(
@@ -110,25 +111,6 @@ function AccountMyShopping(props) {
     },
   ];
 
-  // const DUMMY_DATA_UNREVIEWED = [
-  //   {
-  //     id: 11,
-  //     product_image:
-  //       "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-  //     product_brand: "시디즈",
-  //     product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-  //     product_option: "블랙",
-  //   },
-  //   {
-  //     id: 12,
-  //     product_image:
-  //       "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-  //     product_brand: "시디즈",
-  //     product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-  //     product_option: "블랙",
-  //   },
-  // ];
-
   // 기간 및 배송상태 값이 선택되면 Back에 받아와서 새로 조회
   const deliStateChgHandler = (data) => {
     setInqDeliState(data);
@@ -185,7 +167,7 @@ function AccountMyShopping(props) {
     <div className={classes.Layout}>
       <CommonPageTitle title="나의쇼핑" />
       <hr />
-      <div className={classes.acctMyShopping_Main}>
+      <div>
         <div className={classes.dtlArea}>
           <CommPageSemiTitle semiTitle="주문배송내역 조회" />
           <MyShoppingCnt countData={objectData} />
@@ -196,7 +178,7 @@ function AccountMyShopping(props) {
         </div>
         <div className={classes.dtlArea}>
           <CommPageSemiTitle semiTitle="주문상품" />
-          <MyOrderPrdtList orderedProductList={DUMMY_DATA} />
+          <MyOrderPrdtList orderedProductList={list} />
         </div>
       </div>
     </div>

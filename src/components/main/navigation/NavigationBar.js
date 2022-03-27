@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { postApi } from "api/fetch-api";
 import { BASE_URL } from "module/common-module";
 import MoreMenuToolTip from "./MoreMenuToolTip";
+import NavWrite from "./NavWrite";
 
 function NavigationBar() {
   const dispatch = useDispatch();
@@ -125,6 +126,7 @@ function NavigationBar() {
         )}
         {!!isLoggedIn && (
           <>
+            <NavWrite />
             <BiGift
               className={classes.menuIcon}
               size={25}

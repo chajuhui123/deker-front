@@ -1,4 +1,3 @@
-import MyReviewList from "../accountReview/myReviewList";
 import MyOrderPrdtItem from "./myOrderPrdtItem";
 import classes from "./myOrderPrdtList.module.css";
 
@@ -33,7 +32,7 @@ function MyOrderPrdtList(props) {
         </ul>
       ) : (
         <div className={classes.noUploadText}>
-          <text>작성한 글이 없습니다</text>
+          <text>주문한 이력이 없습니다.</text>
         </div>
       )}
     </div>

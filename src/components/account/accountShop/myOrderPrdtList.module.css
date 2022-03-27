@@ -1,5 +1,16 @@
+.orderProductDetail {
+  /* float: left; */
+  width: 100%;
+  margin-top: 30px;
+  /* border: var(--border); */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  /* border: 1px solid #707070; */
+  opacity: 1;
+}
+
 .orderNumber {
   margin-top: 20px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row;
 }
@@ -11,21 +22,10 @@
   color: #737373b5;
 }
 
-.orderProductDetail {
-  /* float: left; */
-  width: 100%;
-  /* border: var(--border);
-  border-radius: var(--border-radius); */
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border: 1px solid #707070;
-  /* border-radius: 8px; */
-  opacity: 1;
-}
-
 .noUploadText {
   position: relative;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 60px;
   width: 100%;
   height: 100%;
   font: normal normal bold 20px/33px Roboto;

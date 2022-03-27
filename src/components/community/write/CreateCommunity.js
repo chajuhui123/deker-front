@@ -11,9 +11,8 @@ import UserTagForm from "components/common/userTagForm";
 import { communityAction } from "store/community-slice";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-// TODO : 이미지
-
 function CreateCommunity(props) {
+  const communityPostId = props.match?.param?.communityPostId;
   const dispatch = useDispatch();
   const history = useHistory();
   const communityData = useSelector((state) => state.community.community);
@@ -44,6 +43,13 @@ function CreateCommunity(props) {
       setMoodArray(res.data);
     }
   };
+  // 수정 글 조회 콜백
+  const fnSearchCommunityCallback = (res) => {
+    if (!!res) {
+      // TODO : 데이터 set state
+      console.log(res);
+    }
+  };
   useEffect(() => {
     dispatch(
       postApi(
@@ -72,7 +78,15 @@ function CreateCommunity(props) {
         fnMoodCallback
       )
     );
-  }, [dispatch]);
+    if (!!communityPostId) {
+      const param = {
+        communityPostId,
+      };
+      dispatch(
+        postApi("mb/post/get/post-detail", param, fnSearchCommunityCallback)
+      );
+    }
+  }, [communityPostId, dispatch]);
   // 직업코드선택핸들러
   const jobChangeHandler = (e) => {
     dispatch(communityAction.setJobCode({ jobCode: e.value }));

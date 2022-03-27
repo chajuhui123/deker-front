@@ -1,27 +1,82 @@
-import AccntList from "components/account/myPage/accntList";
-import CommPageSemiTitle from "components/common/commPageSemiTitle";
-import React, { useState } from "react";
+import CommonPageTitle from "components/common/commPageTitle";
+import AccntList from "../../components/account/myPage/accntList";
+import classes from "./accountFollowing.module.css";
+
+import { useState } from "react";
+import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
-import { modalAction } from "store/modal-slice";
-import classes from "./presentFriendPopup.module.css";
 
-function PresentFriendPopup(props) {
-  const [productLinkInputText, setProductLinkInputText] = useState("");
+const AcctFllwngPage = (props) => {
+  const { location } = props;
+
   const dispatch = useDispatch();
-
-  // 내부 상품 등록
-  const productLinkInputHandler = (e) => {
-    setProductLinkInputText(e.target.value);
+  const [currentPageNo, setCurrentPageNo] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [lastPage, setLastPage] = useState(false);
+  const [list, setList] = useState(null);
+  /*
+  // 팔로우, 팔로잉 목록 받아오기
+  const fnCallback = (res) => {
+    if (!!res) {
+      setCurrentPageNo(res.data.currentPageNo);
+      setTotalCount(res.data.totalCount);
+      setLastPage(res.data.lastPage);
+      setList(res.data.list);
+      console.log("currentPageNo: " + currentPageNo);
+      console.log("totalCount: " + totalCount);
+      console.log("lastPage: " + lastPage);
+    } else {
+      // 비정상로직;
+      alert("data error");
+    }
   };
 
-  // back 통신해서 받아오기
-  const productSearchHandler = () => {
-    // back 통신해서 받아오기
+  // 팔로잉 목록을 Back에서 받아옴
+  if (location.state.follow === "following") {
+    console.log("What Page: " + location.state.follow);
+    dispatch(
+      postApi("mb/post/get/following", { currentPageNo: 1 }, fnCallback)
+    );
+  } // 팔로워 목록을 Back에서 받아옴
+  else if (location.state.follow === "follower") {
+    console.log("What Page: " + location.state.follow);
+    dispatch(postApi("mb/post/get/follower", { currentPageNo: 1 }, fnCallback));
+  }
+*/
+
+  // 팔로우, 언팔로우
+  const fnIsSuccessCallback = (res) => {
+    console.log(`isFollow or isDelete :: res :: ${JSON.stringify(res)}`);
   };
 
-  const presentSelectHandler = (data) => {
-    // props.presentUserIdHandler(data);
-    dispatch(modalAction.modalPopup({ isOpen: false }));
+  const isUnFollowBtnHandler = (data) => {
+    // 해당 계정을 팔로우 하겠다 (true)
+    if (!data.isFollowing) {
+      console.log("This is follow");
+      dispatch(
+        postApi(
+          "mb/cmm/reg/follow",
+          { userId: data.userId },
+          fnIsSuccessCallback
+        )
+      );
+    }
+    // 해당 계정을 언팔로우 하겠다 (false)
+    else {
+      console.log("This is unfollow");
+      dispatch(
+        postApi(
+          "mb/cmm/rmv/follow",
+          { userId: data.userId },
+          fnIsSuccessCallback
+        )
+      );
+    }
+  };
+
+  // 해당 계정을 팔로우 삭제하겠다.
+  const isDeleteBtnHandler = (data) => {
+    dispatch(postApi("", { userId: data }, fnIsSuccessCallback));
   };
 
   const DUMMY_DATA = [
@@ -154,36 +209,24 @@ function PresentFriendPopup(props) {
       userId: "user16",
     },
   ];
-
   return (
-    <div className={classes.productSalesLinkLayout}>
-      <CommPageSemiTitle semiTitle="선물할 친구를 선택해주세요" />
-      <div className={classes.presentMain}>
-        <div className={classes.productSearchArea}>
-          <input
-            className={classes.productInput}
-            type="text"
-            value={productLinkInputText}
-            placeholder="친구 검색"
-            onChange={productLinkInputHandler}
-          />
-          <button
-            className={classes.productSearchBtn}
-            onClick={productSearchHandler}
-          >
-            검색
-          </button>
-        </div>
-        <div className={classes.selectedProduct}>
-          <AccntList
-            accntLists={DUMMY_DATA}
-            departure="present"
-            presentSelectHandler={presentSelectHandler}
-          />
-        </div>
+    <div className={classes.layout}>
+      <div className={classes.title}>
+        {location.state.follow === "following" ? (
+          <CommonPageTitle title="팔로잉" />
+        ) : (
+          <CommonPageTitle title="팔로워" />
+        )}
       </div>
+      {/* <AccntList accntLists={list} departure={location.state.follow} /> */}
+      <AccntList
+        accntLists={DUMMY_DATA}
+        departure={location.state.follow}
+        isUnFollowBtnHandler={isUnFollowBtnHandler}
+        isDeleteBtnHandler={isDeleteBtnHandler}
+      />
     </div>
   );
-}
+};
 
-export default PresentFriendPopup;
+export default AcctFllwngPage;

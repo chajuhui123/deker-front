@@ -18,7 +18,7 @@ function MoreMenuToolTip({ handleMoreMenu }) {
   return (
     <div className={classes.moreMenuToolTip}>
       <Link to="/mypage">마이페이지</Link>
-      <Link to="/community/write">글쓰기</Link>
+      {/* <Link to="/community/write">글쓰기</Link> */}
       <Link to="/myShopping">나의 쇼핑</Link>
       <Link to="/myPresent">나의 선물함</Link>
       <Link to="/myReview">나의 리뷰</Link>

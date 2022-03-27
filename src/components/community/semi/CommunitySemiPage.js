@@ -1,344 +1,117 @@
 import { postApi } from "api/fetch-api";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./CommunitySemiPage.module.css";
 import CommunitySection from "./section/CommunitySection";
-
-const DUMMY_RANK = [
-  {
-    communityId: "1", // 글번호
-    communityTitle: "글제목 글제목 글제목 글제목", // 글제목
-    userId: "test1", // 작성자ID
-    userNick: "테스트1 테스트1 테스트1 테스트1", // 작성자닉네임
-    userProfileImg: "", // 작성자프로필사진
-    likeCount: 100,
-    commentCount: 123,
-    following: true,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164447023503877747.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "2",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 90,
-    commentCount: 123,
-    following: true,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164446224883159444.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "3",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 88,
-    commentCount: 123,
-    following: true,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164448649057424245.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "4",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 50,
-    commentCount: 123,
-    following: true,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442021987517897.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "5",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449311181595696.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "6",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/video-service-prd-s3-bucket-thumbnail/6204cf22d7b3b914fbe45715/6204cf22d7b3b914fbe45715.0000001.jpg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "7",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449560788958935.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "8",
-    communityTitle: "글제목글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442006712025856.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "9", // 글번호
-    communityTitle: "글제목 글제목 글제목 글제목", // 글제목
-    userId: "test1", // 작성자ID
-    userNick: "테스트1 테스트1 테스트1 테스트1", // 작성자닉네임
-    userProfileImg: "", // 작성자프로필사진
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164447023503877747.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "10",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164446224883159444.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "11",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164448649057424245.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "12",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442021987517897.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "13",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449311181595696.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "14",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/video-service-prd-s3-bucket-thumbnail/6204cf22d7b3b914fbe45715/6204cf22d7b3b914fbe45715.0000001.jpg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "15",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449560788958935.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "16",
-    communityTitle: "글제목글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442006712025856.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "17", // 글번호
-    communityTitle: "글제목 글제목 글제목 글제목", // 글제목
-    userId: "test1", // 작성자ID
-    userNick: "테스트1 테스트1 테스트1 테스트1", // 작성자닉네임
-    userProfileImg: "", // 작성자프로필사진
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164447023503877747.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "18",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164446224883159444.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "19",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164448649057424245.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "20",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442021987517897.jpeg?gif=1&w=320&h=320&c=c", // 글이미지
-  },
-  {
-    communityId: "21",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449311181595696.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "22",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/video-service-prd-s3-bucket-thumbnail/6204cf22d7b3b914fbe45715/6204cf22d7b3b914fbe45715.0000001.jpg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "23",
-    communityTitle: "글제목 글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164449560788958935.jpeg?gif=1&w=320&h=320&c=c",
-  },
-  {
-    communityId: "24",
-    communityTitle: "글제목글제목 글제목 글제목",
-    userId: "test1",
-    userNick: "테스트1 테스트1 테스트1 테스트1",
-    userProfileImg: "",
-    likeCount: 100,
-    commentCount: 123,
-    following: false,
-    communityImage:
-      "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/164442006712025856.jpeg?gif=1&w=320&h=320&c=c",
-  },
-];
+import { useInView } from "react-intersection-observer";
+import { modalAction } from "store/modal-slice";
+import CommAlert from "components/common/commAlert";
 
 const CommunitySemiPage = (props) => {
   const { params } = props.match;
   const type = params.type;
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isReady = useSelector((state) => state.user.isReady);
   const [list, setList] = useState([]);
-  // TODO : Back 생성 후 연결 해야함
-  // const dispatch = useDispatch();
-  const followingHandler = (userId) => {
+  const [currentPageNo, setCurrentPageNo] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
+  const [isInit, setIsInit] = useState(true);
+  const [ref, inView] = useInView();
+
+  /* 팔로윙 */
+  const followingHandler = (userId, followingCheck) => {
     const data = {
       userId,
     };
-    console.log(data);
-    // dispatch(postApi("", data, fnCallback));
+    const url = followingCheck ? "mb/cmm/rmv/follow" : "mb/cmm/reg/follow";
+    dispatch(postApi(url, data, fnFollowCallback));
   };
   const fnFollowCallback = (res) => {
     console.log(`CommunitySemiPage :: res :: ${JSON.stringify(res)}`);
     if (!!res) {
-      setList((prev) =>
-        prev.map((item) => {
-          if (item.userId === res.data.userId) {
-            item.followingCheck = res.data.followingCheck;
-          }
-          return item;
+      const pageNo = currentPageNo;
+      setList([]);
+      for (let i = 1; i <= pageNo; i++) {
+        setCurrentPageNo(i);
+        console.log(i);
+      }
+    }
+  };
+
+  /* 좋아요 */
+  const fnLikeCallback = (res) => {
+    console.log("fnLikeCallback :: res :: ", res);
+    if (!!res) {
+      const pageNo = currentPageNo;
+      setList([]);
+      for (let i = 1; i <= pageNo; i++) {
+        setCurrentPageNo(i);
+        console.log(i);
+      }
+    }
+  };
+  const likeHandler = (communityId, isLiked) => {
+    if (isLoggedIn) {
+      const param = {
+        communityId,
+      };
+      const url = isLiked ? "mb/post/rmv/post-like" : "mb/post/reg/post-like";
+      dispatch(postApi(url, param, fnLikeCallback));
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert
+              title="안내"
+              message="로그인이 필요한 서비스입니다."
+              fnClick={fnCloseModal}
+            />
+          ),
         })
       );
     }
   };
+  const fnCloseModal = () => {
+    dispatch(modalAction.modalPopup({ isOpen: false }));
+  };
+
+  /* 데이터 조회 */
+  const fnGetContents = useCallback(() => {
+    if (isReady) {
+      const url = isLoggedIn ? "mb/post/get/more" : "nmb/post/get/more";
+      const param = {
+        type,
+        currentPageNo,
+      };
+      dispatch(postApi(url, param, fnCallback));
+    } else {
+      const url = "nmb/post/get/more";
+      const param = {
+        type,
+        currentPageNo,
+      };
+      dispatch(postApi(url, param, fnCallback));
+    }
+  }, [currentPageNo, dispatch, isLoggedIn, isReady, type]);
   const fnCallback = (res) => {
-    console.log("CommunityMain :: res :: ", res);
+    console.log("CommunitySemiPage :: res :: ", res);
     if (!!res) {
-      setList(res.data.ranks);
+      setList((prev) => [...prev, ...res?.data?.list]);
+      setIsLastPage(res?.data?.lastPage);
+      setIsInit(false);
     }
   };
   useEffect(() => {
-    let url = isLoggedIn ? "mb/post/get" : "nmb/post/get";
-    console.log(`isLoggedIn :: ${isLoggedIn}`);
-    if (isLoggedIn) {
-      // TODO : 비회원 url 생성되면 조건문 삭제
-      dispatch(postApi(url, null, fnCallback));
-    } else {
-      setList(DUMMY_RANK);
+    fnGetContents();
+  }, [fnGetContents]);
+
+  useEffect(() => {
+    if (!isLastPage && inView) {
+      setCurrentPageNo((prevState) => prevState + 1);
     }
-  }, [dispatch, isLoggedIn]);
+  }, [inView, isLastPage]);
 
   return (
     <div className={classes.main}>
@@ -346,7 +119,17 @@ const CommunitySemiPage = (props) => {
         type={type}
         data={list}
         followingHandler={followingHandler}
+        likeHandler={likeHandler}
       />
+      {isInit || (
+        <div
+          style={{
+            width: "100%",
+            height: "10px",
+          }}
+          ref={ref}
+        ></div>
+      )}
     </div>
   );
 };

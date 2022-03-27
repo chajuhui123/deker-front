@@ -50,30 +50,3 @@
   height: 300px;
   /* border: 1px solid #000000; */
 }
-
-/* 더미데이터 시작 */
-.dummy {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-}
-.productImg {
-  /* background-color: rgb(206, 206, 206); */
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-}
-
-.productInfo {
-  width: 100%;
-  display: inline-block;
-  max-width: 180px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; /*늘어나면 ...처리*/
-  text-align: left;
-  font: normal normal normal 13px/25px Roboto;
-  /* margin-inline: 10px; */
-  /* float: left; */
-}
-/* 더미 끝 */
