@@ -19,8 +19,9 @@ function PresentFriendPopup(props) {
     // back 통신해서 받아오기
   };
 
+  // 선물할 계정이 선택되면 해당 계정 결제페이지로 보내고 팝업 닫기
   const presentSelectHandler = (data) => {
-    // props.presentUserIdHandler(data);
+    props.presentUserIdHandler(data);
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
 

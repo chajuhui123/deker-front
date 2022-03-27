@@ -14,7 +14,7 @@ const AcctFllwngPage = (props) => {
   const [totalCount, setTotalCount] = useState(0);
   const [lastPage, setLastPage] = useState(false);
   const [list, setList] = useState(null);
-  /*
+
   // 팔로우, 팔로잉 목록 받아오기
   const fnCallback = (res) => {
     if (!!res) {
@@ -42,7 +42,6 @@ const AcctFllwngPage = (props) => {
     console.log("What Page: " + location.state.follow);
     dispatch(postApi("mb/post/get/follower", { currentPageNo: 1 }, fnCallback));
   }
-*/
 
   // 팔로우, 언팔로우
   const fnIsSuccessCallback = (res) => {
@@ -220,7 +219,7 @@ const AcctFllwngPage = (props) => {
       </div>
       {/* <AccntList accntLists={list} departure={location.state.follow} /> */}
       <AccntList
-        accntLists={DUMMY_DATA}
+        accntLists={list}
         departure={location.state.follow}
         isUnFollowBtnHandler={isUnFollowBtnHandler}
         isDeleteBtnHandler={isDeleteBtnHandler}

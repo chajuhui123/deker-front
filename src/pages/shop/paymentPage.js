@@ -55,7 +55,12 @@ const PaymentPage = (props) => {
     dispatch(
       modalAction.modalPopup({
         isOpen: true,
-        cont: <PresentFriendPopup userId={props.userId} />,
+        cont: (
+          <PresentFriendPopup
+            userId={props.userId}
+            presentUserIdHandler={presentUserIdHandler}
+          />
+        ),
       })
     );
   };
@@ -69,7 +74,7 @@ const PaymentPage = (props) => {
     dispatch(
       modalAction.modalPopup({
         isOpen: true,
-        cont: <DeliverySelect presentUserIdHandler={presentUserIdHandler} />,
+        cont: <DeliverySelect />,
       })
     );
   };
