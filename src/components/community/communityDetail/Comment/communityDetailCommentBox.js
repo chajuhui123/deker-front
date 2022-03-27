@@ -1,19 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./communityDetailCommentBox.module.css";
-import CommunityDetailCommentItem from "./communityDetailCommentItem";
 import noUserImg from "img/noUserImg.png";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
+import { modalAction } from "store/modal-slice";
+import CommAlert from "components/common/commAlert";
+import CommunityDetailCommentItems from "./CommunityDetailCommentItems";
 
 function CommunityDetailCommentBox({ communityPostId, inView }) {
   const dispatch = useDispatch();
+  const commentInputRef = useRef();
 
   const [commentPageNum, setCommentPageNum] = useState(1);
   const [commentList, setCommentList] = useState([]);
   const [isLastComment, setIsLastComment] = useState(false);
 
-  const handleAddComment = () => {
-    console.log("추가 ");
+  const fnAddCommentCallback = (res) => {
+    if (!!res) {
+      setCommentList([]);
+      setCommentPageNum(1);
+      inView = false;
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert title="오류" message="댓글 작성에 실패하였습니다." />
+          ),
+        })
+      );
+    }
+  };
+
+  const handleAddComment = (event) => {
+    event.preventDefault();
+    const content = commentInputRef.current.value;
+    if (content.length) {
+      const commentPayload = {
+        communityId: communityPostId,
+        content,
+      };
+      dispatch(
+        postApi("mb/post/reg/comments", commentPayload, fnAddCommentCallback)
+      );
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: <CommAlert title="안내" message="댓글을 입력해주세요." />,
+        })
+      );
+    }
   };
 
   const fnCommunityCommentCallback = (res) => {
@@ -49,23 +86,14 @@ function CommunityDetailCommentBox({ communityPostId, inView }) {
         <span className={classes.commentCount}>({commentList.length})</span>
       </div>
       <form className={classes.commentInputDiv}>
-        {/* 작성자 프로필 img src */}
+        {/* TO DO : 작성자 프로필 img src */}
         <img className={classes.commentInputImg} src={noUserImg} alt="" />
-        <input className={classes.commentInputBox} />
+        <input className={classes.commentInputBox} ref={commentInputRef} />
         <button className={classes.commentInputBtn} onClick={handleAddComment}>
           등록
         </button>
       </form>
-      <div>
-        {commentList?.map((commentItemObject, commentItemIndex) => {
-          return (
-            <CommunityDetailCommentItem
-              key={commentItemIndex}
-              commentItemObject={commentItemObject}
-            />
-          );
-        })}
-      </div>
+      <CommunityDetailCommentItems commentList={commentList} />
     </div>
   );
 }

@@ -31,7 +31,7 @@
   border-radius: 4px 0 0 4px;
   border: 1px solid #f0f0f0;
   border-right: none;
-  width: 82%;
+  width: 100%;
   cursor: pointer;
 }
 
@@ -41,7 +41,7 @@
   border-left: none;
   background-color: white;
   padding: 0 12px;
-  width: 50px;
+  width: 60px;
   color: var(--main_color);
   cursor: pointer;
 }

@@ -18,6 +18,10 @@
   margin: 0 10px 0 0;
 }
 
+.slideImg:hover {
+  cursor: pointer;
+}
+
 .slideImg:last-child {
   margin: 0;
 }
