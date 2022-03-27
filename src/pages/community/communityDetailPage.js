@@ -12,15 +12,11 @@ import { useInView } from "react-intersection-observer";
 
 const CommunityDetailPage = ({ match }) => {
   const dispatch = useDispatch();
+  const [ref, inView] = useInView();
   const [communityPostObj, setCommunityPostObj] = useState({});
   const [communitySelectedProductArr, setCommunitySelectedProductArr] =
     useState([]);
-  const [commentPageNum, setCommentPageNum] = useState(1);
-  const [commentList, setCommentList] = useState([]);
-  const [isLastComment, setIsLastComment] = useState(false);
   const { communityPostId } = match.params;
-
-  const [ref, inView] = useInView();
 
   const fnCommunityDetailCallback = (res) => {
     if (!!res) {
@@ -37,13 +33,6 @@ const CommunityDetailPage = ({ match }) => {
     }
   };
 
-  const fnCommunityCommentCallback = (res) => {
-    if (!!res) {
-      setCommentList((prevList) => [...prevList, ...res?.data?.list]);
-      setIsLastComment(res?.data?.lastPage);
-    }
-  };
-
   useEffect(() => {
     const communityPostIdObj = { communityPostId: communityPostId };
     dispatch(
@@ -54,25 +43,6 @@ const CommunityDetailPage = ({ match }) => {
       )
     );
   }, [dispatch, communityPostId]);
-
-  useEffect(() => {
-    dispatch(
-      postApi(
-        "nmb/post/comments",
-        {
-          currentPageNo: commentPageNum,
-          communityId: communityPostId,
-        },
-        fnCommunityCommentCallback
-      )
-    );
-  }, [dispatch, communityPostId, commentPageNum]);
-
-  useEffect(() => {
-    if (!isLastComment && inView) {
-      setCommentPageNum((prevState) => prevState + 1);
-    }
-  }, [inView, isLastComment]);
 
   return (
     <div>
@@ -100,7 +70,10 @@ const CommunityDetailPage = ({ match }) => {
         <CommunityDetailLike communityPostId={communityPostId} />
         <CommunityDetailManagementPost communityPostId={communityPostId} />
       </div>
-      <CommunityDetailCommentBox commentList={commentList} />
+      <CommunityDetailCommentBox
+        communityPostId={communityPostId}
+        inView={inView}
+      />
       <div
         style={{
           width: "100%",
