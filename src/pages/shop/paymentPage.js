@@ -1,4 +1,3 @@
-import MyReviewList from "components/account/accountReview/myReviewList";
 import DeliverySelect from "components/account/accountShop/deliverySelect";
 import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
@@ -12,7 +11,7 @@ import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
 import PayBtn from "./payBtn";
-import MyOrderPrdtItem from "components/account/accountShop/myOrderPrdtItem";
+import MyOrderPrdtList from "components/account/accountShop/myOrderPrdtList";
 
 const PaymentPage = (props) => {
   // const { location } = props;
@@ -80,7 +79,7 @@ const PaymentPage = (props) => {
     );
   };
 
-  // userId 받아오는거 못함
+  // 선물할 계정 받아옴
   const presentUserIdHandler = (data) => {
     setPresentUserId(data);
     console.log(presentUserId);
@@ -103,24 +102,6 @@ const PaymentPage = (props) => {
     ],
     []
   );
-  const DUMMY_DATA_UNREVIEWED = [
-    {
-      id: 11,
-      product_image:
-        "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
-    },
-    {
-      id: 12,
-      product_image:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
-    },
-  ];
 
   const DUMMY_DATA = [
     {
@@ -340,8 +321,10 @@ const PaymentPage = (props) => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="주문상품" />
           <hr className={classes.lineD} />
-          <MyOrderPrdtItem orderedProductList={DUMMY_DATA} />
-          <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
+          <MyOrderPrdtList
+            orderedProductList={DUMMY_DATA}
+            departure="productListToPay"
+          />
         </div>
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제가능수단" />
