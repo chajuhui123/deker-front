@@ -25,6 +25,7 @@ import { useSelector } from "react-redux";
 import AcctFllwngPage from "pages/account/accountFollowingPage";
 import AccountMyPage from "pages/account/accountMyPage";
 import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
+import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -127,6 +128,11 @@ function RouteComponent() {
       <Route path="/community/write" exact>
         <CreateCommunityPage />
       </Route>
+      <Route
+        path="/community/mod/:communityPostId"
+        exact
+        component={ModifyCommunityPage}
+      ></Route>
       <Route path="/modalTest" exact>
         <ModalTest />
       </Route>

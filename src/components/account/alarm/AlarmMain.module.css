@@ -1,0 +1,11 @@
+.main {
+  width: 100%;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.content {
+  height: 100px;
+  line-height: 18px;
+  padding: 0 24px;
+  background: #6285ff;
+}

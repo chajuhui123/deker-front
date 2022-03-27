@@ -7,9 +7,9 @@ function ProductDetailInfo({ productDetailObj }) {
   const productDetailExplainArr = productDetailObj.productDetailExplainArr;
   return (
     <div style={{ textAlign: "center", marginBlock: "100px" }}>
-      {productDetailExplainArr?.map((productDetail) => {
+      {productDetailExplainArr?.map((productDetail, index) => {
         return (
-          <div>
+          <div key={index}>
             <p className={classes.detailInfoText}>
               {productDetail.detailExplain}
             </p>

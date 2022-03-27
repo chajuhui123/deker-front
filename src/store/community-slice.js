@@ -35,6 +35,10 @@ const communitySlice = createSlice({
     setMoodCode: (state, action) => {
       state.community.moodCode = action.payload.moodCode;
     },
+    clearData: (state) => {
+      state.community = initialModalState.community;
+      state.product = initialModalState.product;
+    },
   },
 });
 

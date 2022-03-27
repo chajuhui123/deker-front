@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import classes from "./CreateCommunity.module.css";
 import { postApi, fileApi } from "api/fetch-api";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,8 @@ import UserTagForm from "components/common/userTagForm";
 import { communityAction } from "store/community-slice";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-function CreateCommunity(props) {
+function ModifyCommunity(props) {
+  const communityPostId = props?.communityPostId;
   const dispatch = useDispatch();
   const history = useHistory();
   const communityData = useSelector((state) => state.community.community);
@@ -24,6 +25,8 @@ function CreateCommunity(props) {
   const [title, setTitle] = useState(""); // 제목
   const [content, setContent] = useState(""); // 내용
   const [imageFile, setImageFile] = useState(null); // 이미지 파일
+  const [imageUrl, setImageUrl] = useState(null); // 조회된 이미지 경로
+  const [tags, setTags] = useState([]);
   // 직업코드조회콜백
   const fnJobCallback = (res) => {
     if (!!res) {
@@ -42,7 +45,25 @@ function CreateCommunity(props) {
       setMoodArray(res.data);
     }
   };
-
+  // 수정 글 조회 콜백
+  const fnSearchCommunityCallback = useCallback(
+    (res) => {
+      if (!!res) {
+        // TODO : 데이터 set state
+        console.log(res.data);
+        setTitle(res.data.communityPost.communityTitle);
+        setContent(res.data.communityPost.communityContent);
+        setTags(res.data.communityPost.communityTags);
+        setImageUrl(res.data.communityPost.postImg);
+        dispatch(
+          communityAction.setProduct({
+            communityProducts: res.data.communityPostSelectedProduct,
+          })
+        );
+      }
+    },
+    [dispatch]
+  );
   useEffect(() => {
     dispatch(
       postApi(
@@ -72,7 +93,15 @@ function CreateCommunity(props) {
       )
     );
     dispatch(communityAction.clearData());
-  }, [dispatch]);
+    if (!!communityPostId) {
+      const param = {
+        communityPostId,
+      };
+      dispatch(
+        postApi("mb/post/get/post-detail", param, fnSearchCommunityCallback)
+      );
+    }
+  }, [communityPostId, dispatch, fnSearchCommunityCallback]);
   // 직업코드선택핸들러
   const jobChangeHandler = (e) => {
     dispatch(communityAction.setJobCode({ jobCode: e.value }));
@@ -166,8 +195,12 @@ function CreateCommunity(props) {
       </div>
       <div className={classes.communityArea}>
         <div className={classes.leftArea}>
-          <ImageArea setImageFile={setImageFile} margin="0 0 30px 0" />
-          <UserTagForm tagOutHandler={tagOutHandler} />
+          <ImageArea
+            setImageFile={setImageFile}
+            imageFile={imageUrl}
+            margin="0 0 30px 0"
+          />
+          <UserTagForm tagOutHandler={tagOutHandler} tags={tags} />
         </div>
         <div className={classes.textArea}>
           <div className={classes.titleArea}>
@@ -183,4 +216,4 @@ function CreateCommunity(props) {
   );
 }
 
-export default CreateCommunity;
+export default ModifyCommunity;

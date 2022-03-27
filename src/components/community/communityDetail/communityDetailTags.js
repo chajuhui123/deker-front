@@ -17,9 +17,9 @@ function CommunityDetailTags({
   return (
     <div className={classes.tagsDiv}>
       {communityTagsComponent}
-      <p className={classes.tagItem}>#{jobCode}</p>
-      <p className={classes.tagItem}>#{materialCode}</p>
-      <p className={classes.tagItem}>#{moodCode}</p>
+      {jobCode && <p className={classes.tagItem}>#{jobCode}</p>}
+      {materialCode && <p className={classes.tagItem}>#{materialCode}</p>}
+      {moodCode && <p className={classes.tagItem}>#{moodCode}</p>}
     </div>
   );
 }
