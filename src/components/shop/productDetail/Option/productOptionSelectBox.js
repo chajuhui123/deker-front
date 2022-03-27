@@ -8,8 +8,10 @@ import CommonPageTitle from "components/common/commPageTitle";
 import SelectBoxOptionDiv from "./selectBoxOptionDiv";
 import ProductOptionSelectItem from "./productOptionSelectItem";
 import { postApi } from "api/fetch-api";
+import { modalAction } from "store/modal-slice";
+import CommAlert from "components/common/commAlert";
 
-function ProductOptionSelectBox({ productDetailObj }) {
+function ProductOptionSelectBox({ productId, productDetailObj }) {
   const dispatch = useDispatch();
 
   const [opitonIdInBasket, setOptionIdInBasket] = useState([]);
@@ -19,18 +21,50 @@ function ProductOptionSelectBox({ productDetailObj }) {
   const { productImg, productName, productPrice, productDetailOptionArr } =
     productDetailObj;
 
-  const fnCallbackAddOptionsToCart = () => {
-    // TO DO : 장바구니 router 이동
+  const fnCallbackAddOptionsToCart = (res) => {
+    if (!!res) {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: <CommAlert title="확인" message="장바구니에 추가되었습니다." />,
+        })
+      );
+      setSelectedOption([]);
+      setOptionIdInBasket([]);
+      setTotalProductPrice(0);
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert title="안내" message="장바구니 추가에 실패하였습니다." />
+          ),
+        })
+      );
+    }
   };
 
   const handleAddOptionsToCart = () => {
-    console.log(selectedOption);
-    // dispatch(
-    //   postApi("mb/mkt/reg/add-cart", selectedOption, fnCallbackAddOptionsToCart)
-    // );
+    const selectedOptionToAddCart = selectedOption.map((item) => {
+      const { option1, option1Data, option2, option2Data, orderQuantity } =
+        item;
+      return {
+        mktProductId: productId,
+        option1,
+        option1Data,
+        option2,
+        option2Data,
+        orderQuantity,
+      };
+    });
+    dispatch(
+      postApi(
+        "mb/mkt/reg/add-cart",
+        selectedOptionToAddCart,
+        fnCallbackAddOptionsToCart
+      )
+    );
   };
-
-  console.log("productDetailObj", productDetailObj);
 
   return (
     <div className={classes.productOptionSelectBox}>
@@ -43,7 +77,7 @@ function ProductOptionSelectBox({ productDetailObj }) {
         </div>
 
         {/* 옵션은 Back에서 무조건 1개이상 보내기로 결정 */}
-        {productDetailOptionArr.length > 0 && (
+        {productDetailOptionArr.length && (
           <div className={classes.buyItemInfoDiv}>
             <p>옵션</p>
             <ProductOptionSelectItem

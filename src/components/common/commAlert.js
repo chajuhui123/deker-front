@@ -13,7 +13,10 @@ function CommAlert(props) {
     <div className={classes.commAlertArea}>
       <div className={classes.commAlertTitle}>{props.title}</div>
       <div className={classes.commAlertMessage}>{props.message}</div>
-      <CommBtn btnWidth="50%" fnClick={closeAlertHandler} />
+      <CommBtn
+        btnWidth="50%"
+        fnClick={props.onClickHandler ?? closeAlertHandler}
+      />
     </div>
   );
 }

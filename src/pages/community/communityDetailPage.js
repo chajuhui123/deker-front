@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import CommunityDetailMainImg from "components/community/communityDetail/communityDetailMainImg";
-import CommunityDetailImgSlide from "components/community/communityDetail/communityDetailImgSlide";
+import CommunityDetailMainImg from "components/community/communityDetail/MainImg/communityDetailMainImg";
+import CommunityDetailImgSlide from "components/community/communityDetail/Slide/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
 import CommunityDetailTags from "components/community/communityDetail/communityDetailTags";
-import CommunityDetailCommentBox from "components/community/communityDetail/communityDetailCommentBox";
+import CommunityDetailCommentBox from "components/community/communityDetail/Comment/communityDetailCommentBox";
 import CommunityDetailLike from "components/community/communityDetail/communityDetailLike";
 import CommunityDetailManagementPost from "components/community/communityDetail/communityDetailManagementPost";
 import { postApi } from "api/fetch-api";

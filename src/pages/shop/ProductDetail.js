@@ -1,7 +1,7 @@
-import ProductDetailInfo from "components/shop/productDetail/productDetailInfo";
-import ProductOptionSelectBox from "components/shop/productDetail/productOptionSelectBox";
-import ProductRecommendBox from "components/shop/productDetail/productRecommendBox";
-import ProductReviewBox from "components/shop/productDetail/productReviewBox";
+import ProductDetailInfo from "components/shop/productDetail/Content/productDetailInfo";
+import ProductOptionSelectBox from "components/shop/productDetail/Option/productOptionSelectBox";
+import ProductRecommendBox from "components/shop/productDetail/Recommend/productRecommendBox";
+import ProductReviewBox from "components/shop/productDetail/Review/productReviewBox";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
 import { useEffect, useState } from "react";
@@ -92,7 +92,10 @@ const ProductDetailPage = ({ match }) => {
 
   return (
     <div>
-      <ProductOptionSelectBox productDetailObj={productDetailObj} />
+      <ProductOptionSelectBox
+        productId={productId}
+        productDetailObj={productDetailObj}
+      />
       <ProductDetailInfo productDetailObj={productDetailObj} />
       <ProductRecommendBox productRecommendObj={productRecommendObj} />
       <ProductReviewBox
