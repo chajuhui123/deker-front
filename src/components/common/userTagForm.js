@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import classes from "./userTagForm.module.css";
 
 /**
@@ -35,13 +35,28 @@ function UserTagForm(props) {
     const copyItem = tag.filter((tagTg) => tagTg.id !== id);
     setTag(copyItem);
   };
+  const restoreTags = useCallback(() => {
+    if (!!props.tags) {
+      const tagArry = props.tags;
+      tagArry.forEach((t, i) => {
+        const copyItem = {
+          id: i + 1,
+          text: t,
+        };
+        setTag((prev) => [...prev, copyItem]);
+      });
+      setNextId(tagArry.length + 1);
+    }
+  }, [props.tags]);
 
   useEffect(() => {
     if (!!props.tagOutHandler) {
       props.tagOutHandler(tag);
     }
   }, [props, tag]);
-
+  useEffect(() => {
+    restoreTags();
+  }, [restoreTags]);
   return (
     <div>
       <input

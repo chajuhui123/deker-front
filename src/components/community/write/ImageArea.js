@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import classes from "./ImageArea.module.css";
 import noImg from "img/noImg.png";
 import PlusBtn from "./PlusBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { communityAction } from "store/community-slice";
+import { BASE_URL } from "module/common-module";
 
 function ImageArea(props) {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ function ImageArea(props) {
   const photoInputRef = useRef();
   const [prevImage, setPrevImage] = useState(null); // 미리보기 이미지
   const [isPoint, setIsPoint] = useState(false); // 상품 선택 가능여부
+  useEffect(() => {
+    if (!!props.imageFile) {
+      setPrevImage(`${BASE_URL}${props.imageFile}`);
+    }
+  }, [props.imageFile]);
   // 이미지핸들러
   const imageHandler = (e) => {
     if (e.target.files.length > 0) {
@@ -38,8 +44,8 @@ function ImageArea(props) {
       const productData = !pointArray ? [] : pointArray.concat();
       const positionObect = {
         id: index,
-        top: e.nativeEvent.offsetY,
-        left: e.nativeEvent.offsetX,
+        offsetY: e.nativeEvent.offsetY,
+        offsetX: e.nativeEvent.offsetX,
       };
       productData.push(positionObect);
       dispatch(
@@ -63,8 +69,8 @@ function ImageArea(props) {
               <PlusBtn
                 key={point.id}
                 id={point.id}
-                top={point.top}
-                left={point.left}
+                top={point.offsetY}
+                left={point.offsetX}
               />
             ))}
           <div className={classes.uploadDisplay}>
