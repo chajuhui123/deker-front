@@ -26,6 +26,7 @@ function MyOrderPrdtList(props) {
                 orderState={orderProduct.orderState}
                 orderStateNm={orderProduct.orderStateNm}
                 orderQuantity={orderProduct.orderQuantity}
+                departure={props.departure}
               />
             </li>
           ))}

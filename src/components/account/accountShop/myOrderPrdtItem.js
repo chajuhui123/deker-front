@@ -93,45 +93,50 @@ function MyOrderPrdtItem(props) {
                     props.orderQuantity +
                     `개`}
                 </div>
-                <div
-                  className={classes.buyConfirm}
-                  onClick={buyConfirmBtnHandler}
-                >
-                  구매확정
-                </div>
-                <div
-                  className={classes.buyConfirm}
-                  onClick={exchnRfndBtnHandler}
-                >
-                  교환/환불
-                </div>
+                {props.departure !== "productListToPay" && (
+                  <div className={classes.dtlInfo}>
+                    <div
+                      className={classes.buyConfirm}
+                      onClick={buyConfirmBtnHandler}
+                    >
+                      구매확정
+                    </div>
+                    <div
+                      className={classes.buyConfirm}
+                      onClick={exchnRfndBtnHandler}
+                    >
+                      교환/환불
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className={classes.product_btn}>
-              {props.orderState === "6" ? (
-                // 구매확정 상태면 버튼 활성화
-                <CommBtn
-                  btnText="리뷰작성"
-                  btnWidth="140px"
-                  btnHeight="50px"
-                  fontSize="15px"
-                  radius="4px"
-                  border="1px solid rgb(66, 66, 226)"
-                  fnClick={openModalEventHandler}
-                />
-              ) : (
-                // 구매확정이 아니라면 버튼 비활성화
-                <CommBtn
-                  btnText="리뷰작성"
-                  btnWidth="140px"
-                  btnHeight="50px"
-                  fontSize="15px"
-                  radius="4px"
-                  txColor="rgb(78, 78, 78)"
-                  bgColor="rgb(248, 248, 250)"
-                  border="1px solid rgb(66, 66, 226)"
-                />
-              )}
+              {props.departure !== "productListToPay" &&
+                (props.orderState === "6" ? (
+                  // 구매확정 상태면 버튼 활성화
+                  <CommBtn
+                    btnText="리뷰작성"
+                    btnWidth="140px"
+                    btnHeight="50px"
+                    fontSize="15px"
+                    radius="4px"
+                    border="1px solid rgb(66, 66, 226)"
+                    fnClick={openModalEventHandler}
+                  />
+                ) : (
+                  // 구매확정이 아니라면 버튼 비활성화
+                  <CommBtn
+                    btnText="리뷰작성"
+                    btnWidth="140px"
+                    btnHeight="50px"
+                    fontSize="15px"
+                    radius="4px"
+                    txColor="rgb(78, 78, 78)"
+                    bgColor="rgb(248, 248, 250)"
+                    border="1px solid rgb(66, 66, 226)"
+                  />
+                ))}
             </div>
           </div>
         </div>
