@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./box.module.css";
+import classes from "../box.module.css";
 import ProductReviewItem from "./productReviewItem";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 

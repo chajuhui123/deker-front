@@ -16,6 +16,7 @@ function ProductOptionSelectItem({
 
   const handleSelectItem = (optionItem) => {
     const { productOptionId } = optionItem;
+
     setIsVisible(!isVisible);
     // 이전에 선택하지 않는 옵션이라면 추가 가능
     if (!opitonIdInBasket.includes(productOptionId)) {
