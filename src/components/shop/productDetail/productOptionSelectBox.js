@@ -24,9 +24,10 @@ function ProductOptionSelectBox({ productDetailObj }) {
   };
 
   const handleAddOptionsToCart = () => {
-    dispatch(
-      postApi("mb/mkt/reg/add-cart", selectedOption, fnCallbackAddOptionsToCart)
-    );
+    console.log(selectedOption);
+    // dispatch(
+    //   postApi("mb/mkt/reg/add-cart", selectedOption, fnCallbackAddOptionsToCart)
+    // );
   };
 
   console.log("productDetailObj", productDetailObj);
@@ -46,7 +47,6 @@ function ProductOptionSelectBox({ productDetailObj }) {
           <div className={classes.buyItemInfoDiv}>
             <p>옵션</p>
             <ProductOptionSelectItem
-              productPrice={productPrice}
               options={productDetailOptionArr}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}
@@ -56,9 +56,10 @@ function ProductOptionSelectBox({ productDetailObj }) {
           </div>
         )}
 
-        {selectedOption.map((option) => {
+        {selectedOption.map((option, index) => {
           return (
             <SelectBoxOptionDiv
+              key={index}
               option={option}
               selectedOption={selectedOption}
               setSelectedOption={setSelectedOption}

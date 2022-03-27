@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import classes from "./productOptionSelectItem.module.css";
 
 function ProductOptionSelectItem({
-  productPrice: orginalPrice,
   options,
   selectedOption,
   setSelectedOption,
@@ -16,16 +15,14 @@ function ProductOptionSelectItem({
   };
 
   const handleSelectItem = (optionItem) => {
-    const { mktProductId } = optionItem;
-
+    const { productOptionId } = optionItem;
     setIsVisible(!isVisible);
-
-    // 아래 존재하지 않는 옵션이라면 추가 가능
-    if (!opitonIdInBasket.includes(mktProductId)) {
+    // 이전에 선택하지 않는 옵션이라면 추가 가능
+    if (!opitonIdInBasket.includes(productOptionId)) {
       setSelectedOption(
         selectedOption.concat({ ...optionItem, orderQuantity: 1 })
       );
-      setOptionIdInBasket((prev) => [...prev, mktProductId]); // 추후 옵션에서 제거할 때 optionId 지우기
+      setOptionIdInBasket((prev) => [...prev, productOptionId]); // TO DO : 추후 옵션에서 제거할 때 optionId 지우기
     }
   };
 
@@ -35,9 +32,8 @@ function ProductOptionSelectItem({
         <div>--- 옵션을 선택해주세요 ---</div>
         {isVisible && (
           <div className={classes.selectableList}>
-            {options.map((optionItem) => {
+            {options.map((optionItem, index) => {
               const {
-                mktProductId,
                 option1Name,
                 option1DataName,
                 option2Name,
@@ -46,7 +42,7 @@ function ProductOptionSelectItem({
               } = optionItem;
               return (
                 <div
-                  key={mktProductId}
+                  key={index}
                   className={classes.selectableItem}
                   onClick={() => handleSelectItem(optionItem)}
                 >
