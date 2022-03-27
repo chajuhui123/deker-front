@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./box.module.css";
+import classes from "../box.module.css";
 import ProductRecommendItem from "./productRecommendItem";
 
 function ProductRecommendBox({ productRecommendObj }) {
