@@ -5,7 +5,7 @@ import classes from "./communityDetailManagementPost.module.css";
 function CommunityDetailManagementPost({ communityPostId }) {
   const history = useHistory();
   const hadleCommunityPostUpdate = () => {
-    history.push(`/community/write?communityPostId=${communityPostId}`);
+    history.push(`/community/write/${communityPostId}`);
   };
   const hadleCommunityPostDelete = () => {
     alert("해당 게시물을 삭제하시겠습니까?");
