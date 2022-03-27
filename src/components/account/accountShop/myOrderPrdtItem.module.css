@@ -1,7 +1,9 @@
 .orderedItem_box {
   width: 100%;
-  border: var(--border);
+  height: 200px;
+  /* border: var(--border); */
   border-radius: var(--border-radius);
+  box-shadow: rgb(0 0 0 / 6%) 0px 10px 40px 0px;
 }
 .boxInner {
   display: flex;

@@ -1,22 +1,61 @@
+import { List } from "@mui/material";
+import { postApi } from "api/fetch-api";
 import AccntList from "components/account/myPage/accntList";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { modalAction } from "store/modal-slice";
 import classes from "./presentFriendPopup.module.css";
 
 function PresentFriendPopup(props) {
-  const [productLinkInputText, setProductLinkInputText] = useState("");
   const dispatch = useDispatch();
+  const [presentAccntInput, setPresentAccntInput] = useState("");
+  const [currentPageNo, setCurrentPageNo] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [lastPage, setLastPage] = useState(false);
+  const [list, setList] = useState(null);
 
-  // 내부 상품 등록
-  const productLinkInputHandler = (e) => {
-    setProductLinkInputText(e.target.value);
+  // 팔로우, 팔로잉 목록 받아오기
+  const fnCallback = (res) => {
+    if (!!res) {
+      setCurrentPageNo(res.data.currentPageNo);
+      setTotalCount(res.data.totalCount);
+      setLastPage(res.data.lastPage);
+      setList(res.data.list);
+      console.log("currentPageNo: " + currentPageNo);
+      console.log("totalCount: " + totalCount);
+      console.log("lastPage: " + lastPage);
+      console.log(list);
+    } else {
+      // 비정상로직;
+    }
   };
 
-  // back 통신해서 받아오기
+  // 팔로잉 목록을 Back에서 받아옴
+  useEffect(() => {
+    dispatch(
+      postApi(
+        "mb/cmm/get/following",
+        { currentPageNo: 1, keyword: presentAccntInput },
+        fnCallback
+      )
+    );
+  }, [dispatch]);
+
+  // 선물할 계정 검색
+  const productLinkInputHandler = (e) => {
+    setPresentAccntInput(e.target.value);
+  };
+
+  // 선물할 계정 back 통신해서 받아오기
   const productSearchHandler = () => {
-    // back 통신해서 받아오기
+    dispatch(
+      postApi(
+        "mb/cmm/get/following",
+        { currentPageNo: 1, keyword: presentAccntInput },
+        fnCallback
+      )
+    );
   };
 
   // 선물할 계정이 선택되면 해당 계정 결제페이지로 보내고 팝업 닫기
@@ -164,7 +203,7 @@ function PresentFriendPopup(props) {
           <input
             className={classes.productInput}
             type="text"
-            value={productLinkInputText}
+            value={presentAccntInput}
             placeholder="친구 검색"
             onChange={productLinkInputHandler}
           />
@@ -177,7 +216,7 @@ function PresentFriendPopup(props) {
         </div>
         <div className={classes.selectedProduct}>
           <AccntList
-            accntLists={DUMMY_DATA}
+            accntLists={list}
             departure="present"
             presentSelectHandler={presentSelectHandler}
           />

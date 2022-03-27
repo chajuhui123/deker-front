@@ -14,9 +14,9 @@ const AccntList = (props) => {
                 key={accntList.id}
                 id={accntList.id}
                 profile_img={accntList.profile_img}
-                nick_name={accntList.nick_name}
+                nick_name={accntList.nickNm}
                 departure={props.departure}
-                userId={accntList.userId}
+                userId={accntList.memId}
                 isUnFollowBtnHandler={props.isUnFollowBtnHandler}
                 isDeleteBtnHandler={props.isDeleteBtnHandler}
                 presentSelectHandler={props.presentSelectHandler}
