@@ -1,5 +1,10 @@
 ## HISTORY
 
+### 2022.03.27. 권예림
+
+1. 나의쇼핑 (accountMyShopping)
+   - 구매확정 기능 구현
+
 ### 2022.03.26. 권예림
 
 1. 나의쇼핑 (accountMyShopping)
