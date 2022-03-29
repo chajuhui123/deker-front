@@ -79,6 +79,7 @@ const CommunitySemiPage = (props) => {
 
   /* 데이터 조회 */
   const fnGetContents = useCallback(() => {
+    console.log("fnGetContents :: isReady :: ", isReady);
     if (isReady) {
       const url = isLoggedIn ? "mb/post/get/more" : "nmb/post/get/more";
       const param = {
@@ -86,14 +87,15 @@ const CommunitySemiPage = (props) => {
         currentPageNo,
       };
       dispatch(postApi(url, param, fnCallback));
-    } else {
-      const url = "nmb/post/get/more";
-      const param = {
-        type,
-        currentPageNo,
-      };
-      dispatch(postApi(url, param, fnCallback));
     }
+    // else {
+    //   const url = "nmb/post/get/more";
+    //   const param = {
+    //     type,
+    //     currentPageNo,
+    //   };
+    //   dispatch(postApi(url, param, fnCallback));
+    // }
   }, [currentPageNo, dispatch, isLoggedIn, isReady, type]);
   const fnCallback = (res) => {
     console.log("CommunitySemiPage :: res :: ", res);

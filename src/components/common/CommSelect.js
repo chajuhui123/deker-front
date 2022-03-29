@@ -1,60 +1,52 @@
 import React from "react";
 import classes from "./CommSelect.module.css";
-import Select from "react-select";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
+import Box from "@mui/material/Box";
 
 /**
  * 공통 select component
  * @param {String} title 제목 (생략시 영역 hidden)
  * @param {String} width 넓이 (String "100px")
+ * @param {String} height 높이 (String "20px")
  * @param {Array} options select에 들어갈 선택 사항들
- * @param {Object} defaultValue 최초 로딩 시 기본선택 될 옵션 {value: "", lable: ""}
+ * @param {String} value 값
  * @param {Function} onChange 선택 사항 변화 시 포인트 메소드
- * @param {String} placeholder 미선택시 보여줄 문구
  * @returns
  */
-function CommSelect({
-  title,
-  width,
-  options,
-  defaultValue,
-  onChange,
-  placeholder,
-}) {
-  const customStyles = {
-    control: (provided, state) => ({
-      ...provided,
-      width: width || "300px",
-      margin: "0 30px 0 0",
-      isDisabled: state.isSelected ? true : false,
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? "#000000" : "#000000",
-      fontWeight: state.isSelected ? "bolder" : "normal",
-      backgroundColor: state.isSelected ? "#0014ff20" : "#ffffff",
-      height: 50,
-      padding: 20,
-    }),
-    singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = "opacity 300ms";
-
-      return { ...provided, opacity, transition };
-    },
+function CommSelect({ title, width, height, options, value, onChange }) {
+  const onChangeHandler = (e) => {
+    onChange(e.target.value);
   };
-
   return (
-    <div>
+    <Box sx={{ minWidth: 120 }}>
       {title && <p className={classes.selectTitle}>{title}</p>}
-      <Select
-        name="commSelect"
+      <FormControl fullWidth>
+        <Select
+          labelId="common-label"
+          id="common-select"
+          value={value}
+          onChange={onChangeHandler}
+          style={{
+            width: width || "150px",
+            height: height || "40px",
+            marginRight: "30px",
+          }}
+        >
+          {options?.map((option) => {
+            return <MenuItem value={option.value}>{option.label}</MenuItem>;
+          })}
+        </Select>
+      </FormControl>
+      {/* <Select
         styles={customStyles}
         options={options}
         onChange={onChange}
         defaultValue={defaultValue}
         placeholder={placeholder || "선택"}
-      />
-    </div>
+      /> */}
+    </Box>
   );
 }
 

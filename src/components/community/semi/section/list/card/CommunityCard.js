@@ -10,7 +10,7 @@ const CommunityCard = (props) => {
   const history = useHistory();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const detailPageHandler = () => {
-    const url = "community/detail/" + data.communityId;
+    const url = "/community/detail/" + data.communityId;
     history.push(url);
   };
   const followHandler = () => {

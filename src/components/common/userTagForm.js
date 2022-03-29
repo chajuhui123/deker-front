@@ -10,6 +10,7 @@ function UserTagForm(props) {
   const [tag, setTag] = useState([]);
   const [inputText, setInputText] = useState("");
   const [nextId, setNextId] = useState(1); // 다음 index, 1번부터 시작하니까 1로 세팅
+  const [isLoad, setIsLoad] = useState(false);
 
   // 태그 Input Handler
   const TagInputHandler = (e) => {
@@ -24,39 +25,54 @@ function UserTagForm(props) {
         id: nextId,
         text: inputText,
       });
+      console.log(nextId);
+      console.log(copyItem);
 
       setNextId(nextId + 1);
       setTag(copyItem);
       setInputText("");
+      tagOutHandler(copyItem);
     }
   };
 
   const onClickRemove = (id) => {
     const copyItem = tag.filter((tagTg) => tagTg.id !== id);
     setTag(copyItem);
+    tagOutHandler(copyItem);
   };
-  const restoreTags = useCallback(() => {
-    if (!!props.tags) {
-      const tagArry = props.tags;
-      tagArry.forEach((t, i) => {
-        const copyItem = {
-          id: i + 1,
-          text: t,
-        };
-        setTag((prev) => [...prev, copyItem]);
-      });
-      setNextId(tagArry.length + 1);
+
+  const tagOutHandler = (tagArry) => {
+    if (!!props.tagOutHandler) {
+      props.tagOutHandler(tagArry);
     }
-  }, [props.tags]);
+  };
+
+  const restoreTags = useCallback(() => {
+    console.log("userTagForm :: restoreTags :: props.tags :: ", props.tags);
+    console.log("userTagForm :: restoreTags :: tag :: ", tag);
+    console.log("userTagForm :: restoreTags :: isLoad :: ", isLoad);
+    const tagArry = props.tags || null;
+    if (tagArry.length > 0) {
+      if (!isLoad) {
+        const arry = tagArry.map((t) => {
+          setNextId((prev) => prev + 1);
+          return {
+            id: nextId,
+            text: t,
+          };
+        });
+        console.log(arry);
+        setTag(arry);
+        setIsLoad(true);
+      }
+    }
+  }, [isLoad, nextId, props.tags, tag]);
 
   useEffect(() => {
-    if (!!props.tagOutHandler) {
-      props.tagOutHandler(tag);
-    }
-  }, [props, tag]);
-  useEffect(() => {
+    console.log("userTagForm :: useEffect()");
     restoreTags();
   }, [restoreTags]);
+
   return (
     <div>
       <input

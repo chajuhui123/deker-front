@@ -24,7 +24,6 @@ function ModifyCommunity(props) {
   const [moodArray, setMoodArray] = useState([]); // 분위기코드
   const [imageFile, setImageFile] = useState(null); // 이미지 파일
   const [imageUrl, setImageUrl] = useState(null); // 조회된 이미지 경로
-  const [tags, setTags] = useState([]);
   // 직업코드조회콜백
   const fnJobCallback = (res) => {
     if (!!res) {
@@ -48,21 +47,20 @@ function ModifyCommunity(props) {
     (res) => {
       if (!!res) {
         // TODO : 데이터 set state
-        console.log(res.data);
+        console.log("fnSearchCommunityCallback :: res.data :: ", res.data);
+        const post = res.data.communityPost;
         dispatch(
           communityAction.setCommunity({
             communityTitle: res.data.communityPost.communityTitle,
             communityContent: res.data.communityPost.communityContent,
+            communityTags: res.data.communityPost.communityTags,
           })
         );
-        communityAction.setJobCode({ jobCode: res.data.communityPost.jobCode });
-        communityAction.setMaterialCode({
-          materialCode: res.data.communityPost.materialCode,
-        });
-        communityAction.setMoodCode({
-          moodCode: res.data.communityPost.moodCode,
-        });
-        setTags(res.data.communityPost.communityTags);
+        dispatch(communityAction.setJobCode({ jobCode: post.jobCode }));
+        dispatch(
+          communityAction.setMaterialCode({ materialCode: post.materialCode })
+        );
+        dispatch(communityAction.setMoodCode({ moodCode: post.moodCode }));
         setImageUrl(res.data.communityPost.postImg);
         dispatch(
           communityAction.setProduct({
@@ -112,19 +110,20 @@ function ModifyCommunity(props) {
     }
   }, [communityPostId, dispatch, fnSearchCommunityCallback]);
   // 직업코드선택핸들러
-  const jobChangeHandler = (e) => {
-    dispatch(communityAction.setJobCode({ jobCode: e.value }));
+  const jobChangeHandler = (value) => {
+    dispatch(communityAction.setJobCode({ jobCode: value }));
   };
   // 재질코드선택핸들러
-  const materialChangeHandler = (e) => {
-    dispatch(communityAction.setMaterialCode({ materialCode: e.value }));
+  const materialChangeHandler = (value) => {
+    dispatch(communityAction.setMaterialCode({ materialCode: value }));
   };
   // 분위기코드선택핸들러
-  const moodChangeHandler = (e) => {
-    dispatch(communityAction.setMoodCode({ moodCode: e.value }));
+  const moodChangeHandler = (value) => {
+    dispatch(communityAction.setMoodCode({ moodCode: value }));
   };
   // 제목핸들러
   const titleHandler = (e) => {
+    console.log("titleHandler :: e.target.value :: ", e.target.value);
     dispatch(
       communityAction.setCommunity({
         communityTitle: e.target.value,
@@ -135,6 +134,7 @@ function ModifyCommunity(props) {
   };
   // 내용핸들러
   const contentHandler = (e) => {
+    console.log("contentHandler :: e.target.value :: ", e.target.value);
     dispatch(
       communityAction.setCommunity({
         communityTitle: communityData.communityTitle,
@@ -144,11 +144,14 @@ function ModifyCommunity(props) {
     );
   };
   const tagOutHandler = (tagArry) => {
+    console.log("tagOutHandler :: tagArry :: ", tagArry);
+    const arry = tagArry.map((tag) => tag.text);
+    console.log("tagOutHandler :: arry :: ", arry);
     dispatch(
       communityAction.setCommunity({
         communityTitle: communityData.communityTitle,
         communityContent: communityData.communityContent,
-        communityTags: tagArry,
+        communityTags: arry,
       })
     );
   };
@@ -161,9 +164,10 @@ function ModifyCommunity(props) {
   // 저장메소드
   const submit = () => {
     const community = {
+      communityId: communityPostId,
       communityTitle: communityData.communityTitle,
       communityContent: communityData.communityContent,
-      communityTags: communityData.communityTags.map((tag) => tag.text),
+      communityTags: communityData.communityTags,
       jobCode: communityData.jobCode,
       materialCode: communityData.materialCode,
       moodCode: communityData.moodCode,
@@ -179,9 +183,8 @@ function ModifyCommunity(props) {
       "product",
       new Blob([JSON.stringify(productData)], { type: "application/json" })
     ); // 게시글 상품목록
-    dispatch(fileApi("mb/post/reg/write-post", formData, fnCallback));
+    dispatch(fileApi("mb/post/mod/post-detail", formData, fnCallback));
   };
-
   return (
     <div className={classes.page}>
       <div className={classes.selectArea}>
@@ -189,18 +192,22 @@ function ModifyCommunity(props) {
           title="직업"
           width="250px"
           options={jobArray}
+          value={communityData.jobCode}
+          defaultValue={communityData.jobCode}
           onChange={jobChangeHandler}
         />
         <CommSelect
           title="책상재질"
           width="250px"
           options={material}
+          value={communityData.materialCode}
           onChange={materialChangeHandler}
         />
         <CommSelect
           title="분위기"
           width="250px"
           options={moodArray}
+          value={communityData.moodCode}
           onChange={moodChangeHandler}
         />
       </div>
@@ -211,7 +218,10 @@ function ModifyCommunity(props) {
             imageFile={imageUrl}
             margin="0 0 30px 0"
           />
-          <UserTagForm tagOutHandler={tagOutHandler} tags={tags} />
+          <UserTagForm
+            tagOutHandler={tagOutHandler}
+            tags={communityData.communityTags}
+          />
         </div>
         <div className={classes.textArea}>
           <div className={classes.titleArea}>
