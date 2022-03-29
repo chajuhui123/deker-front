@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import classes from "./CreateCommunity.module.css";
+import classes from "./ModifyCommunity.module.css";
 import { postApi, fileApi } from "api/fetch-api";
 import { useDispatch, useSelector } from "react-redux";
 import CommInput from "components/common/commInput";
@@ -22,8 +22,6 @@ function ModifyCommunity(props) {
   const [jobArray, setJobArray] = useState([]); // 직업코드
   const [material, setMaterial] = useState([]); // 재질코드
   const [moodArray, setMoodArray] = useState([]); // 분위기코드
-  const [title, setTitle] = useState(""); // 제목
-  const [content, setContent] = useState(""); // 내용
   const [imageFile, setImageFile] = useState(null); // 이미지 파일
   const [imageUrl, setImageUrl] = useState(null); // 조회된 이미지 경로
   const [tags, setTags] = useState([]);
@@ -51,8 +49,19 @@ function ModifyCommunity(props) {
       if (!!res) {
         // TODO : 데이터 set state
         console.log(res.data);
-        setTitle(res.data.communityPost.communityTitle);
-        setContent(res.data.communityPost.communityContent);
+        dispatch(
+          communityAction.setCommunity({
+            communityTitle: res.data.communityPost.communityTitle,
+            communityContent: res.data.communityPost.communityContent,
+          })
+        );
+        communityAction.setJobCode({ jobCode: res.data.communityPost.jobCode });
+        communityAction.setMaterialCode({
+          materialCode: res.data.communityPost.materialCode,
+        });
+        communityAction.setMoodCode({
+          moodCode: res.data.communityPost.moodCode,
+        });
         setTags(res.data.communityPost.communityTags);
         setImageUrl(res.data.communityPost.postImg);
         dispatch(
@@ -116,21 +125,19 @@ function ModifyCommunity(props) {
   };
   // 제목핸들러
   const titleHandler = (e) => {
-    setTitle(e.target.value);
     dispatch(
       communityAction.setCommunity({
         communityTitle: e.target.value,
-        communityContent: content,
+        communityContent: communityData.communityContent,
         communityTags: communityData.communityTags,
       })
     );
   };
   // 내용핸들러
   const contentHandler = (e) => {
-    setContent(e.target.value);
     dispatch(
       communityAction.setCommunity({
-        communityTitle: title,
+        communityTitle: communityData.communityTitle,
         communityContent: e.target.value,
         communityTags: communityData.communityTags,
       })
@@ -139,8 +146,8 @@ function ModifyCommunity(props) {
   const tagOutHandler = (tagArry) => {
     dispatch(
       communityAction.setCommunity({
-        communityTitle: title,
-        communityContent: content,
+        communityTitle: communityData.communityTitle,
+        communityContent: communityData.communityContent,
         communityTags: tagArry,
       })
     );
@@ -154,10 +161,14 @@ function ModifyCommunity(props) {
   // 저장메소드
   const submit = () => {
     const community = {
-      communityTitle: title,
-      communityContent: content,
+      communityTitle: communityData.communityTitle,
+      communityContent: communityData.communityContent,
       communityTags: communityData.communityTags.map((tag) => tag.text),
+      jobCode: communityData.jobCode,
+      materialCode: communityData.materialCode,
+      moodCode: communityData.moodCode,
     };
+    console.log(communityData);
     const formData = new FormData();
     formData.append("img", imageFile); // 게시글 이미지
     formData.append(
@@ -204,10 +215,16 @@ function ModifyCommunity(props) {
         </div>
         <div className={classes.textArea}>
           <div className={classes.titleArea}>
-            <CommInput value={title} onChange={titleHandler} />
+            <CommInput
+              value={communityData.communityTitle}
+              onChange={titleHandler}
+            />
           </div>
           <div className={classes.contArea}>
-            <textarea value={content} onChange={contentHandler}></textarea>
+            <textarea
+              value={communityData.communityContent}
+              onChange={contentHandler}
+            ></textarea>
           </div>
           <CommBtn btnText="저장" btnMargin="30px 0 0 0" fnClick={submit} />
         </div>
