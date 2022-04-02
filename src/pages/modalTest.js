@@ -97,21 +97,24 @@ function ModalTest(props) {
     console.log(array);
   };
   const selectArray = [
-    { value: "경영사무", label: "경영사무" },
-    { value: "미디어", label: "미디어" },
-    { value: "전문특수직", label: "전문특수직" },
-    { value: "영업고객상담", label: "영업고객상담" },
-    { value: "IT인터넷", label: "IT인터넷" },
-    { value: "연구개발설계", label: "연구개발설계" },
-    { value: "건설", label: "건설" },
-    { value: "마케팅광고홍보", label: "마케팅광고홍보" },
-    { value: "생산제조", label: "생산제조" },
-    { value: "의료", label: "의료" },
-    { value: "무역유통", label: "무역유통" },
-    { value: "디자인", label: "디자인" },
-    { value: "교육", label: "교육" },
-    { value: "서비스", label: "서비스" },
+    { value: "J01", label: "경영사무" },
+    { value: "J02", label: "미디어" },
+    { value: "J03", label: "전문특수직" },
+    { value: "J04", label: "영업고객상담" },
+    { value: "J05", label: "IT인터넷" },
+    { value: "J06", label: "연구개발설계" },
+    { value: "J07", label: "건설" },
+    { value: "J08", label: "마케팅광고홍보" },
+    { value: "J09", label: "생산제조" },
+    { value: "J10", label: "의료" },
+    { value: "J11", label: "무역유통" },
+    { value: "J12", label: "디자인" },
+    { value: "J13", label: "교육" },
+    { value: "J14", label: "서비스" },
   ];
+  const selectHandler = (v) => {
+    console.log(v);
+  };
   return (
     <div className={classes.modalTest}>
       <CommBtn btnText="스피너 테스트" isLoading={isLoading} btnWidth="30%" />
@@ -152,7 +155,8 @@ function ModalTest(props) {
         <li>
           <CommSelect
             options={selectArray}
-            // defaultValue={selectArray.filter((s) => s.includes("J01"))}
+            value="J01"
+            onChange={selectHandler}
           ></CommSelect>
         </li>
       </ul>

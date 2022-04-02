@@ -27,12 +27,15 @@ const communitySlice = createSlice({
       state.product.communityProducts = action.payload.communityProducts;
     },
     setJobCode: (state, action) => {
+      console.log(action);
       state.community.jobCode = action.payload.jobCode;
     },
     setMaterialCode: (state, action) => {
+      console.log(action);
       state.community.materialCode = action.payload.materialCode;
     },
     setMoodCode: (state, action) => {
+      console.log(action);
       state.community.moodCode = action.payload.moodCode;
     },
     clearData: (state) => {
