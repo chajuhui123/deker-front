@@ -34,7 +34,6 @@ const CommunitySemiPage = (props) => {
       setList([]);
       for (let i = 1; i <= pageNo; i++) {
         setCurrentPageNo(i);
-        console.log(i);
       }
     }
   };
@@ -47,7 +46,6 @@ const CommunitySemiPage = (props) => {
       setList([]);
       for (let i = 1; i <= pageNo; i++) {
         setCurrentPageNo(i);
-        console.log(i);
       }
     }
   };

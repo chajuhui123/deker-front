@@ -26,6 +26,7 @@ import AcctFllwngPage from "pages/account/accountFollowingPage";
 import AccountMyPage from "pages/account/accountMyPage";
 import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
 import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
+import AlarmMain from "components/account/alarm/AlarmMain";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -117,6 +118,9 @@ function RouteComponent() {
         component={MyReviewPage}
         fallback={RedriectMain}
       />
+      <Route path="/myAlarm" exact>
+        <AlarmMain />
+      </Route>
       <Route path="/community" exact>
         <CommunityMainPage />
       </Route>

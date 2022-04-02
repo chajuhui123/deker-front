@@ -35,7 +35,11 @@ function CommSelect({ title, width, height, options, value, onChange }) {
           }}
         >
           {options?.map((option) => {
-            return <MenuItem value={option.value}>{option.label}</MenuItem>;
+            return (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            );
           })}
         </Select>
       </FormControl>
