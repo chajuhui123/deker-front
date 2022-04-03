@@ -12,14 +12,15 @@ const MarketCartPage = () => {
   var dummy_deliAmt = 20;
 
   const dispatch = useDispatch();
-  const [cartId, setCartId] = useState(null);
-  const [mktProductId, setMktProductId] = useState(null);
-  const [productName, setProductName] = useState(null);
-  const [productPrice, setProductPrice] = useState(0);
-  const [productSelectedQuantity, setProductSelectedQuantity] = useState(0);
-  const [productImg, setProductImg] = useState(null);
-  const [productDetailOption, setProductDetailOption] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [cartData, setCartData] = useState(null);
+  // const [cartId, setCartId] = useState(null);
+  // const [mktProductId, setMktProductId] = useState(null);
+  // const [productName, setProductName] = useState(null);
+  // const [productPrice, setProductPrice] = useState(0);
+  // const [productSelectedQuantity, setProductSelectedQuantity] = useState(0);
+  // const [productImg, setProductImg] = useState(null);
+  // const [productDetailOption, setProductDetailOption] = useState(null);
+  // const [totalPrice, setTotalPrice] = useState(0);
 
   // 처음 페이지를 로딩 시, 장바구니에 있는 상품 목록 받아오기
   useEffect(() => {
@@ -28,21 +29,22 @@ const MarketCartPage = () => {
 
   const fnCallback = (res) => {
     if (!!res) {
-      setTmp(res.data);
-      setCartId(res.data.productCartItems.cartId);
-      setMktProductId(res.data.productCartItems.mktProductId);
-      setProductName(res.data.productCartItems.productName);
-      setProductPrice(res.data.productCartItems.productPrice);
-      setProductSelectedQuantity(
-        res.data.productCartItems.productSelectedQuantity
-      );
-      setProductImg(res.data.productImg);
-      setProductDetailOption(res.data.productDetailOption);
-      setTotalPrice(res.data.totalPrice);
+      // setTmp(res.data);
+      // setCartId(res.data.productCartItems.cartId);
+      // setMktProductId(res.data.productCartItems.mktProductId);
+      // setProductName(res.data.productCartItems.productName);
+      // setProductPrice(res.data.productCartItems.productPrice);
+      // setProductSelectedQuantity(
+      //   res.data.productCartItems.productSelectedQuantity
+      // );
+      // setProductImg(res.data.productImg);
+      // setProductDetailOption(res.data.productDetailOption);
+      // setTotalPrice(res.data.totalPrice);
 
       // console.log("currentPageNo: " + currentPageNo);
       // console.log("totalCount: " + totalCount);
-      console.log("totalPrice: " + totalPrice);
+      setCartData(res.data);
+      console.log("totalPrice: " + cartData.cartId);
     } else {
       // 비정상로직;
       alert("data error");

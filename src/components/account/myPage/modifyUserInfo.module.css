@@ -1,7 +1,7 @@
 .Inner {
   position: relative;
   width: 400px;
-  height: auto; /* 태그 늘어날 때마다 늘어나야하니까 auto해야할거같은데 컴포넌트들이 다 안들어온다 */
+  height: auto;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #707070;
   border-radius: 8px;
@@ -106,15 +106,6 @@
   border-radius: 8px;
   text-align: center;
   font: normal normal bold 15px/30px Roboto;
-  opacity: 1;
-}
-
-.userTagInput {
-  width: 189px;
-  height: 44px;
-  background: #ffffff 0% 0% no-repeat padding-box;
-  border: 1px solid #bababa;
-  border-radius: 13px;
   opacity: 1;
 }
 
