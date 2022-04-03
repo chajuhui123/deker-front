@@ -52,7 +52,7 @@ function UserTagForm(props) {
     console.log("userTagForm :: restoreTags :: tag :: ", tag);
     console.log("userTagForm :: restoreTags :: isLoad :: ", isLoad);
     const tagArry = props.tags || null;
-    if (tagArry.length > 0) {
+    if (tagArry?.length > 0) {
       if (!isLoad) {
         const arry = tagArry.map((t) => {
           setNextId((prev) => prev + 1);

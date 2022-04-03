@@ -15,8 +15,11 @@ const BuyConfirmPopup = (props) => {
     // 배송상태 배송완료 -> 구매확정 상태로 변경 Back 연결
     dispatch(
       postApi(
-        "",
-        { orderId: props.orderId, productId: props.productId },
+        "/mb/mkt/mod/delivery-completed",
+        {
+          orderId: props.orderId,
+          //, productId: props.productId
+        },
         fnCallback
       )
     );
