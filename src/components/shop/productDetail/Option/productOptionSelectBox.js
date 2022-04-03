@@ -44,6 +44,21 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
     }
   };
 
+  const fnCallbackBuyNow = (res) => {
+    if (!!res) {
+      console.log(res);
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert title="안내" message="바로 구매에 실패하였습니다." />
+          ),
+        })
+      );
+    }
+  };
+
   const handleAddOptionsToCart = () => {
     const selectedOptionToAddCart = selectedOption.map((item) => {
       const { option1, option1Data, option2, option2Data, orderQuantity } =
@@ -63,6 +78,33 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
         selectedOptionToAddCart,
         fnCallbackAddOptionsToCart
       )
+    );
+  };
+
+  const handleBuyNowOptions = () => {
+    const selectedOptionToAddCart = selectedOption.map((item) => {
+      const {
+        productOptionId,
+        mktProductId,
+        option1,
+        option1Data,
+        option2,
+        option2Data,
+        orderQuantity,
+      } = item;
+      return {
+        productOptionId,
+        mktProductId,
+        option1,
+        option1Data,
+        option2,
+        option2Data,
+        orderQuantity,
+      };
+    });
+
+    dispatch(
+      postApi("mb/mkt/reg/buy-now", selectedOptionToAddCart, fnCallbackBuyNow)
     );
   };
 
@@ -127,7 +169,11 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
             btnWidth="50%"
             fnClick={handleAddOptionsToCart}
           />
-          <CommBtn btnText="바로구매" btnWidth="50%" />
+          <CommBtn
+            btnText="바로구매"
+            btnWidth="50%"
+            fnClick={handleBuyNowOptions}
+          />
         </div>
       </div>
     </div>
