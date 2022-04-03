@@ -9,21 +9,21 @@ import slide1 from "img/main/slide1.jpg";
 import slide2 from "img/main/slide2.jpg";
 import slide3 from "img/main/slide3.jpg";
 import slide4 from "img/main/slide4.jpg";
+import { modalAction } from "store/modal-slice";
+import CommAlert from "components/common/commAlert";
 
 const CommunityMain = (props) => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const token = useSelector((state) => state.user.token);
   const [ranks, setRanks] = useState([]);
   const [follow, setFollow] = useState([]);
   const [custom, setCustom] = useState([]);
 
+  /* 팔로우 */
   const followingHandler = (userId, followingCheck) => {
     const data = {
       userId,
     };
-    console.log("followingHandler :: userId :: ", userId);
-    console.log("followingHandler :: followingCheck :: ", followingCheck);
     const url = followingCheck ? "mb/cmm/rmv/follow" : "mb/cmm/reg/follow";
     dispatch(postApi(url, data, fnFollowCallback));
   };
@@ -32,18 +32,47 @@ const CommunityMain = (props) => {
     fnGetContents();
   };
 
+  /* 좋아요 */
+  const fnLikeCallback = (res) => {
+    console.log("fnLikeCallback :: res :: ", res);
+    if (!!res) {
+      if (res.responseCode === "200") {
+        fnGetContents();
+      }
+    }
+  };
+  const likeHandler = (communityId, isLiked) => {
+    if (isLoggedIn) {
+      const param = {
+        communityId,
+      };
+      const url = isLiked ? "mb/post/rmv/post-like" : "mb/post/reg/post-like";
+      dispatch(postApi(url, param, fnLikeCallback));
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert
+              title="안내"
+              message="로그인이 필요한 서비스입니다."
+              fnClick={fnCloseModal}
+            />
+          ),
+        })
+      );
+    }
+  };
+  const fnCloseModal = () => {
+    dispatch(modalAction.modalPopup({ isOpen: false }));
+  };
+
   const fnGetContents = useCallback(() => {
-    console.log("fnGetContents :: isLoggedIn :: ", isLoggedIn);
-    console.log("fnGetContents :: token :: ", token);
-    console.log(
-      "fnGetContents :: localStorage.getItem('token') :: ",
-      localStorage.getItem("token")
-    );
     let url = isLoggedIn ? "mb/post/get" : "nmb/post/get";
     dispatch(postApi(url, null, fnCallback));
-  }, [dispatch, isLoggedIn, token]);
+  }, [dispatch, isLoggedIn]);
   const fnCallback = (res) => {
-    console.log("CommunityMain :: res :: ", res);
+    console.log("CommunityMain :: fnCallback :: res :: ", res);
     if (!!res) {
       setRanks(res.data.ranks);
       setFollow(res.data.follow);
@@ -85,6 +114,7 @@ const CommunityMain = (props) => {
         page="main"
         data={ranks}
         followingHandler={followingHandler}
+        likeHandler={likeHandler}
       />
       {isLoggedIn && (
         <CommunitySection

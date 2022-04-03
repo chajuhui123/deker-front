@@ -3,9 +3,43 @@
   border: 0.5px rgb(145, 145, 145) dotted;
 }
 
+.contents {
+  max-width: 100%;
+  padding: 15px;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
 .content {
-  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
   line-height: 18px;
-  padding: 0 24px;
-  background: #6285ff;
+  padding: 20px;
+  background: #d5deff;
+  border: 0.5px rgb(145, 145, 145) dotted;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.img {
+  margin-right: 10px;
+}
+
+.img img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+}
+
+.text {
+  color: inherit;
+  text-decoration: none;
+  font: normal normal normal 15px/15px Segoe UI;
 }

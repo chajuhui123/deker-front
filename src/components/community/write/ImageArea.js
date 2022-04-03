@@ -18,7 +18,7 @@ function ImageArea(props) {
     if (!!props.imageFile) {
       setPrevImage(`${BASE_URL}${props.imageFile}`);
     }
-  }, [props.imageFile]);
+  }, [props, props.imageFile]);
   // 이미지핸들러
   const imageHandler = (e) => {
     if (e.target.files.length > 0) {
