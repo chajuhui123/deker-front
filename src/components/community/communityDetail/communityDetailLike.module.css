@@ -5,10 +5,9 @@
   border-radius: var(--border-radius);
   align-items: center;
   justify-content: center;
-  background-color: var(--border-color);
 }
 
-.likeBtn p {
+.likeBtn span {
   color: var(--gray-font-color);
   margin: 0 0 0 6px;
 }

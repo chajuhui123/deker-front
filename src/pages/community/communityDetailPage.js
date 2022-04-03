@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import classes from "./communityDetailPage.module.css";
 import CommunityDetailMainImg from "components/community/communityDetail/MainImg/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/Slide/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
@@ -31,6 +32,8 @@ const CommunityDetailPage = ({ match }) => {
         moodCode: communityPostData?.moodCode,
         communityTags: communityPostData?.communityTags, //array
         communityPostIsUserWrtitten: res?.data?.communityPostIsUserWrtitten,
+        liked: communityPostData?.liked,
+        communityPostLikeCount: communityPostData?.communityPostLikeCount,
       });
       setCommunitySelectedProductArr(res?.data?.communityPostSelectedProduct); // Array
     }
@@ -59,14 +62,12 @@ const CommunityDetailPage = ({ match }) => {
         materialCode={communityPostObj?.materialCode}
         moodCode={communityPostObj.moodCode}
       />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "40px 0 20px 0",
-        }}
-      >
-        <CommunityDetailLike communityPostId={communityPostId} />
+      <div className={classes.managementDiv}>
+        <CommunityDetailLike
+          communityPostId={communityPostId}
+          liked={communityPostObj?.liked}
+          communityPostLikeCount={communityPostObj?.communityPostLikeCount}
+        />
         {communityPostObj?.communityPostIsUserWrtitten && (
           <CommunityDetailManagementPost communityPostId={communityPostId} />
         )}
