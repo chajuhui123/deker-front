@@ -1,6 +1,6 @@
 import { postApi } from "api/fetch-api";
 import CommonPageTitle from "components/common/commPageTitle";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import ProductList from "./productList";
 import classes from "./StoreSortPage.module.css";
@@ -38,6 +38,26 @@ const StoreSortPage = (props) => {
   const [lastPage, setLastPage] = useState(false);
   const [list, setList] = useState(null);
 
+  const fnRankCallback = useCallback(
+    (res) => {
+      if (!!res) {
+        setCurrentPageNo(res.data.currentPageNo);
+        setTotalCount(res.data.totalCount);
+        setLastPage(res.data.lastPage);
+        setList(res.data.list);
+        console.log("currentPageNo: " + currentPageNo);
+        console.log("totalCount: " + totalCount);
+        console.log("lastPage: " + lastPage);
+        console.log("route: " + postApiRoute);
+      } else {
+        // 비정상로직;
+        alert("data error");
+        console.log("route: " + postApiRoute);
+      }
+    },
+    [currentPageNo, lastPage, postApiRoute, totalCount]
+  );
+
   useEffect(() => {
     dispatch(
       postApi(
@@ -49,24 +69,8 @@ const StoreSortPage = (props) => {
         fnRankCallback
       )
     );
-  }, [dispatch]);
+  }, [currentPageNo, dispatch, fnRankCallback, postApiRoute, sortId]);
 
-  const fnRankCallback = (res) => {
-    if (!!res) {
-      setCurrentPageNo(res.data.currentPageNo);
-      setTotalCount(res.data.totalCount);
-      setLastPage(res.data.lastPage);
-      setList(res.data.list);
-      console.log("currentPageNo: " + currentPageNo);
-      console.log("totalCount: " + totalCount);
-      console.log("lastPage: " + lastPage);
-      console.log("route: " + postApiRoute);
-    } else {
-      // 비정상로직;
-      alert("data error");
-      console.log("route: " + postApiRoute);
-    }
-  };
   // console.log("지금 어떤 페이지? :" + sortId);
   /* 인기상품, 카테고리 조회 통신 끝 */
 
