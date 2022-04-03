@@ -1,28 +1,21 @@
 import CommBtn from "components/common/commBtn";
 import CommonPageTitle from "components/common/commPageTitle";
-import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./paymentCmpltPage.module.css";
 
 const PaymentCmpltPage = (props) => {
-  // 결제페이지에서 넘어오는 결제 데이터
-  const { location } = props;
-
   const history = useHistory();
-  const [orderNo, setOerderNo] = useState("");
-  const [userId, setUserId] = useState("");
-  const [deliAddr, setDeliAddr] = useState("");
-  const [deliMemo, setDdeliMemo] = useState("");
-  const [totalPayAmt, setTotalPayAmt] = useState(0);
 
-  const replaceEvent = () => {
-    setOerderNo("010101011010");
-    setUserId("권예림");
-    setDeliAddr("서울특별시 어쩌구 저쩌동 몇동 몇호");
-    setDdeliMemo("집앞에 그냥 놔둬주세요");
-    setTotalPayAmt(123000);
-    console.log("order no print: " + orderNo);
-    // history.push("/market");
+  // 결제페이지에서 넘어오는 결제 데이터
+  const location = useLocation();
+  const merchant_uid = location.state.merchant_uid;
+  const userName = location.state.name;
+  const totalPayAmt = location.state.paid_amount;
+  const buyer_addr = location.state.buyer_addr;
+
+  const showOrderDtlBtnHandler = () => {
+    history.push("/myShopping");
   };
 
   const shoppingContinueBtnHandler = () => {
@@ -42,7 +35,7 @@ const PaymentCmpltPage = (props) => {
               <textarea
                 className={classes.dtlText}
                 type="text"
-                value={location.state.merchant_uid}
+                value={merchant_uid}
               />
             </div>
             <div className={classes.dtlArea}>
@@ -50,7 +43,7 @@ const PaymentCmpltPage = (props) => {
               <textarea
                 className={classes.dtlText}
                 type="text"
-                value={userId}
+                value={userName}
               />
             </div>
             <div className={classes.dtlArea}>
@@ -58,7 +51,7 @@ const PaymentCmpltPage = (props) => {
               <textarea
                 className={classes.dtlText}
                 type="text"
-                value={deliAddr}
+                value={buyer_addr}
               />
             </div>
             <div className={classes.dtlArea}>
@@ -66,7 +59,8 @@ const PaymentCmpltPage = (props) => {
               <textarea
                 className={classes.dtlText}
                 type="text"
-                value={deliMemo}
+                // value={deliMemo}
+                value={`1111`}
               />
             </div>
             <hr className={classes.lineD} />
@@ -92,7 +86,7 @@ const PaymentCmpltPage = (props) => {
             radius="4px"
             txColor="rgb(78, 78, 78)"
             fontSize="20px"
-            fnClick={replaceEvent}
+            fnClick={showOrderDtlBtnHandler}
           />
         </div>
         <div className={classes.shopContiBtn}>

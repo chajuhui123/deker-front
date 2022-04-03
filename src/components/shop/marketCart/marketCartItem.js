@@ -1,7 +1,8 @@
 import React from "react";
 import classes from "./marketCartItem.module.css";
 import noImg from "img/noImg.png";
-import MarketCartQuantityNumberPicker from "./marketCartQuantityNumberPicker";
+// kwon 이거 파일 자체 삭제해야할 듯
+// import MarketCartQuantityNumberPicker from "./marketCartQuantityNumberPicker";
 
 function MarketCartItem({ cartItemObject }) {
   const {
@@ -31,7 +32,7 @@ function MarketCartItem({ cartItemObject }) {
           <div className={classes.cartItemFeeBox}>
             {/* 최대 cartItemObject.maxQuantity 까지 선택 가능 */}
             <div>
-              <MarketCartQuantityNumberPicker maxQuantity={maxQuantity} />
+              {/* <MarketCartQuantityNumberPicker maxQuantity={maxQuantity} /> */}
             </div>
             <div>{productFee.toLocaleString()} 원</div>
           </div>

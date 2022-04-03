@@ -14,6 +14,7 @@ function MyOrderPrdtItem(props) {
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
   const dispatch = useDispatch();
+
   const openModalEventHandler = () => {
     dispatch(
       modalAction.modalPopup({
@@ -35,6 +36,8 @@ function MyOrderPrdtItem(props) {
         left: props.left,
         cont: (
           <BuyConfirmPopup
+            orderId={props.orderId}
+            productId={props.productId}
             productBrand={props.productBrand}
             productName={props.productName}
             productImg={props.productImg}
@@ -77,7 +80,7 @@ function MyOrderPrdtItem(props) {
               <textarea>
                 {`[` + props.productBrand + `]` + props.productName}
               </textarea>
-              <textarea style={{ color: "gray", fontSize: "15px" }}>
+              <textarea style={{ color: "gray", fontSize: "13px" }}>
                 {props.option1Nm +
                   `/` +
                   props.option2Nm +

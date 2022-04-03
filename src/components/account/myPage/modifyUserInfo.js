@@ -79,12 +79,15 @@ function ModifyUserInfo(props) {
   };
 
   // 직업코드선택핸들러
-  const jobChangeHandler = (e) => {
-    setJobCode(e.value);
+  const jobChangeHandler = (value) => {
+    setJobCode(value);
   };
 
+  // 입력한 태그 값 저장 array
   const tagOutHandler = (tagArry) => {
-    setTag(tagArry);
+    // tag를 object->array 변환
+    const arry = tagArry.map((tag) => tag.text);
+    setTag(arry);
   };
 
   // 저장후콜백메소드
@@ -95,9 +98,6 @@ function ModifyUserInfo(props) {
   };
 
   const SubmitHandler = (e) => {
-    console.log(jobCode);
-    console.log(nickNm);
-
     const formData = new FormData();
     formData.append("profileImg", profileImg); // 프로필 이미지
 
