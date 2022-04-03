@@ -69,6 +69,7 @@ function MyOrderPrdtItem(props) {
       </ModalPopup>
       <div className={classes.orderedItem_box}>
         <div className={classes.boxInner}>
+          {props.orderList.orderId}
           <img
             className={classes.product_img}
             alt={props.productImg}

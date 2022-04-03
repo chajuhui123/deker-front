@@ -157,6 +157,7 @@ function AccountMyShopping(props) {
       console.log("currentPageNo: " + currentPageNo);
       console.log("totalCount: " + totalCount);
       console.log("lastPage: " + lastPage);
+      // console.log("objectData: " + objectData.complete);
     } else {
       // 비정상로직;
       alert("data error");
@@ -178,7 +179,24 @@ function AccountMyShopping(props) {
         </div>
         <div className={classes.dtlArea}>
           <CommPageSemiTitle semiTitle="주문상품" />
-          <MyOrderPrdtList orderedProductList={list} />
+          {list?.length ? (
+            <ul className={classes.orderProductDetail}>
+              {list.map((lists) => (
+                <li className={classes.productList}>
+                  <div className={classes.orderNumber}>
+                    <div>{lists.orderNumber}</div>
+                    <div className={classes.d}>{` | `}</div>
+                    <div>{lists.orderList[0].stringDt}</div>
+                  </div>
+                  <MyOrderPrdtList orderedProductList={lists.orderList} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className={classes.noUploadText}>
+              <text>주문한 이력이 없습니다.</text>
+            </div>
+          )}
         </div>
       </div>
     </div>
