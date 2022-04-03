@@ -20,49 +20,38 @@
   display: flex;
   flex-direction: row;
 }
-/*
-.acctMyShopping_prdndelis {
-  margin-top: 13px;
-  display: flex;
-  flex-direction: row;
-}
 
-.acctMyShopping_SelectedRslt {
-  display: flex;
-  flex-direction: row;
-  width: auto;
-  height: 28px;
-  margin-right: 10px;
-  background: #4242e2 0% 0% no-repeat padding-box;
-  border-radius: 28px;
-  text-align: center;
-  font: normal normal bold 15px/30px Roboto;
-  letter-spacing: 1px;
-  color: #ffffff;
-  opacity: 1;
-}
-
-.acctMyShopping_selectedTextArea {
-  margin-left: 10px;
-  margin-right: 5px;
-}
-
-.acctMyShopping_selectedRmvBtn {
-  position: relative;
-  margin-right: 3px;
-  margin-top: 4px;
-  width: 20px;
-  height: 20px;
+.orderProductDetail {
+  /* float: left; */
+  width: 100%;
+  margin-top: 30px;
+  /* border: var(--border); */
   background: #ffffff 0% 0% no-repeat padding-box;
-  border: 2px solid #4242e2;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 10px;
-  letter-spacing: 0px;
-  font: normal normal bold 10px/14px Roboto;
-  letter-spacing: 0px;
-  float: right;
-  color: #4242e2;
+  /* border: 1px solid #707070; */
   opacity: 1;
 }
-*/
+
+.orderNumber {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.d {
+  width: 10px;
+  text-align: center;
+  font: normal normal bold 15px/15px Roboto;
+  color: #737373b5;
+}
+
+.noUploadText {
+  position: relative;
+  margin: auto;
+  margin-top: 60px;
+  width: 100%;
+  height: 100%;
+  font: normal normal bold 20px/33px Roboto;
+  color: #4e4e4e;
+  text-align: center;
+}
