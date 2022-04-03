@@ -30,7 +30,7 @@ function SelectBoxOptionDiv({
   };
 
   const handleUpdateOptionQuantity = (event) => {
-    const tempSelectedOption = selectedOption;
+    const tempSelectedOption = selectedOption.concat();
     const updateOptionIndex = selectedOption.indexOf(option);
     tempSelectedOption[updateOptionIndex].orderQuantity = Number(
       event.target.value

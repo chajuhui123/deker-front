@@ -67,8 +67,6 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
   };
 
   useEffect(() => {
-    console.log("토탈 가격을 구할 옵션들", selectedOption);
-
     let tempTotalPrice = 0;
     selectedOption?.forEach((option) => {
       tempTotalPrice +=
