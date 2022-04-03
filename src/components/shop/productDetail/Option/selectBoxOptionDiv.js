@@ -57,9 +57,7 @@ function SelectBoxOptionDiv({
           min="1"
           max={productQuantity}
           defaultValue="1"
-          onChange={(event) => {
-            handleUpdateOptionQuantity(event);
-          }}
+          onChange={handleUpdateOptionQuantity}
         />
         <div>{thisOptionPrice.toLocaleString("ko-KR")}원</div>
       </div>
