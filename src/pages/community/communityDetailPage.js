@@ -7,7 +7,7 @@ import CommunityDetailCommentBox from "components/community/communityDetail/Comm
 import CommunityDetailLike from "components/community/communityDetail/communityDetailLike";
 import CommunityDetailManagementPost from "components/community/communityDetail/communityDetailManagementPost";
 import { postApi } from "api/fetch-api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
 
 const CommunityDetailPage = ({ match }) => {
@@ -17,6 +17,8 @@ const CommunityDetailPage = ({ match }) => {
   const [communitySelectedProductArr, setCommunitySelectedProductArr] =
     useState([]);
   const { communityPostId } = match.params;
+
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   const fnCommunityDetailCallback = (res) => {
     if (!!res) {
@@ -28,6 +30,7 @@ const CommunityDetailPage = ({ match }) => {
         materialCode: communityPostData?.materialCode,
         moodCode: communityPostData?.moodCode,
         communityTags: communityPostData?.communityTags, //array
+        communityPostIsUserWrtitten: res?.data?.communityPostIsUserWrtitten,
       });
       setCommunitySelectedProductArr(res?.data?.communityPostSelectedProduct); // Array
     }
@@ -35,14 +38,10 @@ const CommunityDetailPage = ({ match }) => {
 
   useEffect(() => {
     const communityPostIdObj = { communityPostId: communityPostId };
-    dispatch(
-      postApi(
-        "nmb/post/get/post-detail",
-        communityPostIdObj,
-        fnCommunityDetailCallback
-      )
-    );
-  }, [dispatch, communityPostId]);
+    const isMember = isLoggedIn ? "mb" : "nmb";
+    const apiURL = `${isMember}/post/get/post-detail`;
+    dispatch(postApi(apiURL, communityPostIdObj, fnCommunityDetailCallback));
+  }, [dispatch, communityPostId, isLoggedIn]);
 
   return (
     <div>
@@ -68,7 +67,9 @@ const CommunityDetailPage = ({ match }) => {
         }}
       >
         <CommunityDetailLike communityPostId={communityPostId} />
-        <CommunityDetailManagementPost communityPostId={communityPostId} />
+        {communityPostObj?.communityPostIsUserWrtitten && (
+          <CommunityDetailManagementPost communityPostId={communityPostId} />
+        )}
       </div>
       <CommunityDetailCommentBox
         communityPostId={communityPostId}

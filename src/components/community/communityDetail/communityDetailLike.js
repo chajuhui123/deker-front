@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./communityDetailLike.module.css";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
-import { IoIosHeart, IoIosHeartDislike } from "react-icons/io";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 function CommunityDetailLike({ communityPostId }) {
   console.log("communityPostId::", communityPostId);
@@ -20,8 +20,11 @@ function CommunityDetailLike({ communityPostId }) {
 
   return (
     <div className={classes.likeBtn} onClick={handleLikePost}>
-      <IoIosHeart size={19} />
+      {/* 좋아요 상태가 아니라면 */}
+      <BsHeart size={19} />
       <p>좋아요</p>
+      {/* 좋아요 상태라면 */}
+      <BsHeartFill size={19} color={"red"} />
     </div>
   );
 }
