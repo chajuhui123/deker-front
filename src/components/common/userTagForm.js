@@ -48,25 +48,24 @@ function UserTagForm(props) {
   };
 
   const restoreTags = useCallback(() => {
-    console.log("userTagForm :: restoreTags :: props.tags :: ", props.tags);
-    console.log("userTagForm :: restoreTags :: tag :: ", tag);
-    console.log("userTagForm :: restoreTags :: isLoad :: ", isLoad);
-    const tagArry = props.tags || null;
-    if (tagArry?.length > 0) {
-      if (!isLoad) {
-        const arry = tagArry.map((t) => {
-          setNextId((prev) => prev + 1);
-          return {
-            id: nextId,
-            text: t,
-          };
-        });
-        console.log(arry);
-        setTag(arry);
-        setIsLoad(true);
+    if (!!props.tags) {
+      const tagArry = props.tags || null;
+      if (tagArry.length > 0) {
+        if (!isLoad) {
+          const arry = tagArry.map((t) => {
+            setNextId((prev) => prev + 1);
+            return {
+              id: nextId,
+              text: t,
+            };
+          });
+          console.log(arry);
+          setTag(arry);
+          setIsLoad(true);
+        }
       }
     }
-  }, [isLoad, nextId, props.tags, tag]);
+  }, [isLoad, nextId, props.tags]);
 
   useEffect(() => {
     console.log("userTagForm :: useEffect()");
