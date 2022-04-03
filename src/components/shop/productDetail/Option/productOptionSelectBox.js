@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./productOptionSelectBox.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
 
   const [opitonIdInBasket, setOptionIdInBasket] = useState([]);
   const [selectedOption, setSelectedOption] = useState([]);
-  const [totalProductPrice, setTotalProductPrice] = useState(0);
+  const [totalItemPrice, setTotalItemPrice] = useState(0);
 
   const { productImg, productName, productPrice, productDetailOptionArr } =
     productDetailObj;
@@ -31,7 +31,7 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
       );
       setSelectedOption([]);
       setOptionIdInBasket([]);
-      setTotalProductPrice(0);
+      setTotalItemPrice(0);
     } else {
       dispatch(
         modalAction.modalPopup({
@@ -66,6 +66,17 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
     );
   };
 
+  useEffect(() => {
+    console.log("토탈 가격을 구할 옵션들", selectedOption);
+
+    let tempTotalPrice = 0;
+    selectedOption?.forEach((option) => {
+      tempTotalPrice +=
+        (option.productPrice + productPrice) * option.orderQuantity;
+    });
+    setTotalItemPrice(tempTotalPrice);
+  }, [selectedOption, productPrice]);
+
   return (
     <div className={classes.productOptionSelectBox}>
       <img src={productImg || noImg} alt="상품이미지" />
@@ -77,7 +88,7 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
         </div>
 
         {/* 옵션은 Back에서 무조건 1개이상 보내기로 결정 */}
-        {productDetailOptionArr.length && (
+        {productDetailOptionArr.length !== 0 && (
           <div className={classes.buyItemInfoDiv}>
             <p>옵션</p>
             <ProductOptionSelectItem
@@ -86,24 +97,28 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
               setSelectedOption={setSelectedOption}
               opitonIdInBasket={opitonIdInBasket}
               setOptionIdInBasket={setOptionIdInBasket}
+              defaultProductPrice={productPrice}
             />
           </div>
         )}
 
-        {selectedOption.map((option, index) => {
-          return (
-            <SelectBoxOptionDiv
-              key={index}
-              option={option}
-              selectedOption={selectedOption}
-              setSelectedOption={setSelectedOption}
-            />
-          );
-        })}
+        <div className={classes.selectedOptionDiv}>
+          {selectedOption.map((option, index) => {
+            return (
+              <SelectBoxOptionDiv
+                key={index}
+                option={option}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+                defaultProductPrice={productPrice}
+              />
+            );
+          })}
+        </div>
 
         <div className={classes.buyItemInfoDiv}>
           <p>주문금액</p>
-          <p>{(totalProductPrice ?? 0).toLocaleString("ko-KR")}원</p>
+          <p>{(totalItemPrice ?? 0).toLocaleString("ko-KR")}원</p>
         </div>
 
         <div className={classes.btnBox}>

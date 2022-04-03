@@ -1,8 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import classes from "./selectBoxOptionDiv.module.css";
 
-function SelectBoxOptionDiv({ option, selectedOption, setSelectedOption }) {
+function SelectBoxOptionDiv({
+  option,
+  selectedOption,
+  setSelectedOption,
+  defaultProductPrice,
+}) {
   const {
     option1Name,
     option1DataName,
@@ -12,7 +17,9 @@ function SelectBoxOptionDiv({ option, selectedOption, setSelectedOption }) {
     productQuantity,
   } = option;
 
-  const [thisOptionPrice, setThisOptionPrice] = useState(productPrice);
+  const [thisOptionPrice, setThisOptionPrice] = useState(
+    defaultProductPrice + productPrice
+  );
 
   const handleDeleteOption = () => {
     const deleteOptionIndex = selectedOption.indexOf(option);
@@ -25,11 +32,13 @@ function SelectBoxOptionDiv({ option, selectedOption, setSelectedOption }) {
   const handleUpdateOptionQuantity = (event) => {
     const tempSelectedOption = selectedOption;
     const updateOptionIndex = selectedOption.indexOf(option);
-    tempSelectedOption[updateOptionIndex].orderQuantity = parseInt(
+    tempSelectedOption[updateOptionIndex].orderQuantity = Number(
       event.target.value
     );
     setSelectedOption(tempSelectedOption);
-    setThisOptionPrice(event.target.value * productPrice);
+    setThisOptionPrice(
+      event.target.value * (defaultProductPrice + productPrice)
+    );
   };
 
   return (
