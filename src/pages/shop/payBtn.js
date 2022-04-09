@@ -1,17 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
 import CommBtn from "components/common/commBtn";
 import classes from "./payBtn.module.css";
 
 import jQuery from "jquery";
-import { Link } from "@mui/material";
-import { Route } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 window.$ = window.jQuery = jQuery;
 
-function PayBtn() {
+function PayBtn(props) {
   const dispatch = useDispatch();
-  const [paydata, setPaydata] = useState(null);
+  const history = useHistory();
 
   const payBtnHandler = () => {
     /* 1. 가맹점 식별 */
@@ -23,9 +22,9 @@ function PayBtn() {
       // param
       pg: "html5_inicis", // PG사
       pay_method: "card", //결제수단
-      merchant_uid: "ORD20180131-0000025", // 주문번호
+      merchant_uid: "ORD20180131-0000032", // 주문번호
       name: "노르웨이 회전 의자", // 주문명
-      amount: 100, // 결제금액
+      amount: props.paymentAmt + props.deliAmt, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
       buyer_name: "홍길동", // 구매자 이름
       buyer_tel: "010-4242-4242", // 구매자 전화번호
@@ -42,7 +41,6 @@ function PayBtn() {
     if (rsp.success) {
       // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
       var msg = "결제가 완료되었습니다.";
-      setPaydata(rsp);
 
       // 결제 금액 등 결제 내용 Back 통신으로 확인
       dispatch(
@@ -65,24 +63,16 @@ function PayBtn() {
           },
           function (res) {
             if (!!res) {
-              console.log("2222222222222222222222222222222222222");
               // 결제 완료 페이지로 이동
-              // 일단 back 연결 후 진행
-              <Route path="/payment/paymentCmplt" component={paydata} />;
-              console.log(
-                "4444444444444444444444444444444444444444444444444444"
-              );
-              <Link
-                to={{
-                  pathname: "/payment/paymentCmplt",
-                  state: {
-                    merchant_uid: rsp.merchant_uid,
-                    name: rsp.name,
-                    paid_amount: rsp.paid_amount,
-                    buyer_addr: rsp.buyer_addr,
-                  },
-                }}
-              />;
+              history.push({
+                pathname: "/payment/paymentCmplt",
+                state: {
+                  merchant_uid: rsp.merchant_uid,
+                  name: rsp.name,
+                  paid_amount: rsp.paid_amount,
+                  buyer_addr: rsp.buyer_addr,
+                },
+              });
             } else {
               // 비정상로직;
               alert("data error");
@@ -110,23 +100,6 @@ function PayBtn() {
       msg += "에러내용 : " + rsp.error_msg;
     }
     alert(msg);
-    console.log("33333333333333333333333333333333333333333333333");
-    // 결제 완료 페이지로 이동
-    // 일단 back 연결 후 진행
-    <Route path="/payment/paymentCmplt" component={paydata} />;
-    console.log("55555555555555555555555555555555555");
-    <Link
-      to={{
-        pathname: "/payment/paymentCmplt",
-        state: {
-          merchant_uid: rsp.merchant_uid,
-          name: rsp.name,
-          paid_amount: rsp.paid_amount,
-          buyer_addr: rsp.buyer_addr,
-        },
-      }}
-    />;
-    // 3 -> 5 -> 2 -> 4 순으로 출력되고 페이지 이동은 안됨
   }
   return (
     <div className={classes.goMoveBtn}>

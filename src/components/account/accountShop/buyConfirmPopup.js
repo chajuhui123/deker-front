@@ -2,11 +2,36 @@ import CommBtn from "components/common/commBtn";
 import classes from "./buyConfirmPopup.module.css";
 import noImg from "img/noImg.png";
 import { BASE_URL } from "module/common-module";
+import { postApi } from "api/fetch-api";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const BuyConfirmPopup = (props) => {
+  const dispatch = useDispatch();
+  const [isConfirm, setIsConfirm] = useState(false);
+
   const buyConfirmBtnHandler = () => {
-    alert("개발하지 않음");
+    // 배송상태 배송완료 -> 구매확정 상태로 변경 Back 연결
+    dispatch(
+      postApi(
+        "/mb/mkt/mod/delivery-completed",
+        {
+          orderId: props.orderId,
+          //, productId: props.productId
+        },
+        fnCallback
+      )
+    );
+  };
+
+  const fnCallback = (res) => {
+    if (!!res) {
+      console.log(`Buy Confirm :: res :: ${JSON.stringify(res)}`);
+      setIsConfirm(true);
+    } else {
+      alert("구매확정 실패");
+    }
   };
 
   return (
@@ -61,15 +86,28 @@ const BuyConfirmPopup = (props) => {
             </div>
           </div>
         </div>
-        <CommBtn
-          btnText="구매확정"
-          btnWidth="480px"
-          btnHeight="35px"
-          fontSize="15px"
-          radius="4px"
-          border="1px solid rgb(66, 66, 226)"
-          fnClick={buyConfirmBtnHandler}
-        />
+        {isConfirm ? (
+          <CommBtn
+            btnText="구매확정"
+            btnWidth="480px"
+            btnHeight="35px"
+            fontSize="15px"
+            radius="4px"
+            txColor="rgb(78, 78, 78)"
+            bgColor="rgb(248, 248, 250)"
+            border="1px solid rgb(66, 66, 226)"
+          />
+        ) : (
+          <CommBtn
+            btnText="구매확정"
+            btnWidth="480px"
+            btnHeight="35px"
+            fontSize="15px"
+            radius="4px"
+            border="1px solid rgb(66, 66, 226)"
+            fnClick={buyConfirmBtnHandler}
+          />
+        )}
       </div>
     </div>
   );
