@@ -82,23 +82,24 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
   };
 
   const handleBuyNowOptions = () => {
+    console.log(selectedOption);
     const selectedOptionToAddCart = selectedOption.map((item) => {
       const {
-        mktProductId,
         option1,
         option1Data,
         option2,
         option2Data,
         orderQuantity,
+        productOptionId,
       } = item;
       return {
-        productOptionId: productId,
-        mktProductId,
+        mktProductId: productId,
         option1,
         option1Data,
         option2,
         option2Data,
         orderQuantity,
+        productOptionId,
       };
     });
 

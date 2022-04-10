@@ -1,27 +1,25 @@
 import { useState, useRef } from "react";
 import "./modifyPassword.css";
 import { isPassword } from "../api/check";
+import { useDispatch } from "react-redux";
+import { postApi } from "api/fetch-api";
 
-function ModifyPassword(props) {
+function ModifyPassword() {
+  const dispatch = useDispatch();
+
   const passInputRef = useRef();
   const rePassInputRef = useRef();
+
   const [isSame, setIsSame] = useState(true);
   const [isVaildPass, setIsVaildPass] = useState(true);
 
-  // 비밀번호 변경
-  const modifyPassHandler = () => {
-    // 비밀번호 일치 확인
-    if (passInputRef.current.value === rePassInputRef.current.value) {
-      setIsSame(true);
-    } else {
-      setIsSame(false);
-    }
-    // 비밀번호 유효성 검사
-    if (!isPassword(passInputRef)) {
-      setIsVaildPass(false);
-    } else {
-      setIsVaildPass(true);
-    }
+  const handleModifyPass = () => {
+    passInputRef.current.value === rePassInputRef.current.value
+      ? setIsSame(true)
+      : setIsSame(false);
+    !isPassword(passInputRef) ? setIsVaildPass(false) : setIsVaildPass(true);
+
+    // dispatch(postApi(API_SIGNIN, enteredSigninForm, fnCallback));
   };
 
   return (
@@ -47,12 +45,12 @@ function ModifyPassword(props) {
         ref={rePassInputRef}
       />
       <div className="modifyPass-valid">
-        {!isSame && isVaildPass && <p>비밀번호가 일치하지 않습니다.</p>}
-        {(isSame || !isSame) && !isVaildPass && (
+        {!isSame && <p>비밀번호가 일치하지 않습니다.</p>}
+        {isSame && !isVaildPass && (
           <p>영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.</p>
         )}
       </div>
-      <button className="modifyPass-btn" onClick={modifyPassHandler}>
+      <button className="modifyPass-btn" onClick={handleModifyPass}>
         비밀번호 변경
       </button>
     </div>
