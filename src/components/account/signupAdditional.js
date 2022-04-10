@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import JobDropdown from "components/common/dropdown/jobDropdown";
 import UserTagForm from "../common/userTagForm";
 import classes from "./signupAdditional.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
@@ -141,8 +140,6 @@ function SignupAdditional(props) {
               />
             </div>
             <div className={classes.dtlArea}>
-              {/* <CommPageSemiTitle semiTitle="직군" />
-              <JobDropdown /> */}
               {jobArray?.length && (
                 <CommSelect
                   width="100%"
