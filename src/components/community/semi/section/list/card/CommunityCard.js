@@ -19,7 +19,6 @@ const CommunityCard = (props) => {
   const likeHandler = () => {
     props.likeHandler(data.communityId, data.liked);
   };
-  console.log(data.communityImage);
   return (
     <li>
       <div className={classes.mainCard}>

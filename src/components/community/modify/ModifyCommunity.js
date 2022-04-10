@@ -123,7 +123,6 @@ function ModifyCommunity(props) {
   };
   // 제목핸들러
   const titleHandler = (e) => {
-    console.log("titleHandler :: e.target.value :: ", e.target.value);
     dispatch(
       communityAction.setCommunity({
         communityTitle: e.target.value,
@@ -134,7 +133,6 @@ function ModifyCommunity(props) {
   };
   // 내용핸들러
   const contentHandler = (e) => {
-    console.log("contentHandler :: e.target.value :: ", e.target.value);
     dispatch(
       communityAction.setCommunity({
         communityTitle: communityData.communityTitle,
@@ -144,9 +142,7 @@ function ModifyCommunity(props) {
     );
   };
   const tagOutHandler = (tagArry) => {
-    console.log("tagOutHandler :: tagArry :: ", tagArry);
     const arry = tagArry.map((tag) => tag.text);
-    console.log("tagOutHandler :: arry :: ", arry);
     dispatch(
       communityAction.setCommunity({
         communityTitle: communityData.communityTitle,
@@ -172,7 +168,6 @@ function ModifyCommunity(props) {
       materialCode: communityData.materialCode,
       moodCode: communityData.moodCode,
     };
-    console.log(communityData);
     const formData = new FormData();
     formData.append("img", imageFile); // 게시글 이미지
     formData.append(
