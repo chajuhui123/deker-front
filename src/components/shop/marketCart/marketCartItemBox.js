@@ -5,27 +5,52 @@ import classes from "./marketCartItemBox.module.css";
 function MarketCartItemBox(props) {
   const [selectedPrdt, setSelectedPrdt] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [tmp, setTmp] = useState(false);
 
-  // 선택한 상품 리스트 추가
-  const selectedPrdtAppend = (productId, orderPrice) => {
-    setSelectedPrdt((selectedPrdt) => [...selectedPrdt, productId]);
-    setTotalPrice(totalPrice + orderPrice);
+  // 단일 선택한 상품 리스트 추가, 삭제
+  const selectPrdtYN = (isCheck, productId, orderPrice) => {
+    if (!isCheck) {
+      console.log("상품 선택22222222222222222");
+      setSelectedPrdt((selectedPrdt) => [...selectedPrdt, productId]);
+      setTotalPrice(totalPrice + orderPrice);
+    } else {
+      console.log("상품 해제22222222222222222");
+      setSelectedPrdt(
+        selectedPrdt.filter((newSelectedPrdt) => newSelectedPrdt !== productId)
+      );
+      setTotalPrice(totalPrice - orderPrice);
+    }
+
+    props.selectedPrdtListSetting(selectedPrdt);
     props.totalPriceSetting(totalPrice);
   };
-  // 선택한 상품 리스트 삭제
-  const selectedPrdtRmv = (productId, orderPrice) => {
-    setSelectedPrdt(
-      selectedPrdt.filter((newSelectedPrdt) => newSelectedPrdt !== productId)
-    );
-    setTotalPrice(totalPrice - orderPrice);
-    props.totalPriceSetting(totalPrice);
+
+  // 전체 상품 선택
+  const isAllSelectHandler = () => {
+    console.log("products are All Selected");
+    setTmp(!tmp);
   };
 
+  /*
+  // 장바구니 상품 선택 삭제 Back 연결
+  const fnCallback = (res) => {
+    if (!!res) {
+      setCartData(res.data);
+    } else {
+      // 비정상로직;
+      // alert("data error");
+    }
+  };
+    // Back 통신해서 장바구니에 상품 삭제
+    const selectedPrdtRmvHandler = () => {
+    dispatch(postApi("mb/mkt/reg/checked-cart", {selectedPrdt}, fnCallback));
+  };
+*/
   return (
     <div>
       <div className={classes.checkDiv}>
-        <div>모두 선택</div>
-        <div>선택삭제</div>
+        <div onClick={isAllSelectHandler}>모두 선택</div>
+        {/* <div onClick={selectedPrdtRmvHandler}>선택삭제</div> */}
       </div>
       <div>
         {props.cartItemArray.map((cartItemObject) => {
@@ -47,8 +72,9 @@ function MarketCartItemBox(props) {
               option1DataNm={cartItemObject.productDetailOption.option1DataName}
               option2DataNm={cartItemObject.productDetailOption.option2DataName}
               orderQuantity={cartItemObject.productSelectedQuantity}
-              selectedPrdtAppend={selectedPrdtAppend}
-              selectedPrdtRmv={selectedPrdtRmv}
+              selectPrdtYN={selectPrdtYN}
+              // selectedPrdt={selectedPrdt}
+              tmp={tmp}
               departure="cart"
             />
           );

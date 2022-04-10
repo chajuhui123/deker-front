@@ -46,6 +46,7 @@
   /* width: 680px; */
   height: 35px;
   font: normal normal normal 18px/23px Roboto;
+  background-color: #ffffff;
   float: right;
 }
 .paymentAmt2 {
@@ -53,6 +54,7 @@
   /* width: 680px; */
   height: 35px;
   font: normal normal bold 18px/23px Roboto;
+  background-color: #ffffff;
   color: #4242e2;
   float: right;
 }

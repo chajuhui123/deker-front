@@ -2,7 +2,6 @@ import { postApi } from "api/fetch-api";
 import CommonPageTitle from "components/common/commPageTitle";
 import MarketCartBuyButton from "components/shop/marketCart/marketCartBuyButton";
 import MarketCartItemBox from "components/shop/marketCart/marketCartItemBox";
-// import MarketCartPaymentBox from "components/shop/marketCart/marketCartPaymentBox";
 import TotalPaymentAmt from "components/shop/totalPaymentAmt";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -12,6 +11,7 @@ const MarketCartPage = () => {
   const [paymentAmt, setPaymentAmt] = useState(0);
   const [deliAmt, setDeliAmt] = useState(0);
   const [cartData, setCartData] = useState(null);
+  const [selectedPrdtList, setSelectedPrdtList] = useState(null);
 
   // 처음 페이지를 로딩 시, 장바구니에 있는 상품 목록 받아오기
   useEffect(() => {
@@ -127,6 +127,30 @@ const MarketCartPage = () => {
       setDeliAmt(3000);
     }
   };
+
+  // 장바구니에서 구매하기 위해 선택한 상품 Back에 다시 전달
+  const fnSelectCartCallback = (res) => {
+    if (!!res) {
+      setSelectedPrdtList(res.data.cartIdArr);
+      // set + orderId
+      console.log("cardId: " + res.data.cartId);
+    } else {
+      // 비정상로직;
+      // alert("data error");
+    }
+  };
+
+  const selectedPrdtListSetting = (data) => {
+    setSelectedPrdtList(data);
+    dispatch(
+      postApi(
+        "mb/mkt/reg/checked-cart",
+        { cartIdArr: selectedPrdtList },
+        fnSelectCartCallback
+      )
+    );
+  };
+
   return (
     <div>
       <CommonPageTitle title="장바구니" />
@@ -139,6 +163,7 @@ const MarketCartPage = () => {
       <MarketCartItemBox
         cartItemArray={CART_ITEM_ARRAY_DUMMY}
         totalPriceSetting={totalPriceSetting}
+        selectedPrdtListSetting={selectedPrdtListSetting}
       />
     </div>
   );

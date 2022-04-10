@@ -29,6 +29,7 @@ const TotalPaymentAmt = (props) => {
             className={classes.paymentAmt}
             value={paymentAmt.toLocaleString("ko-KR") + "원"}
             readOnly
+            disabled
           />
         </div>
       </div>
@@ -40,6 +41,7 @@ const TotalPaymentAmt = (props) => {
             className={classes.paymentAmt}
             value={deliAmt.toLocaleString("ko-KR") + "원"}
             readOnly
+            disabled
           />{" "}
         </div>
       </div>
@@ -51,6 +53,7 @@ const TotalPaymentAmt = (props) => {
             className={classes.paymentAmt2}
             value={ttlPaymentAmt.toLocaleString("ko-KR") + "원"}
             readOnly
+            disabled
           />
         </div>
       </div>
