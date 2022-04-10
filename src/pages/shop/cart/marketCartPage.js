@@ -13,14 +13,6 @@ const MarketCartPage = () => {
 
   const dispatch = useDispatch();
   const [cartData, setCartData] = useState(null);
-  // const [cartId, setCartId] = useState(null);
-  // const [mktProductId, setMktProductId] = useState(null);
-  // const [productName, setProductName] = useState(null);
-  // const [productPrice, setProductPrice] = useState(0);
-  // const [productSelectedQuantity, setProductSelectedQuantity] = useState(0);
-  // const [productImg, setProductImg] = useState(null);
-  // const [productDetailOption, setProductDetailOption] = useState(null);
-  // const [totalPrice, setTotalPrice] = useState(0);
 
   // 처음 페이지를 로딩 시, 장바구니에 있는 상품 목록 받아오기
   useEffect(() => {
@@ -29,48 +21,78 @@ const MarketCartPage = () => {
 
   const fnCallback = (res) => {
     if (!!res) {
-      // setTmp(res.data);
-      // setCartId(res.data.productCartItems.cartId);
-      // setMktProductId(res.data.productCartItems.mktProductId);
-      // setProductName(res.data.productCartItems.productName);
-      // setProductPrice(res.data.productCartItems.productPrice);
-      // setProductSelectedQuantity(
-      //   res.data.productCartItems.productSelectedQuantity
-      // );
-      // setProductImg(res.data.productImg);
-      // setProductDetailOption(res.data.productDetailOption);
-      // setTotalPrice(res.data.totalPrice);
-
-      // console.log("currentPageNo: " + currentPageNo);
-      // console.log("totalCount: " + totalCount);
       setCartData(res.data);
-      console.log("totalPrice: " + cartData.cartId);
+      console.log("cardId: " + cartData.cartId);
     } else {
       // 비정상로직;
-      alert("data error");
+      // alert("data error");
     }
   };
 
   // 장바구니에 있는 아이템
   const CART_ITEM_ARRAY_DUMMY = [
     {
-      productNo: 1,
-      optionNo: 1,
-      productImg: null,
-      productName: "상품명 테스트 1",
-      productSelectedOption: "옵션 테스트 1",
-      maxQuantity: 3,
-      productFee: 30000,
+      cartId: "111111111111111111",
+      mktProductId: "PDTID_00000000000000",
+      productBrand: "deker",
+      productName: "천연 디퓨저",
+      productPrice: 8900,
+      productSelectedQuantity: 3, // 사용자가 선택한 수량 (Number)
+      productImg: "/nmb/img/4c6916db-3950-402a-aaf0-330ed74b8e8f.jpg",
+      productDetailOption: {
+        productPrice: 100000,
+        option1: "COLOR",
+        option1Name: "색상",
+        option1Data: "C01",
+        option1DataName: "흰색",
+        option2: "SIZE",
+        option2Name: "사이즈",
+        option2Data: "S01",
+        option2DataName: "260",
+        productQuantity: 10,
+      },
+      totalPrice: 108900, // 100000+8900 (number)},
     },
     {
-      productNo: 2,
-      optionNo: 2,
-      productImg: null,
-      productName: "상품명 테스트 2",
-      productSelectedOption: "옵션 테스트 2",
-      maxQuantity: 3,
-      productFee: 30000,
+      cartId: "2222222222222222222",
+      mktProductId: "PDTID_0000222222222220",
+      productBrand: "deker",
+      productName: "천퓨저",
+      productPrice: 1000,
+      productSelectedQuantity: 2, // 사용자가 선택한 수량 (Number)
+      productImg: "/nmb/img/4c6916db-3950-402a-aaf0-330ed74b8e8f.jpg",
+      productDetailOption: {
+        productPrice: 100000,
+        option1: "COLOR",
+        option1Name: "색상",
+        option1Data: "C01",
+        option1DataName: "흰색",
+        option2: "SIZE",
+        option2Name: "사이즈",
+        option2Data: "S01",
+        option2DataName: "260",
+        productQuantity: 10,
+      },
+      totalPrice: 108900, // 100000+8900 (number)},
     },
+    // {
+    //   productNo: 1,
+    //   optionNo: 1,
+    //   productImg: null,
+    //   productName: "상품명 테스트 1",
+    //   productSelectedOption: "옵션 테스트 1",
+    //   maxQuantity: 3,
+    //   productFee: 30000,
+    // },
+    // {
+    //   productNo: 2,
+    //   optionNo: 2,
+    //   productImg: null,
+    //   productName: "상품명 테스트 2",
+    //   productSelectedOption: "옵션 테스트 2",
+    //   maxQuantity: 3,
+    //   productFee: 30000,
+    // },
   ];
   return (
     <div>

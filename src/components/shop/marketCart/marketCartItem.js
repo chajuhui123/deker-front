@@ -34,7 +34,7 @@ function MarketCartItem({ cartItemObject }) {
             <div>
               {/* <MarketCartQuantityNumberPicker maxQuantity={maxQuantity} /> */}
             </div>
-            <div>{productFee.toLocaleString()} 원</div>
+            <div>{productFee?.toLocaleString("ko-KR")} 원</div>
           </div>
         </div>
       </div>
