@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import { postApi } from "api/fetch-api";
-import { isPassword } from "api/check";
+import { calculateRemainingTime, isPassword } from "api/check";
 
 import SocialLogin from "components/common/socialLogin";
 import CommInput from "components/common/commInput";
@@ -13,6 +13,7 @@ import CommonPageTitle from "components/common/commPageTitle";
 import classes from "./signup.module.css";
 import { modalAction } from "store/modal-slice";
 import CommAlert from "components/common/commAlert";
+import { userAction } from "store/user-slice";
 
 function Signup(props) {
   const history = useHistory();
@@ -61,21 +62,26 @@ function Signup(props) {
     setAgreeYn((prev) => !prev);
   };
 
-  const submit = () => {
-    const signupData = {
-      id: userIdRef.current.value,
-      password: passwordRef.current.value,
-      nickname: nicknameRef.current.value,
-      platformCode: "P01",
-      agreeYn: "Y",
-    };
-    dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
-  };
+  const logoutHandler = useCallback(() => {
+    dispatch(userAction.logout());
+    localStorage.removeItem("token");
+    localStorage.removeItem("extTokenTime");
+  }, [dispatch]);
 
   // back 호출 후 success callback method
   const fnCallback = (res) => {
+    alert("signup file");
     console.log("signup :: res :: ", res);
     if (!!res) {
+      const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
+      localStorage.setItem("token", res.data.jwtToken);
+      localStorage.setItem("extTokenTime", res.data.extTokenTime);
+      setTimeout(logoutHandler, remainingDuration);
+      dispatch(
+        userAction.login({
+          jwtToken: res.data.jwtToken,
+        })
+      );
       history.push("/signup/additional");
     } else {
       dispatch(
@@ -90,6 +96,17 @@ function Signup(props) {
         })
       );
     }
+  };
+
+  const submit = () => {
+    const signupData = {
+      id: userIdRef.current.value,
+      password: passwordRef.current.value,
+      nickname: nicknameRef.current.value,
+      platformCode: "P01",
+      agreeYn: "Y",
+    };
+    dispatch(postApi("nmb/acct/reg/member", signupData, fnCallback));
   };
 
   // 회원가입 버튼 클릭 handler
