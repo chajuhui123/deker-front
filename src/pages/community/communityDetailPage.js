@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import classes from "./communityDetailPage.module.css";
 import CommunityDetailMainImg from "components/community/communityDetail/MainImg/communityDetailMainImg";
 import CommunityDetailImgSlide from "components/community/communityDetail/Slide/communityDetailImgSlide";
 import CommunityDetailContent from "components/community/communityDetail/communityDetailContent";
@@ -7,7 +8,7 @@ import CommunityDetailCommentBox from "components/community/communityDetail/Comm
 import CommunityDetailLike from "components/community/communityDetail/communityDetailLike";
 import CommunityDetailManagementPost from "components/community/communityDetail/communityDetailManagementPost";
 import { postApi } from "api/fetch-api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
 
 const CommunityDetailPage = ({ match }) => {
@@ -17,6 +18,8 @@ const CommunityDetailPage = ({ match }) => {
   const [communitySelectedProductArr, setCommunitySelectedProductArr] =
     useState([]);
   const { communityPostId } = match.params;
+
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   const fnCommunityDetailCallback = (res) => {
     if (!!res) {
@@ -28,6 +31,9 @@ const CommunityDetailPage = ({ match }) => {
         materialCode: communityPostData?.materialCode,
         moodCode: communityPostData?.moodCode,
         communityTags: communityPostData?.communityTags, //array
+        communityPostIsUserWrtitten: res?.data?.communityPostIsUserWrtitten,
+        liked: communityPostData?.liked,
+        communityPostLikeCount: communityPostData?.communityPostLikeCount,
       });
       setCommunitySelectedProductArr(res?.data?.communityPostSelectedProduct); // Array
     }
@@ -35,14 +41,10 @@ const CommunityDetailPage = ({ match }) => {
 
   useEffect(() => {
     const communityPostIdObj = { communityPostId: communityPostId };
-    dispatch(
-      postApi(
-        "nmb/post/get/post-detail",
-        communityPostIdObj,
-        fnCommunityDetailCallback
-      )
-    );
-  }, [dispatch, communityPostId]);
+    const isMember = isLoggedIn ? "mb" : "nmb";
+    const apiURL = `${isMember}/post/get/post-detail`;
+    dispatch(postApi(apiURL, communityPostIdObj, fnCommunityDetailCallback));
+  }, [dispatch, communityPostId, isLoggedIn]);
 
   return (
     <div>
@@ -60,15 +62,15 @@ const CommunityDetailPage = ({ match }) => {
         materialCode={communityPostObj?.materialCode}
         moodCode={communityPostObj.moodCode}
       />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          margin: "40px 0 20px 0",
-        }}
-      >
-        <CommunityDetailLike communityPostId={communityPostId} />
-        <CommunityDetailManagementPost communityPostId={communityPostId} />
+      <div className={classes.managementDiv}>
+        <CommunityDetailLike
+          communityPostId={communityPostId}
+          liked={communityPostObj?.liked}
+          communityPostLikeCount={communityPostObj?.communityPostLikeCount}
+        />
+        {communityPostObj?.communityPostIsUserWrtitten && (
+          <CommunityDetailManagementPost communityPostId={communityPostId} />
+        )}
       </div>
       <CommunityDetailCommentBox
         communityPostId={communityPostId}

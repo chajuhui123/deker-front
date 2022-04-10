@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { isEmail, isPassword } from "api/check";
 import logoImg from "img/logo.png";
 import { postApi } from "api/fetch-api";
-import { API_SIGNIN } from "api/signin-api";
+import { API_SIGNIN } from "api/account-api";
 import { userAction } from "store/user-slice";
 import { calculateRemainingTime } from "api/check";
 import { useHistory } from "react-router";
