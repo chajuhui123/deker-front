@@ -84,7 +84,6 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
   const handleBuyNowOptions = () => {
     const selectedOptionToAddCart = selectedOption.map((item) => {
       const {
-        productOptionId,
         mktProductId,
         option1,
         option1Data,
@@ -93,7 +92,7 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
         orderQuantity,
       } = item;
       return {
-        productOptionId,
+        productOptionId: productId,
         mktProductId,
         option1,
         option1Data,
