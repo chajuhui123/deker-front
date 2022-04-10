@@ -1,3 +1,13 @@
+.prdtBox {
+  position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+.cartItemCheck {
+  margin: 0 20px 0 0;
+}
+
 .orderedItem_box {
   position: relative;
   margin: auto;

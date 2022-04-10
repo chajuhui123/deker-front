@@ -13,10 +13,9 @@ function MyOrderPrdtList(props) {
                 <div className={classes.d}>{` | `}</div>
                 <div>{orderProduct.stringDt}</div>
               </div>
-              {/* 백업 */}
-              {/* <MyOrderPrdtItem
-                key={orderProduct.productId}
-                id={orderProduct.productId}
+              <MyOrderPrdtItem
+                key={orderProduct.myOrderId}
+                id={orderProduct.myOrderId}
                 productId={orderProduct.productId}
                 productImg={orderProduct.productImg}
                 productName={orderProduct.productName}
@@ -32,26 +31,7 @@ function MyOrderPrdtList(props) {
                 option2DataNm={orderProduct.option2DataNm}
                 orderQuantity={orderProduct.orderQuantity}
                 departure={props.departure}
-              /> */}
-              {/* <MyOrderPrdtItem
-              key={orderProduct.productId}
-              id={orderProduct.productId}
-              productId={orderProduct.productId}
-              productImg={orderProduct.productImg}
-              productName={orderProduct.productName}
-              productBrand={orderProduct.productBrand}
-              orderId={orderProduct.orderId}
-              orderPrice={orderProduct.orderPrice}
-              stringDt={orderProduct.stringDt}
-              orderState={orderProduct.orderState}
-              orderStateNm={orderProduct.orderStateNm}
-              option1Nm={orderProduct.option1Nm}
-              option2Nm={orderProduct.option2Nm}
-              option1DataNm={orderProduct.option1DataNm}
-              option2DataNm={orderProduct.option2DataNm}
-              orderQuantity={orderProduct.orderQuantity}
-              departure={props.departure}
-              /> */}
+              />
             </li>
           ))}
         </ul>
