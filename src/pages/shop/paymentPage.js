@@ -17,8 +17,8 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 const PaymentPage = (props) => {
   // 이거 왜 안되냐
   const location = useLocation();
-  const paymentAmt = location.state.paymentAmt; // 주문상품 총 금액
-  const deliAmt = location.state.deliAmt; // 배송비
+  const paymentAmt = location.state?.paymentAmt; // 주문상품 총 금액
+  const deliAmt = location.state?.deliAmt; // 배송비
 
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
@@ -26,6 +26,7 @@ const PaymentPage = (props) => {
   const [telNo, setTelNo] = useState("");
   const [rcvNm, setRcvNm] = useState("");
   const [rcvTelNo, setRcvTelNo] = useState("");
+  const [rcvZipCode, setRcvZipCode] = useState("");
   const [rcvAddr, setRcvAddr] = useState("");
   const [deliMemo, setDeliMemo] = useState("");
   // const [totalPayAmt, setTotalPayAmt] = useState(0);
@@ -47,7 +48,7 @@ const PaymentPage = (props) => {
     setRcvTelNo(e.target.value);
   };
   const rcvAddrInputHandler = (e) => {
-    setRcvAddr(e.target.value);
+    setRcvZipCode(e.target.value);
   };
   const deliMemoInputHandler = (e) => {
     setDeliMemo(e.target.value);
@@ -72,11 +73,22 @@ const PaymentPage = (props) => {
     setRcvTelNo(telNo);
   };
 
+  const deliveryAddrSelectHandler = (deliveryInfo) => {
+    setRcvNm(deliveryInfo.userNm);
+    setRcvTelNo(deliveryInfo.userPn);
+    setRcvZipCode(deliveryInfo.zipCode);
+    setRcvAddr(deliveryInfo.addr);
+  };
+
   const deliverySelectHandler = () => {
     dispatch(
       modalAction.modalPopup({
         isOpen: true,
-        cont: <DeliverySelect />,
+        cont: (
+          <DeliverySelect
+            deliveryAddrSelectHandler={deliveryAddrSelectHandler}
+          />
+        ),
       })
     );
   };
@@ -87,15 +99,15 @@ const PaymentPage = (props) => {
     console.log(presentUserId);
   };
 
-  const telhead = useMemo(
-    () => [
-      { value: "010", label: "010" },
-      { value: "011", label: "011" },
-      { value: "02", label: "02" },
-      { value: "등등", label: "등등" },
-    ],
-    []
-  );
+  // const telhead = useMemo(
+  //   () => [
+  //     { value: "010", label: "010" },
+  //     { value: "011", label: "011" },
+  //     { value: "02", label: "02" },
+  //     { value: "등등", label: "등등" },
+  //   ],
+  //   []
+  // );
   const emailD = useMemo(
     () => [
       { value: "emailD1", label: "gamil.com" },
@@ -231,9 +243,9 @@ const PaymentPage = (props) => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
-            <div className={classes.select}>
+            {/* <div className={classes.select}>
               <Select options={telhead} defaultValue={telhead[0]} />
-            </div>
+            </div> */}
             <textarea
               className={classes.inputArea}
               type="text"
@@ -265,9 +277,9 @@ const PaymentPage = (props) => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
-            <div className={classes.select}>
+            {/* <div className={classes.select}>
               <Select options={telhead} defaultValue={telhead[0]} />
-            </div>
+            </div> */}
             <textarea
               className={classes.inputArea}
               type="text"
@@ -294,7 +306,7 @@ const PaymentPage = (props) => {
               <textarea
                 className={classes.inputArea3}
                 type="text"
-                value={rcvAddr}
+                value={rcvZipCode}
                 placeholder="우편번호"
                 onChange={rcvAddrInputHandler}
                 readOnly

@@ -72,16 +72,16 @@ function CreateCommunity(props) {
     dispatch(communityAction.clearData());
   }, [dispatch]);
   // 직업코드선택핸들러
-  const jobChangeHandler = (e) => {
-    dispatch(communityAction.setJobCode({ jobCode: e.value }));
+  const jobChangeHandler = (value) => {
+    dispatch(communityAction.setJobCode({ jobCode: value }));
   };
   // 재질코드선택핸들러
-  const materialChangeHandler = (e) => {
-    dispatch(communityAction.setMaterialCode({ materialCode: e.value }));
+  const materialChangeHandler = (value) => {
+    dispatch(communityAction.setMaterialCode({ materialCode: value }));
   };
   // 분위기코드선택핸들러
-  const moodChangeHandler = (e) => {
-    dispatch(communityAction.setMoodCode({ moodCode: e.value }));
+  const moodChangeHandler = (value) => {
+    dispatch(communityAction.setMoodCode({ moodCode: value }));
   };
   // 제목핸들러
   const titleHandler = (e) => {

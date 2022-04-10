@@ -37,7 +37,13 @@ function DliveryCard({
     fnDel(deliCode);
   };
   const selectDeliveryHandler = (e) => {
-    fnSel(deliCode);
+    const param = {
+      userNm, // 이름
+      userPn, // 연락처
+      zipCode, // 우편번호
+      addr: addrNm + " " + addrDetailNm, // 주소
+    };
+    fnSel(param);
   };
   const setDevlieryMainHandler = (e) => {
     fnSet(deliCode);
