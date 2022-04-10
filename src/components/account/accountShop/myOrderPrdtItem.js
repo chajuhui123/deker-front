@@ -7,13 +7,30 @@ import { BASE_URL } from "module/common-module";
 import { modalAction } from "store/modal-slice";
 import BuyConfirmPopup from "./buyConfirmPopup";
 import CommBtn from "components/common/commBtn";
+import { useState } from "react";
 
 function MyOrderPrdtItem(props) {
   console.log(props.option1DataNm + props.productBrand);
   const isOpen = useSelector((state) => state.modal.isOpen);
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
+  const [isCheck, setIsCheck] = useState(false); // 상품이 장바구니 페이지에서 선택되었는 지
   const dispatch = useDispatch();
+
+  /* 장바구니 페이지에서 결제할 상품 선택 */
+  const selectProductHandler = () => {
+    setIsCheck(!isCheck);
+    // 상품이 체크되어 있으면 결제할 상품 append
+    if (!isCheck) {
+      console.log("상품 선택");
+      props.selectedPrdtAppend(props.productId, props.orderPrice);
+    }
+    // 상품이 체크되지 않으면 결제할 상품에서 제외
+    else {
+      console.log("상품 선택 해제");
+      props.selectedPrdtRmv(props.productId, props.orderPrice);
+    }
+  };
 
   const openModalEventHandler = () => {
     dispatch(
@@ -70,7 +87,11 @@ function MyOrderPrdtItem(props) {
       <div className={classes.prdtBox}>
         {props.departure === "cart" && (
           <div className={classes.cartItemCheck}>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              onClick={selectProductHandler}
+              checked={isCheck}
+            />
           </div>
         )}
         <div className={classes.orderedItem_box}>
@@ -84,10 +105,10 @@ function MyOrderPrdtItem(props) {
             />
             <div className={classes.btn_info_box}>
               <div className={classes.product_info}>
-                <textarea>
+                <textarea disabled>
                   {`[` + props.productBrand + `]` + props.productName}
                 </textarea>
-                <textarea style={{ color: "gray", fontSize: "13px" }}>
+                <textarea style={{ color: "gray", fontSize: "13px" }} disabled>
                   {props.option1Nm +
                     `/` +
                     props.option2Nm +

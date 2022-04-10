@@ -1,10 +1,25 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import MyOrderPrdtItem from "components/account/accountShop/myOrderPrdtItem";
-// import MarketCartItem from "./marketCartItem";
 import classes from "./marketCartItemBox.module.css";
 
-function MarketCartItemBox({ cartItemArray }) {
-  // const [checkedList, setCheckedList] = useState([]);
+function MarketCartItemBox(props) {
+  const [selectedPrdt, setSelectedPrdt] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  // 선택한 상품 리스트 추가
+  const selectedPrdtAppend = (productId, orderPrice) => {
+    setSelectedPrdt((selectedPrdt) => [...selectedPrdt, productId]);
+    setTotalPrice(totalPrice + orderPrice);
+    props.totalPriceSetting(totalPrice);
+  };
+  // 선택한 상품 리스트 삭제
+  const selectedPrdtRmv = (productId, orderPrice) => {
+    setSelectedPrdt(
+      selectedPrdt.filter((newSelectedPrdt) => newSelectedPrdt !== productId)
+    );
+    setTotalPrice(totalPrice - orderPrice);
+    props.totalPriceSetting(totalPrice);
+  };
 
   return (
     <div>
@@ -13,11 +28,7 @@ function MarketCartItemBox({ cartItemArray }) {
         <div>선택삭제</div>
       </div>
       <div>
-        {/* 장바구니에 있는 아이템 */}
-        {/* {cartItemArray.map((cartItemObject) => {
-          return <MarketCartItem cartItemObject={cartItemObject} />;
-        })} */}
-        {cartItemArray.map((cartItemObject) => {
+        {props.cartItemArray.map((cartItemObject) => {
           return (
             <MyOrderPrdtItem
               key={cartItemObject.myOrderId}
@@ -27,7 +38,7 @@ function MarketCartItemBox({ cartItemArray }) {
               productName={cartItemObject.productName}
               productBrand={cartItemObject.productBrand}
               orderId={cartItemObject.orderId}
-              orderPrice={cartItemObject.productDetailOption.productPrice}
+              orderPrice={cartItemObject.totalPrice}
               stringDt={cartItemObject.stringDt}
               orderState={cartItemObject.orderState}
               orderStateNm={cartItemObject.orderStateNm}
@@ -36,6 +47,8 @@ function MarketCartItemBox({ cartItemArray }) {
               option1DataNm={cartItemObject.productDetailOption.option1DataName}
               option2DataNm={cartItemObject.productDetailOption.option2DataName}
               orderQuantity={cartItemObject.productSelectedQuantity}
+              selectedPrdtAppend={selectedPrdtAppend}
+              selectedPrdtRmv={selectedPrdtRmv}
               departure="cart"
             />
           );
