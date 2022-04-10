@@ -12,11 +12,13 @@ import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
 import PayBtn from "./payBtn";
 import MyOrderPrdtList from "components/account/accountShop/myOrderPrdtList";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const PaymentPage = (props) => {
-  // const { location } = props;
   // 이거 왜 안되냐
-  // console.log(prevProps.location.paymentAmt);
+  const location = useLocation();
+  const paymentAmt = location.state.paymentAmt; // 주문상품 총 금액
+  const deliAmt = location.state.deliAmt; // 배송비
 
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
@@ -334,15 +336,11 @@ const PaymentPage = (props) => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제금액" />
           <hr className={classes.lineD} />
-          {/* <TotalPaymentAmt
-            paymentAmt={location.state.paymentAmt}
-            deliAmt={location.state.deliAmt}
-          /> */}
-          <TotalPaymentAmt paymentAmt="12000" deliAmt="2000" />
+          <TotalPaymentAmt paymentAmt={paymentAmt} deliAmt={deliAmt} />
         </div>
       </div>
       {/* 결제 데이터 넘겨야 함 */}
-      <PayBtn />
+      <PayBtn paymentAmt={paymentAmt} deliAmt={deliAmt} />
     </div>
   );
 };
