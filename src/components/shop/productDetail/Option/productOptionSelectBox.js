@@ -10,9 +10,11 @@ import ProductOptionSelectItem from "./productOptionSelectItem";
 import { postApi } from "api/fetch-api";
 import { modalAction } from "store/modal-slice";
 import CommAlert from "components/common/commAlert";
+import { useHistory } from "react-router-dom";
 
 function ProductOptionSelectBox({ productId, productDetailObj }) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [opitonIdInBasket, setOptionIdInBasket] = useState([]);
   const [selectedOption, setSelectedOption] = useState([]);
@@ -47,6 +49,22 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
   const fnCallbackBuyNow = (res) => {
     if (!!res) {
       console.log(res);
+
+      var deliAmt = 3000; // 배송비 계산
+      if (totalItemPrice >= 30000 || totalItemPrice === 0) deliAmt = 0;
+
+      // 결제페이지로 이동
+      history.push({
+        pathname: "/payment",
+        state: {
+          orderId: res.data.orderId,
+          productId: productId,
+          paymentAmt: totalItemPrice,
+          deliAmt: deliAmt,
+          selectedOption: selectedOption,
+          departure: `buynow`,
+        },
+      });
     } else {
       dispatch(
         modalAction.modalPopup({
