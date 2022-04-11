@@ -10,7 +10,7 @@ import CommBtn from "components/common/commBtn";
 import { useEffect, useState } from "react";
 
 function MyOrderPrdtItem(props) {
-  console.log(props.option1DataNm + props.productBrand);
+  // console.log(props.option1DataNm + props.productBrand);
   const isOpen = useSelector((state) => state.modal.isOpen);
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
@@ -149,6 +149,7 @@ function MyOrderPrdtItem(props) {
               {props.departure !== "cart" && (
                 <div className={classes.product_btn}>
                   {props.departure !== "productListToPay" &&
+                    props.departure !== "buynow" &&
                     (props.orderState === "6" ? (
                       // 구매확정 상태면 버튼 활성화
                       <CommBtn
