@@ -51,7 +51,7 @@ function NavigationBar() {
     setIsMoreMenu(!isMoreMenu);
   };
 
-  const getSubMenuItem = pathName => {
+  const getSubMenuItems = pathName => {
     if (pathName === "community") return subNavMenu.community;
     if (pathName === "market") return subNavMenu.market;
     return null;
@@ -114,7 +114,7 @@ function NavigationBar() {
         </div>
         {!!isMoreMenu && <MoreMenuToolTip handleMoreMenu={handleMoreMenu} />}
       </div>
-      <SubNavigationBar navItem={getSubMenuItem(pathName)} />
+      <SubNavigationBar navItem={getSubMenuItems(pathName)} />
     </>
   );
 }
