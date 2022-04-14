@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./SubNavigationBar.module.css";
 
 function SubNavigationBar({ navItem }) {
-  if (navItem === null) return null;
+  if (navItem == null) return null;
 
   const navItemList = navItem.map(item => {
     return (

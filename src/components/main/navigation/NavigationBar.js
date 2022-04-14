@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import classes from "./NavigationBar.module.css";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +7,11 @@ import { RiShoppingBasketLine } from "react-icons/ri";
 import { BiGift } from "react-icons/bi";
 import { IoIosAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { postApi } from "api/fetch-api";
-import { BASE_URL } from "module/common-module";
 import NavWrite from "./NavWrite";
-import classes from "./NavigationBar.module.css";
 import MoreMenuToolTip from "./MoreMenuToolTip";
 import SubNavigationBar from "./SubNavigationBar";
+import { postApi } from "api/fetch-api";
+import { BASE_URL } from "module/common-module";
 
 function NavigationBar() {
   const dispatch = useDispatch();
@@ -26,6 +26,8 @@ function NavigationBar() {
   const [isMoreMenu, setIsMoreMenu] = useState(false);
 
   const pathName = location.pathname.slice(1, location.pathname.length);
+
+  console.log(pathName);
 
   const mainNavMenuList = mainNavMenu.map((navItem, navItemIndex) => {
     return (
@@ -52,7 +54,8 @@ function NavigationBar() {
   };
 
   const getSubMenuItems = pathName => {
-    if (pathName === "community") return subNavMenu.community;
+    if (pathName === "community" || pathName === "")
+      return subNavMenu.community;
     if (pathName === "market") return subNavMenu.market;
     return null;
   };
