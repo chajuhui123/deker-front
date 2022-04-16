@@ -15,9 +15,15 @@
   align-items: center;
   padding: 0 2rem;
   font-size: 14px;
-  justify-content: center;
 }
 
 .navItem {
   margin-inline: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--gray-font-color);
+}
+
+.navItem:hover {
+  color: var(--gray-hover-font-color);
 }
