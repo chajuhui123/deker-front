@@ -25,11 +25,7 @@ const PaymentPage = (props) => {
   const deliAmt = location.state.deliAmt; // 배송비
   const orderId = location.state.orderId; // 주문번호 (productOptionSelectBox에서 넘어오는 값)
   const productId = location.state.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
-  // kwon 여기부터
-  const option1Nm = location.state.selectedOption.option1;
-  const option2Nm = location.state.selectedOption.option2;
-
-  console.log("departure From: " + departureFrom + ", orderId: " + orderId);
+  const buynowDtl = location.state.buynowDtl; // 상품 옵션 (바로구매)
 
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
@@ -114,7 +110,7 @@ const PaymentPage = (props) => {
     []
   );
 
-  /* 바로 구매 시, productId로 상품정보 받아옴 시작*/
+  /* 바로 구매 시, productId로 상품정보 받아옴 시작 */
   const [mktProductId, setMktProductId] = useState("");
   const [productName, setProductName] = useState("");
   const [productImg, setProductImg] = useState("");
@@ -125,13 +121,6 @@ const PaymentPage = (props) => {
       setMktProductId(res.data.productDetail.mktProductId);
       setProductName(res.data.productDetail.productName);
       setProductImg(res.data.productDetail.productImg);
-      // setOption1Name(
-      //   res.data.productDetail.productDetailOption[0]?.option1Name
-      // );
-      // setOption2Name(
-      //   res.data.productDetail.productDetailOption[0]?.option2Name
-      // );
-      console.log("product name: " + productName);
     } else {
       // 실패
     }
@@ -370,15 +359,18 @@ const PaymentPage = (props) => {
             <MyOrderPrdtItem
               key={orderId}
               id={orderId}
-              productId={productId}
+              productId={mktProductId}
               productImg={productImg}
               productName={productName}
               // productBrand={orderProduct.productBrand}
               orderId={orderId}
               orderPrice={paymentAmt}
               departure={departureFrom}
-              option1Nm={option1Nm}
-              option2Nm={option2Nm}
+              option1Nm={buynowDtl?.option1}
+              option2Nm={buynowDtl?.option2}
+              option1DataNm={buynowDtl?.option1DataName}
+              option2DataNm={buynowDtl?.option2DataName}
+              orderQuantity={buynowDtl?.orderQuantity}
             />
           ) : (
             <MyOrderPrdtList

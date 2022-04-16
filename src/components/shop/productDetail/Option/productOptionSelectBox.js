@@ -19,6 +19,7 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
   const [opitonIdInBasket, setOptionIdInBasket] = useState([]);
   const [selectedOption, setSelectedOption] = useState([]);
   const [totalItemPrice, setTotalItemPrice] = useState(0);
+  const [buynowDtl, setBuynowDtl] = useState(null);
 
   const { productImg, productName, productPrice, productDetailOptionArr } =
     productDetailObj;
@@ -61,7 +62,7 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
           productId: productId,
           paymentAmt: totalItemPrice,
           deliAmt: deliAmt,
-          selectedOption: selectedOption,
+          buynowDtl: selectedOption[0],
           departure: `buynow`,
         },
       });
