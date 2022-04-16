@@ -20,7 +20,7 @@ function SigninForm() {
   const [isVaildEmail, setIsVaildEmail] = useState(true);
   const [isVaildPass, setIsVaildPass] = useState(true);
 
-  const EmailOnChangeHandler = () => {
+  const onChangeEmail = () => {
     const enteredEmail = emailInputRef.current.value;
     if (!isEmail(enteredEmail)) {
       setIsVaildEmail(false);
@@ -28,7 +28,7 @@ function SigninForm() {
       setIsVaildEmail(true);
     }
   };
-  const PasswordOnChangeHandler = () => {
+  const onChangePassword = () => {
     const enteredPassword = passwordInputRef.current.value;
     if (!isPassword(enteredPassword)) {
       setIsVaildPass(false);
@@ -37,8 +37,7 @@ function SigninForm() {
     }
   };
 
-  const SigninHandler = (event) => {
-    event.preventDefault();
+  const handleSignIn = (event) => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
     const enteredSigninForm = {
@@ -51,7 +50,13 @@ function SigninForm() {
     dispatch(postApi(API_SIGNIN, enteredSigninForm, fnCallback));
   };
 
-  const logoutHandler = useCallback(() => {
+  const onKeyPressEnter = (e) => {
+    if (e.charCode === 13) {
+      handleSignIn();
+    }
+  };
+
+  const handleLogout = useCallback(() => {
     dispatch(userAction.logout());
     localStorage.removeItem("token");
     localStorage.removeItem("extTokenTime");
@@ -63,7 +68,7 @@ function SigninForm() {
       const remainingDuration = calculateRemainingTime(res.data.extTokenTime);
       localStorage.setItem("token", res.data.jwtToken);
       localStorage.setItem("extTokenTime", res.data.extTokenTime);
-      setTimeout(logoutHandler, remainingDuration);
+      setTimeout(handleLogout, remainingDuration);
       dispatch(
         userAction.login({
           jwtToken: res.data.jwtToken,
@@ -87,7 +92,7 @@ function SigninForm() {
       <Link to="/">
         <img className={classes.signin_logo} src={logoImg} alt="로고" />
       </Link>
-      <div>
+      <form onKeyPress={onKeyPressEnter}>
         <input
           type="email"
           id="email"
@@ -95,10 +100,8 @@ function SigninForm() {
           required
           placeholder="이메일"
           ref={emailInputRef}
-          onChange={EmailOnChangeHandler}
+          onChange={onChangeEmail}
         />
-      </div>
-      <div>
         <input
           type="password"
           id="password"
@@ -106,9 +109,9 @@ function SigninForm() {
           className={classes.signin_password_input}
           required
           ref={passwordInputRef}
-          onChange={PasswordOnChangeHandler}
+          onChange={onChangePassword}
         />
-      </div>
+      </form>
       <div className={classes.signin_valid}>
         {!isVaildEmail && isVaildPass && (
           <p>올바른 이메일 형태를 입력해주세요.</p>
@@ -120,7 +123,7 @@ function SigninForm() {
           <p>이메일과 비밀번호를 다시 확인해주세요.</p>
         )}
       </div>
-      <button className={classes.signin_btn} onClick={SigninHandler}>
+      <button className={classes.signin_btn} onClick={handleSignIn}>
         로그인
       </button>
 
