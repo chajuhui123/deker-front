@@ -17,6 +17,8 @@ function MyOrderPrdtItem(props) {
   const [isCheck, setIsCheck] = useState(false); // 상품이 장바구니 페이지에서 선택되었는 지
   const dispatch = useDispatch();
 
+  console.log("props.productName: " + props.productName);
+
   useEffect(() => {
     if (
       props.tmp &&
@@ -128,7 +130,8 @@ function MyOrderPrdtItem(props) {
                       `개`}
                   </div>
                   {props.departure !== "productListToPay" &&
-                    props.departure !== "cart" && (
+                    props.departure !== "cart" &&
+                    props.departure !== "buynow" && (
                       <div className={classes.dtlInfo}>
                         <div
                           className={classes.buyConfirm}
