@@ -13,12 +13,19 @@ import PayBy from "./payBy";
 import PayBtn from "./payBtn";
 import MyOrderPrdtList from "components/account/accountShop/myOrderPrdtList";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import MyOrderPrdtItem from "components/account/accountShop/myOrderPrdtItem";
+import { postApi } from "api/fetch-api";
 
 const PaymentPage = (props) => {
-  // 이거 왜 안되냐
+  const dispatch = useDispatch();
+
   const location = useLocation();
-  const paymentAmt = location.state?.paymentAmt; // 주문상품 총 금액
-  const deliAmt = location.state?.deliAmt; // 배송비
+  const departureFrom = location.state.departure; // 어디서 호출되었는지
+  const paymentAmt = location.state.paymentAmt; // 주문상품 총 금액
+  const deliAmt = location.state.deliAmt; // 배송비
+  const orderId = location.state.orderId; // 주문번호 (productOptionSelectBox에서 넘어오는 값)
+  const productId = location.state.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
+  const buynowDtl = location.state.buynowDtl; // 상품 옵션 (바로구매)
 
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
@@ -29,8 +36,6 @@ const PaymentPage = (props) => {
   const [rcvZipCode, setRcvZipCode] = useState("");
   const [rcvAddr, setRcvAddr] = useState("");
   const [deliMemo, setDeliMemo] = useState("");
-  // const [totalPayAmt, setTotalPayAmt] = useState(0);
-  const dispatch = useDispatch();
 
   const orderNmInputHandler = (e) => {
     setOerderNm(e.target.value);
@@ -96,7 +101,7 @@ const PaymentPage = (props) => {
   // 선물할 계정 받아옴
   const presentUserIdHandler = (data) => {
     setPresentUserId(data);
-    console.log(presentUserId);
+    // console.log(presentUserId);
   };
 
   // const telhead = useMemo(
@@ -116,6 +121,33 @@ const PaymentPage = (props) => {
     ],
     []
   );
+
+  /* 바로 구매 시, productId로 상품정보 받아옴 시작 */
+  const [mktProductId, setMktProductId] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productImg, setProductImg] = useState("");
+
+  const fnCallbackPrdtDtl = (res) => {
+    if (!!res) {
+      console.log(res);
+      setMktProductId(res.data.productDetail.mktProductId);
+      setProductName(res.data.productDetail.productName);
+      setProductImg(res.data.productDetail.productImg);
+    } else {
+      // 실패
+    }
+  };
+
+  if (departureFrom === "buynow") {
+    dispatch(
+      postApi(
+        "nmb/mkt/get/product-detail",
+        { productId: productId },
+        fnCallbackPrdtDtl
+      )
+    );
+  }
+  /* 바로 구매 시, productId로 상품정보 받아옴 끝*/
 
   const DUMMY_DATA = [
     {
@@ -335,10 +367,29 @@ const PaymentPage = (props) => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="주문상품" />
           <hr className={classes.lineD} />
-          <MyOrderPrdtList
-            orderedProductList={DUMMY_DATA}
-            departure="productListToPay"
-          />
+          {departureFrom === "buynow" ? (
+            <MyOrderPrdtItem
+              key={orderId}
+              id={orderId}
+              productId={mktProductId}
+              productImg={productImg}
+              productName={productName}
+              // productBrand={orderProduct.productBrand}
+              orderId={orderId}
+              orderPrice={paymentAmt}
+              departure={departureFrom}
+              option1Nm={buynowDtl?.option1}
+              option2Nm={buynowDtl?.option2}
+              option1DataNm={buynowDtl?.option1DataName}
+              option2DataNm={buynowDtl?.option2DataName}
+              orderQuantity={buynowDtl?.orderQuantity}
+            />
+          ) : (
+            <MyOrderPrdtList
+              orderedProductList={DUMMY_DATA}
+              departure="productListToPay"
+            />
+          )}
         </div>
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제가능수단" />

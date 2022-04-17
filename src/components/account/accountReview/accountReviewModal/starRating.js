@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Rating } from "react-simple-star-rating";
 import classes from "./starRating.module.css";
 
-function StarRating() {
-  // https://www.npmjs.com/package/react-simple-star-rating 참고
-  const [rating, setRating] = useState(0);
-
-  const handleRating = (rate) => {
-    setRating(rate);
-    // current value 로 수정되어야 하는지 고려해보기
-    console.log(rating);
-  };
+function StarRating({ rating, handleRating }) {
   return (
     <div className={classes.wrapper}>
       <div className={classes.title}>

@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./writingReview.module.css";
 
-function WritingReview() {
+function WritingReview({ reviewContent, onChangeReviewContent }) {
   return (
     <div className={classes.wrapper}>
       <p className={classes.title}>리뷰 작성</p>
@@ -16,6 +16,8 @@ function WritingReview() {
         name="name"
         minlength="10"
         maxlength="100"
+        value={reviewContent}
+        onChange={onChangeReviewContent}
       />
     </div>
   );

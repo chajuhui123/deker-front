@@ -2,26 +2,24 @@ import React from "react";
 import classes from "./communityDetailLike.module.css";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
-import { IoIosHeart, IoIosHeartDislike } from "react-icons/io";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
-function CommunityDetailLike({ communityPostId }) {
-  console.log("communityPostId::", communityPostId);
+function CommunityDetailLike({
+  communityPostId,
+  liked,
+  communityPostLikeCount,
+}) {
   const dispatch = useDispatch();
 
   const handleLikePost = () => {
-    dispatch(
-      postApi(
-        "mb/post/reg/post-like",
-        { communityId: communityPostId },
-        () => {}
-      )
-    );
+    const postParam = liked ? "rmv" : "reg";
+    const ApiUrl = `mb/post/${postParam}/post-like`;
+    dispatch(postApi(ApiUrl, { communityId: communityPostId }, () => {}));
   };
-
   return (
     <div className={classes.likeBtn} onClick={handleLikePost}>
-      <IoIosHeart size={19} />
-      <p>좋아요</p>
+      {liked ? <BsHeartFill size={19} color={"red"} /> : <BsHeart size={19} />}
+      <span>{communityPostLikeCount}</span>
     </div>
   );
 }

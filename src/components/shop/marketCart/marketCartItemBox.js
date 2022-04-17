@@ -1,23 +1,59 @@
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import MyOrderPrdtItem from "components/account/accountShop/myOrderPrdtItem";
-// import MarketCartItem from "./marketCartItem";
 import classes from "./marketCartItemBox.module.css";
 
-function MarketCartItemBox({ cartItemArray }) {
-  // const [checkedList, setCheckedList] = useState([]);
+function MarketCartItemBox(props) {
+  const [selectedPrdt, setSelectedPrdt] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [tmp, setTmp] = useState(false);
 
+  // 단일 선택한 상품 리스트 추가, 삭제
+  const selectPrdtYN = (isCheck, productId, orderPrice) => {
+    if (!isCheck) {
+      console.log("상품 선택22222222222222222");
+      setSelectedPrdt((selectedPrdt) => [...selectedPrdt, productId]);
+      setTotalPrice(totalPrice + orderPrice);
+    } else {
+      console.log("상품 해제22222222222222222");
+      setSelectedPrdt(
+        selectedPrdt.filter((newSelectedPrdt) => newSelectedPrdt !== productId)
+      );
+      setTotalPrice(totalPrice - orderPrice);
+    }
+
+    props.selectedPrdtListSetting(selectedPrdt);
+    props.totalPriceSetting(totalPrice);
+  };
+
+  // 전체 상품 선택
+  const isAllSelectHandler = () => {
+    console.log("products are All Selected");
+    setTmp(!tmp);
+  };
+
+  /*
+  // 장바구니 상품 선택 삭제 Back 연결
+  const fnCallback = (res) => {
+    if (!!res) {
+      setCartData(res.data);
+    } else {
+      // 비정상로직;
+      // alert("data error");
+    }
+  };
+    // Back 통신해서 장바구니에 상품 삭제
+    const selectedPrdtRmvHandler = () => {
+    dispatch(postApi("mb/mkt/reg/checked-cart", {selectedPrdt}, fnCallback));
+  };
+*/
   return (
     <div>
       <div className={classes.checkDiv}>
-        <div>모두 선택</div>
-        <div>선택삭제</div>
+        <div onClick={isAllSelectHandler}>모두 선택</div>
+        {/* <div onClick={selectedPrdtRmvHandler}>선택삭제</div> */}
       </div>
       <div>
-        {/* 장바구니에 있는 아이템 */}
-        {/* {cartItemArray.map((cartItemObject) => {
-          return <MarketCartItem cartItemObject={cartItemObject} />;
-        })} */}
-        {cartItemArray.map((cartItemObject) => {
+        {props.cartItemArray.map((cartItemObject) => {
           return (
             <MyOrderPrdtItem
               key={cartItemObject.myOrderId}
@@ -27,7 +63,7 @@ function MarketCartItemBox({ cartItemArray }) {
               productName={cartItemObject.productName}
               productBrand={cartItemObject.productBrand}
               orderId={cartItemObject.orderId}
-              orderPrice={cartItemObject.productDetailOption.productPrice}
+              orderPrice={cartItemObject.totalPrice}
               stringDt={cartItemObject.stringDt}
               orderState={cartItemObject.orderState}
               orderStateNm={cartItemObject.orderStateNm}
@@ -36,6 +72,9 @@ function MarketCartItemBox({ cartItemArray }) {
               option1DataNm={cartItemObject.productDetailOption.option1DataName}
               option2DataNm={cartItemObject.productDetailOption.option2DataName}
               orderQuantity={cartItemObject.productSelectedQuantity}
+              selectPrdtYN={selectPrdtYN}
+              // selectedPrdt={selectedPrdt}
+              tmp={tmp}
               departure="cart"
             />
           );

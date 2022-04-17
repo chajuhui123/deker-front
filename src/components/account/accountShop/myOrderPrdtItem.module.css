@@ -5,9 +5,15 @@
   flex-direction: row;
 }
 .cartItemCheck {
-  margin: 0 20px 0 0;
+  margin: 10px 20px 0 0;
 }
 
+.cartItemD {
+  position: relative;
+  margin: auto;
+  margin-top: 20px;
+  width: 100%;
+}
 .orderedItem_box {
   position: relative;
   margin: auto;
@@ -56,6 +62,7 @@
   font: normal normal normal 20px/30px Roboto;
   letter-spacing: 0px;
   color: #000000;
+  background-color: #ffffff;
   opacity: 1;
   border: none;
 }

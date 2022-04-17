@@ -8,7 +8,7 @@
 
 .productOptionSelectBox img {
   width: 50%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -18,6 +18,12 @@
   padding: 30px;
   width: 50%;
   margin-left: 20px;
+}
+
+.selectedOptionDiv {
+  /* min-height: 120px; */
+  max-height: 120px;
+  overflow-y: auto;
 }
 
 .btnBox {

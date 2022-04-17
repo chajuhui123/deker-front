@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import classes from "./totalPaymentAmt.module.css";
 
 /**
@@ -8,9 +9,15 @@ import classes from "./totalPaymentAmt.module.css";
  */
 
 const TotalPaymentAmt = (props) => {
-  var paymentAmt = Number(props.paymentAmt);
-  var deliAmt = Number(props.deliAmt);
-  var ttlPaymentAmt = Number(paymentAmt) + Number(deliAmt);
+  const [paymentAmt, setPaymentAmt] = useState(0);
+  const [deliAmt, setDeliAmt] = useState(0);
+
+  var ttlPaymentAmt = paymentAmt + deliAmt;
+
+  useEffect(() => {
+    setPaymentAmt(Number(props.paymentAmt));
+    setDeliAmt(Number(props.deliAmt));
+  }, [props.paymentAmt, props.deliAmt]);
 
   return (
     <div>
@@ -22,6 +29,7 @@ const TotalPaymentAmt = (props) => {
             className={classes.paymentAmt}
             value={paymentAmt.toLocaleString("ko-KR") + "원"}
             readOnly
+            disabled
           />
         </div>
       </div>
@@ -33,6 +41,7 @@ const TotalPaymentAmt = (props) => {
             className={classes.paymentAmt}
             value={deliAmt.toLocaleString("ko-KR") + "원"}
             readOnly
+            disabled
           />{" "}
         </div>
       </div>
@@ -44,6 +53,7 @@ const TotalPaymentAmt = (props) => {
             className={classes.paymentAmt2}
             value={ttlPaymentAmt.toLocaleString("ko-KR") + "원"}
             readOnly
+            disabled
           />
         </div>
       </div>
