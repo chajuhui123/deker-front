@@ -1,13 +1,15 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ProductDetailInfo from "components/shop/productDetail/Content/productDetailInfo";
 import ProductOptionSelectBox from "components/shop/productDetail/Option/productOptionSelectBox";
 import ProductRecommendBox from "components/shop/productDetail/Recommend/productRecommendBox";
 import ProductReviewBox from "components/shop/productDetail/Review/productReviewBox";
-import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
-import { useEffect, useState } from "react";
 import { BASE_URL } from "module/common-module";
 
 const ProductDetailPage = ({ match }) => {
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
   const [pageNo, setPageNo] = useState(1);
   const [productDetailObj, setProductDetailObj] = useState({
     productName: "",
@@ -40,15 +42,14 @@ const ProductDetailPage = ({ match }) => {
   };
 
   const fnRecommendCallback = (res) => {
-    console.log("recoomend Callback ", res);
     if (!!res) {
       setProductRecommendObj({
         recommendsArr: res.data.recommendedProduct, // 배열 내부 오브젝트 형태 [{},{},{}]
       });
     }
   };
+
   const fnProudctReviewCallback = (res) => {
-    console.log("review Callback ", res);
     if (!!res) {
       setProductReviewsObj({
         totalCount: res.data.totalCount,
@@ -64,16 +65,17 @@ const ProductDetailPage = ({ match }) => {
       postApi(
         "nmb/mkt/get/product-detail",
         {
-          productId: productId,
+          productId,
         },
         fnProudctDetailCallback
       )
     );
+
     dispatch(
       postApi(
         "nmb/mkt/get/recommend-product",
         {
-          productId: productId,
+          productId,
         },
         fnRecommendCallback
       )
@@ -82,13 +84,22 @@ const ProductDetailPage = ({ match }) => {
       postApi(
         "nmb/mkt/get/review",
         {
-          productId: productId,
+          productId,
           pageNumber: 1,
         },
         fnProudctReviewCallback
       )
     );
-  }, [productId, dispatch]);
+    dispatch(
+      postApi(
+        isLoggedIn ? "mb/mkt/reg/recent-product" : "nmb/mkt/reg/recent-product",
+        { productId },
+        (res) => {
+          console.log(res);
+        }
+      )
+    );
+  }, [isLoggedIn, productId, dispatch]);
 
   return (
     <div>
