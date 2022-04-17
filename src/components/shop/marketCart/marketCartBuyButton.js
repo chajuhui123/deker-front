@@ -8,24 +8,24 @@ import classes from "./marketCartBuyButton.module.css";
 function MarketCartBuyButton(props) {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const [selectedPrdtList, setSelectedPrdtList] = useState(null);
+  const [orderId, setOrderId] = useState(null);
+  const [cartIdArr, setCartIdArr] = useState(null);
 
   // 장바구니에서 구매하기 위해 선택한 상품 Back에 다시 전달
   const fnSelectCartCallback = (res) => {
     if (!!res) {
-      // setSelectedPrdtList(res.data.cartIdArr);
-      // var orderId = res.data.orderId;
+      setOrderId(res.data.orderId);
+      setCartIdArr(res.data.cartIdArr);
 
       history.push({
         pathname: "/payment",
         state: {
           paymentAmt: props.paymentAmt,
           deliAmt: props.deliAmt,
-          cartItemArray: props.cartItemArray,
+          cartItemArray: cartIdArr,
+          orderId: orderId,
         },
       });
-      // set + orderId
-      console.log("cartId: " + res.data.cartId);
     } else {
       // 비정상로직;
       alert("data error");
@@ -33,7 +33,6 @@ function MarketCartBuyButton(props) {
   };
 
   const buyBtnHandler = () => {
-    console.log("check receive cartItemArray: " + props.cartItemArray);
     dispatch(
       postApi(
         "mb/mkt/reg/checked-cart",

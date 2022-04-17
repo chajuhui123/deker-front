@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 const MarketCartPage = () => {
   const dispatch = useDispatch();
+
   const [paymentAmt, setPaymentAmt] = useState(0);
   const [deliAmt, setDeliAmt] = useState(0);
   const [cartData, setCartData] = useState(null);
@@ -21,15 +22,15 @@ const MarketCartPage = () => {
   const fnCallback = (res) => {
     if (!!res) {
       setCartData(res.data.productCartItems);
-      // console.log("cardId: " + cartData.cartId);
     } else {
       // 비정상로직;
-      // alert("data error");
+      alert("data error");
     }
   };
   // 장바구니에 선택한 상품 삭제하고 페이지 다시 rerendering
   const pageReRenderingAftRmvCartItem = () => {
-    dispatch(postApi("mb/mkt/get/cart", {}, fnCallback));
+    window.location.replace("/market/cart");
+    // dispatch(postApi("mb/mkt/get/cart", {}, fnCallback));
   };
 
   /*
@@ -121,7 +122,7 @@ const MarketCartPage = () => {
   };
   useEffect(() => {
     console.log("kwon debug selectedPrdtCartIdList: " + selectedPrdtCartIdList);
-  }, [selectedPrdtCartIdList]);
+  }, [selectedPrdtCartIdList, paymentAmt, deliAmt, cartData]);
 
   return (
     <div>

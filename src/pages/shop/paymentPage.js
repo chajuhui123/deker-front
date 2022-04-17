@@ -104,15 +104,6 @@ const PaymentPage = (props) => {
     // console.log(presentUserId);
   };
 
-  // const telhead = useMemo(
-  //   () => [
-  //     { value: "010", label: "010" },
-  //     { value: "011", label: "011" },
-  //     { value: "02", label: "02" },
-  //     { value: "등등", label: "등등" },
-  //   ],
-  //   []
-  // );
   const emailD = useMemo(
     () => [
       { value: "emailD1", label: "gamil.com" },
@@ -275,15 +266,12 @@ const PaymentPage = (props) => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
-            {/* <div className={classes.select}>
-              <Select options={telhead} defaultValue={telhead[0]} />
-            </div> */}
             <textarea
               className={classes.inputArea}
               type="text"
               value={telNo}
               // maxLength="100"
-              placeholder="남은 연락처를 입력해주세요."
+              placeholder="전화번호를 입력해주세요."
               onChange={telNoInputHandler}
             />
           </div>
@@ -309,15 +297,12 @@ const PaymentPage = (props) => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
-            {/* <div className={classes.select}>
-              <Select options={telhead} defaultValue={telhead[0]} />
-            </div> */}
             <textarea
               className={classes.inputArea}
               type="text"
               value={rcvTelNo}
               // maxLength="100"
-              placeholder="남은 연락처를 입력해주세요."
+              placeholder="전화번호를 입력해주세요."
               onChange={rcvTelNoInputHandler}
             />
           </div>
