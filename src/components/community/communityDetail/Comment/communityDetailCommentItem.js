@@ -13,7 +13,11 @@ function CommunityDetailCommentItem({ commentItemObject }) {
     <div className={classes.commentItemDiv}>
       <img
         className={classes.commentWriterImg}
-        src={`${BASE_URL}/${writerProfileImgUrl}` || noUserImg}
+        src={
+          !!writerProfileImgUrl
+            ? `${BASE_URL}${writerProfileImgUrl}`
+            : noUserImg
+        }
         alt=""
       />
       <div>
