@@ -18,7 +18,7 @@ function NavigationBar() {
   const history = useHistory();
   const location = useLocation();
 
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   const [menuImgUrl, setMenuImgUrl] = useState("");
   const [mainNavMenu, setMainNavMenu] = useState([]);
@@ -53,14 +53,15 @@ function NavigationBar() {
     setIsMoreMenu(!isMoreMenu);
   };
 
-  const getSubMenuItems = pathName => {
-    if (pathName === "community" || pathName === "")
+  const getSubMenuItems = (pathName) => {
+    console.log("PATHNAME", pathName);
+    if (!!pathName.startsWith("community") || pathName === "")
       return subNavMenu.community;
-    if (pathName === "market") return subNavMenu.market;
+    if (!!pathName.startsWith("market")) return subNavMenu.market;
     return null;
   };
 
-  const navigationBarCallBack = res => {
+  const navigationBarCallBack = (res) => {
     console.log(res.data);
     if (!!res) {
       setMenuImgUrl(res.data.menuImgUrl);
