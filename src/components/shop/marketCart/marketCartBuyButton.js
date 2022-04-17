@@ -1,6 +1,6 @@
 import { postApi } from "api/fetch-api";
 import CommBtn from "components/common/commBtn";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./marketCartBuyButton.module.css";
@@ -10,10 +10,17 @@ function MarketCartBuyButton(props) {
   const dispatch = useDispatch();
   const [selectedPrdtList, setSelectedPrdtList] = useState(null);
 
+  useEffect(() => {
+    setSelectedPrdtList(props.selectedPrdtList, () =>
+      console.log("check receive array selectedPrdtList: " + selectedPrdtList)
+    );
+  }, [props.selectedPrdtList]);
+
   // 장바구니에서 구매하기 위해 선택한 상품 Back에 다시 전달
   const fnSelectCartCallback = (res) => {
     if (!!res) {
       setSelectedPrdtList(res.data.cartIdArr);
+      var orderId = res.data.orderId;
 
       history.push({
         pathname: "/payment",
@@ -28,19 +35,11 @@ function MarketCartBuyButton(props) {
     } else {
       // 비정상로직;
       // alert("data error");
-
-      history.push({
-        pathname: "/payment",
-        state: {
-          paymentAmt: props.paymentAmt,
-          deliAmt: props.deliAmt,
-          cartItemArray: props.cartItemArray,
-        },
-      });
     }
   };
 
   const buyBtnHandler = () => {
+    console.log("check receive array selectedPrdtList: " + selectedPrdtList);
     dispatch(
       postApi(
         "mb/mkt/reg/checked-cart",

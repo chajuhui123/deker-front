@@ -129,7 +129,9 @@ const MarketCartPage = () => {
   };
 
   const selectedPrdtListSetting = (data) => {
-    setSelectedPrdtList(data);
+    setSelectedPrdtList(data, () =>
+      console.log("ckeck array selectedPrdtList: " + selectedPrdtList)
+    );
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MyOrderPrdtItem from "components/account/accountShop/myOrderPrdtItem";
 import classes from "./marketCartItemBox.module.css";
 
@@ -20,10 +20,12 @@ function MarketCartItemBox(props) {
       );
       setTotalPrice(totalPrice - orderPrice);
     }
+  };
 
+  useEffect(() => {
     props.selectedPrdtListSetting(selectedPrdt);
     props.totalPriceSetting(totalPrice);
-  };
+  }, [selectedPrdt, totalPrice]);
 
   // 전체 상품 선택
   const isAllSelectHandler = () => {
