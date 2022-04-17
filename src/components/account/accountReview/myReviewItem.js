@@ -4,11 +4,21 @@ import { modalAction } from "../../../store/modal-slice";
 import ModalPopup from "../../common/modal";
 import ModalContUploadUpdateReview from "./accountReviewModal/modalContUploadUpdateReview";
 
-function MyReviewItem(props) {
+function MyReviewItem({
+  productImage,
+  productName,
+  productOption,
+  productPrice,
+  isReviewAble,
+}) {
+  const dispatch = useDispatch();
+
   const isOpen = useSelector((state) => state.modal.isOpen);
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
-  const dispatch = useDispatch();
+
+  const buttonText = isReviewAble ? "작성" : "수정";
+
   const openModalEventHandler = () => {
     dispatch(
       modalAction.modalPopup({
@@ -17,9 +27,11 @@ function MyReviewItem(props) {
       })
     );
   };
+
   const closeModalEventHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };
+
   return (
     <>
       <ModalPopup
@@ -30,19 +42,26 @@ function MyReviewItem(props) {
         {modalCont}
       </ModalPopup>
       <div className={classes.reviewItem_box}>
-        <div
+        <img
           className={classes.product_img}
-          alt={props.product_name}
-          src={props.product_image}
+          alt={productName}
+          src={productImage}
         />
+
         <div className={classes.btn_info_box}>
           <div className={classes.product_info}>
-            <p style={{ color: "gray" }}>{props.product_brand}</p>
-            <p>{props.product_name}</p>
-            <p style={{ color: "gray" }}>{props.product_option}</p>
+            <p style={{ fontWeight: "600" }}>{productName}</p>
+            <p style={{ color: "gray" }}>{productOption}</p>
+            <p>{productPrice?.toLocaleString("ko-KR") || 0} 원</p>
           </div>
-          <div className={classes.product_btn}>
-            <button onClick={openModalEventHandler}>리뷰작성</button>
+          <div
+            className={
+              isReviewAble
+                ? classes.product_reviewable_btn
+                : classes.product_reviewed_btn
+            }
+          >
+            <button onClick={openModalEventHandler}>{buttonText}</button>
           </div>
         </div>
       </div>
