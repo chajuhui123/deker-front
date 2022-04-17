@@ -20,12 +20,12 @@ const PaymentPage = (props) => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-  const departureFrom = location.state.departure; // 어디서 호출되었는지
-  const paymentAmt = location.state.paymentAmt; // 주문상품 총 금액
-  const deliAmt = location.state.deliAmt; // 배송비
-  const orderId = location.state.orderId; // 주문번호 (productOptionSelectBox에서 넘어오는 값)
-  const productId = location.state.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
-  const buynowDtl = location.state.buynowDtl; // 상품 옵션 (바로구매)
+  const departureFrom = location.state?.departure; // 어디서 호출되었는지
+  const paymentAmt = location.state?.paymentAmt; // 주문상품 총 금액
+  const deliAmt = location.state?.deliAmt; // 배송비
+  const orderId = location.state?.orderId; // 주문번호 (productOptionSelectBox에서 넘어오는 값)
+  const productId = location.state?.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
+  const buynowDtl = location.state?.buynowDtl; // 상품 옵션 (바로구매)
 
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
