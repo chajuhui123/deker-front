@@ -31,7 +31,7 @@ function MarketCartBuyButton(props) {
         },
       });
       // set + orderId
-      console.log("cardId: " + res.data.cartId);
+      console.log("cartId: " + res.data.cartId);
     } else {
       // 비정상로직;
       // alert("data error");

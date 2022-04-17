@@ -11,7 +11,7 @@ const MarketCartPage = () => {
   const [paymentAmt, setPaymentAmt] = useState(0);
   const [deliAmt, setDeliAmt] = useState(0);
   const [cartData, setCartData] = useState(null);
-  const [selectedPrdtList, setSelectedPrdtList] = useState(null);
+  const [selectedPrdtCartIdList, setSelectedPrdtCartIdList] = useState(null);
 
   // 처음 페이지를 로딩 시, 장바구니에 있는 상품 목록 받아오기
   useEffect(() => {
@@ -20,14 +20,19 @@ const MarketCartPage = () => {
 
   const fnCallback = (res) => {
     if (!!res) {
-      setCartData(res.data);
-      console.log("cardId: " + cartData.cartId);
+      setCartData(res.data.productCartItems);
+      // console.log("cardId: " + cartData.cartId);
     } else {
       // 비정상로직;
       // alert("data error");
     }
   };
 
+  const pageReRenderingAftRmvCartItem = () => {
+    dispatch(postApi("mb/mkt/get/cart", {}, fnCallback));
+  };
+
+  /*
   // 장바구니에 있는 아이템
   const CART_ITEM_ARRAY_DUMMY = [
     {
@@ -96,25 +101,8 @@ const MarketCartPage = () => {
       },
       totalPrice: 5000, // 100000+8900 (number)},
     },
-    // {
-    //   productNo: 1,
-    //   optionNo: 1,
-    //   productImg: null,
-    //   productName: "상품명 테스트 1",
-    //   productSelectedOption: "옵션 테스트 1",
-    //   maxQuantity: 3,
-    //   productFee: 30000,
-    // },
-    // {
-    //   productNo: 2,
-    //   optionNo: 2,
-    //   productImg: null,
-    //   productName: "상품명 테스트 2",
-    //   productSelectedOption: "옵션 테스트 2",
-    //   maxQuantity: 3,
-    //   productFee: 30000,
-    // },
   ];
+*/
 
   const totalPriceSetting = (data) => {
     console.log(data);
@@ -129,8 +117,10 @@ const MarketCartPage = () => {
   };
 
   const selectedPrdtListSetting = (data) => {
-    setSelectedPrdtList(data, () =>
-      console.log("ckeck array selectedPrdtList: " + selectedPrdtList)
+    setSelectedPrdtCartIdList(data, () =>
+      console.log(
+        "ckeck array selectedPrdtCartIdList: " + selectedPrdtCartIdList
+      )
     );
   };
 
@@ -141,12 +131,14 @@ const MarketCartPage = () => {
       <MarketCartBuyButton
         paymentAmt={paymentAmt}
         deliAmt={deliAmt}
-        cartItemArray={selectedPrdtList}
+        cartItemArray={selectedPrdtCartIdList}
       />
       <MarketCartItemBox
-        cartItemArray={CART_ITEM_ARRAY_DUMMY}
+        // cartItemArray={CART_ITEM_ARRAY_DUMMY}
+        cartItemArray={cartData}
         totalPriceSetting={totalPriceSetting}
         selectedPrdtListSetting={selectedPrdtListSetting}
+        pageReRenderingAftRmvCartItem={pageReRenderingAftRmvCartItem}
       />
     </div>
   );

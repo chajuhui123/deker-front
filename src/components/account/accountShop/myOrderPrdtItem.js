@@ -17,7 +17,7 @@ function MyOrderPrdtItem(props) {
   const [isCheck, setIsCheck] = useState(false); // 상품이 장바구니 페이지에서 선택되었는 지
   const dispatch = useDispatch();
 
-  console.log("props.productName: " + props.productName);
+  // console.log("props.productName: " + props.productName);
 
   useEffect(() => {
     if (
@@ -34,8 +34,7 @@ function MyOrderPrdtItem(props) {
   const selectProductHandler = () => {
     setIsCheck(!isCheck);
     // 상품이 체크되어 있으면 결제할 상품 append, 체크 해제되면 결제할 상품에서 제외
-    console.log("상품 선택111111");
-    props.selectPrdtYN(isCheck, props.productId, props.orderPrice);
+    props.selectPrdtYN(isCheck, props.cartId, props.orderPrice);
   };
 
   const openModalEventHandler = () => {
