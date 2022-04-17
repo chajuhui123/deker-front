@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import classes from "./totalPaymentAmt.module.css";
 
 /**
@@ -9,15 +8,8 @@ import classes from "./totalPaymentAmt.module.css";
  */
 
 const TotalPaymentAmt = (props) => {
-  const [paymentAmt, setPaymentAmt] = useState(0);
-  const [deliAmt, setDeliAmt] = useState(0);
-
-  var ttlPaymentAmt = paymentAmt + deliAmt;
-
-  useEffect(() => {
-    setPaymentAmt(Number(props.paymentAmt));
-    setDeliAmt(Number(props.deliAmt));
-  }, [props.paymentAmt, props.deliAmt]);
+  // 총 지불 금액 계산
+  var ttlPaymentAmt = props.paymentAmt + props.deliAmt;
 
   return (
     <div>
@@ -27,7 +19,7 @@ const TotalPaymentAmt = (props) => {
           <textarea
             type="text"
             className={classes.paymentAmt}
-            value={paymentAmt.toLocaleString("ko-KR") + "원"}
+            value={props.paymentAmt.toLocaleString("ko-KR") + "원"}
             readOnly
             disabled
           />
@@ -39,7 +31,7 @@ const TotalPaymentAmt = (props) => {
           <textarea
             type="text"
             className={classes.paymentAmt}
-            value={deliAmt.toLocaleString("ko-KR") + "원"}
+            value={props.deliAmt.toLocaleString("ko-KR") + "원"}
             readOnly
             disabled
           />{" "}
