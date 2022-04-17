@@ -10,6 +10,7 @@ function MyReviewedList({ reviewedItems }) {
             <MyReviewItem
               key={index}
               id={index}
+              mktProductId={review.mktProductId}
               productImage={`${BASE_URL}${review.productImg}`}
               productName={review.productName}
               productOption={`${review.option1Name}:${review.option1DataName} / ${review.option2Name}:${review.option2DataName}`}

@@ -27,8 +27,6 @@ function NavigationBar() {
 
   const pathName = location.pathname.slice(1, location.pathname.length);
 
-  console.log(pathName);
-
   const mainNavMenuList = mainNavMenu.map((navItem, navItemIndex) => {
     return (
       <Link
@@ -54,7 +52,6 @@ function NavigationBar() {
   };
 
   const getSubMenuItems = (pathName) => {
-    console.log("PATHNAME", pathName);
     if (!!pathName.startsWith("community") || pathName === "")
       return subNavMenu.community;
     if (!!pathName.startsWith("market")) return subNavMenu.market;

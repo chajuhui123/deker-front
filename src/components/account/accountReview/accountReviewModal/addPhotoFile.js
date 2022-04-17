@@ -3,12 +3,13 @@ import classes from "./addPhotoFile.module.css";
 import { fileApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
 
-function AddPhotoFile() {
+function AddPhotoFile({ onChangeImageUrl }) {
   const dispatch = useDispatch();
   //파일 미리볼 url을 저장해줄 state
   const [fileImage, setFileImage] = useState("");
   // 파일 저장
   const saveFileImage = (e) => {
+    onChangeImageUrl(e.target.files[0]);
     setFileImage(URL.createObjectURL(e.target.files[0]));
     const formData = new FormData();
     formData.append("img", e.target.files[0]);
