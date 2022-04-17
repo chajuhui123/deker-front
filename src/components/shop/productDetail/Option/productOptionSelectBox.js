@@ -4,12 +4,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import noImg from "img/noImg.png";
 import CommBtn from "components/common/commBtn";
-import CommonPageTitle from "components/common/commPageTitle";
+import CommAlert from "components/common/commAlert";
 import SelectBoxOptionDiv from "./selectBoxOptionDiv";
 import ProductOptionSelectItem from "./productOptionSelectItem";
 import { postApi } from "api/fetch-api";
 import { modalAction } from "store/modal-slice";
-import CommAlert from "components/common/commAlert";
 import { useHistory } from "react-router-dom";
 
 function ProductOptionSelectBox({ productId, productDetailObj }) {
@@ -140,7 +139,8 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
     <div className={classes.productOptionSelectBox}>
       <img src={productImg || noImg} alt="상품이미지" />
       <div className={classes.optionSelectBox}>
-        <CommonPageTitle title={productName ?? ""} />
+        <p className={classes.productNameTitle}>{productName ?? ""}</p>
+        {/* <CommonPageTitle title={productName ?? ""} /> */}
         <div className={classes.buyItemInfoDiv}>
           <p>가격 </p>
           <p>{productPrice?.toLocaleString("ko-KR") ?? 0} 원</p>
@@ -185,14 +185,9 @@ function ProductOptionSelectBox({ productId, productDetailObj }) {
             btnText="장바구니"
             bgColor="white"
             txColor="#4242e2"
-            btnWidth="50%"
             fnClick={handleAddOptionsToCart}
           />
-          <CommBtn
-            btnText="바로구매"
-            btnWidth="50%"
-            fnClick={handleBuyNowOptions}
-          />
+          <CommBtn btnText="바로구매" fnClick={handleBuyNowOptions} />
         </div>
       </div>
     </div>
