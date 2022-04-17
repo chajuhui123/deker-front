@@ -13,6 +13,8 @@
   --border-color: #f0f0f0;
   --gray-font-color: #424242;
   --gray-hover-font-color: #999999;
+  --slider-width: 1200px;
+  --slider-height: 600px;
 }
 
 .h1 {
@@ -242,6 +244,11 @@ textarea {
   margin: 0;
   padding: 0;
   resize: none;
+}
+
+.slider {
+  width: var(--slider-width);
+  margin: 0 auto;
 }
 
 .content {

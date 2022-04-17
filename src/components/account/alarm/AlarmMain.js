@@ -28,7 +28,7 @@ const AlarmMain = (props) => {
   };
   useEffect(() => {
     // 내 알람 내역 조회
-    // dispatch(postApi("", null, fnCallback));
+    dispatch(postApi("mb/alarm", null, fnCallback));
   }, [dispatch]);
   return (
     <div className={classes.main}>
