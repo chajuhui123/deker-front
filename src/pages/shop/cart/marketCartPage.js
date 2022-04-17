@@ -128,27 +128,8 @@ const MarketCartPage = () => {
     }
   };
 
-  // 장바구니에서 구매하기 위해 선택한 상품 Back에 다시 전달
-  const fnSelectCartCallback = (res) => {
-    if (!!res) {
-      setSelectedPrdtList(res.data.cartIdArr);
-      // set + orderId
-      console.log("cardId: " + res.data.cartId);
-    } else {
-      // 비정상로직;
-      // alert("data error");
-    }
-  };
-
   const selectedPrdtListSetting = (data) => {
     setSelectedPrdtList(data);
-    dispatch(
-      postApi(
-        "mb/mkt/reg/checked-cart",
-        { cartIdArr: selectedPrdtList },
-        fnSelectCartCallback
-      )
-    );
   };
 
   return (
@@ -158,7 +139,7 @@ const MarketCartPage = () => {
       <MarketCartBuyButton
         paymentAmt={paymentAmt}
         deliAmt={deliAmt}
-        cartItemArray={CART_ITEM_ARRAY_DUMMY}
+        cartItemArray={selectedPrdtList}
       />
       <MarketCartItemBox
         cartItemArray={CART_ITEM_ARRAY_DUMMY}
