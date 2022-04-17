@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./communityDetailLike.module.css";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
@@ -10,15 +10,29 @@ function CommunityDetailLike({
   communityPostLikeCount,
 }) {
   const dispatch = useDispatch();
+  const [isLiked, setIsLiked] = useState(liked);
+
+  const [postLikeCnt, setPostLikeCnt] = useState(communityPostLikeCount);
+  console.log("postLikeCnt", isLiked, postLikeCnt);
 
   const handleLikePost = () => {
-    const postParam = liked ? "rmv" : "reg";
+    const postParam = isLiked ? "rmv" : "reg";
+    // const postParam = isLiked ? "rmv" : "reg";
     const ApiUrl = `mb/post/${postParam}/post-like`;
-    dispatch(postApi(ApiUrl, { communityId: communityPostId }, () => {}));
+    dispatch(
+      postApi(ApiUrl, { communityId: communityPostId }, () => {
+        setIsLiked((prevLike) => !prevLike);
+      })
+    );
   };
+
   return (
     <div className={classes.likeBtn} onClick={handleLikePost}>
-      {liked ? <BsHeartFill size={19} color={"red"} /> : <BsHeart size={19} />}
+      {isLiked ? (
+        <BsHeartFill size={19} color={"red"} />
+      ) : (
+        <BsHeart size={19} />
+      )}
       <span>{communityPostLikeCount}</span>
     </div>
   );
