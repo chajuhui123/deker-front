@@ -24,7 +24,7 @@ function MarketCartItemBox(props) {
       // 삭제
       setSelectedPrdtCartIdList(
         selectedPrdtCartIdList.filter(
-          (newselectedPrdtCartIdList) => selectedPrdtCartIdList !== cartId
+          (newselectedPrdtCartIdList) => newselectedPrdtCartIdList !== cartId
         )
       );
       setTotalPrice(totalPrice - orderPrice);

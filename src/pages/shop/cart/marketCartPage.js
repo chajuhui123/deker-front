@@ -27,7 +27,7 @@ const MarketCartPage = () => {
       // alert("data error");
     }
   };
-
+  // 장바구니에 선택한 상품 삭제하고 페이지 다시 rerendering
   const pageReRenderingAftRmvCartItem = () => {
     dispatch(postApi("mb/mkt/get/cart", {}, fnCallback));
   };
@@ -117,12 +117,11 @@ const MarketCartPage = () => {
   };
 
   const selectedPrdtListSetting = (data) => {
-    setSelectedPrdtCartIdList(data, () =>
-      console.log(
-        "ckeck array selectedPrdtCartIdList: " + selectedPrdtCartIdList
-      )
-    );
+    setSelectedPrdtCartIdList(data);
   };
+  useEffect(() => {
+    console.log("kwon debug selectedPrdtCartIdList: " + selectedPrdtCartIdList);
+  }, [selectedPrdtCartIdList]);
 
   return (
     <div>
@@ -134,7 +133,6 @@ const MarketCartPage = () => {
         cartItemArray={selectedPrdtCartIdList}
       />
       <MarketCartItemBox
-        // cartItemArray={CART_ITEM_ARRAY_DUMMY}
         cartItemArray={cartData}
         totalPriceSetting={totalPriceSetting}
         selectedPrdtListSetting={selectedPrdtListSetting}
