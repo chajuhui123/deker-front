@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductItem from "./productItem";
 import { postApi } from "api/fetch-api";
+import CommPageSemiTitle from "components/common/commPageSemiTitle";
+import CommonPageTitle from "components/common/commPageTitle";
 
 const MarketRecentlyViewPage = () => {
   const dispatch = useDispatch();
@@ -11,8 +13,7 @@ const MarketRecentlyViewPage = () => {
 
   const fnRecentlyViewCallback = (res) => {
     if (!!res) {
-      // JavaNullPointer
-      console.log("recentlyViewItems", res);
+      setRecentlyViewItems(res.data);
     }
   };
 
@@ -25,10 +26,29 @@ const MarketRecentlyViewPage = () => {
       )
     );
   }, [dispatch, isLoggedIn]);
+
   return (
-    <ul>
-      <li></li>
-    </ul>
+    <>
+      <CommonPageTitle title="최근 본 상품" />
+      {/* <ul>
+        {recentlyViewItems.map((item) => {
+          <li>
+            <ProductItem
+              key={item.mktProductId}
+              id={item.mktProductId}
+              productImg={item.productImg}
+              productNm={item.productName}
+              productPrice={item.productPrice}
+              productBrand={item.productBrand}
+              departure={item.departure}
+              plusId={item.plusId}
+              productClickHandler={item.productClickHandler}
+              productInfoHandler={item.productInfoHandler}
+            />
+          </li>;
+        })}
+      </ul> */}
+    </>
   );
 };
 export default MarketRecentlyViewPage;
