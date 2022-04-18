@@ -8,10 +8,11 @@ import { useDispatch } from "react-redux";
 
 const MarketCartPage = () => {
   const dispatch = useDispatch();
+
   const [paymentAmt, setPaymentAmt] = useState(0);
   const [deliAmt, setDeliAmt] = useState(0);
   const [cartData, setCartData] = useState(null);
-  const [selectedPrdtList, setSelectedPrdtList] = useState(null);
+  const [selectedPrdtCartIdList, setSelectedPrdtCartIdList] = useState(null);
 
   // 처음 페이지를 로딩 시, 장바구니에 있는 상품 목록 받아오기
   useEffect(() => {
@@ -20,14 +21,19 @@ const MarketCartPage = () => {
 
   const fnCallback = (res) => {
     if (!!res) {
-      setCartData(res.data);
-      console.log("cardId: " + cartData.cartId);
+      setCartData(res.data.productCartItems);
     } else {
       // 비정상로직;
-      // alert("data error");
+      alert("data error");
     }
   };
+  // 장바구니에 선택한 상품 삭제하고 페이지 다시 rerendering
+  const pageReRenderingAftRmvCartItem = () => {
+    window.location.replace("/market/cart");
+    // dispatch(postApi("mb/mkt/get/cart", {}, fnCallback));
+  };
 
+  /*
   // 장바구니에 있는 아이템
   const CART_ITEM_ARRAY_DUMMY = [
     {
@@ -96,25 +102,8 @@ const MarketCartPage = () => {
       },
       totalPrice: 5000, // 100000+8900 (number)},
     },
-    // {
-    //   productNo: 1,
-    //   optionNo: 1,
-    //   productImg: null,
-    //   productName: "상품명 테스트 1",
-    //   productSelectedOption: "옵션 테스트 1",
-    //   maxQuantity: 3,
-    //   productFee: 30000,
-    // },
-    // {
-    //   productNo: 2,
-    //   optionNo: 2,
-    //   productImg: null,
-    //   productName: "상품명 테스트 2",
-    //   productSelectedOption: "옵션 테스트 2",
-    //   maxQuantity: 3,
-    //   productFee: 30000,
-    // },
   ];
+*/
 
   const totalPriceSetting = (data) => {
     console.log(data);
@@ -128,28 +117,12 @@ const MarketCartPage = () => {
     }
   };
 
-  // 장바구니에서 구매하기 위해 선택한 상품 Back에 다시 전달
-  const fnSelectCartCallback = (res) => {
-    if (!!res) {
-      setSelectedPrdtList(res.data.cartIdArr);
-      // set + orderId
-      console.log("cardId: " + res.data.cartId);
-    } else {
-      // 비정상로직;
-      // alert("data error");
-    }
-  };
-
   const selectedPrdtListSetting = (data) => {
-    setSelectedPrdtList(data);
-    dispatch(
-      postApi(
-        "mb/mkt/reg/checked-cart",
-        { cartIdArr: selectedPrdtList },
-        fnSelectCartCallback
-      )
-    );
+    setSelectedPrdtCartIdList(data);
   };
+  useEffect(() => {
+    console.log("kwon debug selectedPrdtCartIdList: " + selectedPrdtCartIdList);
+  }, [selectedPrdtCartIdList, paymentAmt, deliAmt, cartData]);
 
   return (
     <div>
@@ -158,12 +131,13 @@ const MarketCartPage = () => {
       <MarketCartBuyButton
         paymentAmt={paymentAmt}
         deliAmt={deliAmt}
-        cartItemArray={CART_ITEM_ARRAY_DUMMY}
+        cartItemArray={selectedPrdtCartIdList}
       />
       <MarketCartItemBox
-        cartItemArray={CART_ITEM_ARRAY_DUMMY}
+        cartItemArray={cartData}
         totalPriceSetting={totalPriceSetting}
         selectedPrdtListSetting={selectedPrdtListSetting}
+        pageReRenderingAftRmvCartItem={pageReRenderingAftRmvCartItem}
       />
     </div>
   );

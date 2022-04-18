@@ -1,12 +1,12 @@
 .main {
   width: 100%;
-  border: 0.5px rgb(145, 145, 145) dotted;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
 }
 
 .contents {
   max-width: 100%;
   padding: 15px;
-  border: 0.5px rgb(145, 145, 145) dotted;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
 }
 
 .content {
@@ -17,7 +17,7 @@
   line-height: 18px;
   padding: 20px;
   background: #d5deff;
-  border: 0.5px rgb(145, 145, 145) dotted;
+  /* border: 0.5px rgb(145, 145, 145) dotted; */
 }
 
 .row {

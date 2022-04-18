@@ -10,8 +10,18 @@ import { userAction } from "store/user-slice";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
 import RouteComponent from "Route";
+import {
+  useHistory,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
+import CommunityCrousel from "components/community/main/carousel/CommunityCarousel";
+import slide1 from "img/main/slide1.jpg";
+import slide2 from "img/main/slide2.jpg";
+import slide3 from "img/main/slide3.jpg";
+import slide4 from "img/main/slide4.jpg";
 
 function App() {
+  const mainSlideImage = [slide1, slide2, slide3, slide4];
   const isOpen = useSelector((state) => state.modal.isOpen);
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
@@ -19,6 +29,8 @@ function App() {
   const top = useSelector((state) => state.modal.top);
   const left = useSelector((state) => state.modal.left);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const pathName = location.pathname === "/";
 
   const spinnerStyle = {
     content: {
@@ -99,6 +111,11 @@ function App() {
         </div>
       </ModalPopup>
       <NavigationBar />
+      {pathName && (
+        <div className={classes.slider}>
+          <CommunityCrousel items={mainSlideImage} autoPlay={true} />
+        </div>
+      )}
       <div className={classes.content}>
         <RouteComponent />
       </div>

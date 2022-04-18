@@ -126,7 +126,7 @@ function RouteComponent() {
         <CommunityMainPage />
       </Route>
       <Route
-        path="/community/semi/:type"
+        path="/community/:type"
         exact
         component={CommunitySemiPage}
       ></Route>

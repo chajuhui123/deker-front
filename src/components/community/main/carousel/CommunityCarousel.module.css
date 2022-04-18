@@ -1,0 +1,44 @@
+.main {
+  position: relative;
+  width: 100%;
+  min-width: var(--slider-width);
+  min-height: var(--slider-height);
+  max-width: var(--slider-width);
+  max-height: var(--slider-height);
+  margin-bottom: 100px;
+  overflow: hidden;
+}
+
+.contents {
+  position: relative;
+  transition: transform 1s;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.item img {
+  min-width: var(--slider-width);
+  min-height: var(--slider-height);
+  max-width: var(--slider-width);
+  max-height: var(--slider-height);
+  object-fit: fill;
+}
+
+.prevBtn {
+  top: calc(50%);
+  left: 5px;
+  position: absolute;
+  color: var(--main-color-500);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.nextBtn {
+  top: calc(50%);
+  right: 5px;
+  position: absolute;
+  color: var(--main-color-500);
+  cursor: pointer;
+  z-index: 1;
+}

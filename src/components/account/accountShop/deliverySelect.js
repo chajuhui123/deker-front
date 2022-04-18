@@ -49,9 +49,10 @@ function DeliverySelect(props) {
     console.log("deleteDeliveryHandler :: ", deliCode);
     dispatch(postApi("mb/mkt/rmv/my-address", { addId: deliCode }, fnCallback));
   };
-  const selectDeliveryHandler = (deliCode) => {
-    console.log("selectDeliveryHandler :: ", deliCode);
-    alert("개발 중");
+  const selectDeliveryHandler = (param) => {
+    console.log("selectDeliveryHandler :: ", param);
+    props.deliveryAddrSelectHandler(param);
+    dispatch(modalAction.modalPopup({ isOpen: false }));
   };
   const addDeliveryHandler = () => {
     dispatch(

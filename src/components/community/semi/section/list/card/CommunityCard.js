@@ -53,7 +53,7 @@ const CommunityCard = (props) => {
           </div>
         </div>
       </div>
-      {props.type === "rank" && (
+      {props.type === "photo" && (
         <aside className={classes.likeArea}>
           <button type="button" onClick={likeHandler}>
             {data.liked ? (

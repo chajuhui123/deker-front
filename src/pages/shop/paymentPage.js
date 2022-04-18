@@ -20,12 +20,12 @@ const PaymentPage = (props) => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-  const departureFrom = location.state.departure; // 어디서 호출되었는지
-  const paymentAmt = location.state.paymentAmt; // 주문상품 총 금액
-  const deliAmt = location.state.deliAmt; // 배송비
-  const orderId = location.state.orderId; // 주문번호 (productOptionSelectBox에서 넘어오는 값)
-  const productId = location.state.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
-  const buynowDtl = location.state.buynowDtl; // 상품 옵션 (바로구매)
+  const departureFrom = location.state?.departure; // 어디서 호출되었는지
+  const paymentAmt = location.state?.paymentAmt; // 주문상품 총 금액
+  const deliAmt = location.state?.deliAmt; // 배송비
+  const orderId = location.state?.orderId; // 주문번호 (productOptionSelectBox에서 넘어오는 값)
+  const productId = location.state?.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
+  const buynowDtl = location.state?.buynowDtl; // 상품 옵션 (바로구매)
 
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
@@ -33,6 +33,7 @@ const PaymentPage = (props) => {
   const [telNo, setTelNo] = useState("");
   const [rcvNm, setRcvNm] = useState("");
   const [rcvTelNo, setRcvTelNo] = useState("");
+  const [rcvZipCode, setRcvZipCode] = useState("");
   const [rcvAddr, setRcvAddr] = useState("");
   const [deliMemo, setDeliMemo] = useState("");
 
@@ -52,7 +53,7 @@ const PaymentPage = (props) => {
     setRcvTelNo(e.target.value);
   };
   const rcvAddrInputHandler = (e) => {
-    setRcvAddr(e.target.value);
+    setRcvZipCode(e.target.value);
   };
   const deliMemoInputHandler = (e) => {
     setDeliMemo(e.target.value);
@@ -77,11 +78,22 @@ const PaymentPage = (props) => {
     setRcvTelNo(telNo);
   };
 
+  const deliveryAddrSelectHandler = (deliveryInfo) => {
+    setRcvNm(deliveryInfo.userNm);
+    setRcvTelNo(deliveryInfo.userPn);
+    setRcvZipCode(deliveryInfo.zipCode);
+    setRcvAddr(deliveryInfo.addr);
+  };
+
   const deliverySelectHandler = () => {
     dispatch(
       modalAction.modalPopup({
         isOpen: true,
-        cont: <DeliverySelect />,
+        cont: (
+          <DeliverySelect
+            deliveryAddrSelectHandler={deliveryAddrSelectHandler}
+          />
+        ),
       })
     );
   };
@@ -92,15 +104,6 @@ const PaymentPage = (props) => {
     // console.log(presentUserId);
   };
 
-  const telhead = useMemo(
-    () => [
-      { value: "010", label: "010" },
-      { value: "011", label: "011" },
-      { value: "02", label: "02" },
-      { value: "등등", label: "등등" },
-    ],
-    []
-  );
   const emailD = useMemo(
     () => [
       { value: "emailD1", label: "gamil.com" },
@@ -263,15 +266,12 @@ const PaymentPage = (props) => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
-            <div className={classes.select}>
-              <Select options={telhead} defaultValue={telhead[0]} />
-            </div>
             <textarea
               className={classes.inputArea}
               type="text"
               value={telNo}
               // maxLength="100"
-              placeholder="남은 연락처를 입력해주세요."
+              placeholder="전화번호를 입력해주세요."
               onChange={telNoInputHandler}
             />
           </div>
@@ -297,15 +297,12 @@ const PaymentPage = (props) => {
           </div>
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
-            <div className={classes.select}>
-              <Select options={telhead} defaultValue={telhead[0]} />
-            </div>
             <textarea
               className={classes.inputArea}
               type="text"
               value={rcvTelNo}
               // maxLength="100"
-              placeholder="남은 연락처를 입력해주세요."
+              placeholder="전화번호를 입력해주세요."
               onChange={rcvTelNoInputHandler}
             />
           </div>
@@ -326,7 +323,7 @@ const PaymentPage = (props) => {
               <textarea
                 className={classes.inputArea3}
                 type="text"
-                value={rcvAddr}
+                value={rcvZipCode}
                 placeholder="우편번호"
                 onChange={rcvAddrInputHandler}
                 readOnly
