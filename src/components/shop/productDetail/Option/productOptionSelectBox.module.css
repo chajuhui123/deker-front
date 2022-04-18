@@ -18,18 +18,22 @@
   padding: 30px;
   width: 50%;
   margin-left: 20px;
+  height: 100%;
+}
+
+.productNameTitle {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
 }
 
 .selectedOptionDiv {
-  /* min-height: 120px; */
   max-height: 120px;
   overflow-y: auto;
 }
 
 .btnBox {
-  margin-top: 30px;
   display: flex;
-  justify-content: center;
 }
 
 .btnBox div {

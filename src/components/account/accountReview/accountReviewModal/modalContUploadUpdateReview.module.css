@@ -1,8 +1,20 @@
 .modalContReview {
   width: 680px;
-  /* line-height: 827px; */
   padding: 33px;
   background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.productInfoBox {
+  margin: 20px 0;
+  display: flex;
+}
+
+.productInfoBox img {
+  width: 180px;
+}
+
+.productInfoBox p {
+  padding: 4px 6px;
 }
 
 .title {

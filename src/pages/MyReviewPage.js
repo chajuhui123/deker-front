@@ -1,50 +1,40 @@
-import MyReviewList from "components/account/accountReview/myReviewList";
+import { postApi } from "api/fetch-api";
+import MyReviewableList from "components/account/accountReview/myReviewableList";
+import MyReviewedList from "components/account/accountReview/myReviewedList";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const MyReviewPage = () => {
-  const DUMMY_DATA_UNREVIEWED = [
-    {
-      id: 1,
-      product_image:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
-    },
-    {
-      id: 1,
-      product_image:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
-    },
-  ];
+  const dispatch = useDispatch();
 
-  const DUMMY_DATA_REVIEWED = [
-    {
-      id: 1,
-      product_image:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
-    },
-    {
-      id: 1,
-      product_image:
-        "https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/159719442642625646.jpg?gif=1&w=1280&h=1280&c=c",
-      product_brand: "시디즈",
-      product_name: "T20 TAB+ TNA200HF 메쉬의자 2types",
-      product_option: "블랙",
-    },
-  ];
+  const [reviewableItems, setReviewableItems] = useState([]);
+  const [reviewedItems, setReviewedItems] = useState([]);
+
+  const fnReviewableItemsCallback = (res) => {
+    if (!!res) {
+      setReviewableItems(res?.data);
+    }
+  };
+
+  const fnReviewedItemsCallback = (res) => {
+    if (!!res) {
+      setReviewedItems(res?.data);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(
+      postApi("mb/mkt/get/reviewable-items", {}, fnReviewableItemsCallback)
+    );
+    dispatch(postApi("mb/mkt/get/reviewed-items", {}, fnReviewedItemsCallback));
+  }, [dispatch]);
 
   return (
     <div style={{ width: "750px", margin: "auto" }}>
       <h1>작성 가능한 리뷰</h1>
-      <MyReviewList reviews={DUMMY_DATA_UNREVIEWED} />
+      <MyReviewableList reviewableItems={reviewableItems} />
       <h1 style={{ marginTop: "70px" }}>나의 리뷰</h1>
-      <MyReviewList reviews={DUMMY_DATA_REVIEWED} />
+      <MyReviewedList reviewedItems={reviewedItems} />
     </div>
   );
 };

@@ -14,8 +14,8 @@ function WritingReview({ reviewContent, onChangeReviewContent }) {
         required
         id="name"
         name="name"
-        minlength="10"
-        maxlength="100"
+        minLength="10"
+        maxLength="100"
         value={reviewContent}
         onChange={onChangeReviewContent}
       />

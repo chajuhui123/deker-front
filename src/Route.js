@@ -27,6 +27,7 @@ import AccountMyPage from "pages/account/accountMyPage";
 import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
 import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
 import AlarmMain from "components/account/alarm/AlarmMain";
+import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -145,6 +146,9 @@ function RouteComponent() {
       </Route>
       <Route path="/market/cart" exact>
         <MarketCartPage />
+      </Route>
+      <Route path="/market/view" exact>
+        <MarketRecentlyViewPage />
       </Route>
       <Route
         path="/market/storeSortPage/:sortId"

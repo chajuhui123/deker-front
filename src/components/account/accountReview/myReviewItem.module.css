@@ -3,8 +3,7 @@
   margin-inline: auto;
   margin-block: 20px;
   padding: 20px;
-  width: 750px;
-  /* border: var(--border); */
+  width: 100%;
   border-radius: var(--border-radius);
   box-shadow: rgb(0 0 0 / 6%) 0px 10px 40px 0px;
 }
@@ -16,7 +15,7 @@
 }
 
 .btn_info_box {
-  width: 100%;
+  width: calc(100% - 120px);
   display: inline-block;
 }
 
@@ -25,10 +24,12 @@
   float: left;
 }
 
-.product_btn {
-  float: right;
+.product_info p {
+  padding: 5px 10px;
 }
-.product_btn button {
+
+.product_reviewable_btn button {
+  float: right;
   cursor: pointer;
   width: 140px;
   height: 50px;
@@ -37,4 +38,16 @@
   border-radius: var(--border-radius);
   color: white;
   background-color: var(--main_color);
+}
+
+.product_reviewed_btn button {
+  float: right;
+  cursor: pointer;
+  width: 140px;
+  height: 50px;
+  margin: 5px;
+  border: 1px solid #4242e2;
+  border-radius: var(--border-radius);
+  color: var(--main_color);
+  background-color: white;
 }
