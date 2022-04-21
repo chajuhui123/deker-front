@@ -23,10 +23,36 @@ const PaymentPage = (props) => {
   const departureFrom = location.state?.departure; // 어디서 호출되었는지
   const paymentAmt = location.state?.paymentAmt; // 주문상품 총 금액
   const deliAmt = location.state?.deliAmt; // 배송비
-  const orderId = location.state?.orderId; // 주문번호 (productOptionSelectBox에서 넘어오는 값)
+  const orderId = location.state?.orderId; // 주문번호 (productOptionSelectBox, 장바구니에서 넘어오는 값)
   const productId = location.state?.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
   const buynowDtl = location.state?.buynowDtl; // 상품 옵션 (바로구매)
+  // kwon back 준비되면 시작
+  const cartItemArray = location.state?.cartItemArray; // 장바구니에서 넘어오는 데이터
+  const productCartItems = location.state?.productCartItems; // 장바구니에서 넘어오는 데이터
 
+  /*
+  // 장바구니에 담겨있는 상품 중 선택한 상품만 골라내기
+  const [cartData, setCartData] = useState(null);
+  useEffect(() => {
+    dispatch(postApi("mb/mkt/get/cart", {}, fnCallback));
+  }, [dispatch]);
+
+  const fnCallback = (res) => {
+    console.log("cartIdArr: " + cartItemArray);
+    if (!!res) {
+      setCartData(res.data.productCartItems);
+      cartItemArray?.map((selectedCartIdArr) => {
+        setCartData(
+          cartData.filter((cartData) => cartData.cartId !== selectedCartIdArr)
+        );
+      });
+      console.log("kwon debug: " + JSON.stringify(cartData));
+    } else {
+      // 비정상로직;
+      alert("data error");
+    }
+  };
+*/
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
   const [email, setEmail] = useState("");
@@ -101,7 +127,7 @@ const PaymentPage = (props) => {
   // 선물할 계정 받아옴
   const presentUserIdHandler = (data) => {
     setPresentUserId(data);
-    // console.log(presentUserId);
+    console.log(presentUserId);
   };
 
   const emailD = useMemo(
@@ -388,7 +414,16 @@ const PaymentPage = (props) => {
         </div>
       </div>
       {/* 결제 데이터 넘겨야 함 */}
-      <PayBtn paymentAmt={paymentAmt} deliAmt={deliAmt} />
+      <PayBtn
+        paymentAmt={paymentAmt}
+        deliAmt={deliAmt}
+        merchant_uid={orderId}
+        productName={productName}
+        orderQuantity={buynowDtl?.orderQuantity}
+        telNo={telNo}
+        rcvZipCode={rcvZipCode}
+        rcvAddr={rcvAddr}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { postApi } from "api/fetch-api";
 import CommBtn from "components/common/commBtn";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./marketCartBuyButton.module.css";
@@ -8,22 +8,21 @@ import classes from "./marketCartBuyButton.module.css";
 function MarketCartBuyButton(props) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [orderId, setOrderId] = useState(null);
-  const [cartIdArr, setCartIdArr] = useState(null);
+  // const [orderId, setOrderId] = useState(null);
+  // const [cartIdArr, setCartIdArr] = useState(null);
 
   // 장바구니에서 구매하기 위해 선택한 상품 Back에 다시 전달
   const fnSelectCartCallback = (res) => {
     if (!!res) {
-      setOrderId(res.data.orderId);
-      setCartIdArr(res.data.cartIdArr);
-
+      // 결제페이지 이동
       history.push({
         pathname: "/payment",
         state: {
           paymentAmt: props.paymentAmt,
           deliAmt: props.deliAmt,
-          cartItemArray: cartIdArr,
-          orderId: orderId,
+          cartItemArray: res.data.cartIdArr,
+          orderId: res.data.orderId,
+          // productCartItems: res.data.productCartItems, back준비되면
         },
       });
     } else {
