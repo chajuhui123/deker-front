@@ -414,7 +414,16 @@ const PaymentPage = (props) => {
         </div>
       </div>
       {/* 결제 데이터 넘겨야 함 */}
-      <PayBtn paymentAmt={paymentAmt} deliAmt={deliAmt} />
+      <PayBtn
+        paymentAmt={paymentAmt}
+        deliAmt={deliAmt}
+        merchant_uid={orderId}
+        productName={productName}
+        orderQuantity={buynowDtl?.orderQuantity}
+        telNo={telNo}
+        rcvZipCode={rcvZipCode}
+        rcvAddr={rcvAddr}
+      />
     </div>
   );
 };
