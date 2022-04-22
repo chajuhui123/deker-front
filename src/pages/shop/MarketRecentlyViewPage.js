@@ -9,11 +9,12 @@ const MarketRecentlyViewPage = () => {
   const dispatch = useDispatch();
   const [recentlyViewItems, setRecentlyViewItems] = useState();
 
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
-  const fnRecentlyViewCallback = (res) => {
+  const fnRecentlyViewCallback = res => {
     if (!!res) {
       setRecentlyViewItems(res.data);
+      console.log("최근 본 상품 목록 :: ", res.data);
     }
   };
 
