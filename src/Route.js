@@ -28,6 +28,7 @@ import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
 import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
 import AlarmMain from "components/account/alarm/AlarmMain";
 import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
+import NotFound from "pages/common/NotFound";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -174,6 +175,7 @@ function RouteComponent() {
       <Route path="/market/recently" exact>
         <RecentlyProduct />
       </Route>
+      <Route component={NotFound} />
     </Switch>
   );
 }
