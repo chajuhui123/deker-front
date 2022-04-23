@@ -22,14 +22,14 @@ function PayBtn(props) {
       // param
       pg: "html5_inicis", // PG사
       pay_method: "card", //결제수단
-      merchant_uid: "ORD20180131-0000032", // 주문번호
-      name: "노르웨이 회전 의자", // 주문명
+      merchant_uid: props.merchant_uid, //"ORD20180131-0000032", // 주문번호
+      name: props.productName + " 외 " + (props.orderQuantity - 1) + "개", // 주문명
       amount: props.paymentAmt + props.deliAmt, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
       buyer_name: "홍길동", // 구매자 이름
-      buyer_tel: "010-4242-4242", // 구매자 전화번호
-      buyer_addr: "서울특별시 강남구 신사동", // 구매자 주소
-      buyer_postcode: "01181", // 구매자 우편번호
+      buyer_tel: props.telNo, // 구매자 전화번호
+      buyer_addr: props.rcvAddr, // 구매자 주소
+      buyer_postcode: props.rcvZipCode, // 구매자 우편번호
     };
 
     /* 4. 결제창 호출 */
