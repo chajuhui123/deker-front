@@ -27,6 +27,7 @@ export function postApi(action, data, callback, spinner) {
         Authorization: token,
       },
       body: JSON.stringify(data),
+      credentials: "include",
     })
       .then((res) => {
         dispatch(spinnerAction.complete());
