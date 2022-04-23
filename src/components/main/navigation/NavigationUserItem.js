@@ -12,7 +12,6 @@ function NavigationUserItem({ clickOnMenu }) {
   };
   return (
     <>
-      {/* 추후, 로그인 정보 불러와서 조건 걸 예정 */}
       {!isLoggedIn && (
         <li className={classes.navItem}>
           <Link to="/signup" className={classes.navLink} onClick={clickOnMenu}>
