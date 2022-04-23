@@ -10,6 +10,8 @@ import CommunityDetailManagementPost from "components/community/communityDetail/
 import { postApi } from "api/fetch-api";
 import { useDispatch, useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
+import { modalAction } from "store/modal-slice";
+import CommAlert from "components/common/commAlert";
 
 const CommunityDetailPage = ({ match }) => {
   const dispatch = useDispatch();
@@ -17,6 +19,8 @@ const CommunityDetailPage = ({ match }) => {
   const [communityPostObj, setCommunityPostObj] = useState({});
   const [communitySelectedProductArr, setCommunitySelectedProductArr] =
     useState([]);
+  const [isLiked, setIsLiked] = useState(false);
+  const [postLikeCnt, setPostLikeCnt] = useState(0);
   const { communityPostId } = match.params;
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -32,10 +36,46 @@ const CommunityDetailPage = ({ match }) => {
         moodCode: communityPostData?.moodCode,
         communityTags: communityPostData?.communityTags, //array
         communityPostIsUserWrtitten: res?.data?.communityPostIsUserWrtitten,
-        liked: communityPostData?.liked,
-        communityPostLikeCount: communityPostData?.communityPostLikeCount,
       });
+      setIsLiked(communityPostData?.liked);
+      setPostLikeCnt(communityPostData?.communityPostLikeCount);
       setCommunitySelectedProductArr(res?.data?.communityPostSelectedProduct); // Array
+    }
+  };
+
+  const fnCloseModal = () => {
+    dispatch(modalAction.modalPopup({ isOpen: false }));
+  };
+
+  const fnLikeCallback = (res) => {
+    if (res?.responseCode === "200") {
+      res.message.includes("취소")
+        ? setPostLikeCnt((prev) => prev - 1)
+        : setPostLikeCnt((prev) => prev + 1);
+      setIsLiked((prevLike) => !prevLike);
+    }
+  };
+
+  const handleLike = () => {
+    if (isLoggedIn) {
+      const postParam = isLiked ? "rmv" : "reg";
+      const ApiUrl = `mb/post/${postParam}/post-like`;
+      dispatch(
+        postApi(ApiUrl, { communityId: communityPostId }, fnLikeCallback)
+      );
+    } else {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: (
+            <CommAlert
+              title="안내"
+              message="로그인이 필요한 서비스입니다."
+              fnClick={fnCloseModal}
+            />
+          ),
+        })
+      );
     }
   };
 
@@ -65,8 +105,9 @@ const CommunityDetailPage = ({ match }) => {
       <div className={classes.managementDiv}>
         <CommunityDetailLike
           communityPostId={communityPostId}
-          liked={communityPostObj?.liked}
-          communityPostLikeCount={communityPostObj?.communityPostLikeCount}
+          isLiked={isLiked}
+          postLikeCnt={postLikeCnt}
+          handleLike={handleLike}
         />
         {communityPostObj?.communityPostIsUserWrtitten && (
           <CommunityDetailManagementPost communityPostId={communityPostId} />
