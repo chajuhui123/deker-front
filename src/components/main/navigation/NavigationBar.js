@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { RiShoppingBasketLine } from "react-icons/ri";
-import { BiGift } from "react-icons/bi";
 import { IoIosAddCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
 import NavWrite from "./NavWrite";
@@ -71,6 +70,7 @@ function NavigationBar() {
   };
 
   useEffect(() => {
+    setIsMoreMenu(false);
     const navbarGetUrl = isLoggedIn
       ? "mb/cmm/get/nav-menu"
       : "nmb/cmm/get/nav-menu";
@@ -91,13 +91,14 @@ function NavigationBar() {
           {!!isLoggedIn && (
             <>
               <NavWrite />
-              <BiGift
+              {/* 선물하기 기능 업데이트 예정 */}
+              {/* <BiGift
                 className={classes.menuIcon}
                 size={25}
                 onClick={() => {
                   history.push("/mypresent");
                 }}
-              />
+              /> */}
               <RiShoppingBasketLine
                 className={classes.menuIcon}
                 size={25}
