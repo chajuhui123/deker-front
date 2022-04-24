@@ -10,10 +10,7 @@ import { userAction } from "store/user-slice";
 import LoadingSpinner from "components/common/LoadingSpinner";
 import { spinnerAction } from "store/spinner-slice";
 import RouteComponent from "Route";
-import {
-  useHistory,
-  useLocation,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import CommunityCrousel from "components/community/main/carousel/CommunityCarousel";
 import slide1 from "img/main/slide1.jpg";
 import slide2 from "img/main/slide2.jpg";
