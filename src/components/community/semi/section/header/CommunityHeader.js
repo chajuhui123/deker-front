@@ -10,22 +10,22 @@ const CommunityHeader = (props) => {
         <>
           <CommPageSemiTitle
             semiTitle={
-              type === "photo"
+              type === "rank"
                 ? "오늘의 인기 사진"
-                : type === "following"
-                ? "팔로윙"
+                : type === "follow"
+                ? "팔로잉"
                 : "맞춤"
             }
           />
-          <a href={`community/${type}`}>더보기</a>
+          <a href={`community/semi/${type}`}>더보기</a>
         </>
       ) : (
         <CommonPageTitle
           title={
-            type === "photo"
+            type === "rank"
               ? "오늘의 인기 사진"
-              : type === "following"
-              ? "팔로윙"
+              : type === "follow"
+              ? "팔로잉"
               : "맞춤"
           }
         />

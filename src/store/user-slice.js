@@ -23,6 +23,9 @@ const userSlice = createSlice({
       state.token = "";
       state.isReady = true;
     },
+    onLoad: (state) => {
+      state.isReady = true;
+    },
   },
 });
 

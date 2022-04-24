@@ -7,6 +7,13 @@ import { useInView } from "react-intersection-observer";
 import { modalAction } from "store/modal-slice";
 import CommAlert from "components/common/commAlert";
 
+// TODO : 좋아요나 팔로우 시 화면 재조회 부분 수정 해야함
+// 현재는 전체 재조회 이지만 현재 보이는 영역만 재 조회해서 list에 replace 하는 방식으로 하면 될듯 함
+// 1. 좋아요 누름
+// 2. 현재 화면 위치 확인
+// 3. 화면에 보여지는 게시글 번호 목록 생성
+// 4. 게시글 목록만 재 조회
+// 5. setState filter replace 함
 const CommunitySemiPage = (props) => {
   const { params } = props.match;
   const type = params.type;
@@ -19,7 +26,7 @@ const CommunitySemiPage = (props) => {
   const [isInit, setIsInit] = useState(true);
   const [ref, inView] = useInView();
 
-  /* 팔로윙 */
+  /* 팔로잉 */
   const followingHandler = (userId, followingCheck) => {
     const data = {
       userId,
@@ -77,7 +84,6 @@ const CommunitySemiPage = (props) => {
 
   /* 데이터 조회 */
   const fnGetContents = useCallback(() => {
-    console.log("fnGetContents :: isReady :: ", isReady);
     if (isReady) {
       const url = isLoggedIn ? "mb/post/get/more" : "nmb/post/get/more";
       const param = {
@@ -86,14 +92,6 @@ const CommunitySemiPage = (props) => {
       };
       dispatch(postApi(url, param, fnCallback));
     }
-    // else {
-    //   const url = "nmb/post/get/more";
-    //   const param = {
-    //     type,
-    //     currentPageNo,
-    //   };
-    //   dispatch(postApi(url, param, fnCallback));
-    // }
   }, [currentPageNo, dispatch, isLoggedIn, isReady, type]);
   const fnCallback = (res) => {
     console.log("CommunitySemiPage :: res :: ", res);

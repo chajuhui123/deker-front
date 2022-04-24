@@ -6,6 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { communityAction } from "store/community-slice";
 import { BASE_URL } from "module/common-module";
 
+// TODO
+// 1. 이미지 삭제 버튼
+// 2. 상품 삭제 버튼
+// 3. 상품 목록 영역
+// 4. 이미지 다중으로 변경 (목록까지)
 function ImageArea(props) {
   const dispatch = useDispatch();
   const pointArray = useSelector(

@@ -15,7 +15,7 @@ function ProductList(props) {
   }
 
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       {props.products?.length ? (
         <ul className={cssClass.productListArea}>
           {props.products.map((product) => (

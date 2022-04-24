@@ -47,13 +47,13 @@ const CommunityCard = (props) => {
                 </div>
               ) : (
                 <div className={classes.unFollowButton} onClick={followHandler}>
-                  팔로윙
+                  팔로잉
                 </div>
               ))}
           </div>
         </div>
       </div>
-      {props.type === "photo" && (
+      {props.type === "rank" && (
         <aside className={classes.likeArea}>
           <button type="button" onClick={likeHandler}>
             {data.liked ? (
