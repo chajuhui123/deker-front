@@ -29,6 +29,7 @@
   height: 30px;
   max-width: 30px;
   max-height: 30px;
+  border-radius: 50%;
 }
 
 .userInfo p {
