@@ -71,6 +71,8 @@ function App() {
         const jwtToken = localStorage.getItem("token");
         dispatch(userAction.login({ jwtToken }));
       }
+    } else {
+      dispatch(userAction.onLoad());
     }
   }, [dispatch]);
 

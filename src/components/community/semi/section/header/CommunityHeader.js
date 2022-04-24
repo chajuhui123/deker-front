@@ -17,7 +17,7 @@ const CommunityHeader = (props) => {
                 : "맞춤"
             }
           />
-          <a href={`community/${type}`}>더보기</a>
+          <a href={`community/semi/${type}`}>더보기</a>
         </>
       ) : (
         <CommonPageTitle
