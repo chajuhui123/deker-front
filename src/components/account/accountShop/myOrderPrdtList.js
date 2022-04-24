@@ -10,9 +10,9 @@ function MyOrderPrdtList(props) {
             <li className={classes.productList}>
               {props.departure !== "productListToPay" && (
                 <div className={classes.orderNumber}>
-                  <div>{orderProduct.orderId}</div>
+                  {/* <div>{orderProduct.orderId}</div>
                   <div className={classes.d}>{` | `}</div>
-                  <div>{orderProduct.stringDt}</div>
+                  <div>{orderProduct.stringDt}</div> */}
                 </div>
               )}
               <MyOrderPrdtItem

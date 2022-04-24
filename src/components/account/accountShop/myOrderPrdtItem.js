@@ -10,14 +10,11 @@ import CommBtn from "components/common/commBtn";
 import { useEffect, useState } from "react";
 
 function MyOrderPrdtItem(props) {
-  // console.log(props.option1DataNm + props.productBrand);
   const isOpen = useSelector((state) => state.modal.isOpen);
   const modalId = useSelector((state) => state.modal.id);
   const modalCont = useSelector((state) => state.modal.cont);
   const [isCheck, setIsCheck] = useState(false); // 상품이 장바구니 페이지에서 선택되었는 지
   const dispatch = useDispatch();
-
-  // console.log("props.productName: " + props.productName);
 
   useEffect(() => {
     if (
