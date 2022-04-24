@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductDetailInfo from "components/shop/productDetail/Content/productDetailInfo";
 import ProductOptionSelectBox from "components/shop/productDetail/Option/productOptionSelectBox";
@@ -60,6 +60,16 @@ const ProductDetailPage = ({ match }) => {
     }
   };
 
+  const fnRecentCallback = useCallback(
+    (res) => {
+      console.log("fnRecentCallback :: res :: ", res);
+      if (!!res?.data && !isLoggedIn) {
+        localStorage.setItem("sessionId", res.data);
+      }
+    },
+    [isLoggedIn]
+  );
+
   useEffect(() => {
     dispatch(
       postApi(
@@ -90,16 +100,20 @@ const ProductDetailPage = ({ match }) => {
         fnProudctReviewCallback
       )
     );
-    dispatch(
-      postApi(
-        isLoggedIn ? "mb/mkt/reg/recent-product" : "nmb/mkt/reg/recent-product",
-        { productId },
-        (res) => {
-          console.log(res);
-        }
-      )
-    );
-  }, [isLoggedIn, productId, dispatch]);
+    if (isLoggedIn) {
+      dispatch(
+        postApi("mb/mkt/reg/recent-product", { productId }, fnRecentCallback)
+      );
+    } else {
+      dispatch(
+        postApi(
+          "nmb/mkt/reg/recent-product",
+          { productId, sessionId: localStorage.getItem("sessionId") || "NONE" },
+          fnRecentCallback
+        )
+      );
+    }
+  }, [isLoggedIn, productId, dispatch, fnRecentCallback]);
 
   return (
     <div>

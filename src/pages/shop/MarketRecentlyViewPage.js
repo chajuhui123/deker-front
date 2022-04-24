@@ -17,13 +17,19 @@ const MarketRecentlyViewPage = () => {
   };
 
   useEffect(() => {
-    dispatch(
-      postApi(
-        isLoggedIn ? "mb/mkt/get/recent-product" : "nmb/mkt/get/recent-product",
-        {},
-        fnRecentlyViewCallback
-      )
-    );
+    if (isLoggedIn) {
+      dispatch(
+        postApi("mb/mkt/get/recent-product", null, fnRecentlyViewCallback)
+      );
+    } else {
+      dispatch(
+        postApi(
+          "nmb/mkt/get/recent-product",
+          { sessionId: localStorage.getItem("sessionId") || "NONE" },
+          fnRecentlyViewCallback
+        )
+      );
+    }
   }, [dispatch, isLoggedIn]);
 
   return (
