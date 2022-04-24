@@ -9,6 +9,9 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 window.$ = window.jQuery = jQuery;
 
 function PayBtn(props) {
+  console.log("listlistlsit: " + props.productOptionIdList);
+  console.log("listlistlsit: " + props.orderQuantityList);
+  console.log("sdfsdfsdf: " + props.merchant_uid);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -26,7 +29,7 @@ function PayBtn(props) {
       name: props.productName + " 외 " + (props.orderQuantity - 1) + "개", // 주문명
       amount: props.paymentAmt + props.deliAmt, // 결제금액
       buyer_email: "gildong@gmail.com", // 구매자 이메일
-      buyer_name: "홍길동", // 구매자 이름
+      buyer_name: props.orderNm, // 구매자 이름
       buyer_tel: props.telNo, // 구매자 전화번호
       buyer_addr: props.rcvAddr, // 구매자 주소
       buyer_postcode: props.rcvZipCode, // 구매자 우편번호
@@ -42,24 +45,22 @@ function PayBtn(props) {
       // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
       var msg = "결제가 완료되었습니다.";
 
+      console.log("uid confirm: " + rsp.imp_uid);
+
       // 결제 금액 등 결제 내용 Back 통신으로 확인
       dispatch(
         postApi(
-          "nmb/mkt/get/reg-product",
+          "mb/mkt/get/verify",
           {
-            // buyer_addr: rsp.buyer_addr,
-            // buyer_email: rsp.buyer_email,
-            // buyer_name: rsp.buyer_name,
-            // buyer_postcode: rsp.buyer_postcode,
-            // buyer_tel: rsp.buyer_tel,
-            // card_name: rsp.card_name,
-            // card_number: rsp.card_number,
-            // currency: rsp.currency,
-            // merchant_uid: rsp.merchant_uid,
-            // name: rsp.name,
             paid_amount: rsp.paid_amount,
             success: true,
             imp_uid: rsp.imp_uid,
+            cartIdArr: props.cartItemArray,
+            addrId: props.addrId,
+            productOptionId: props.productOptionIdList,
+            orderQuantity: props.orderQuantityList,
+            orderId: props.merchant_uid,
+            merchant_uid: props.merchant_uid,
           },
           function (res) {
             if (!!res) {
@@ -75,7 +76,7 @@ function PayBtn(props) {
               });
             } else {
               // 비정상로직;
-              alert("data error");
+              // alert("data error");
             }
           }
         )

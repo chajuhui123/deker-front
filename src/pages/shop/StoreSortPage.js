@@ -1,19 +1,30 @@
 import { postApi } from "api/fetch-api";
 import CommonPageTitle from "components/common/commPageTitle";
 import { useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { useDispatch } from "react-redux";
 import ProductList from "./productList";
 import classes from "./StoreSortPage.module.css";
 
 const StoreSortPage = (props) => {
+  // 처음 이동했을 때 페이지 최상단으로 보내기
+  useEffect(() => {
+    if (
+      document.body.scrollTop != 0 ||
+      document.documentElement.scrollTop != 0
+    ) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   const dispatch = useDispatch();
 
-  /* sordId: 라우터 경로
+  /* sortId: 라우터 경로
    * 인기상품: rank | 카테고리: 가구, 가전제품, 조명, 사무용품, 데코 | 최근본상품: */
   const { params } = props.match;
   const sortId = params.sortId;
   const { location } = props;
-  console.log("sortId: " + sortId + ", name: " + location.state.sortCtgryName);
+  const [ref, inView] = useInView();
 
   /* sortId별 어떤 route로 통신하는 지 */
   var postApiRoute = "";
@@ -38,25 +49,28 @@ const StoreSortPage = (props) => {
   const [lastPage, setLastPage] = useState(false);
   const [list, setList] = useState(null);
 
-  const fnRankCallback = useCallback(
-    (res) => {
-      if (!!res) {
-        setCurrentPageNo(res.data.currentPageNo);
-        setTotalCount(res.data.totalCount);
-        setLastPage(res.data.lastPage);
-        setList(res.data.list);
-        console.log("currentPageNo: " + currentPageNo);
-        console.log("totalCount: " + totalCount);
-        console.log("lastPage: " + lastPage);
-        console.log("route: " + postApiRoute);
-      } else {
-        // 비정상로직;
-        alert("data error");
-        console.log("route: " + postApiRoute);
-      }
-    },
-    [currentPageNo, lastPage, postApiRoute, totalCount]
-  );
+  const fnRankCallback = useCallback((res) => {
+    if (!!res) {
+      setCurrentPageNo(res.data.currentPageNo);
+      setTotalCount(res.data.totalCount);
+      setLastPage(res.data.lastPage);
+      setList(res.data.list);
+      console.log("currentPageNo: " + currentPageNo);
+      console.log("totalCount: " + totalCount);
+      console.log("lastPage: " + lastPage);
+      console.log("route: " + postApiRoute);
+    } else {
+      // 비정상로직;
+      alert("data error");
+    }
+  });
+
+  /* 무한스크롤 체크 */
+  useEffect(() => {
+    if (!lastPage && inView) {
+      setCurrentPageNo((prevState) => prevState + 1);
+    }
+  }, [inView, lastPage]);
 
   useEffect(() => {
     dispatch(
@@ -64,14 +78,13 @@ const StoreSortPage = (props) => {
         postApiRoute,
         {
           currentPageNo: currentPageNo,
-          categoryId: sortId, // 카테고리만 쓰는데 이거 에러 안나네 괜찮나?
+          categoryId: sortId,
         },
         fnRankCallback
       )
     );
-  }, [currentPageNo, dispatch, fnRankCallback, postApiRoute, sortId]);
+  }, [dispatch]);
 
-  // console.log("지금 어떤 페이지? :" + sortId);
   /* 인기상품, 카테고리 조회 통신 끝 */
 
   return (
@@ -98,8 +111,14 @@ const StoreSortPage = (props) => {
           /* 아무 라우터 값 없을 때 */
           <div>유효한요청이아닙니다</div>
         )}
-        {/* 최근본상품별 조회 */}
       </div>
+      <div
+        style={{
+          width: "100%",
+          height: "10px",
+        }}
+        ref={ref}
+      ></div>
     </div>
   );
 };
