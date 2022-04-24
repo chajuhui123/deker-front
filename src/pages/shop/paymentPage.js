@@ -12,37 +12,37 @@ import PayBy from "./payBy";
 import PayBtn from "./payBtn";
 import MyOrderPrdtList from "components/account/accountShop/myOrderPrdtList";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import MyOrderPrdtItem from "components/account/accountShop/myOrderPrdtItem";
 import { postApi } from "api/fetch-api";
 
 const PaymentPage = (props) => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-  const departureFrom = location.state?.departure; // 어디서 호출되었는지
+  // const departureFrom = location.state?.departure; // 어디서 호출되었는지
   const paymentAmt = location.state?.paymentAmt; // 주문상품 총 금액
   const deliAmt = location.state?.deliAmt; // 배송비
   const orderId = location.state?.orderId; // 주문번호 (productOptionSelectBox, 장바구니에서 넘어오는 값)
-  const productId = location.state?.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
   const buynowDtl = location.state?.buynowDtl; // 상품 옵션 (바로구매)
   const cartItemArray = location.state?.cartItemArray; // 주문 상품 리스트
 
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [telNo, setTelNo] = useState("");
   const [rcvNm, setRcvNm] = useState("");
   const [rcvTelNo, setRcvTelNo] = useState("");
   const [rcvZipCode, setRcvZipCode] = useState("");
   const [rcvAddr, setRcvAddr] = useState("");
   const [deliMemo, setDeliMemo] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productListToPay, setProductListToPay] = useState(null);
 
   const orderNmInputHandler = (e) => {
     setOerderNm(e.target.value);
   };
-  const emailInputHandler = (e) => {
-    setEmail(e.target.value);
-  };
+  // const emailInputHandler = (e) => {
+  //   setEmail(e.target.value);
+  // };
   const telNoInputHandler = (e) => {
     setTelNo(e.target.value);
   };
@@ -104,49 +104,20 @@ const PaymentPage = (props) => {
     console.log(presentUserId);
   };
 
-  const emailD = useMemo(
-    () => [
-      { value: "emailD1", label: "gamil.com" },
-      { value: "emailD2", label: "naver.com" },
-      { value: "emailD3", label: "등등" },
-    ],
-    []
-  );
-
-  /* 바로 구매 시, productId로 상품정보 받아옴 시작 */
-  const [mktProductId, setMktProductId] = useState("");
-  const [productName, setProductName] = useState("");
-  const [productImg, setProductImg] = useState("");
-
-  const fnCallbackPrdtDtl = (res) => {
-    if (!!res) {
-      console.log(res);
-      setMktProductId(res.data.productDetail.mktProductId);
-      setProductName(res.data.productDetail.productName);
-      setProductImg(res.data.productDetail.productImg);
-    } else {
-      // 실패
-    }
-  };
-
-  if (departureFrom === "buynow") {
-    dispatch(
-      postApi(
-        "nmb/mkt/get/product-detail",
-        { productId: productId },
-        fnCallbackPrdtDtl
-      )
-    );
-  }
-  /* 바로 구매 시, productId로 상품정보 받아옴 끝*/
-
-  /* 장바구니 제품 선택 후 구매 시작 */
-  const [productListToPay, setProductListToPay] = useState(null);
+  // const emailD = useMemo(
+  //   () => [
+  //     { value: "emailD1", label: "gamil.com" },
+  //     { value: "emailD2", label: "naver.com" },
+  //     { value: "emailD3", label: "등등" },
+  //   ],
+  //   []
+  // );
 
   const fnCallbackCartSelect = (res) => {
     if (!!res) {
       console.log("Back data: " + res.data.productOption);
       setProductListToPay(res.data.productOption);
+      setProductName(res.data.productOption[0].productName);
       setOerderNm(res.data.marketAddress.addName);
       setTelNo(res.data.marketAddress.phoneNumber);
       setRcvZipCode(res.data.marketAddress.addZip);
@@ -160,97 +131,19 @@ const PaymentPage = (props) => {
 
   useEffect(() => {
     if (productListToPay) return;
-    if (departureFrom === "cartSelect") {
-      console.log(orderId);
-      dispatch(
-        postApi(
-          "mb/mkt/get/order-list",
-          {
-            paid_amount: paymentAmt + deliAmt,
-            orderId: orderId,
-            cartIdArr: cartItemArray,
-          },
-          fnCallbackCartSelect
-        )
-      );
-    }
+    console.log(orderId);
+    dispatch(
+      postApi(
+        "mb/mkt/get/order-list",
+        {
+          paid_amount: paymentAmt + deliAmt,
+          orderId: orderId,
+          cartIdArr: cartItemArray,
+        },
+        fnCallbackCartSelect
+      )
+    );
   }, [productListToPay]);
-  /* 장바구니 제품 선택 후 구매 끝*/
-
-  const DUMMY_DATA = [
-    {
-      productId: "PDTID_00000000000002",
-      orderId: "odrId_99999999999997",
-      productImg:
-        "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
-      productBrand: "deker",
-      productName: "네이처 디퓨저",
-      option1: "COLOR",
-      option1Data: "C01",
-      option1Nm: "색상",
-      option1DataNm: "흰색",
-      option2: "SIZE",
-      option2Data: "S01",
-      option2Nm: "사이즈",
-      option2DataNm: "260",
-      optionList: ["흰색", "260"],
-      orderNumber: "99999999999997",
-      createDt: "2022-01-20T12:38:41.000+00:00",
-      stringDt: "20220120",
-      orderState: "6",
-      orderStateNm: "배송 완료",
-      orderPrice: 30000,
-      orderQuantity: 9,
-    },
-    {
-      productId: "PDTID_00000000000001",
-      orderId: "odrId_99999999999998",
-      productImg:
-        "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-      productBrand: "deker",
-      productName: "플라워 디퓨저",
-      option1: "COLOR",
-      option1Data: "C01",
-      option1Nm: "색상",
-      option1DataNm: "흰색",
-      option2: "SIZE",
-      option2Data: "S02",
-      option2Nm: "사이즈",
-      option2DataNm: "255",
-      optionList: ["흰색", "255"],
-      orderNumber: "99999999999998",
-      createDt: "2022-01-20T12:38:41.000+00:00",
-      stringDt: "20220120",
-      orderState: "6",
-      orderStateNm: "배송 완료",
-      orderPrice: 30000,
-      orderQuantity: 2,
-    },
-    {
-      productId: "PDTID_00000000000001",
-      orderId: "odrId_99999999999999",
-      productImg:
-        "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-      productBrand: "deker",
-      productName: "플라워 디퓨저",
-      option1: "COLOR",
-      option1Data: "C02",
-      option1Nm: "색상",
-      option1DataNm: "검은색",
-      option2: "SIZE",
-      option2Data: "S01",
-      option2Nm: "사이즈",
-      option2DataNm: "260",
-      optionList: ["검은색", "260"],
-      orderNumber: "99999999999999",
-      createDt: "2022-01-20T12:38:41.000+00:00",
-      stringDt: "20220122",
-      orderState: "6",
-      orderStateNm: "배송 완료",
-      orderPrice: 30000,
-      orderQuantity: 9,
-    },
-  ];
 
   return (
     <div className={classes.paymentLayout}>
@@ -389,29 +282,11 @@ const PaymentPage = (props) => {
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="주문상품" />
           <hr className={classes.lineD} />
-          {departureFrom === "buynow" ? (
-            <MyOrderPrdtItem
-              key={orderId}
-              id={orderId}
-              productId={mktProductId}
-              productImg={productImg}
-              productName={productName}
-              // productBrand={orderProduct.productBrand}
-              orderId={orderId}
-              orderPrice={paymentAmt}
-              departure={departureFrom}
-              option1Nm={buynowDtl?.option1}
-              option2Nm={buynowDtl?.option2}
-              option1DataNm={buynowDtl?.option1DataName}
-              option2DataNm={buynowDtl?.option2DataName}
-              orderQuantity={buynowDtl?.orderQuantity}
-            />
-          ) : (
-            <MyOrderPrdtList
-              orderedProductList={productListToPay}
-              departure="productListToPay"
-            />
-          )}
+          <MyOrderPrdtList
+            orderedProductList={productListToPay}
+            departure="productListToPay"
+          />
+          {/* )} */}
         </div>
         <div className={classes.section}>
           <CommPageSemiTitle semiTitle="결제가능수단" />
