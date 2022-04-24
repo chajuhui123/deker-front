@@ -113,6 +113,10 @@ const PaymentPage = (props) => {
   //   []
   // );
 
+  const [addrId, setAddrId] = useState(null);
+  const [productOptionIdList, setProductOptionIdList] = useState(null);
+  const [orderQuantityList, setPrderQuantityList] = useState(null);
+
   const fnCallbackCartSelect = (res) => {
     if (!!res) {
       console.log("Back data: " + res.data.productOption);
@@ -124,6 +128,19 @@ const PaymentPage = (props) => {
       setRcvAddr(res.data.marketAddress.address);
       setRcvNm(res.data.marketAddress.addName);
       setRcvTelNo(res.data.marketAddress.phoneNumber);
+      setAddrId(res.data.productOption.addrId);
+
+      let productOptionIdListArry = [];
+      let orderedProductListArray = [];
+
+      res.data.productOption.forEach((id) => {
+        if (id.productOptionId) {
+          productOptionIdListArry.push(id.productOptionId);
+          orderedProductListArray.push(id.orderQuantity);
+        }
+      });
+      setProductOptionIdList(productOptionIdListArry);
+      setPrderQuantityList(orderedProductListArray);
     } else {
       // 실패
     }
@@ -131,7 +148,6 @@ const PaymentPage = (props) => {
 
   useEffect(() => {
     if (productListToPay) return;
-    console.log(orderId);
     dispatch(
       postApi(
         "mb/mkt/get/order-list",
@@ -299,7 +315,6 @@ const PaymentPage = (props) => {
           <TotalPaymentAmt paymentAmt={paymentAmt} deliAmt={deliAmt} />
         </div>
       </div>
-      {/* 결제 데이터 넘겨야 함 */}
       <PayBtn
         paymentAmt={paymentAmt}
         deliAmt={deliAmt}
@@ -309,6 +324,11 @@ const PaymentPage = (props) => {
         telNo={telNo}
         rcvZipCode={rcvZipCode}
         rcvAddr={rcvAddr}
+        cartItemArray={cartItemArray}
+        orderNm={orderNm}
+        addrId={addrId}
+        productOptionIdList={productOptionIdList}
+        orderQuantityList={orderQuantityList}
       />
     </div>
   );
