@@ -113,7 +113,7 @@ const MarketCartPage = () => {
       setDeliAmt(0);
     } else {
       // 총 구매 금액이 3만원을 넘지 않으면 배송비 3000원
-      setDeliAmt(3000);
+      setDeliAmt(2500);
     }
   };
 
