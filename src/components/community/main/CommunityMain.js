@@ -80,7 +80,7 @@ const CommunityMain = (props) => {
   return (
     <div className={classes.main}>
       <CommunitySection
-        type="photo"
+        type="rank"
         page="main"
         data={ranks}
         followingHandler={followingHandler}
@@ -88,7 +88,7 @@ const CommunityMain = (props) => {
       />
       {isLoggedIn && (
         <CommunitySection
-          type="following"
+          type="follow"
           page="main"
           data={follow}
           followingHandler={followingHandler}
@@ -96,7 +96,7 @@ const CommunityMain = (props) => {
       )}
       {isLoggedIn && (
         <CommunitySection
-          type="personal"
+          type="custom"
           page="main"
           data={custom}
           followingHandler={followingHandler}

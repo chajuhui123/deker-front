@@ -11,7 +11,7 @@
 
 .contents {
   position: relative;
-  transition: transform 1s;
+  transition: transform 2s;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

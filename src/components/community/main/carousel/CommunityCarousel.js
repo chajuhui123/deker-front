@@ -8,9 +8,10 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 // 가장 마지막영역 보여주고 순간적으로 처음 인덱스로 돌아가는 식으로 추가 개발 해야함
 // (3, 0, 1, 2, 3, 0) 이런식으로 화면에 보여줌
 // 3 > 0으로 갈 때 0 > 3으로 갈 때 처리 해야함
+// TODO : MOUSE OVER 시 Stop 시키기
 const CommunityCrousel = (props) => {
   const items = props.items || [];
-  const speed = props.speed || 5000;
+  const speed = props.speed || 10000;
   const autoPlay = props.autoPlay || false;
   const compWidth = 1200;
   const [index, setIndex] = useState(0);
