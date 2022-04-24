@@ -48,3 +48,14 @@
   color: #737373b5;
   opacity: 1;
 }
+
+.noUploadText {
+  position: relative;
+  margin: auto;
+  margin-top: 50px;
+  width: 100%;
+  height: 100%;
+  font: normal normal bold 20px/33px Roboto;
+  color: #4e4e4e;
+  text-align: center;
+}
