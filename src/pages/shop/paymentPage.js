@@ -3,7 +3,7 @@ import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
 import TotalPaymentAmt from "components/shop/totalPaymentAmt";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { modalAction } from "store/modal-slice";
 import classes from "./paymentPage.module.css";
