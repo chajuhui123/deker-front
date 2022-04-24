@@ -3,6 +3,7 @@
   float: left;
   margin-block: 10px; /* 아이템 줄 사이 간격*/
   width: 180px;
+  height: auto;
   /* border: var(--border);
   border-radius: var(--border-radius); */
   background: #ffffff 0% 0% no-repeat padding-box;

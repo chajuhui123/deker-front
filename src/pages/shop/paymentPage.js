@@ -3,9 +3,8 @@ import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
 import TotalPaymentAmt from "components/shop/totalPaymentAmt";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
-import Select from "react-select";
 import { modalAction } from "store/modal-slice";
 import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
@@ -26,33 +25,8 @@ const PaymentPage = (props) => {
   const orderId = location.state?.orderId; // 주문번호 (productOptionSelectBox, 장바구니에서 넘어오는 값)
   const productId = location.state?.productId; // 상품번호(productOptionSelectBox에서 넘어오는 값)
   const buynowDtl = location.state?.buynowDtl; // 상품 옵션 (바로구매)
-  // kwon back 준비되면 시작
-  const cartItemArray = location.state?.cartItemArray; // 장바구니에서 넘어오는 데이터
-  const productCartItems = location.state?.productCartItems; // 장바구니에서 넘어오는 데이터
+  const cartItemArray = location.state?.cartItemArray; // 주문 상품 리스트
 
-  /*
-  // 장바구니에 담겨있는 상품 중 선택한 상품만 골라내기
-  const [cartData, setCartData] = useState(null);
-  useEffect(() => {
-    dispatch(postApi("mb/mkt/get/cart", {}, fnCallback));
-  }, [dispatch]);
-
-  const fnCallback = (res) => {
-    console.log("cartIdArr: " + cartItemArray);
-    if (!!res) {
-      setCartData(res.data.productCartItems);
-      cartItemArray?.map((selectedCartIdArr) => {
-        setCartData(
-          cartData.filter((cartData) => cartData.cartId !== selectedCartIdArr)
-        );
-      });
-      console.log("kwon debug: " + JSON.stringify(cartData));
-    } else {
-      // 비정상로직;
-      alert("data error");
-    }
-  };
-*/
   const [presentUserId, setPresentUserId] = useState("");
   const [orderNm, setOerderNm] = useState("");
   const [email, setEmail] = useState("");
@@ -166,6 +140,43 @@ const PaymentPage = (props) => {
   }
   /* 바로 구매 시, productId로 상품정보 받아옴 끝*/
 
+  /* 장바구니 제품 선택 후 구매 시작 */
+  const [productListToPay, setProductListToPay] = useState(null);
+
+  const fnCallbackCartSelect = (res) => {
+    if (!!res) {
+      console.log("Back data: " + res.data.productOption);
+      setProductListToPay(res.data.productOption);
+      setOerderNm(res.data.marketAddress.addName);
+      setTelNo(res.data.marketAddress.phoneNumber);
+      setRcvZipCode(res.data.marketAddress.addZip);
+      setRcvAddr(res.data.marketAddress.address);
+      setRcvNm(res.data.marketAddress.addName);
+      setRcvTelNo(res.data.marketAddress.phoneNumber);
+    } else {
+      // 실패
+    }
+  };
+
+  useEffect(() => {
+    if (productListToPay) return;
+    if (departureFrom === "cartSelect") {
+      console.log(orderId);
+      dispatch(
+        postApi(
+          "mb/mkt/get/order-list",
+          {
+            paid_amount: paymentAmt + deliAmt,
+            orderId: orderId,
+            cartIdArr: cartItemArray,
+          },
+          fnCallbackCartSelect
+        )
+      );
+    }
+  }, [productListToPay]);
+  /* 장바구니 제품 선택 후 구매 끝*/
+
   const DUMMY_DATA = [
     {
       productId: "PDTID_00000000000002",
@@ -275,7 +286,7 @@ const PaymentPage = (props) => {
               onChange={orderNmInputHandler}
             />
           </div>
-          <div className={classes.dtlArea}>
+          {/* <div className={classes.dtlArea}>
             <div className={classes.dtlText}>이메일</div>
             <textarea
               className={classes.inputArea}
@@ -289,7 +300,7 @@ const PaymentPage = (props) => {
             <div className={classes.select2}>
               <Select options={emailD} defaultValue={emailD[0]} />
             </div>
-          </div>
+          </div> */}
           <div className={classes.dtlArea}>
             <div className={classes.dtlText}>연락처</div>
             <textarea
@@ -369,7 +380,7 @@ const PaymentPage = (props) => {
               className={classes.inputAreaDeliMemo}
               type="text"
               value={deliMemo}
-              // maxLength="100"
+              maxLength="100"
               placeholder="배송 요청사항을 선택하세요."
               onChange={deliMemoInputHandler}
             />
@@ -397,7 +408,7 @@ const PaymentPage = (props) => {
             />
           ) : (
             <MyOrderPrdtList
-              orderedProductList={DUMMY_DATA}
+              orderedProductList={productListToPay}
               departure="productListToPay"
             />
           )}

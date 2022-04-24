@@ -22,7 +22,7 @@ function MarketCartBuyButton(props) {
           deliAmt: props.deliAmt,
           cartItemArray: res.data.cartIdArr,
           orderId: res.data.orderId,
-          // productCartItems: res.data.productCartItems, back준비되면
+          departure: "cartSelect",
         },
       });
     } else {

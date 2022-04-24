@@ -8,11 +8,13 @@ function MyOrderPrdtList(props) {
         <ul className={classes.orderProductDetail}>
           {props.orderedProductList.map((orderProduct) => (
             <li className={classes.productList}>
-              <div className={classes.orderNumber}>
-                <div>{orderProduct.orderId}</div>
-                <div className={classes.d}>{` | `}</div>
-                <div>{orderProduct.stringDt}</div>
-              </div>
+              {props.departure !== "productListToPay" && (
+                <div className={classes.orderNumber}>
+                  <div>{orderProduct.orderId}</div>
+                  <div className={classes.d}>{` | `}</div>
+                  <div>{orderProduct.stringDt}</div>
+                </div>
+              )}
               <MyOrderPrdtItem
                 key={orderProduct.myOrderId}
                 id={orderProduct.myOrderId}
@@ -21,14 +23,20 @@ function MyOrderPrdtList(props) {
                 productName={orderProduct.productName}
                 productBrand={orderProduct.productBrand}
                 orderId={orderProduct.orderId}
-                orderPrice={orderProduct.orderPrice}
+                orderPrice={
+                  orderProduct.orderPrice || orderProduct.productPrice
+                }
                 stringDt={orderProduct.stringDt}
                 orderState={orderProduct.orderState}
                 orderStateNm={orderProduct.orderStateNm}
-                option1Nm={orderProduct.option1Nm}
-                option2Nm={orderProduct.option2Nm}
-                option1DataNm={orderProduct.option1DataNm}
-                option2DataNm={orderProduct.option2DataNm}
+                option1Nm={orderProduct.option1Nm || orderProduct.option1}
+                option2Nm={orderProduct.option2Nm || orderProduct.option2}
+                option1DataNm={
+                  orderProduct.option1DataNm || orderProduct.option1Data
+                }
+                option2DataNm={
+                  orderProduct.option2DataNm || orderProduct.option2Data
+                }
                 orderQuantity={orderProduct.orderQuantity}
                 departure={props.departure}
               />
