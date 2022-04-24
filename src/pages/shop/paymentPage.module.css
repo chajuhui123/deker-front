@@ -85,6 +85,10 @@
   display: flex;
   flex-direction: row;
 }
+.dtlArea textarea {
+  padding-left: 10px;
+  padding-top: 5px;
+}
 .dtlText {
   margin-top: 7px;
   text-align: left;
@@ -166,6 +170,8 @@
   background-color: #70707021;
   font: normal normal normal 15px/25px Roboto;
   position: relative;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 .inputAreaDeliMemo {
   margin-left: 170px;

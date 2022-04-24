@@ -1,8 +1,10 @@
 import { postApi } from "api/fetch-api";
+import CommAlert from "components/common/commAlert";
 import CommBtn from "components/common/commBtn";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { modalAction } from "store/modal-slice";
 import classes from "./marketCartBuyButton.module.css";
 
 function MarketCartBuyButton(props) {
@@ -22,7 +24,7 @@ function MarketCartBuyButton(props) {
           deliAmt: props.deliAmt,
           cartItemArray: res.data.cartIdArr,
           orderId: res.data.orderId,
-          // productCartItems: res.data.productCartItems, back준비되면
+          departure: "cartSelect",
         },
       });
     } else {
@@ -32,13 +34,22 @@ function MarketCartBuyButton(props) {
   };
 
   const buyBtnHandler = () => {
-    dispatch(
-      postApi(
-        "mb/mkt/reg/checked-cart",
-        { cartIdArr: props.cartItemArray },
-        fnSelectCartCallback
-      )
-    );
+    if (props.cartItemArray.length === 0) {
+      dispatch(
+        modalAction.modalPopup({
+          isOpen: true,
+          cont: <CommAlert title="오류" message="구매할 상품을 선택하세요." />,
+        })
+      );
+    } else {
+      dispatch(
+        postApi(
+          "mb/mkt/reg/checked-cart",
+          { cartIdArr: props.cartItemArray },
+          fnSelectCartCallback
+        )
+      );
+    }
   };
 
   return (

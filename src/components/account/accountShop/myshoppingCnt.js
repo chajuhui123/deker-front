@@ -48,7 +48,9 @@ function MyShoppingCnt(props) {
             </div>
           </div>
         ) : (
-          <div>no data</div>
+          <div className={classes.noUploadText}>
+            <text>주문한 이력이 없습니다.</text>
+          </div>
         )}
       </div>
     </div>

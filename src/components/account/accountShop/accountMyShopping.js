@@ -44,81 +44,6 @@ function AccountMyShopping(props) {
     }
   }, [lastPage]);
 
-  const DUMMY_DATA = [
-    {
-      productId: "PDTID_00000000000002",
-      orderId: "odrId_99999999999997",
-      productImg:
-        "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
-      productBrand: "deker",
-      productName: "네이처 디퓨저",
-      option1: "COLOR",
-      option1Data: "C01",
-      option1Nm: "색상",
-      option1DataNm: "흰색",
-      option2: "SIZE",
-      option2Data: "S01",
-      option2Nm: "사이즈",
-      option2DataNm: "260",
-      optionList: ["흰색", "260"],
-      orderNumber: "99999999999997",
-      createDt: "2022-01-20T12:38:41.000+00:00",
-      stringDt: "20220120",
-      orderState: "6",
-      orderStateNm: "배송 완료",
-      orderPrice: 30000,
-      orderQuantity: 9,
-    },
-    {
-      productId: "PDTID_00000000000001",
-      orderId: "odrId_99999999999998",
-      productImg:
-        "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-      productBrand: "deker",
-      productName: "플라워 디퓨저",
-      option1: "COLOR",
-      option1Data: "C01",
-      option1Nm: "색상",
-      option1DataNm: "흰색",
-      option2: "SIZE",
-      option2Data: "S02",
-      option2Nm: "사이즈",
-      option2DataNm: "255",
-      optionList: ["흰색", "255"],
-      orderNumber: "99999999999998",
-      createDt: "2022-01-20T12:38:41.000+00:00",
-      stringDt: "20220120",
-      orderState: "6",
-      orderStateNm: "배송 완료",
-      orderPrice: 30000,
-      orderQuantity: 2,
-    },
-    {
-      productId: "PDTID_00000000000001",
-      orderId: "odrId_99999999999999",
-      productImg:
-        "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-      productBrand: "deker",
-      productName: "플라워 디퓨저",
-      option1: "COLOR",
-      option1Data: "C02",
-      option1Nm: "색상",
-      option1DataNm: "검은색",
-      option2: "SIZE",
-      option2Data: "S01",
-      option2Nm: "사이즈",
-      option2DataNm: "260",
-      optionList: ["검은색", "260"],
-      orderNumber: "99999999999999",
-      createDt: "2022-01-20T12:38:41.000+00:00",
-      stringDt: "20220122",
-      orderState: "6",
-      orderStateNm: "배송 완료",
-      orderPrice: 30000,
-      orderQuantity: 9,
-    },
-  ];
-
   // 기간 및 배송상태 값이 선택되면 Back에 받아와서 새로 조회
   const deliStateChgHandler = (data) => {
     setInqDeliState(data);
@@ -130,7 +55,7 @@ function AccountMyShopping(props) {
         {
           period: inqPeriod,
           deliveryState: inqDeliState,
-          currentPageNo: 1,
+          currentPageNo: currentPageNo,
         },
         fnCallback
       )
@@ -172,7 +97,7 @@ function AccountMyShopping(props) {
       // console.log("objectData: " + objectData.complete);
     } else {
       // 비정상로직;
-      alert("data error");
+      // alert("data error");
     }
   };
 
@@ -196,12 +121,13 @@ function AccountMyShopping(props) {
               {list.map((lists) => (
                 <li className={classes.productList}>
                   <div className={classes.orderNumber}>
-                    <div>{lists.orderNumber}</div>
+                    <div>{`주문번호: ` + lists.orderNumber}</div>
                     <div className={classes.d}>{` | `}</div>
-                    <div>{lists.orderList[0].stringDt}</div>
+                    <div>{`주문일자: ` + lists.orderList[0].stringDt}</div>
                   </div>
-                  {/* <MyOrderPrdtList orderedProductList={lists.orderList} /> */}
-                  <MyOrderPrdtList orderedProductList={DUMMY_DATA} />
+                  <hr className={classes.hr} />
+                  <MyOrderPrdtList orderedProductList={lists.orderList} />
+                  {/* <MyOrderPrdtList orderedProductList={DUMMY_DATA} /> */}
                 </li>
               ))}
             </ul>
