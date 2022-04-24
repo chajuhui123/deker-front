@@ -47,7 +47,7 @@ const CommunityCard = (props) => {
                 </div>
               ) : (
                 <div className={classes.unFollowButton} onClick={followHandler}>
-                  팔로윙
+                  팔로잉
                 </div>
               ))}
           </div>
