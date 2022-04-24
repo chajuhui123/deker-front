@@ -26,7 +26,7 @@ const CommunitySemiPage = (props) => {
   const [isInit, setIsInit] = useState(true);
   const [ref, inView] = useInView();
 
-  /* 팔로윙 */
+  /* 팔로잉 */
   const followingHandler = (userId, followingCheck) => {
     const data = {
       userId,

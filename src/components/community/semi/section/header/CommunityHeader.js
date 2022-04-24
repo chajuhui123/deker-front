@@ -13,7 +13,7 @@ const CommunityHeader = (props) => {
               type === "rank"
                 ? "오늘의 인기 사진"
                 : type === "follow"
-                ? "팔로윙"
+                ? "팔로잉"
                 : "맞춤"
             }
           />
@@ -25,7 +25,7 @@ const CommunityHeader = (props) => {
             type === "rank"
               ? "오늘의 인기 사진"
               : type === "follow"
-              ? "팔로윙"
+              ? "팔로잉"
               : "맞춤"
           }
         />
