@@ -19,19 +19,21 @@ function UserTagForm(props) {
 
   // space bar 누르면 값 배열에 넣고, reset input area *keyCode == 32: space bar
   const enterSearch = (e) => {
-    //e.preventDefault(); // enter 누르면 리스트 삭제하고 '완료(메인페이지)'로 이동함 왜?? 뭔가 모르겠으면 다 해보기
-    if (e.keyCode === 32) {
-      const copyItem = tag.concat({
-        id: nextId,
-        text: inputText,
-      });
-      console.log(nextId);
-      console.log(copyItem);
-
-      setNextId(nextId + 1);
-      setTag(copyItem);
+    // 태그 공백 입력 막기
+    if (inputText.length == 1 && e.keyCode === 32) {
       setInputText("");
-      tagOutHandler(copyItem);
+    } else {
+      if (e.keyCode === 32) {
+        const copyItem = tag.concat({
+          id: nextId,
+          text: inputText,
+        });
+
+        setNextId(nextId + 1);
+        setTag(copyItem);
+        setInputText("");
+        tagOutHandler(copyItem);
+      }
     }
   };
 
@@ -59,7 +61,6 @@ function UserTagForm(props) {
               text: t,
             };
           });
-          console.log(arry);
           setTag(arry);
           setIsLoad(true);
         }
