@@ -5,9 +5,7 @@ import classes from "./accntItem.module.css";
 import noImg from "img/noImg.png";
 
 const AccntItem = (props) => {
-  //   console.log(props.departure);
   const [isFollowing, setIsFollowing] = useState(true);
-  // console.log(isFollowing);
   const [isDelete, setIsDelete] = useState(false);
 
   // 팔로잉, 언팔로잉 버튼 이벤트
@@ -41,8 +39,7 @@ const AccntItem = (props) => {
           <img
             className={classes.profileImg}
             alt={props.profile_img}
-            src={`${BASE_URL}${props.productImg}` || noImg}
-            // src={props.profile_img}
+            src={`${BASE_URL}${props.profile_img}` || noImg}
           />
           <div className={classes.nickname}>{props.nick_name}</div>
         </div>
