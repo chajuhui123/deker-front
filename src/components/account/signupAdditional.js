@@ -11,6 +11,9 @@ import { fileApi, postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
 
 function SignupAdditional(props) {
+  console.log(
+    "===========================페이지 진입==========================="
+  );
   const dispatch = useDispatch();
   const history = useHistory();
   const photoInputRef = useRef();
