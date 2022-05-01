@@ -7,7 +7,7 @@ import classes from "./userTagForm.module.css";
  * @returns
  */
 function UserTagForm(props) {
-  const [tag, setTag] = useState([]);
+  const [tag, setTag] = useState(props.tags);
   const [inputText, setInputText] = useState("");
   const [nextId, setNextId] = useState(1); // 다음 index, 1번부터 시작하니까 1로 세팅
   const [isLoad, setIsLoad] = useState(false);

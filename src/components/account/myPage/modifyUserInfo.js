@@ -43,6 +43,7 @@ function ModifyUserInfo(props) {
       setEmailPrint(res.data.id);
       setNickNm(res.data.nickname);
       setJobCode(res.data.jobCode);
+      setTag(res.data.tag);
     } else {
       // 비정상로직
       alert("data error");
@@ -163,7 +164,7 @@ function ModifyUserInfo(props) {
             </div>
             <div className={classes.dtlArea2}>
               <p className={classes.userInfoTitle}>태그</p>
-              <UserTagForm tagOutHandler={tagOutHandler} />
+              <UserTagForm tagOutHandler={tagOutHandler} tags={tag} />
             </div>
           </div>
         </div>
