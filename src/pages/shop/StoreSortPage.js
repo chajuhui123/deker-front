@@ -10,8 +10,8 @@ const StoreSortPage = (props) => {
   // 처음 이동했을 때 페이지 최상단으로 보내기
   useEffect(() => {
     if (
-      document.body.scrollTop != 0 ||
-      document.documentElement.scrollTop != 0
+      document.body.scrollTop !== 0 ||
+      document.documentElement.scrollTop !== 0
     ) {
       window.scrollTo(0, 0);
     }
@@ -49,21 +49,24 @@ const StoreSortPage = (props) => {
   const [lastPage, setLastPage] = useState(false);
   const [list, setList] = useState(null);
 
-  const fnRankCallback = useCallback((res) => {
-    if (!!res) {
-      setCurrentPageNo(res.data.currentPageNo);
-      setTotalCount(res.data.totalCount);
-      setLastPage(res.data.lastPage);
-      setList(res.data.list);
-      console.log("currentPageNo: " + currentPageNo);
-      console.log("totalCount: " + totalCount);
-      console.log("lastPage: " + lastPage);
-      console.log("route: " + postApiRoute);
-    } else {
-      // 비정상로직;
-      alert("data error");
-    }
-  });
+  const fnRankCallback = useCallback(
+    (res) => {
+      if (!!res) {
+        setCurrentPageNo(res.data.currentPageNo);
+        setTotalCount(res.data.totalCount);
+        setLastPage(res.data.lastPage);
+        setList(res.data.list);
+        console.log("currentPageNo: " + currentPageNo);
+        console.log("totalCount: " + totalCount);
+        console.log("lastPage: " + lastPage);
+        console.log("route: " + postApiRoute);
+      } else {
+        // 비정상로직;
+        alert("data error");
+      }
+    },
+    [currentPageNo, lastPage, postApiRoute, totalCount]
+  );
 
   /* 무한스크롤 체크 */
   useEffect(() => {
@@ -83,7 +86,7 @@ const StoreSortPage = (props) => {
         fnRankCallback
       )
     );
-  }, [dispatch]);
+  }, [currentPageNo, dispatch, fnRankCallback, postApiRoute, sortId]);
 
   /* 인기상품, 카테고리 조회 통신 끝 */
 

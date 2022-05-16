@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import DeliStateDropdown from "../../common/dropdown/deliStateDropdown";
 import PeriodDropdown from "components/common/dropdown/periodDropdown";
 
@@ -21,7 +21,30 @@ function AccountMyShopping(props) {
   const [objectData, setObjectData] = useState(null);
   const [list, setList] = useState(null);
 
-  console.log("current page no: " + currentPageNo);
+  const fnCallback = useCallback(
+    (res) => {
+      if (!!res) {
+        const pageNo = currentPageNo;
+        for (let i = 1; i <= pageNo; i++) {
+          setCurrentPageNo(i);
+        }
+        // setCurrentPageNo(res.data.currentPageNo);
+        setTotalCount(res.data.totalCount);
+        setLastPage(res.data.lastPage);
+        setObjectData(res.data.objectData);
+        setList(res.data.list);
+
+        console.log("currentPageNo: " + currentPageNo);
+        console.log("totalCount: " + totalCount);
+        console.log("lastPage: " + lastPage);
+        // console.log("objectData: " + objectData.complete);
+      } else {
+        // 비정상로직;
+        // alert("data error");
+      }
+    },
+    [currentPageNo, lastPage, totalCount]
+  );
 
   // 처음 페이지를 로딩했을 때, defalut값으로 조회 => 기간: 전체조회, 배송상태: 배송완료
   useEffect(() => {
@@ -36,7 +59,7 @@ function AccountMyShopping(props) {
         fnCallback
       )
     );
-  }, [dispatch]);
+  }, [currentPageNo, dispatch, fnCallback, inqDeliState, inqPeriod]);
 
   useEffect(() => {
     if (!lastPage) {
@@ -77,28 +100,6 @@ function AccountMyShopping(props) {
         fnCallback
       )
     );
-  };
-
-  const fnCallback = (res) => {
-    if (!!res) {
-      const pageNo = currentPageNo;
-      for (let i = 1; i <= pageNo; i++) {
-        setCurrentPageNo(i);
-      }
-      // setCurrentPageNo(res.data.currentPageNo);
-      setTotalCount(res.data.totalCount);
-      setLastPage(res.data.lastPage);
-      setObjectData(res.data.objectData);
-      setList(res.data.list);
-
-      console.log("currentPageNo: " + currentPageNo);
-      console.log("totalCount: " + totalCount);
-      console.log("lastPage: " + lastPage);
-      // console.log("objectData: " + objectData.complete);
-    } else {
-      // 비정상로직;
-      // alert("data error");
-    }
   };
 
   return (

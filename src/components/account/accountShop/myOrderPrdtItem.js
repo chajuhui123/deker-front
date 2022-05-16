@@ -7,7 +7,7 @@ import { BASE_URL } from "module/common-module";
 import { modalAction } from "store/modal-slice";
 import BuyConfirmPopup from "./buyConfirmPopup";
 import CommBtn from "components/common/commBtn";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function MyOrderPrdtItem(props) {
   const isOpen = useSelector((state) => state.modal.isOpen);
@@ -15,6 +15,13 @@ function MyOrderPrdtItem(props) {
   const modalCont = useSelector((state) => state.modal.cont);
   const [isCheck, setIsCheck] = useState(false); // 상품이 장바구니 페이지에서 선택되었는 지
   const dispatch = useDispatch();
+
+  /* 장바구니 페이지에서 결제할 상품 선택 */
+  const selectProductHandler = useCallback(() => {
+    setIsCheck(!isCheck);
+    // 상품이 체크되어 있으면 결제할 상품 append, 체크 해제되면 결제할 상품에서 제외
+    props.selectPrdtYN(isCheck, props.cartId, props.orderPrice);
+  }, [isCheck, props]);
 
   useEffect(() => {
     if (
@@ -25,14 +32,7 @@ function MyOrderPrdtItem(props) {
     } else {
       setIsCheck(false);
     }
-  }, [props.tmp]);
-
-  /* 장바구니 페이지에서 결제할 상품 선택 */
-  const selectProductHandler = () => {
-    setIsCheck(!isCheck);
-    // 상품이 체크되어 있으면 결제할 상품 append, 체크 해제되면 결제할 상품에서 제외
-    props.selectPrdtYN(isCheck, props.cartId, props.orderPrice);
-  };
+  }, [props.productId, props.selectedPrdt, props.tmp, selectProductHandler]);
 
   const openModalEventHandler = () => {
     dispatch(
