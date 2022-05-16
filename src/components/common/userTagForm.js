@@ -20,7 +20,7 @@ function UserTagForm(props) {
   // space bar 누르면 값 배열에 넣고, reset input area *keyCode == 32: space bar
   const enterSearch = (e) => {
     // 태그 공백 입력 막기
-    if (inputText.length == 1 && e.keyCode === 32) {
+    if (inputText.length === 1 && e.keyCode === 32) {
       setInputText("");
     } else {
       if (e.keyCode === 32) {

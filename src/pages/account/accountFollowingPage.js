@@ -2,7 +2,7 @@ import CommonPageTitle from "components/common/commPageTitle";
 import AccntList from "../../components/account/myPage/accntList";
 import classes from "./accountFollowing.module.css";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
 
@@ -16,21 +16,24 @@ const AcctFllwngPage = (props) => {
   const [list, setList] = useState(null);
 
   // 팔로우, 팔로잉 목록 받아오기
-  const fnCallback = (res) => {
-    if (!!res) {
-      setCurrentPageNo(res.data.currentPageNo);
-      setTotalCount(res.data.totalCount);
-      setLastPage(res.data.lastPage);
-      setList(res.data.list);
-      console.log("currentPageNo: " + currentPageNo);
-      console.log("totalCount: " + totalCount);
-      console.log("lastPage: " + lastPage);
-      console.log(list);
-    } else {
-      // 비정상로직;
-      alert("data error");
-    }
-  };
+  const fnCallback = useCallback(
+    (res) => {
+      if (!!res) {
+        setCurrentPageNo(res.data.currentPageNo);
+        setTotalCount(res.data.totalCount);
+        setLastPage(res.data.lastPage);
+        setList(res.data.list);
+        console.log("currentPageNo: " + currentPageNo);
+        console.log("totalCount: " + totalCount);
+        console.log("lastPage: " + lastPage);
+        console.log(list);
+      } else {
+        // 비정상로직;
+        alert("data error");
+      }
+    },
+    [currentPageNo, lastPage, list, totalCount]
+  );
 
   useEffect(() => {
     // 팔로잉 목록을 Back에서 받아옴
@@ -47,7 +50,7 @@ const AcctFllwngPage = (props) => {
         postApi("mb/cmm/get/follower", { currentPageNo: 1 }, fnCallback)
       );
     }
-  }, [dispatch]);
+  }, [dispatch, fnCallback, location.state.follow]);
 
   // 팔로우, 언팔로우
   const fnIsSuccessCallback = (res) => {

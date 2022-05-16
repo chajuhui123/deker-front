@@ -159,7 +159,7 @@ const PaymentPage = (props) => {
         fnCallbackCartSelect
       )
     );
-  }, [productListToPay]);
+  }, [cartItemArray, deliAmt, dispatch, orderId, paymentAmt, productListToPay]);
 
   return (
     <div className={classes.paymentLayout}>

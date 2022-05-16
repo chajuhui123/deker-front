@@ -1,7 +1,7 @@
 import { postApi } from "api/fetch-api";
 import AccntList from "components/account/myPage/accntList";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { modalAction } from "store/modal-slice";
 import classes from "./presentFriendPopup.module.css";
@@ -15,20 +15,23 @@ function PresentFriendPopup(props) {
   const [list, setList] = useState(null);
 
   // 팔로우, 팔로잉 목록 받아오기
-  const fnCallback = (res) => {
-    if (!!res) {
-      setCurrentPageNo(res.data.currentPageNo);
-      setTotalCount(res.data.totalCount);
-      setLastPage(res.data.lastPage);
-      setList(res.data.list);
-      console.log("currentPageNo: " + currentPageNo);
-      console.log("totalCount: " + totalCount);
-      console.log("lastPage: " + lastPage);
-      console.log(list);
-    } else {
-      // 비정상로직;
-    }
-  };
+  const fnCallback = useCallback(
+    (res) => {
+      if (!!res) {
+        setCurrentPageNo(res.data.currentPageNo);
+        setTotalCount(res.data.totalCount);
+        setLastPage(res.data.lastPage);
+        setList(res.data.list);
+        console.log("currentPageNo: " + currentPageNo);
+        console.log("totalCount: " + totalCount);
+        console.log("lastPage: " + lastPage);
+        console.log(list);
+      } else {
+        // 비정상로직;
+      }
+    },
+    [currentPageNo, lastPage, list, totalCount]
+  );
 
   // 팔로잉 목록을 Back에서 받아옴
   useEffect(() => {
@@ -39,7 +42,7 @@ function PresentFriendPopup(props) {
         fnCallback
       )
     );
-  }, [dispatch]);
+  }, [dispatch, fnCallback, presentAccntInput]);
 
   // 선물할 계정 검색
   const productLinkInputHandler = (e) => {

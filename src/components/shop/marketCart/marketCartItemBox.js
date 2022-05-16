@@ -35,7 +35,7 @@ function MarketCartItemBox(props) {
   useEffect(() => {
     props.selectedPrdtListSetting(selectedPrdtCartIdList);
     props.totalPriceSetting(totalPrice);
-  }, [selectedPrdtCartIdList, totalPrice]);
+  }, [props, selectedPrdtCartIdList, totalPrice]);
 
   // 전체 상품 선택
   const isAllSelectHandler = () => {
