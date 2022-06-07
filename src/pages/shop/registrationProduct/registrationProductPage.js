@@ -66,6 +66,7 @@ const RegistrationProductPage = () => {
         </div>
         <div>상품 설명 단락 추가</div>
       </div>
+      <div>최종제출</div>
     </div>
   );
 };
