@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./registrationProductPage.module.css";
 import CommInput from "components/common/commInput";
 import CommSelect from "components/common/CommSelect";
 import AddButton from "components/common/addButton/addButton";
+import DeleteButton from "components/common/deleteButton/deleteButton";
+import AddSectionButton from "components/common/addSectionButton/addSectionButton";
+import CommBtn from "components/common/commBtn";
 
 const RegistrationProductPage = () => {
   const categoryOptions = [
@@ -13,6 +16,30 @@ const RegistrationProductPage = () => {
     { label: "데코", value: "" },
   ];
 
+  const dummy_productOptions = [
+    {
+      category: "색상",
+      options: [
+        { option: "black", addPrice: 0 },
+        { option: "white", addPrice: 1000 },
+        { option: "navy", addPrice: 2000 },
+      ],
+    },
+  ];
+
+  const [productInfo, setProductInfo] = useState();
+  const [productOption, setProductOption] = useState(dummy_productOptions);
+
+  const handleAddCategoryOption = () => {
+    if (productOption.length >= 2) return;
+    const tempOption = productOption.push({
+      category: "예시",
+      options: [],
+    });
+    setProductOption(tempOption);
+    console.log(productOption);
+  };
+
   return (
     <div>
       <h1>상품등록</h1>
@@ -21,7 +48,7 @@ const RegistrationProductPage = () => {
         {/* 1. 상품 대표 이미지  */}
         {/* 2.카테고리 */}
         {/* 셀렉트 박스 추가 퍼블리싱 필요 */}
-        <CommSelect width="100%" options={categoryOptions} />
+        <CommInput placeholder="옵션 카테고리" />
         {/* 3. 상품명  */}
         <CommInput placeholder="상품명" />
         {/* 4. 기본 가격  */}
@@ -37,24 +64,38 @@ const RegistrationProductPage = () => {
         {/* 옵션 카테고리 별로 옵션 아이템 추가 */}
         <div className={classes.flexDiv}>
           <CommInput placeholder="옵션 카테고리" style={{ width: "80%" }} />
-          <AddButton />
+          <AddButton onClick={handleAddCategoryOption} />
         </div>
         {/* 해당 블록 최대 2개 */}
-        <div className={classes.flexDiv}>
-          <div style={{ width: "15%" }}>옵션 카테고리 라벨 : </div>
-          <CommInput
-            type="number"
-            placeholder="옵션"
-            style={{ width: "40%" }}
-          />
-          <CommInput
-            type="number"
-            placeholder="추가 가격"
-            style={{ width: "40%" }}
-          />
-          <div>삭제 버튼</div>
-        </div>
-        <div>옵션 카테고리1 옵션 추가 버튼</div>
+        {productOption?.map((category) => {
+          return (
+            <div className={classes.categorySection}>
+              <div className={classes.categoryName}>
+                카테고리 : {category.category}
+              </div>
+              {category?.options?.map((option) => {
+                return (
+                  <div className={classes.flexDiv}>
+                    <CommInput
+                      type="number"
+                      placeholder="옵션"
+                      style={{ width: "40%" }}
+                    />
+                    <CommInput
+                      type="number"
+                      placeholder="추가 가격"
+                      style={{ width: "40%" }}
+                    />
+                    <DeleteButton />
+                  </div>
+                );
+              })}
+              <AddSectionButton
+                sectionName={`${category.category} 옵션 추가`}
+              />
+            </div>
+          );
+        })}
       </div>
 
       <div className={classes.section}>
@@ -63,11 +104,11 @@ const RegistrationProductPage = () => {
         <div className={classes.flexDiv}>
           <div>이미지 추가</div>
           <CommInput placeholder="상품 설명" />
-          <div>제거 버튼</div>
+          <DeleteButton />
         </div>
-        <div>상품 설명 단락 추가</div>
+        <AddSectionButton sectionName="상품 설명 단락 추가" />
       </div>
-      <div>최종제출</div>
+      <CommBtn btnText="상품 등록" />
     </div>
   );
 };

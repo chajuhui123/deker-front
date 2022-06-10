@@ -1,7 +1,14 @@
 import React from "react";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
-function AddButton() {
-  return <div>addButton</div>;
+/**
+ *
+ * @param {String} onClick Add 버튼 클릭시
+ *
+ */
+
+function AddButton(props) {
+  return <AiOutlinePlusCircle size={30} onClick={props.onClick} {...props} />;
 }
 
 export default AddButton;
