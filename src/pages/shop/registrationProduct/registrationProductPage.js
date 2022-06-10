@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./registrationProductPage.module.css";
 import CommInput from "components/common/commInput";
 import CommSelect from "components/common/CommSelect";
+import AddButton from "components/common/addButton/addButton";
 
 const RegistrationProductPage = () => {
   const categoryOptions = [
@@ -36,7 +37,7 @@ const RegistrationProductPage = () => {
         {/* 옵션 카테고리 별로 옵션 아이템 추가 */}
         <div className={classes.flexDiv}>
           <CommInput placeholder="옵션 카테고리" style={{ width: "80%" }} />
-          <div>추가버튼</div>
+          <AddButton />
         </div>
         {/* 해당 블록 최대 2개 */}
         <div className={classes.flexDiv}>

@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./communityDetailManagementPost.module.css";
 import CommAlert from "components/common/commAlert";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { postApi } from "api/fetch-api";
 import { modalAction } from "store/modal-slice";
 

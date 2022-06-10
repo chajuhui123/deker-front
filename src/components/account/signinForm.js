@@ -9,7 +9,7 @@ import { postApi } from "api/fetch-api";
 import { API_SIGNIN } from "api/account-api";
 import { userAction } from "store/user-slice";
 import { calculateRemainingTime } from "api/check";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { modalAction } from "store/modal-slice";
 
 function SigninForm() {

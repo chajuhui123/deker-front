@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./communityDetailLocationIcon.module.css";
 import noImg from "img/noImg.png";
 import { BASE_URL } from "module/common-module";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 function CommunityDetailLocationIcon({ selectedProductObj }) {
   const {
