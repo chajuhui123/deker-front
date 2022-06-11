@@ -27,7 +27,7 @@ import RecentlyProduct from "components/shop/recently/RecentlyProduct";
 import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
-import RegistrationProductPage from "pages/shop/registrationProduct/registrationProductPage";
+import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
 import { useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 
