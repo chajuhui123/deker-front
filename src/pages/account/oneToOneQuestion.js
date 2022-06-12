@@ -75,6 +75,10 @@ function OneToOneQuestion(props) {
           btnCursor="pointer"
           fnClick={fileSelectHandler}
         />
+        <div className={classes.noFileSelectedArea}>선택된 파일 없음</div>
+        <div className={classes.noFileSelectedArea}>
+          5MB 이하의 이미지 파일 형식
+        </div>
       </div>
     </div>
   );
