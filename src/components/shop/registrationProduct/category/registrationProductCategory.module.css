@@ -8,9 +8,14 @@
 }
 
 .categorySection {
+  margin: 6px 0 0 0;
   padding: 20px;
   border-radius: 5px;
   border: 1px solid var(--border-color);
+}
+
+.categorySection:nth-child(2n) {
+  margin: 10px 0 0 0;
 }
 
 .categoryName {

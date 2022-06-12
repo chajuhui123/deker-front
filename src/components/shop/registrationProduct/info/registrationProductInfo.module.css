@@ -1,0 +1,23 @@
+.flex {
+  display: flex;
+}
+
+.imgDiv {
+  width: 40%;
+}
+
+.inputDiv {
+  width: 60%;
+}
+
+.imgInput {
+  display: none;
+}
+
+.imgLabel {
+  display: block;
+  border-radius: 5px;
+  width: 95%;
+  height: 100%;
+  background-color: #f0f0f0;
+}
