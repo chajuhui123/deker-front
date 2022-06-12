@@ -29,6 +29,7 @@ import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
 import AlarmMain from "components/account/alarm/AlarmMain";
 import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
 import NotFound from "pages/common/NotFound";
+import OneToOneQuestion from "pages/account/oneToOneQuestion";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -101,6 +102,13 @@ function RouteComponent() {
         exact
         isLoggedIn={!isLoggedIn}
         component={AccountMyShoppingPage}
+        fallback={RedriectMain}
+      />
+      <RestrictRoute
+        path="/question"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={OneToOneQuestion}
         fallback={RedriectMain}
       />
       <Route path="/modifyPassword" exact>
