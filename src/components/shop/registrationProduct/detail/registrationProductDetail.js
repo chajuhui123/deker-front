@@ -1,21 +1,23 @@
-import AddSectionButton from "components/common/addSectionButton/addSectionButton";
+import React from "react";
 import CommInput from "components/common/commInput";
 import DeleteButton from "components/common/deleteButton/deleteButton";
-import React, { useEffect } from "react";
+import AddSectionButton from "components/common/addSectionButton/addSectionButton";
 
-function RegistrationProductDetail({ productDetail, handleAddDetail }) {
-  console.log("productDetail : ", productDetail);
+function RegistrationProductDetail({
+  productDetail,
+  handleAddDetail,
+  handleDeleteDetail,
+}) {
   return (
     <>
       <h3>상품 상세 설명</h3>
-      {/* 7. 상품 설명 (텍스트 + 이미지 한 묶음씩 추가 가능)  */}
 
       {productDetail?.map((detail) => {
         return (
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>이미지 추가</div>
             <CommInput placeholder="상품 설명" />
-            <DeleteButton />
+            <DeleteButton onClick={handleDeleteDetail} />
           </div>
         );
       })}

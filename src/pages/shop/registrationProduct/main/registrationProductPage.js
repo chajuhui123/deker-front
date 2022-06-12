@@ -6,6 +6,8 @@ import RegistrationProductDetail from "components/shop/registrationProduct/detai
 import RegistrationProductCategory from "components/shop/registrationProduct/category/registrationProductCategory";
 
 const RegistrationProductPage = () => {
+  const _ = require("lodash");
+
   const dummy_category = [
     { label: "가구", value: "" },
     { label: "가전제품", value: "" },
@@ -55,22 +57,42 @@ const RegistrationProductPage = () => {
 
   const handleAddCategory = () => {
     if (productOption.length >= 2) return;
-    const tempOption = productOption.push({
-      category: "예시",
-      options: [],
-    });
-    setProductOption(tempOption);
-    console.log(productOption);
+    setProductOption((prev) => [
+      ...prev,
+      { category: "추후 props 값으로 수정", options: [] },
+    ]);
   };
 
-  const handleAddCategoryOption = () => {};
+  const handleDeleteCategory = (categoryIndex) => {
+    const copiedProductOption = _.cloneDeep(productOption);
+    categoryIndex === 0
+      ? copiedProductOption.shift()
+      : copiedProductOption.pop();
+    setProductOption(copiedProductOption);
+  };
+
+  const handleAddCategoryOption = (categoryIndex) => {
+    const copiedProductOption = _.cloneDeep(productOption);
+    copiedProductOption[categoryIndex].options.push({
+      option: "",
+      addPrice: 0,
+    });
+    setProductOption(copiedProductOption);
+  };
+
+  const handleDeleteCategoryOption = (categoryIndex) => {
+    const copiedProductOption = _.cloneDeep(productOption);
+    copiedProductOption[categoryIndex].options.pop();
+    setProductOption(copiedProductOption);
+  };
 
   // 상품 상세 설명
 
-  const handleAddDetail = () => {
-    const tempDetail = productDetail.push({ image: "", description: "" });
-    setProductDetail(tempDetail);
-  };
+  const handleAddDetail = () =>
+    setProductDetail((prev) => [...prev, { image: "", description: "" }]);
+
+  const handleDeleteDetail = () =>
+    setProductDetail((prev) => [...prev.slice(0, prev.length - 1)]);
 
   useEffect(() => {
     previewImage();
@@ -86,8 +108,11 @@ const RegistrationProductPage = () => {
 
       <div className={classes.section}>
         <RegistrationProductCategory
-          handleAddCategory={handleAddCategory}
           productOption={productOption}
+          handleAddCategory={handleAddCategory}
+          handleDeleteCategory={handleDeleteCategory}
+          handleAddCategoryOption={handleAddCategoryOption}
+          handleDeleteCategoryOption={handleDeleteCategoryOption}
         />
       </div>
 
@@ -95,6 +120,7 @@ const RegistrationProductPage = () => {
         <RegistrationProductDetail
           productDetail={productDetail}
           handleAddDetail={handleAddDetail}
+          handleDeleteDetail={handleDeleteDetail}
         />
       </div>
 

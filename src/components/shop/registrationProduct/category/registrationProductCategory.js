@@ -5,7 +5,13 @@ import AddButton from "components/common/addButton/addButton";
 import DeleteButton from "components/common/deleteButton/deleteButton";
 import AddSectionButton from "components/common/addSectionButton/addSectionButton";
 
-function RegistrationProductCategory({ handleAddCategory, productOption }) {
+function RegistrationProductCategory({
+  productOption,
+  handleAddCategory,
+  handleDeleteCategory,
+  handleAddCategoryOption,
+  handleDeleteCategoryOption,
+}) {
   return (
     <>
       <h3>상품 옵션</h3>
@@ -17,11 +23,17 @@ function RegistrationProductCategory({ handleAddCategory, productOption }) {
         <AddButton onClick={handleAddCategory} />
       </div>
       {/* 해당 블록 최대 2개 */}
-      {productOption?.map((category) => {
+      {productOption?.map((category, categoryIdx) => {
         return (
           <div className={classes.categorySection}>
             <div className={classes.categoryName}>
-              카테고리 : {category.category}
+              <div>카테고리 : {category.category}</div>
+              <DeleteButton
+                color="#B30000"
+                size={20}
+                onClick={handleDeleteCategory}
+                style={{ margin: "0 0 0 5px" }}
+              />
             </div>
             {category?.options?.map((option) => {
               return (
@@ -36,11 +48,16 @@ function RegistrationProductCategory({ handleAddCategory, productOption }) {
                     placeholder="추가 가격"
                     style={{ width: "40%" }}
                   />
-                  <DeleteButton />
+                  <DeleteButton
+                    onClick={() => handleDeleteCategoryOption(categoryIdx)}
+                  />
                 </div>
               );
             })}
-            <AddSectionButton sectionName={`${category.category} 옵션 추가`} />
+            <AddSectionButton
+              sectionName={`${category.category} 옵션 추가`}
+              onClick={() => handleAddCategoryOption(categoryIdx)}
+            />
           </div>
         );
       })}
