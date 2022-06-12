@@ -4,7 +4,7 @@ import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
 import CommSelect from "components/common/CommSelect";
 import { useMemo, useState } from "react";
-import classes from "./oneToOneQuestion.module.css";
+import classes from "./oneToOneQuestionPage.module.css";
 
 function OneToOneQuestionPage(props) {
   // 문의유형 Select Option
