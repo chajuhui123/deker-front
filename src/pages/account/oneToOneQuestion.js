@@ -6,7 +6,7 @@ import CommSelect from "components/common/CommSelect";
 import { useMemo, useState } from "react";
 import classes from "./oneToOneQuestion.module.css";
 
-function OneToOneQuestion(props) {
+function OneToOneQuestionPage(props) {
   // 문의유형 Select Option
   const questionOption = useMemo(
     () => [
@@ -84,4 +84,4 @@ function OneToOneQuestion(props) {
   );
 }
 
-export default OneToOneQuestion;
+export default OneToOneQuestionPage;
