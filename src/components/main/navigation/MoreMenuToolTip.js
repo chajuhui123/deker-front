@@ -21,6 +21,9 @@ function MoreMenuToolTip({ handleMoreMenu }) {
       <Link to="/mypage" onClick={handleMoreMenu}>
         마이페이지
       </Link>
+      <Link to="/question" onClick={handleMoreMenu}>
+        1:1 문의
+      </Link>
       {/* <Link to="/community/write">글쓰기</Link> */}
       <Link to="/myShopping" onClick={handleMoreMenu}>
         나의 쇼핑
