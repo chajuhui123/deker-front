@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import classes from "./registrationProductPage.module.css";
 import CommBtn from "components/common/commBtn";
 import RegistrationProductInfo from "components/shop/registrationProduct/info/registrationProductInfo";
@@ -28,6 +29,8 @@ const RegistrationProductPage = () => {
   ];
 
   const dummy_product_detail = [{ image: "", description: "" }];
+
+  const { register, handleSubmit } = useForm();
 
   const [productFiles, setProductFiles] = useState();
   const [productInfo, setProductInfo] = useState();
@@ -101,30 +104,38 @@ const RegistrationProductPage = () => {
 
   return (
     <div>
-      <h1>상품등록</h1>
-      <div className={classes.section}>
-        <RegistrationProductInfo handleUploadImage={handleUploadImage} />
-      </div>
+      <form
+        onSubmit={handleSubmit((data) => console.log("onSubmit :: ", data))}
+      >
+        <h1>상품등록</h1>
+        <div className={classes.section}>
+          <RegistrationProductInfo
+            register={register}
+            handleUploadImage={handleUploadImage}
+          />
+        </div>
 
-      <div className={classes.section}>
-        <RegistrationProductCategory
-          productOption={productOption}
-          handleAddCategory={handleAddCategory}
-          handleDeleteCategory={handleDeleteCategory}
-          handleAddCategoryOption={handleAddCategoryOption}
-          handleDeleteCategoryOption={handleDeleteCategoryOption}
-        />
-      </div>
+        <div className={classes.section}>
+          <RegistrationProductCategory
+            register={register}
+            productOption={productOption}
+            handleAddCategory={handleAddCategory}
+            handleDeleteCategory={handleDeleteCategory}
+            handleAddCategoryOption={handleAddCategoryOption}
+            handleDeleteCategoryOption={handleDeleteCategoryOption}
+          />
+        </div>
 
-      <div className={classes.section}>
-        <RegistrationProductDetail
-          productDetail={productDetail}
-          handleAddDetail={handleAddDetail}
-          handleDeleteDetail={handleDeleteDetail}
-        />
-      </div>
+        <div className={classes.section}>
+          <RegistrationProductDetail
+            productDetail={productDetail}
+            handleAddDetail={handleAddDetail}
+            handleDeleteDetail={handleDeleteDetail}
+          />
+        </div>
 
-      <CommBtn btnText="상품 등록" />
+        <input className={classes.inputBtn} type="submit" value="상품 등록" />
+      </form>
     </div>
   );
 };

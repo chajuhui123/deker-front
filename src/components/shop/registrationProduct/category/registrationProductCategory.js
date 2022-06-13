@@ -6,6 +6,7 @@ import DeleteButton from "components/common/deleteButton/deleteButton";
 import AddSectionButton from "components/common/addSectionButton/addSectionButton";
 
 function RegistrationProductCategory({
+  register,
   productOption,
   handleAddCategory,
   handleDeleteCategory,
