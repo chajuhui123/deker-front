@@ -1,0 +1,6 @@
+.addButton {
+  border: none;
+  color: #494949;
+  border-radius: var(--border-radius);
+  background-color: var(--border-color);
+}

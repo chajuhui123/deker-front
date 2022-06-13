@@ -1,46 +1,43 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
 import KakaoAuth from "./oauth/kakao";
-import SigninPage from "./pages/SigninPage";
-import ModifyPasswordPage from "./pages/modifyPassword";
-import MyPresentPage from "./pages/MyPresentPage";
-import MyReviewPage from "./pages/MyReviewPage";
-import SignupPage from "./pages/SignupPage";
-import ModifyUserInfoPage from "pages/ModifyUserInfoPage";
-import SignupAddPage from "pages/SignupAddPage";
 import ModalTest from "pages/modalTest";
-import CreateCommunityPage from "pages/community/CreateCommunityPage";
-import ProductDetailPage from "pages/shop/ProductDetail";
+import SigninPage from "./pages/SigninPage";
+import SignupPage from "./pages/SignupPage";
+import NotFound from "pages/common/NotFound";
+import SignupAddPage from "pages/SignupAddPage";
+import MyReviewPage from "./pages/MyReviewPage";
+import PaymentPage from "pages/shop/paymentPage";
+import MyPresentPage from "./pages/MyPresentPage";
 import StoreMainPage from "pages/shop/StoreMainPage";
 import StoreSortPage from "pages/shop/StoreSortPage";
-import CommunityDetailPage from "pages/community/communityDetailPage";
-import MarketCartPage from "pages/shop/cart/marketCartPage";
-import CommunityMainPage from "pages/community/CommunityMainPage";
-import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
-import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
-import PaymentPage from "pages/shop/paymentPage";
-import RecentlyProduct from "components/shop/recently/RecentlyProduct";
-import RestrictRoute from "components/common/RestrictRoute";
-import { Route, Switch, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-import AcctFllwngPage from "pages/account/accountFollowingPage";
+import ModifyPasswordPage from "./pages/modifyPassword";
 import AccountMyPage from "pages/account/accountMyPage";
-import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
-import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
+import ProductDetailPage from "pages/shop/ProductDetail";
+import ModifyUserInfoPage from "pages/ModifyUserInfoPage";
+import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
 import AlarmMain from "components/account/alarm/AlarmMain";
-import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
-import NotFound from "pages/common/NotFound";
+import MarketCartPage from "pages/shop/cart/marketCartPage";
+import RestrictRoute from "components/common/RestrictRoute";
+import AcctFllwngPage from "pages/account/accountFollowingPage";
+import CommunityMainPage from "pages/community/CommunityMainPage";
+import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
+import CreateCommunityPage from "pages/community/CreateCommunityPage";
+import CommunityDetailPage from "pages/community/communityDetailPage";
 import OneToOneQuestionPage from "pages/account/oneToOneQuestionPage";
+import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
+import RecentlyProduct from "components/shop/recently/RecentlyProduct";
+import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
+import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
+import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const RedriectMain = () => <Redirect to="/" />;
   return (
     <Switch>
-      <Route path="/" exact>
-        <div>
-          <CommunityMainPage />
-        </div>
-      </Route>
+      <Route path="/" component={CommunityMainPage} exact />
       <RestrictRoute
         path="/signup"
         exact
@@ -104,6 +101,8 @@ function RouteComponent() {
         component={AccountMyShoppingPage}
         fallback={RedriectMain}
       />
+      <Route path="/modifyPassword" component={ModifyPasswordPage} exact />
+      <Route path="/mypresent" component={MyPresentPage} exact />
       <RestrictRoute
         path="/question"
         exact
@@ -111,16 +110,6 @@ function RouteComponent() {
         component={OneToOneQuestionPage}
         fallback={RedriectMain}
       />
-      <Route path="/modifyPassword" exact>
-        <div>
-          <ModifyPasswordPage />
-        </div>
-      </Route>
-      <Route path="/mypresent" exact>
-        <div>
-          <MyPresentPage />
-        </div>
-      </Route>
       <RestrictRoute
         path="/myReview"
         exact
@@ -131,17 +120,13 @@ function RouteComponent() {
       <Route path="/myAlarm" exact>
         <AlarmMain />
       </Route>
-      <Route path="/community" exact>
-        <CommunityMainPage />
-      </Route>
+      <Route path="/community" component={CommunityMainPage} exact />
       <Route
         path="/community/semi/:type"
         exact
         component={CommunitySemiPage}
       ></Route>
-      <Route path="/community/write" exact>
-        <CreateCommunityPage />
-      </Route>
+      <Route path="/community/write" component={CreateCommunityPage} exact />
       <Route
         path="/community/mod/:communityPostId"
         exact
@@ -150,26 +135,16 @@ function RouteComponent() {
       <Route path="/modalTest" exact>
         <ModalTest />
       </Route>
-      <Route path="/market" exact>
-        <StoreMainPage />
-      </Route>
-      <Route path="/market/cart" exact>
-        <MarketCartPage />
-      </Route>
-      <Route path="/market/view" exact>
-        <MarketRecentlyViewPage />
-      </Route>
+      <Route path="/market" component={StoreMainPage} exact />
+      <Route path="/market/cart" component={MarketCartPage} exact />
+      <Route path="/market/view" component={MarketRecentlyViewPage} exact />
       <Route
         path="/market/storeSortPage/:sortId"
         exact
         component={StoreSortPage}
       ></Route>
-      <Route path="/payment" exact>
-        <PaymentPage />
-      </Route>
-      <Route path="/payment/paymentCmplt" exact>
-        <PaymentCmpltPage />
-      </Route>
+      <Route path="/payment" component={PaymentPage} exact />
+      <Route path="/payment/paymentCmplt" component={PaymentCmpltPage} exact />
       <Route
         path="/market/detail/:productId"
         exact
@@ -183,6 +158,11 @@ function RouteComponent() {
       <Route path="/market/recently" exact>
         <RecentlyProduct />
       </Route>
+      <Route
+        path="/market/registration-product"
+        exact
+        component={RegistrationProductPage}
+      />
       <Route component={NotFound} />
     </Switch>
   );

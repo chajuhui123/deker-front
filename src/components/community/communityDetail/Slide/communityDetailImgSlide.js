@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./communityDetailImgSlide.module.css";
 import { BASE_URL } from "module/common-module";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 function CommunityDetailImgSlide({ communitySelectedProductArr }) {
   const history = useHistory();
