@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Route, Switch, Redirect } from "react-router-dom";
 import KakaoAuth from "./oauth/kakao";
 import ModalTest from "pages/modalTest";
 import SigninPage from "./pages/SigninPage";
@@ -23,13 +25,12 @@ import CommunityMainPage from "pages/community/CommunityMainPage";
 import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
 import CreateCommunityPage from "pages/community/CreateCommunityPage";
 import CommunityDetailPage from "pages/community/communityDetailPage";
+import OneToOneQuestionPage from "pages/account/oneToOneQuestionPage";
+import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
 import RecentlyProduct from "components/shop/recently/RecentlyProduct";
 import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
-import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
 import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
-import { useSelector } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -102,6 +103,13 @@ function RouteComponent() {
       />
       <Route path="/modifyPassword" component={ModifyPasswordPage} exact />
       <Route path="/mypresent" component={MyPresentPage} exact />
+      <RestrictRoute
+        path="/question"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={OneToOneQuestionPage}
+        fallback={RedriectMain}
+      />
       <RestrictRoute
         path="/myReview"
         exact
