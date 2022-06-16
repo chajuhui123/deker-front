@@ -19,7 +19,7 @@ function CommInput(props) {
   const noti = props.noti;
   const ref = props.refer;
   return (
-    <div className={classes.commInput}>
+    <div className={classes.commInput} {...props}>
       {title && <CommPageSemiTitle semiTitle={title} />}
       {noti && <h6>{noti}</h6>}
       <input

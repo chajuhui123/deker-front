@@ -1,0 +1,26 @@
+.section {
+  margin: 0 0 40px 0;
+}
+
+.flexDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.categorySection {
+  margin: 6px 0 0 0;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+
+.categorySection:nth-child(2n) {
+  margin: 10px 0 0 0;
+}
+
+.categoryName {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 30px 0;
+  font-weight: 500;
+}

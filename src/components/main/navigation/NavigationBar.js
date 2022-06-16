@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./NavigationBar.module.css";
-import { useLocation } from "react-router-dom";
-import { useHistory } from "react-router";
+import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { IoIosAddCircle } from "react-icons/io";

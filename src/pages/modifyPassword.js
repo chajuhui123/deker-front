@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./modifyPassword.css";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import CommAlert from "components/common/commAlert";
 import { postApi } from "api/fetch-api";
 import { isPassword } from "../api/check";
