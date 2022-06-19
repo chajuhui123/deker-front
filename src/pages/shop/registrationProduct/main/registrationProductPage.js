@@ -146,13 +146,17 @@ const RegistrationProductPage = () => {
 
         <div className={classes.section}>
           <RegistrationProductDetail
+            setProductRegistrationState={setProductRegistrationState}
             productDetail={productDetail}
             handleAddDetail={handleAddDetail}
             handleDeleteDetail={handleDeleteDetail}
           />
         </div>
 
-        <input className={classes.inputBtn} type="submit" value="상품 등록" />
+        <CommBtn
+          btnText="상품 등록"
+          fnClick={console.log(productRegistrationState)}
+        />
       </form>
     </div>
   );
