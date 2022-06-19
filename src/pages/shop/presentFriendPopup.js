@@ -1,5 +1,5 @@
 import { postApi } from "api/fetch-api";
-import AccntList from "components/account/myPage/accntList";
+import AccntList from "components/account/mypage/acctlist/accntList";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";

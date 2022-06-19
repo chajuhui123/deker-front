@@ -1,4 +1,4 @@
-import MyOrderPrdtItem from "./myOrderPrdtItem";
+import MyOrderPrdtItem from "../myOrderPrdtItem";
 import classes from "./myOrderPrdtList.module.css";
 
 function MyOrderPrdtList(props) {

@@ -6,7 +6,7 @@ import CommBtn from "components/common/commBtn";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
 import { modalAction } from "store/modal-slice";
-import DeliveryEditor from "components/account/accountShop/DeliveryEditor";
+import DeliveryEditor from "components/account/myshopping/othercomp/DeliveryEditor";
 
 // const DUMMY_DATA = [
 //   {

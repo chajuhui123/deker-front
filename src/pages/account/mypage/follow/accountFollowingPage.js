@@ -1,5 +1,5 @@
 import CommonPageTitle from "components/common/commPageTitle";
-import AccntList from "../../components/account/myPage/accntList";
+import AccntList from "../../components/account/mypage/acctlist/accntList";
 import classes from "./accountFollowing.module.css";
 
 import { useCallback, useEffect, useState } from "react";

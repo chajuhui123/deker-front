@@ -7,8 +7,8 @@ import CommonPageTitle from "components/common/commPageTitle";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import { useDispatch } from "react-redux";
 import { postApi } from "api/fetch-api";
-import MyShoppingCnt from "./myshoppingCnt";
-import MyOrderPrdtList from "./myOrderPrdtList";
+import MyShoppingCnt from "./subcomp/myshoppingCnt";
+import MyOrderPrdtList from "./subcomp/myOrderPrdtList";
 
 function AccountMyShopping(props) {
   const dispatch = useDispatch();

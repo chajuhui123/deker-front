@@ -1,4 +1,4 @@
-import SigninForm from "../components/account/signinForm";
+import SigninForm from "../../../components/account/signin/signinForm";
 import SocialLogin from "components/common/socialLogin";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";

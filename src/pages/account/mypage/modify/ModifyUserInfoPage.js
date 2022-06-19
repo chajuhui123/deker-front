@@ -1,4 +1,4 @@
-import ModifyUserInfo from "../components/account/myPage/modifyUserInfo";
+import ModifyUserInfo from "../components/account/mypage/modify/modifyUserInfo";
 
 const ModifyUserInfoPage = () => {
   return (
