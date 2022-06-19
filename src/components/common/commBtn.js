@@ -15,6 +15,7 @@ import CommSpinner from "./CommSpinner";
  * @param {String} btnCursor 커서 모양
  * @param {String} radius 둥근정도
  * @param {String} fontSize 글씨크기
+ * @param {String} for 대신 작동할 컴포넌트 이름
  * @param {boolean} isLoading Loading 여부
  * @param {Function} fnClick onClick callback method
  * @returns
@@ -36,6 +37,7 @@ function CommBtn(props) {
       className={classes.btnArea}
       style={customStyle}
       onClick={props.fnClick}
+      for={props.for}
     >
       {props.isLoading || (
         <p style={{ fontSize: props.fontSize || "16px" }}>

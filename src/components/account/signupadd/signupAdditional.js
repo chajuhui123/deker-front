@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import UserTagForm from "../common/userTagForm";
+import UserTagForm from "../../common/userTagForm";
 import classes from "./signupAdditional.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";

@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import classes from "./modalTest.module.css";
-import DeliverySelect from "components/account/accountShop/deliverySelect";
-import DeliveryTracking from "components/account/accountShop/deliveryTracking";
+import DeliverySelect from "components/account/myshopping/deliverySelect";
+import DeliveryTracking from "components/account/myshopping/deliveryTracking";
 import { modalAction } from "store/modal-slice";
 import ProductSalesLink from "components/community/productSalesLinkPage";
 import CommBtn from "components/common/commBtn";
@@ -11,7 +11,7 @@ import CommPopup from "components/common/commPopup";
 import { postApi, sseApi } from "api/fetch-api";
 import { spinnerAction } from "store/spinner-slice";
 import CommAlert from "components/common/commAlert";
-import PresentFriendPopup from "./shop/presentFriendPopup";
+import PresentFriendPopup from "../shop/presentFriendPopup";
 import CommSelect from "components/common/CommSelect";
 
 function ModalTest(props) {

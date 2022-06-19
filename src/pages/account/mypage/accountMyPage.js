@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-import MyUploadPicList from "components/account/myPage/myUploadPicLIst";
+import MyUploadPicList from "components/account/mypage/myUploadPicLIst";
 import classes from "./accountMyPage.module.css";
 import CommonPageTitle from "components/common/commPageTitle";
 import { postApi } from "api/fetch-api";
@@ -42,61 +42,8 @@ const AccountMyPage = (props) => {
   };
 
   const modifyUserInfoBtnHandler = () => {
-    history.push("/mypage/modify");
+    history.push("/account/mypage/modify");
   };
-
-  // const DUMMY_DATA = [
-  //   {
-  //     id: 1,
-  //     pic_image:
-  //       "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-  //   },
-  //   {
-  //     id: 2,
-  //     pic_image:
-  //       "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
-  //   },
-  //   {
-  //     id: 3,
-  //     pic_image:
-  //       "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
-  //   },
-  //   {
-  //     id: 4,
-  //     pic_image:
-  //       "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-  //   },
-  //   {
-  //     id: 5,
-  //     pic_image:
-  //       "https://i.pinimg.com/736x/dc/42/5b/dc425b83adc4d8d64962455604d8c4a6--home-office-design-office-designs.jpg",
-  //   },
-  //   {
-  //     id: 6,
-  //     pic_image:
-  //       "http://imagescdn.gettyimagesbank.com/500/21/378/818/0/1326923672.jpg",
-  //   },
-  //   {
-  //     id: 7,
-  //     pic_image:
-  //       "https://sc02.alicdn.com/kf/Hf1624ba8f81149ccb00eec69eb3a04c6n.jpg",
-  //   },
-  //   {
-  //     id: 8,
-  //     pic_image:
-  //       "https://as1.ftcdn.net/v2/jpg/02/45/55/66/1000_F_245556698_vLsKSp1veCfadzkzcFyMcnPL0Imm9dLu.jpg",
-  //   },
-  //   {
-  //     id: 9,
-  //     pic_image:
-  //       "https://cdn.mos.cms.futurecdn.net/92keBiQNU4EtZemm4wfw8h-1200-80.jpg",
-  //   },
-  //   {
-  //     id: 10,
-  //     pic_image:
-  //       "https://i.pinimg.com/736x/dc/42/5b/dc425b83adc4d8d64962455604d8c4a6--home-office-design-office-designs.jpg",
-  //   },
-  // ];
 
   return (
     <div className={classes.Layout}>
@@ -119,7 +66,7 @@ const AccountMyPage = (props) => {
                 <div className={classes.linkTo}>
                   <Link
                     to={{
-                      pathname: "/mypage/following",
+                      pathname: "/account/mypage/following",
                       state: { follow: "following" },
                     }}
                     // style={{ textDecoration: "none" }}
@@ -130,7 +77,7 @@ const AccountMyPage = (props) => {
                 <div className={classes.linkTo}>
                   <Link
                     to={{
-                      pathname: "/mypage/follower",
+                      pathname: "/account/mypage/follower",
                       state: { follow: "follower" },
                     }}
                   >
