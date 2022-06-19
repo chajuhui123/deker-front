@@ -5,7 +5,7 @@ import ModalPopup from "components/common/modal";
 import noImg from "img/noImg.png";
 import { BASE_URL } from "module/common-module";
 import { modalAction } from "store/modal-slice";
-import BuyConfirmPopup from "./buyConfirmPopup";
+import BuyConfirmPopup from "./popup/buyConfirmPopup";
 import CommBtn from "components/common/commBtn";
 import { useCallback, useEffect, useState } from "react";
 

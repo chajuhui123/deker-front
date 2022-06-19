@@ -1,4 +1,4 @@
-import AccntItem from "./accntItem";
+import AccntItem from "../accnitem/accntItem";
 import classes from "./accntList.module.css";
 
 const AccntList = (props) => {

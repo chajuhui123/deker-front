@@ -7,7 +7,7 @@ import classes from "./userTagForm.module.css";
  * @returns
  */
 function UserTagForm(props) {
-  const [tag, setTag] = useState(props.tags);
+  const [tag, setTag] = useState(props.tags || []);
   const [inputText, setInputText] = useState("");
   const [nextId, setNextId] = useState(1); // 다음 index, 1번부터 시작하니까 1로 세팅
   const [isLoad, setIsLoad] = useState(false);
@@ -39,25 +39,28 @@ function UserTagForm(props) {
 
   const onClickRemove = (id) => {
     const copyItem = tag.filter((tagTg) => tagTg.id !== id);
+    console.log(`onClickRemove :: ${id} :: copyItem :: ${copyItem}`);
     setTag(copyItem);
     tagOutHandler(copyItem);
   };
 
   const tagOutHandler = (tagArry) => {
+    console.log(`tagOutHandler :: ${tagArry}`);
     if (!!props.tagOutHandler) {
       props.tagOutHandler(tagArry);
     }
   };
 
   const restoreTags = useCallback(() => {
+    console.log(`restoreTags :: ${props.tags}`);
     if (!!props.tags) {
-      const tagArry = props.tags || null;
+      const tagArry = props.tags;
       if (tagArry.length > 0) {
         if (!isLoad) {
-          const arry = tagArry.map((t) => {
+          const arry = tagArry.map((t, i) => {
             setNextId((prev) => prev + 1);
             return {
-              id: nextId,
+              id: i + 1,
               text: t,
             };
           });
@@ -66,7 +69,7 @@ function UserTagForm(props) {
         }
       }
     }
-  }, [isLoad, nextId, props.tags]);
+  }, [isLoad, props.tags]);
 
   useEffect(() => {
     console.log("userTagForm :: useEffect()");

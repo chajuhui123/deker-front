@@ -1,5 +1,5 @@
 import CommonPageTitle from "components/common/commPageTitle";
-import MyPresentList from "../components/account/myPresent/myPresentList";
+import MyPresentList from "../../../components/account/mypresent/myPresentList";
 
 const MyPresentPage = () => {
   const DUMMY_DATA = [

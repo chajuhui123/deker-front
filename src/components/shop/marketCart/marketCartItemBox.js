@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MyOrderPrdtItem from "components/account/accountShop/myOrderPrdtItem";
+import MyOrderPrdtItem from "components/account/myshopping/myOrderPrdtItem";
 import classes from "./marketCartItemBox.module.css";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";

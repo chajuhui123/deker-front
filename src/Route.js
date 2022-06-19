@@ -1,21 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
-import KakaoAuth from "./oauth/kakao";
-import ModalTest from "pages/modalTest";
-import SigninPage from "./pages/SigninPage";
-import SignupPage from "./pages/SignupPage";
+import ModalTest from "pages/test/modalTest";
+import SigninPage from "./pages/account/signin/SigninPage";
+import SignupPage from "./pages/account/signup/SignupPage";
 import NotFound from "pages/common/NotFound";
-import SignupAddPage from "pages/SignupAddPage";
-import MyReviewPage from "./pages/MyReviewPage";
+import SignupAddPage from "pages/account/signupadd/SignupAddPage";
+import MyReviewPage from "./pages/account/myreview/MyReviewPage";
 import PaymentPage from "pages/shop/paymentPage";
-import MyPresentPage from "./pages/MyPresentPage";
+import MyPresentPage from "./pages/account/mypresent/MyPresentPage";
 import StoreMainPage from "pages/shop/StoreMainPage";
 import StoreSortPage from "pages/shop/StoreSortPage";
-import ModifyPasswordPage from "./pages/modifyPassword";
-import AccountMyPage from "pages/account/accountMyPage";
+import AccountMyPage from "pages/account/mypage/accountMyPage";
 import ProductDetailPage from "pages/shop/ProductDetail";
 import ModifyUserInfoPage from "pages/ModifyUserInfoPage";
+import ModifyPassword from "pages/account/modfiypw/modifyPassword";
 import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
 import AlarmMain from "components/account/alarm/AlarmMain";
 import MarketCartPage from "pages/shop/cart/marketCartPage";
@@ -28,7 +27,7 @@ import CommunityDetailPage from "pages/community/communityDetailPage";
 import OneToOneQuestionPage from "pages/account/oneToOneQuestionPage";
 import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
 import RecentlyProduct from "components/shop/recently/RecentlyProduct";
-import AccountMyShoppingPage from "pages/account/accountMyShoppingPage";
+import AccountMyShoppingPage from "pages/account/myshopping/accountMyShoppingPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
 
@@ -39,70 +38,70 @@ function RouteComponent() {
     <Switch>
       <Route path="/" component={CommunityMainPage} exact />
       <RestrictRoute
-        path="/signup"
+        path="/account/signup"
         exact
         isLoggedIn={isLoggedIn}
         component={SignupPage}
         fallback={RedriectMain}
       />
       <RestrictRoute
-        path="/signup/additional"
+        path="/account/signupadd"
         exact
         isLoggedIn={isLoggedIn}
         component={SignupAddPage}
         fallback={RedriectMain}
       />
       <RestrictRoute
-        path="/signin"
+        path="/account/signin"
         exact
         isLoggedIn={isLoggedIn}
         component={SigninPage}
         fallback={RedriectMain}
       />
-      <RestrictRoute
+      {/* <RestrictRoute
         path="/oauth/kakao"
         exact
         isLoggedIn={isLoggedIn}
         component={KakaoAuth}
         fallback={RedriectMain}
-      />
+      /> */}
       <RestrictRoute
-        path="/mypage"
+        path="/account/mypage"
         exact
         isLoggedIn={!isLoggedIn}
         component={AccountMyPage}
         fallback={RedriectMain}
       />
-      <Route
-        path="/mypage/following"
-        exact
-        isLoggedIn={!isLoggedIn}
-        component={AcctFllwngPage}
-        fallback={RedriectMain}
-      />
-      <Route
-        path="/mypage/follower"
-        exact
-        isLoggedIn={!isLoggedIn}
-        component={AcctFllwngPage}
-        fallback={RedriectMain}
-      />
       <RestrictRoute
-        path="/mypage/modify"
+        path="/account/mypage/modify"
         exact
         isLoggedIn={!isLoggedIn}
         component={ModifyUserInfoPage}
         fallback={RedriectMain}
       />
+      <Route
+        path="/account/mypage/follower"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={AcctFllwngPage}
+        fallback={RedriectMain}
+      />
+      <Route
+        path="/account/mypage/following"
+        exact
+        isLoggedIn={!isLoggedIn}
+        component={AcctFllwngPage}
+        fallback={RedriectMain}
+      />
       <RestrictRoute
-        path="/myShopping"
+        path="/account/myshopping"
         exact
         isLoggedIn={!isLoggedIn}
         component={AccountMyShoppingPage}
         fallback={RedriectMain}
       />
-      <Route path="/modifyPassword" component={ModifyPasswordPage} exact />
-      <Route path="/mypresent" component={MyPresentPage} exact />
+      <Route path="/account/modfiypw" component={ModifyPassword} exact />
+      <Route path="/account/mypresent" component={MyPresentPage} exact />
       <Route
         path="/question"
         exact
@@ -111,15 +110,15 @@ function RouteComponent() {
         // fallback={RedriectMain}
       />
       <Route
-        path="/myReview"
+        path="/account/myreview"
         exact
         isLoggedIn={!isLoggedIn}
         component={MyReviewPage}
         fallback={RedriectMain}
       />
-      <Route path="/myAlarm" exact>
+      {/* <Route path="/myAlarm" exact>
         <AlarmMain />
-      </Route>
+      </Route> */}
       <Route path="/community" component={CommunityMainPage} exact />
       <Route
         path="/community/semi/:type"

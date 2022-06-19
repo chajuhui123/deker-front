@@ -1,4 +1,4 @@
-import DeliverySelect from "components/account/accountShop/deliverySelect";
+import DeliverySelect from "components/account/myshopping/deliverySelect";
 import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
@@ -10,7 +10,7 @@ import classes from "./paymentPage.module.css";
 import PresentFriendPopup from "./presentFriendPopup";
 import PayBy from "./payBy";
 import PayBtn from "./payBtn";
-import MyOrderPrdtList from "components/account/accountShop/myOrderPrdtList";
+import MyOrderPrdtList from "components/account/myshopping/subcomp/myOrderPrdtList";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { postApi } from "api/fetch-api";
 
