@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import classes from "./registrationProductPage.module.css";
 import CommBtn from "components/common/commBtn";
 import RegistrationProductInfo from "components/shop/registrationProduct/info/registrationProductInfo";
@@ -7,7 +6,7 @@ import RegistrationProductDetail from "components/shop/registrationProduct/detai
 import RegistrationProductCategory from "components/shop/registrationProduct/category/registrationProductCategory";
 
 const RegistrationProductPage = () => {
-  const _ = require("lodash");
+  // const _ = require("lodash");
 
   const [productRegistrationState, setProductRegistrationState] = useState({
     productImg: "",
@@ -30,28 +29,20 @@ const RegistrationProductPage = () => {
     { label: "데코", value: "" },
   ];
 
-  const dummy_productOptions = [
-    {
-      category: "색상",
-      options: [
-        { option: "black", addPrice: 0 },
-        { option: "white", addPrice: 1000 },
-        { option: "navy", addPrice: 2000 },
-      ],
-    },
-  ];
-
-  const { register, handleSubmit } = useForm();
+  // const dummy_productOptions = [
+  //   {
+  //     category: "색상",
+  //     options: [
+  //       { option: "black", addPrice: 0 },
+  //       { option: "white", addPrice: 1000 },
+  //       { option: "navy", addPrice: 2000 },
+  //     ],
+  //   },
+  // ];
 
   const [productFiles, setProductFiles] = useState();
-  const [productOption, setProductOption] = useState(dummy_productOptions);
 
   // 상품 기본 정보
-
-  const handleUploadImage = (event) => {
-    const uploadFile = event.target.files;
-    setProductFiles(uploadFile);
-  };
 
   const previewImage = () => {
     if (!productFiles) return;
@@ -67,36 +58,36 @@ const RegistrationProductPage = () => {
 
   // 상품 카테고리
 
-  const handleAddCategory = () => {
-    if (productOption.length >= 2) return;
-    setProductOption((prev) => [
-      ...prev,
-      { category: "추후 props 값으로 수정", options: [] },
-    ]);
-  };
+  // const handleAddCategory = () => {
+  //   if (productOption.length >= 2) return;
+  //   setProductOption((prev) => [
+  //     ...prev,
+  //     { category: "추후 props 값으로 수정", options: [] },
+  //   ]);
+  // };
 
-  const handleDeleteCategory = (categoryIndex) => {
-    const copiedProductOption = _.cloneDeep(productOption);
-    categoryIndex === 0
-      ? copiedProductOption.shift()
-      : copiedProductOption.pop();
-    setProductOption(copiedProductOption);
-  };
+  // const handleDeleteCategory = (categoryIndex) => {
+  //   const copiedProductOption = _.cloneDeep(productOption);
+  //   categoryIndex === 0
+  //     ? copiedProductOption.shift()
+  //     : copiedProductOption.pop();
+  //   setProductOption(copiedProductOption);
+  // };
 
-  const handleAddCategoryOption = (categoryIndex) => {
-    const copiedProductOption = _.cloneDeep(productOption);
-    copiedProductOption[categoryIndex].options.push({
-      option: "",
-      addPrice: 0,
-    });
-    setProductOption(copiedProductOption);
-  };
+  // const handleAddCategoryOption = (categoryIndex) => {
+  //   const copiedProductOption = _.cloneDeep(productOption);
+  //   copiedProductOption[categoryIndex].options.push({
+  //     option: "",
+  //     addPrice: 0,
+  //   });
+  //   setProductOption(copiedProductOption);
+  // };
 
-  const handleDeleteCategoryOption = (categoryIndex) => {
-    const copiedProductOption = _.cloneDeep(productOption);
-    copiedProductOption[categoryIndex].options.pop();
-    setProductOption(copiedProductOption);
-  };
+  // const handleDeleteCategoryOption = (categoryIndex) => {
+  //   const copiedProductOption = _.cloneDeep(productOption);
+  //   copiedProductOption[categoryIndex].options.pop();
+  //   setProductOption(copiedProductOption);
+  // };
 
   useEffect(() => {
     previewImage();
@@ -115,12 +106,7 @@ const RegistrationProductPage = () => {
 
         <div className={classes.section}>
           <RegistrationProductCategory
-            register={register}
-            productOption={productOption}
-            handleAddCategory={handleAddCategory}
-            handleDeleteCategory={handleDeleteCategory}
-            handleAddCategoryOption={handleAddCategoryOption}
-            handleDeleteCategoryOption={handleDeleteCategoryOption}
+            setProductRegistrationState={setProductRegistrationState}
           />
         </div>
 
