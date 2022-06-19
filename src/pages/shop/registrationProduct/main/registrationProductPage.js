@@ -41,14 +41,10 @@ const RegistrationProductPage = () => {
     },
   ];
 
-  const dummy_product_detail = [{ image: "", description: "" }];
-
   const { register, handleSubmit } = useForm();
 
   const [productFiles, setProductFiles] = useState();
-  const [productInfo, setProductInfo] = useState();
   const [productOption, setProductOption] = useState(dummy_productOptions);
-  const [productDetail, setProductDetail] = useState(dummy_product_detail);
 
   // 상품 기본 정보
 
@@ -102,20 +98,6 @@ const RegistrationProductPage = () => {
     setProductOption(copiedProductOption);
   };
 
-  // 상품 상세 설명
-
-  const handleAddDetail = () =>
-    setProductDetail((prev) => [...prev, { image: "", description: "" }]);
-
-  const handleDeleteDetail = () =>
-    setProductDetail((prev) => [...prev.slice(0, prev.length - 1)]);
-
-  // 최종 제출
-
-  const handleSubmitForm = (data) => {
-    console.log("onSubmit :: ", data);
-  };
-
   useEffect(() => {
     previewImage();
     return () => previewImage();
@@ -123,13 +105,11 @@ const RegistrationProductPage = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit((data) => handleSubmitForm(data))}>
+      <form>
         <h1>상품등록</h1>
         <div className={classes.section}>
           <RegistrationProductInfo
             setProductRegistrationState={setProductRegistrationState}
-            // register={register}
-            // handleUploadImage={handleUploadImage}
           />
         </div>
 
@@ -147,9 +127,6 @@ const RegistrationProductPage = () => {
         <div className={classes.section}>
           <RegistrationProductDetail
             setProductRegistrationState={setProductRegistrationState}
-            productDetail={productDetail}
-            handleAddDetail={handleAddDetail}
-            handleDeleteDetail={handleDeleteDetail}
           />
         </div>
 
