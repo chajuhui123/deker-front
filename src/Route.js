@@ -103,14 +103,14 @@ function RouteComponent() {
       />
       <Route path="/modifyPassword" component={ModifyPasswordPage} exact />
       <Route path="/mypresent" component={MyPresentPage} exact />
-      <RestrictRoute
+      <Route
         path="/question"
         exact
-        isLoggedIn={!isLoggedIn}
+        // isLoggedIn={!isLoggedIn}
         component={OneToOneQuestionPage}
-        fallback={RedriectMain}
+        // fallback={RedriectMain}
       />
-      <RestrictRoute
+      <Route
         path="/myReview"
         exact
         isLoggedIn={!isLoggedIn}

@@ -12,16 +12,6 @@
   display: none;
 }
 
-.InfoArea {
-  position: relative;
-  margin: auto;
-  margin-top: 20px;
-  width: 80%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-}
-
 .profilePic {
   position: relative;
   width: 123px;
@@ -32,6 +22,16 @@
   left: 50%;
   transform: translate(-50%, -0%);
   opacity: 1;
+}
+
+.InfoArea {
+  position: relative;
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .modifyUserInfo_row1 {

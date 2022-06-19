@@ -57,7 +57,7 @@ function NavigationBar() {
   };
 
   const navigationBarCallBack = (res) => {
-    console.log(res.data);
+    // console.log(res.data);
     if (!!res) {
       setMenuImgUrl(res.data.menuImgUrl);
       setMainNavMenu(res.data.menu);
