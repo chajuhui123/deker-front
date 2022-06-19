@@ -43,3 +43,30 @@
   font: normal normal 15px/18px Roboto;
   color: #848484;
 }
+
+.profileImgInput {
+  /* width: 100%; */
+  display: none;
+}
+
+.profilePic {
+  position: relative;
+  max-width: 400px;
+  max-height: 500px;
+  margin-top: 30px;
+  border: 1px solid #707070a3;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  opacity: 1;
+}
+
+.submitBtn {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.signin_valid {
+  height: 35px;
+  margin-top: 10px;
+  color: red;
+}
