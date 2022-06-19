@@ -9,6 +9,19 @@ import RegistrationProductCategory from "components/shop/registrationProduct/cat
 const RegistrationProductPage = () => {
   const _ = require("lodash");
 
+  const [productRegistrationState, setProductRegistrationState] = useState({
+    productImg: "",
+    productInfo: {
+      category: "",
+      name: "",
+      basePrice: 0,
+      quantity: 0,
+      explain: "",
+    },
+    productOption: [],
+    productDetail: [],
+  });
+
   const dummy_category = [
     { label: "가구", value: "" },
     { label: "가전제품", value: "" },
@@ -97,6 +110,12 @@ const RegistrationProductPage = () => {
   const handleDeleteDetail = () =>
     setProductDetail((prev) => [...prev.slice(0, prev.length - 1)]);
 
+  // 최종 제출
+
+  const handleSubmitForm = (data) => {
+    console.log("onSubmit :: ", data);
+  };
+
   useEffect(() => {
     previewImage();
     return () => previewImage();
@@ -104,14 +123,13 @@ const RegistrationProductPage = () => {
 
   return (
     <div>
-      <form
-        onSubmit={handleSubmit((data) => console.log("onSubmit :: ", data))}
-      >
+      <form onSubmit={handleSubmit((data) => handleSubmitForm(data))}>
         <h1>상품등록</h1>
         <div className={classes.section}>
           <RegistrationProductInfo
-            register={register}
-            handleUploadImage={handleUploadImage}
+            setProductRegistrationState={setProductRegistrationState}
+            // register={register}
+            // handleUploadImage={handleUploadImage}
           />
         </div>
 
