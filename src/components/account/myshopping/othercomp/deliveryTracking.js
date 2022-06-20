@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { postApi } from "api/fetch-api";
 import classes from "./deliveryTracking.module.css";
-import InfoProduct from "components/account/accountReview/accountReviewModal/infoProduct";
+import InfoProduct from "components/account/myreview/modal/infoProduct";
 import ModalTitle from "components/common/modalTitle";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import { useDispatch } from "react-redux";
