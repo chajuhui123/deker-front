@@ -1,12 +1,12 @@
 import CommonPageTitle from "components/common/commPageTitle";
-import AccntList from "../../components/account/mypage/acctlist/accntList";
+import AccntList from "components/account/mypage/acctlist/accntList";
 import classes from "./accountFollowing.module.css";
 
 import { useCallback, useEffect, useState } from "react";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
 
-const AcctFllwngPage = (props) => {
+const AcctFllwngPage = props => {
   const { location } = props;
 
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const AcctFllwngPage = (props) => {
 
   // 팔로우, 팔로잉 목록 받아오기
   const fnCallback = useCallback(
-    (res) => {
+    res => {
       if (!!res) {
         setCurrentPageNo(res.data.currentPageNo);
         setTotalCount(res.data.totalCount);
@@ -53,11 +53,11 @@ const AcctFllwngPage = (props) => {
   }, [dispatch, fnCallback, location.state.follow]);
 
   // 팔로우, 언팔로우
-  const fnIsSuccessCallback = (res) => {
+  const fnIsSuccessCallback = res => {
     console.log(`isFollow or isDelete :: res :: ${JSON.stringify(res)}`);
   };
 
-  const isUnFollowBtnHandler = (data) => {
+  const isUnFollowBtnHandler = data => {
     // 해당 계정을 팔로우 하겠다 (true)
     if (!data.isFollowing) {
       console.log("This is follow");
@@ -82,7 +82,7 @@ const AcctFllwngPage = (props) => {
     }
   };
 
-  const fnIsSuccessDeleteCallback = (res) => {
+  const fnIsSuccessDeleteCallback = res => {
     if (!!res) {
       console.log(`isFollow or isDelete :: res :: ${JSON.stringify(res)}`);
     } else {
@@ -91,7 +91,7 @@ const AcctFllwngPage = (props) => {
   };
 
   // 해당 계정을 팔로우 삭제하겠다.
-  const isDeleteBtnHandler = (data) => {
+  const isDeleteBtnHandler = data => {
     dispatch(
       postApi(
         "mb/cmm/rmv/follow-me",

@@ -1,6 +1,6 @@
 import { postApi } from "api/fetch-api";
-import MyReviewableList from "components/account/accountReview/myReviewableList";
-import MyReviewedList from "components/account/accountReview/myReviewedList";
+import MyReviewableList from "components/account/myreview/myReviewableList";
+import MyReviewedList from "components/account/myreview/myReviewedList";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -10,13 +10,13 @@ const MyReviewPage = () => {
   const [reviewableItems, setReviewableItems] = useState([]);
   const [reviewedItems, setReviewedItems] = useState([]);
 
-  const fnReviewableItemsCallback = (res) => {
+  const fnReviewableItemsCallback = res => {
     if (!!res) {
       setReviewableItems(res?.data);
     }
   };
 
-  const fnReviewedItemsCallback = (res) => {
+  const fnReviewedItemsCallback = res => {
     if (!!res) {
       setReviewedItems(res?.data);
     }

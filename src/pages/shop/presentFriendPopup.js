@@ -16,7 +16,7 @@ function PresentFriendPopup(props) {
 
   // 팔로우, 팔로잉 목록 받아오기
   const fnCallback = useCallback(
-    (res) => {
+    res => {
       if (!!res) {
         setCurrentPageNo(res.data.currentPageNo);
         setTotalCount(res.data.totalCount);
@@ -45,7 +45,7 @@ function PresentFriendPopup(props) {
   }, [dispatch, fnCallback, presentAccntInput]);
 
   // 선물할 계정 검색
-  const productLinkInputHandler = (e) => {
+  const productLinkInputHandler = e => {
     setPresentAccntInput(e.target.value);
   };
 
@@ -61,7 +61,7 @@ function PresentFriendPopup(props) {
   };
 
   // 선물할 계정이 선택되면 해당 계정 결제페이지로 보내고 팝업 닫기
-  const presentSelectHandler = (data) => {
+  const presentSelectHandler = data => {
     props.presentUserIdHandler(data);
     dispatch(modalAction.modalPopup({ isOpen: false }));
   };

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import CommAlert from "components/common/commAlert";
 import { postApi } from "api/fetch-api";
-import { isPassword } from "../api/check";
+import { isPassword } from "../../../api/check";
 import { modalAction } from "store/modal-slice";
 import { API_MOD_PASSWORD } from "api/account-api";
 
@@ -28,7 +28,7 @@ function ModifyPassword() {
     );
   };
 
-  const fnCallbackModifyPassword = (res) => {
+  const fnCallbackModifyPassword = res => {
     if (!!res) {
       dispatch(
         modalAction.modalPopup({
@@ -73,7 +73,7 @@ function ModifyPassword() {
         id="password"
         className="modifyPass-input"
         required
-        onChange={(event) => {
+        onChange={event => {
           setInputPassword(event.target.value);
         }}
       />
@@ -83,7 +83,7 @@ function ModifyPassword() {
         id="password-check"
         className="modifyPass-input"
         required
-        onChange={(event) => {
+        onChange={event => {
           setReInputPassword(event.target.value);
         }}
       />

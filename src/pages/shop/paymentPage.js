@@ -1,4 +1,4 @@
-import DeliverySelect from "components/account/myshopping/deliverySelect";
+import DeliverySelect from "components/account/myshopping/othercomp/deliverySelect";
 import CommBtn from "components/common/commBtn";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
@@ -14,7 +14,7 @@ import MyOrderPrdtList from "components/account/myshopping/subcomp/myOrderPrdtLi
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { postApi } from "api/fetch-api";
 
-const PaymentPage = (props) => {
+const PaymentPage = props => {
   const dispatch = useDispatch();
 
   const location = useLocation();
@@ -37,25 +37,25 @@ const PaymentPage = (props) => {
   const [productName, setProductName] = useState("");
   const [productListToPay, setProductListToPay] = useState(null);
 
-  const orderNmInputHandler = (e) => {
+  const orderNmInputHandler = e => {
     setOerderNm(e.target.value);
   };
   // const emailInputHandler = (e) => {
   //   setEmail(e.target.value);
   // };
-  const telNoInputHandler = (e) => {
+  const telNoInputHandler = e => {
     setTelNo(e.target.value);
   };
-  const rcvNmInputHandler = (e) => {
+  const rcvNmInputHandler = e => {
     setRcvNm(e.target.value);
   };
-  const rcvTelNoInputHandler = (e) => {
+  const rcvTelNoInputHandler = e => {
     setRcvTelNo(e.target.value);
   };
-  const rcvAddrInputHandler = (e) => {
+  const rcvAddrInputHandler = e => {
     setRcvZipCode(e.target.value);
   };
-  const deliMemoInputHandler = (e) => {
+  const deliMemoInputHandler = e => {
     setDeliMemo(e.target.value);
   };
 
@@ -78,7 +78,7 @@ const PaymentPage = (props) => {
     setRcvTelNo(telNo);
   };
 
-  const deliveryAddrSelectHandler = (deliveryInfo) => {
+  const deliveryAddrSelectHandler = deliveryInfo => {
     setRcvNm(deliveryInfo.userNm);
     setRcvTelNo(deliveryInfo.userPn);
     setRcvZipCode(deliveryInfo.zipCode);
@@ -99,7 +99,7 @@ const PaymentPage = (props) => {
   };
 
   // 선물할 계정 받아옴
-  const presentUserIdHandler = (data) => {
+  const presentUserIdHandler = data => {
     setPresentUserId(data);
     console.log(presentUserId);
   };
@@ -117,7 +117,7 @@ const PaymentPage = (props) => {
   const [productOptionIdList, setProductOptionIdList] = useState(null);
   const [orderQuantityList, setPrderQuantityList] = useState(null);
 
-  const fnCallbackCartSelect = (res) => {
+  const fnCallbackCartSelect = res => {
     if (!!res) {
       console.log("Back data: " + res.data.productOption);
       setProductListToPay(res.data.productOption);
@@ -133,7 +133,7 @@ const PaymentPage = (props) => {
       let productOptionIdListArry = [];
       let orderedProductListArray = [];
 
-      res.data.productOption.forEach((id) => {
+      res.data.productOption.forEach(id => {
         if (id.productOptionId) {
           productOptionIdListArry.push(id.productOptionId);
           orderedProductListArray.push(id.orderQuantity);
