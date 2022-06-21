@@ -1,7 +1,7 @@
 import classes from "./myReviewItem.module.css";
 import { useDispatch } from "react-redux";
 import { modalAction } from "../../../store/modal-slice";
-import ModalContUploadUpdateReview from "./accountReviewModal/modalContUploadUpdateReview";
+import ModalContUploadUpdateReview from "./modal/modalContUploadUpdateReview";
 
 function MyReviewItem({
   mktProductId,
