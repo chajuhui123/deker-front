@@ -13,13 +13,13 @@ import StoreMainPage from "pages/shop/StoreMainPage";
 import StoreSortPage from "pages/shop/StoreSortPage";
 import AccountMyPage from "pages/account/mypage/accountMyPage";
 import ProductDetailPage from "pages/shop/ProductDetail";
-import ModifyUserInfoPage from "pages/ModifyUserInfoPage";
+import ModifyUserInfoPage from "pages/account/mypage/modify/ModifyUserInfoPage";
 import ModifyPassword from "pages/account/modfiypw/modifyPassword";
 import PaymentCmpltPage from "pages/shop/paymentCmpltPage";
 import AlarmMain from "components/account/alarm/AlarmMain";
 import MarketCartPage from "pages/shop/cart/marketCartPage";
 import RestrictRoute from "components/common/RestrictRoute";
-import AcctFllwngPage from "pages/account/accountFollowingPage";
+import AcctFllwngPage from "pages/account/mypage/follow/accountFollowingPage";
 import CommunityMainPage from "pages/community/CommunityMainPage";
 import ModifyCommunityPage from "pages/community/ModifyCommunityPage";
 import CreateCommunityPage from "pages/community/CreateCommunityPage";
@@ -32,7 +32,7 @@ import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
 
 function RouteComponent() {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
   const RedriectMain = () => <Redirect to="/" />;
   return (
     <Switch>

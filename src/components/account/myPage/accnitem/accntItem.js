@@ -4,7 +4,7 @@ import { useState } from "react";
 import classes from "./accntItem.module.css";
 import noImg from "img/noImg.png";
 
-const AccntItem = (props) => {
+const AccntItem = props => {
   const [isFollowing, setIsFollowing] = useState(true);
   const [isDelete, setIsDelete] = useState(false);
 

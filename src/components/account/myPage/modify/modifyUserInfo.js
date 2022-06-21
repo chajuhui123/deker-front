@@ -24,7 +24,7 @@ function ModifyUserInfo(props) {
   const [tag, setTag] = useState([]);
 
   // 직업코드조회콜백
-  const fnJobCallback = (res) => {
+  const fnJobCallback = res => {
     if (!!res) {
       setJobArray(res.data);
     } else {
@@ -33,7 +33,7 @@ function ModifyUserInfo(props) {
     }
   };
 
-  const fnCallback = (res) => {
+  const fnCallback = res => {
     if (!!res) {
       let image = res.data.profileImg
         ? `${BASEURL}${res.data.profileImg}`
@@ -64,41 +64,41 @@ function ModifyUserInfo(props) {
   }, [dispatch]);
 
   // 이미지핸들러
-  const imageHandler = (e) => {
+  const imageHandler = e => {
     if (e.target.files.length > 0) {
       setPrevImage(URL.createObjectURL(e.target.files[0]));
       setProfileImg(e.target.files[0]);
     }
   };
   // 이미지 파일추가 팝업
-  const imageInputHandler = (e) => {
+  const imageInputHandler = e => {
     photoInputRef.current.click();
   };
 
-  const chgNickNmHandler = (e) => {
+  const chgNickNmHandler = e => {
     setNickNm(e.target.value);
   };
 
   // 직업코드선택핸들러
-  const jobChangeHandler = (value) => {
+  const jobChangeHandler = value => {
     setJobCode(value);
   };
 
   // 입력한 태그 값 저장 array
-  const tagOutHandler = (tagArry) => {
+  const tagOutHandler = tagArry => {
     // tag를 object->array 변환
-    const arry = tagArry.map((tag) => tag.text);
+    const arry = tagArry.map(tag => tag.text);
     setTag(arry);
   };
 
   // 저장후콜백메소드
-  const fnSbmtCallback = (res) => {
+  const fnSbmtCallback = res => {
     if (!!res) {
       history.push("/mypage");
     }
   };
 
-  const SubmitHandler = (e) => {
+  const SubmitHandler = e => {
     const formData = new FormData();
     formData.append("profileImg", profileImg); // 프로필 이미지
 

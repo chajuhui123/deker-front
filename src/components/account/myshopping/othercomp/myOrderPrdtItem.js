@@ -1,18 +1,18 @@
 import classes from "./myOrderPrdtItem.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import ModalContUploadUpdateReview from "../accountReview/accountReviewModal/modalContUploadUpdateReview";
+import ModalContUploadUpdateReview from "../../myreview/modal/modalContUploadUpdateReview";
 import ModalPopup from "components/common/modal";
 import noImg from "img/noImg.png";
 import { BASE_URL } from "module/common-module";
 import { modalAction } from "store/modal-slice";
-import BuyConfirmPopup from "./popup/buyConfirmPopup";
+import BuyConfirmPopup from "../popup/buyConfirmPopup";
 import CommBtn from "components/common/commBtn";
 import { useCallback, useEffect, useState } from "react";
 
 function MyOrderPrdtItem(props) {
-  const isOpen = useSelector((state) => state.modal.isOpen);
-  const modalId = useSelector((state) => state.modal.id);
-  const modalCont = useSelector((state) => state.modal.cont);
+  const isOpen = useSelector(state => state.modal.isOpen);
+  const modalId = useSelector(state => state.modal.id);
+  const modalCont = useSelector(state => state.modal.cont);
   const [isCheck, setIsCheck] = useState(false); // 상품이 장바구니 페이지에서 선택되었는 지
   const dispatch = useDispatch();
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import classes from "./modalTest.module.css";
-import DeliverySelect from "components/account/myshopping/deliverySelect";
-import DeliveryTracking from "components/account/myshopping/deliveryTracking";
+import DeliverySelect from "components/account/myshopping/othercomp/deliverySelect";
+import DeliveryTracking from "components/account/myshopping/othercomp/deliveryTracking";
 import { modalAction } from "store/modal-slice";
 import ProductSalesLink from "components/community/productSalesLinkPage";
 import CommBtn from "components/common/commBtn";
@@ -18,7 +18,7 @@ function ModalTest(props) {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const spinnerHandler = () => {
-    setIsLoading((prev) => !prev);
+    setIsLoading(prev => !prev);
   };
   const deliveryTrackingHandler = () => {
     dispatch(
@@ -46,7 +46,7 @@ function ModalTest(props) {
   const commPopupTestHandler = () => {
     dispatch(modalAction.modalPopup({ isOpen: true, cont: <CommPopup /> }));
   };
-  const fnCallback = (res) => {
+  const fnCallback = res => {
     console.log(res);
   };
   const tokenTest = () => {
@@ -89,7 +89,7 @@ function ModalTest(props) {
       { id: 7, isFollow: false },
       { id: 8, isFollow: false },
     ];
-    array.forEach((i) => {
+    array.forEach(i => {
       if (i.id === 1) {
         i.isFollow = true;
       }
@@ -112,7 +112,7 @@ function ModalTest(props) {
     { value: "J13", label: "교육" },
     { value: "J14", label: "서비스" },
   ];
-  const selectHandler = (v) => {
+  const selectHandler = v => {
     console.log(v);
   };
   return (

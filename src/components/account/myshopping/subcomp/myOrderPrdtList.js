@@ -1,4 +1,4 @@
-import MyOrderPrdtItem from "../myOrderPrdtItem";
+import MyOrderPrdtItem from "../othercomp/myOrderPrdtItem";
 import classes from "./myOrderPrdtList.module.css";
 
 function MyOrderPrdtList(props) {
@@ -6,7 +6,7 @@ function MyOrderPrdtList(props) {
     <div>
       {props.orderedProductList?.length ? (
         <ul className={classes.orderProductDetail}>
-          {props.orderedProductList.map((orderProduct) => (
+          {props.orderedProductList.map(orderProduct => (
             <li className={classes.productList}>
               {props.departure !== "productListToPay" && (
                 <div className={classes.orderNumber}>

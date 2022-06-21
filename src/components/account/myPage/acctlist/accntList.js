@@ -1,14 +1,14 @@
 import AccntItem from "../accnitem/accntItem";
 import classes from "./accntList.module.css";
 
-const AccntList = (props) => {
+const AccntList = props => {
   var departure = props.departure;
 
   return (
     <div>
       {props.accntLists?.length ? (
         <ul>
-          {props.accntLists.map((accntList) => (
+          {props.accntLists.map(accntList => (
             <li className={classes.accntList}>
               <AccntItem
                 key={accntList.id}

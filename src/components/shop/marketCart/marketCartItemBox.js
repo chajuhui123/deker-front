@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MyOrderPrdtItem from "components/account/myshopping/myOrderPrdtItem";
+import MyOrderPrdtItem from "components/account/myshopping/othercomp/myOrderPrdtItem";
 import classes from "./marketCartItemBox.module.css";
 import { postApi } from "api/fetch-api";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,7 @@ function MarketCartItemBox(props) {
   const selectPrdtYN = (isCheck, cartId, orderPrice) => {
     if (!isCheck) {
       // 추가
-      setSelectedPrdtCartIdList((selectedPrdtCartIdList) => [
+      setSelectedPrdtCartIdList(selectedPrdtCartIdList => [
         ...selectedPrdtCartIdList,
         cartId,
       ]);
@@ -24,7 +24,7 @@ function MarketCartItemBox(props) {
       // 삭제
       setSelectedPrdtCartIdList(
         selectedPrdtCartIdList.filter(
-          (newselectedPrdtCartIdList) => newselectedPrdtCartIdList !== cartId
+          newselectedPrdtCartIdList => newselectedPrdtCartIdList !== cartId
         )
       );
       setTotalPrice(totalPrice - orderPrice);
@@ -44,7 +44,7 @@ function MarketCartItemBox(props) {
   };
 
   /* 장바구니 상품 선택 삭제 Back 연결 */
-  const fnCallback = (res) => {
+  const fnCallback = res => {
     if (!!res) {
       console.log("cartItem Remove Success :: res :: ", res);
       props.pageReRenderingAftRmvCartItem();
@@ -73,7 +73,7 @@ function MarketCartItemBox(props) {
             <div onClick={selectedPrdtRmvHandler}>선택삭제</div>
           </div>
           <div>
-            {props.cartItemArray?.map((cartItemObject) => {
+            {props.cartItemArray?.map(cartItemObject => {
               return (
                 <MyOrderPrdtItem
                   key={cartItemObject.myOrderId}
