@@ -23,6 +23,7 @@ export function postApi(action, data, callback, spinner) {
     fetch(url, {
       method: "POST",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
         Authorization: token,
       },
