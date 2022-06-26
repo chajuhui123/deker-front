@@ -30,9 +30,10 @@ import RecentlyProduct from "components/shop/recently/RecentlyProduct";
 import AccountMyShoppingPage from "pages/account/myshopping/accountMyShoppingPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
+import OneToOneQuestionWritePage from "pages/account/oneToOneQuestionWritePage";
 
 function RouteComponent() {
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const RedriectMain = () => <Redirect to="/" />;
   return (
     <Switch>
@@ -107,6 +108,13 @@ function RouteComponent() {
         exact
         // isLoggedIn={!isLoggedIn}
         component={OneToOneQuestionPage}
+        // fallback={RedriectMain}
+      />
+      <Route
+        path="/question/write"
+        exact
+        // isLoggedIn={!isLoggedIn}
+        component={OneToOneQuestionWritePage}
         // fallback={RedriectMain}
       />
       <Route

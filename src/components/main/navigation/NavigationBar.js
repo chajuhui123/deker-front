@@ -83,8 +83,8 @@ function NavigationBar() {
         <div className={classes.navBarUserMenu}>
           {!isLoggedIn && (
             <>
-              <Link to="/signin">로그인</Link>
-              <Link to="/signup">회원가입</Link>
+              <Link to="/account/signin">로그인</Link>
+              <Link to="/account/signup">회원가입</Link>
             </>
           )}
           {!!isLoggedIn && (
