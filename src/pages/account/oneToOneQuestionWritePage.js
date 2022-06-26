@@ -6,6 +6,7 @@ import CommonPageTitle from "components/common/commPageTitle";
 import CommSelect from "components/common/CommSelect";
 import { useMemo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { modalAction } from "store/modal-slice";
 import classes from "./oneToOneQuestionWritePage.module.css";
 
@@ -28,6 +29,7 @@ function OneToOneQuestionWritePage(props) {
   const [prevImage, setPrevImage] = useState(null); // 미리보기 이미지
   const [isVaildEmail, setIsVaildEmail] = useState(true);
   const [isVaildPass, setIsVaildPass] = useState(true);
+  const history = useHistory();
 
   const questionSelectHandler = (e) => {
     setQuestion(e);
@@ -85,6 +87,7 @@ function OneToOneQuestionWritePage(props) {
       );
     } else {
       //   dispatch(modalAction.modalPopup({ isOpen: false }));
+      history.push("/question");
     }
   };
 
