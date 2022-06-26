@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import CommInput from "components/common/commInput";
-import DeleteButton from "components/common/deleteButton/deleteButton";
-import AddSectionButton from "components/common/addSectionButton/addSectionButton";
 import AddButton from "components/common/addButton/addButton";
+import DeleteButton from "components/common/deleteButton/deleteButton";
 
 function RegistrationProductDetail({ setProductRegistrationState }) {
   const [productPhoto, setProductPhoto] = useState();
