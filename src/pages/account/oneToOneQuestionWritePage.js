@@ -164,7 +164,7 @@ function OneToOneQuestionWritePage(props) {
           btnCursor="pointer"
           fnClick={submitBtnHandler}
         />
-        <div className={classes.signin_valid}>
+        {/* <div className={classes.signin_valid}>
           {!isVaildEmail && isVaildPass && (
             <textarea>올바른 이메일 형태를 입력해주세요.</textarea>
           )}
@@ -173,7 +173,7 @@ function OneToOneQuestionWritePage(props) {
               영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.
             </textarea>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
