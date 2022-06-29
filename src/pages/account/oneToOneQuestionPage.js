@@ -3,27 +3,14 @@ import CommBtn from "components/common/commBtn";
 import CommonPageTitle from "components/common/commPageTitle";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { modalAction } from "store/modal-slice";
 import classes from "./oneToOneQuestionPage.module.css";
-import OneToOneQuestionWritePage from "./oneToOneQuestionWritePage";
 
 function OneToOneQuestionPage(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const productClickHandler = () => {
-    // modal close
-    dispatch(modalAction.modalPopup({ isOpen: false }));
-  };
-
   const goWritePage = () => {
     history.push("/question/write");
-    // dispatch(
-    //   modalAction.modalPopup({
-    //     isOpen: true,
-    //     cont: <OneToOneQuestionWritePage />,
-    //   })
-    // );
   };
 
   const dummy_question = [
