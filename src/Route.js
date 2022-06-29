@@ -31,6 +31,7 @@ import AccountMyShoppingPage from "pages/account/myshopping/accountMyShoppingPag
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
 import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
 import OneToOneQuestionWritePage from "pages/account/oneToOneQuestionWritePage";
+import OneToOneAnswerPage from "pages/account/oneToOneAnswerPage";
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -115,6 +116,13 @@ function RouteComponent() {
         exact
         // isLoggedIn={!isLoggedIn}
         component={OneToOneQuestionWritePage}
+        // fallback={RedriectMain}
+      />
+      <Route
+        path="/questionAnswer"
+        exact
+        // isLoggedIn={!isLoggedIn}
+        component={OneToOneAnswerPage}
         // fallback={RedriectMain}
       />
       <Route
