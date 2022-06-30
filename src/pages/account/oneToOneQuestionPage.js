@@ -20,6 +20,7 @@ function OneToOneQuestionPage(props) {
       questionCntnts:
         "이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용",
       questionImg: "img",
+      answerCntnts: "이것은 답변 이것은 답변 이것은 답변 이것은 답변",
     },
     {
       questionOption: "상품문의",
@@ -33,6 +34,7 @@ function OneToOneQuestionPage(props) {
       questionTitle: "이것은 제목",
       questionCntnts:
         "이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용",
+      answerCntnts: "이것은 답변 이것은 답변 이것은 답변 이것은 답변",
     },
     {
       questionOption: "상품문의",
@@ -72,7 +74,7 @@ function OneToOneQuestionPage(props) {
   return (
     <div className={classes.Layout}>
       <CommonPageTitle title="나의 문의하기" />
-      <QuestionList questionList={dummy_question} />
+      <QuestionList questionList={dummy_question} departure={"user"} />
       <div className={classes.newQuestionBtn}>
         <CommBtn
           btnText="새로 문의하기"

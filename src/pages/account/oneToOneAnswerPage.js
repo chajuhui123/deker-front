@@ -78,7 +78,7 @@ function OneToOneAnswerPage() {
   return (
     <div className={classes.Layout}>
       <CommonPageTitle title="문의목록" />
-      <QuestionList questionList={dummy_question} />
+      <QuestionList questionList={dummy_question} departure={"admin"} />
       <div className={classes.newQuestionBtn}>
         {/* <CommBtn
           btnText="새로 문의하기"

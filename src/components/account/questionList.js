@@ -13,6 +13,8 @@ function QuestionList(props) {
                 questionTitle={myQuestion.questionTitle}
                 questionCntnts={myQuestion.questionCntnts}
                 questionImg={myQuestion.questionImg}
+                answerCntnts={myQuestion.answerCntnts}
+                departure={props.departure}
               />
             </li>
           ))}
