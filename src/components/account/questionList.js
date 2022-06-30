@@ -9,8 +9,12 @@ function QuestionList(props) {
           {props.questionList.map((myQuestion) => (
             <li>
               <QuestionItem
-                title={myQuestion.title}
-                content={myQuestion.content}
+                questionOption={myQuestion.questionOption}
+                questionTitle={myQuestion.questionTitle}
+                questionCntnts={myQuestion.questionCntnts}
+                questionImg={myQuestion.questionImg}
+                answerCntnts={myQuestion.answerCntnts}
+                departure={props.departure}
               />
             </li>
           ))}

@@ -25,10 +25,10 @@ function OneToOneQuestionWritePage(props) {
   const [isFileSelected, setIsFileSelected] = useState(false);
   const photoInputRef = useRef();
   const dispatch = useDispatch();
-  const [profileImg, setProfileImg] = useState(null);
+  const [questionImg, setQuestionImg] = useState(null);
   const [prevImage, setPrevImage] = useState(null); // 미리보기 이미지
-  const [isVaildEmail, setIsVaildEmail] = useState(true);
-  const [isVaildPass, setIsVaildPass] = useState(true);
+  // const [isVaildEmail, setIsVaildEmail] = useState(true);
+  // const [isVaildPass, setIsVaildPass] = useState(true);
   const history = useHistory();
 
   const questionSelectHandler = (e) => {
@@ -54,7 +54,7 @@ function OneToOneQuestionWritePage(props) {
   const imageHandler = (e) => {
     if (e.target.files.length > 0) {
       setPrevImage(URL.createObjectURL(e.target.files[0]));
-      setProfileImg(e.target.files[0]);
+      setQuestionImg(e.target.files[0]);
       setIsFileSelected(true);
     }
   };
@@ -152,7 +152,7 @@ function OneToOneQuestionWritePage(props) {
         {!isFileSelected ? (
           <div className={classes.noFileSelectedArea}>선택된 파일 없음</div>
         ) : (
-          <div className={classes.noFileSelectedArea}>{profileImg.name}</div>
+          <div className={classes.noFileSelectedArea}>{questionImg.name}</div>
         )}
         <div className={classes.noFileSelectedArea}>
           5MB 이하의 이미지 파일 형식
@@ -164,7 +164,7 @@ function OneToOneQuestionWritePage(props) {
           btnCursor="pointer"
           fnClick={submitBtnHandler}
         />
-        <div className={classes.signin_valid}>
+        {/* <div className={classes.signin_valid}>
           {!isVaildEmail && isVaildPass && (
             <textarea>올바른 이메일 형태를 입력해주세요.</textarea>
           )}
@@ -173,7 +173,7 @@ function OneToOneQuestionWritePage(props) {
               영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.
             </textarea>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

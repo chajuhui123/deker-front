@@ -38,3 +38,18 @@
   font: normal normal normal 15px/25px Roboto;
   padding: 15px 20px;
 }
+
+.answerArea {
+  position: relative;
+  margin: auto;
+  width: 98%;
+}
+
+.answerSubmitBtn {
+  float: right;
+}
+
+.answerCntntsArea {
+  margin-top: 20px;
+  font: normal normal normal 20px/25px Roboto;
+}
