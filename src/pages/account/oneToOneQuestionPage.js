@@ -15,34 +15,57 @@ function OneToOneQuestionPage(props) {
 
   const dummy_question = [
     {
-      title: "이것 문의",
-      content:
+      questionOption: "상품문의",
+      questionTitle: "이것은 제목",
+      questionCntnts:
+        "이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용",
+      questionImg: "img",
+    },
+    {
+      questionOption: "상품문의",
+      questionTitle: "저것은 제목",
+      questionCntnts:
+        "저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용",
+      questionImg: "img",
+    },
+    {
+      questionOption: "배송문의",
+      questionTitle: "이것은 제목",
+      questionCntnts:
         "이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용",
     },
     {
-      title: "저것 문의",
-      content:
+      questionOption: "상품문의",
+      questionTitle: "저것은 제목",
+      questionCntnts:
         "저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용",
+      questionImg: "img",
     },
     {
-      title: "이것 문의",
-      content:
+      questionOption: "배송문의",
+      questionTitle: "이것은 제목",
+      questionCntnts:
         "이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용",
     },
     {
-      title: "저것 문의",
-      content:
+      questionOption: "상품문의",
+      questionTitle: "저것은 제목",
+      questionCntnts:
         "저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용",
+      questionImg: "img",
     },
     {
-      title: "이것 문의",
-      content:
+      questionOption: "배송문의",
+      questionTitle: "이것은 제목",
+      questionCntnts:
         "이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용 이것은 내용",
     },
     {
-      title: "저것 문의",
-      content:
+      questionOption: "상품문의",
+      questionTitle: "저것은 제목",
+      questionCntnts:
         "저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용 저것은 내용",
+      questionImg: "img",
     },
   ];
 
