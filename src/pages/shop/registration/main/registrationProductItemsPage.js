@@ -9,6 +9,7 @@ const RegistrationProductItemPage = () => {
   ];
 
   useEffect(() => {
+    // 권한 확인 state 정의
     // 권한 요청
     // 권한 확인
   });
