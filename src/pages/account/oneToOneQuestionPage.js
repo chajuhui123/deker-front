@@ -1,13 +1,13 @@
 import QuestionList from "components/account/questionList";
 import CommBtn from "components/common/commBtn";
 import CommonPageTitle from "components/common/commPageTitle";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import classes from "./oneToOneQuestionPage.module.css";
 
 function OneToOneQuestionPage(props) {
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const goWritePage = () => {
     history.push("/question/write");

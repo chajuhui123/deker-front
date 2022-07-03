@@ -4,7 +4,7 @@ import CommInput from "components/common/commInput";
 import CommPageSemiTitle from "components/common/commPageSemiTitle";
 import CommonPageTitle from "components/common/commPageTitle";
 import CommSelect from "components/common/CommSelect";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { modalAction } from "store/modal-slice";
