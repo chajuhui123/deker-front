@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import classes from "./registrationProductPage.module.css";
 import CommBtn from "components/common/commBtn";
-import RegistrationProductInfo from "components/shop/registrationProduct/info/registrationProductInfo";
-import RegistrationProductDetail from "components/shop/registrationProduct/detail/registrationProductDetail";
-import RegistrationProductCategory from "components/shop/registrationProduct/category/registrationProductCategory";
+import RegistrationProductInfo from "components/shop/registration/admin/info/registrationProductInfo";
+import RegistrationProductDetail from "components/shop/registration/admin/detail/registrationProductDetail";
+import RegistrationProductCategory from "components/shop/registration/admin/category/registrationProductCategory";
 
 const RegistrationProductPage = () => {
   const [productRegistrationState, setProductRegistrationState] = useState({
@@ -18,6 +18,8 @@ const RegistrationProductPage = () => {
     productOption: [],
     productDetail: [],
   });
+
+  console.log(productRegistrationState);
 
   const dummy_category = [
     { label: "가구", value: "" },
