@@ -29,9 +29,12 @@ import MarketRecentlyViewPage from "pages/shop/MarketRecentlyViewPage";
 import RecentlyProduct from "components/shop/recently/RecentlyProduct";
 import AccountMyShoppingPage from "pages/account/myshopping/accountMyShoppingPage";
 import CommunitySemiPage from "components/community/semi/CommunitySemiPage";
-import RegistrationProductPage from "pages/shop/registrationProduct/main/registrationProductPage";
+
+import RegistrationProductItemPage from "pages/shop/registration/main/registrationProductItemsPage";
+import RegistrationProductPage from "pages/shop/registration/admin/registrationProductPage";
 import OneToOneQuestionWritePage from "pages/account/oneToOneQuestionWritePage";
 import OneToOneAnswerPage from "pages/account/oneToOneAnswerPage";
+
 
 function RouteComponent() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -173,8 +176,14 @@ function RouteComponent() {
       <Route path="/market/recently" exact>
         <RecentlyProduct />
       </Route>
+
       <Route
-        path="/market/registration-product"
+        path="/market/registration-product/main"
+        exact
+        component={RegistrationProductItemPage}
+      />
+      <Route
+        path="/market/registration-product/admin"
         exact
         component={RegistrationProductPage}
       />

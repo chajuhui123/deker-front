@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./registrationProductInfo.module.css";
 import CommInput from "components/common/commInput";
 
 function RegistrationProductInfo({ setProductRegistrationState }) {
+  const [previewImg, setPreviewImg] = useState("");
   const handleChangeProductInfo = (changeObj) => {
     setProductRegistrationState((prev) => {
       return {
@@ -13,6 +14,13 @@ function RegistrationProductInfo({ setProductRegistrationState }) {
         },
       };
     });
+  };
+
+  const handleUpdateImage = (event) => {
+    setProductRegistrationState((prev) => {
+      return { ...prev, productImg: event.target.files[0] };
+    });
+    setPreviewImg(URL.createObjectURL(event.target.files[0]));
   };
 
   return (
@@ -26,13 +34,17 @@ function RegistrationProductInfo({ setProductRegistrationState }) {
             id="represent-img"
             type="file"
             accept="img/*"
-            onChange={(changeData) =>
-              setProductRegistrationState((prev) => {
-                return { ...prev, productImg: changeData };
-              })
-            }
+            onChange={handleUpdateImage}
           />
-          <label className={classes.imgLabel} for="represent-img" />
+          <label className={classes.imgLabel} for="represent-img">
+            {previewImg && (
+              <img
+                className={classes.previewImg}
+                alt="preview-img"
+                src={previewImg}
+              />
+            )}
+          </label>
         </div>
         <div className={classes.inputDiv}>
           {/* 2.카테고리 */}

@@ -4,17 +4,11 @@ import CommInput from "components/common/commInput";
 import AddButton from "components/common/addButton/addButton";
 import DeleteButton from "components/common/deleteButton/deleteButton";
 
-function RegistrationProductCategory({
-  setProductRegistrationState,
-  // productOption,
-  // handleAddCategory,
-  // handleDeleteCategory,
-  // handleAddCategoryOption,
-  // handleDeleteCategoryOption,
-}) {
+function RegistrationProductCategory({ setProductRegistrationState }) {
   const [optionCategory, setOptionCategory] = useState("");
   const [productOption, setProductOption] = useState([]);
 
+  // 카테고리 추가
   const handleAddCategory = () => {
     if (optionCategory === "" || productOption.length >= 2) return;
     setProductOption((prev) => [
@@ -22,6 +16,34 @@ function RegistrationProductCategory({
       { category: optionCategory, options: [] },
     ]);
     setOptionCategory("");
+  };
+
+  // 카테고리 제거
+  const handleDeleteCategory = (index) => {
+    setProductOption((prev) => {
+      console.log(prev);
+      const removed = prev.splice(index, 1);
+      return [...prev];
+    });
+  };
+
+  // 카테고리 옵션 추가
+  const handleAddCategoryOption = () => {
+    setProductOption((prev) => [
+      ...prev,
+      { category: optionCategory, options: [] },
+    ]);
+    setProductRegistrationState((prev) => []);
+    setOptionCategory("");
+  };
+
+  // 카테고리 옵션 제거
+  const handleDeleteCategoryOption = (index) => {
+    setProductOption((prev) => {
+      console.log(prev);
+      const removed = prev.splice(index, 1);
+      return [...prev];
+    });
   };
 
   return (
@@ -47,7 +69,7 @@ function RegistrationProductCategory({
               <DeleteButton
                 color="#B30000"
                 size={20}
-                // onClick={handleDeleteCategory}
+                onClick={() => handleDeleteCategory(categoryIdx)}
                 style={{ margin: "0 0 0 5px" }}
               />
             </div>
@@ -64,25 +86,6 @@ function RegistrationProductCategory({
               />
               <AddButton onClick={console.log("추가")} />
             </div>
-            {/* {category?.options?.map((option) => {
-              return (
-                <div className={classes.flexDiv}>
-                  <CommInput
-                    type="string"
-                    placeholder="옵션"
-                    style={{ width: "40%" }}
-                  />
-                  <CommInput
-                    type="number"
-                    placeholder="추가 가격"
-                    style={{ width: "40%" }}
-                  />
-                  <DeleteButton
-                    onClick={() => handleDeleteCategoryOption(categoryIdx)}
-                  />
-                </div>
-              );
-            })} */}
           </div>
         );
       })}
