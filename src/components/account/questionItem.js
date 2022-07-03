@@ -6,14 +6,6 @@ import classes from "./questionItem.module.css";
 
 function QuestionItem(props) {
   const [answerText, setAnswerText] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const isCloseHandler = () => {
-    setIsOpen(false);
-  };
-
-  const isOpenHandler = () => {
-    setIsOpen(true);
-  };
 
   const answerSubmitBtnHandler = () => {
     console.log(answerText);
@@ -67,7 +59,7 @@ function QuestionItem(props) {
         ) : (
           props.answerCntnts && (
             <div className={classes.answerCntntsArea}>
-              안녕하세요 DEKER 입니다 :) {props.answerCntnts}
+              안녕하세요 DEKER 입니다. {props.answerCntnts}
             </div>
           )
         )}
