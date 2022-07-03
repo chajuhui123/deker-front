@@ -131,7 +131,7 @@ function SigninForm() {
         <Link to="/" className={classes.signin_link}>
           비밀번호 재설정
         </Link>
-        <Link to="/signup" className={classes.signin_link}>
+        <Link to="/account/signup" className={classes.signin_link}>
           회원가입
         </Link>
       </div>

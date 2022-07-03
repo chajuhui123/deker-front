@@ -82,7 +82,7 @@ function Signup(props) {
           jwtToken: res.data.jwtToken,
         })
       );
-      history.push("/signup/additional");
+      history.push("/account/signupadd");
     } else {
       dispatch(
         modalAction.modalPopup({

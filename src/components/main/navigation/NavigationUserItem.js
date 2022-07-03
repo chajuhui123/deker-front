@@ -14,21 +14,29 @@ function NavigationUserItem({ clickOnMenu }) {
     <>
       {!isLoggedIn && (
         <li className={classes.navItem}>
-          <Link to="/signup" className={classes.navLink} onClick={clickOnMenu}>
+          <Link
+            to="/account/signup"
+            className={classes.navLink}
+            onClick={clickOnMenu}
+          >
             회원가입
           </Link>
         </li>
       )}
       {!isLoggedIn && (
         <li className={classes.navItem}>
-          <Link to="/signin" className={classes.navLink} onClick={clickOnMenu}>
+          <Link
+            to="/account/signin"
+            className={classes.navLink}
+            onClick={clickOnMenu}
+          >
             로그인
           </Link>
         </li>
       )}
       {isLoggedIn && (
         <li className={classes.navItem}>
-          <Link to="/mypage" className={classes.navLink}>
+          <Link to="/account/mypage" className={classes.navLink}>
             회원프로필
           </Link>
         </li>
