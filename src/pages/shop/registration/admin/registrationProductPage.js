@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./registrationProductPage.module.css";
 import CommBtn from "components/common/commBtn";
 import RegistrationProductInfo from "components/shop/registration/admin/info/registrationProductInfo";
@@ -28,6 +28,12 @@ const RegistrationProductPage = () => {
     { label: "사무용품", value: "" },
     { label: "데코", value: "" },
   ];
+
+  useEffect(() => {
+    // 권한 확인 state 정의
+    // 권한 요청
+    // 권한 확인
+  });
 
   return (
     <div>

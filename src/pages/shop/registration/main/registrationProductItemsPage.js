@@ -1,5 +1,5 @@
 import CardRegistrationProduct from "components/shop/registration/main/cardRegistrationProduct";
-import React from "react";
+import React, { useEffect } from "react";
 
 const RegistrationProductItemPage = () => {
   const DUMMY_ITEMS = [
@@ -7,6 +7,11 @@ const RegistrationProductItemPage = () => {
     { img: "", productName: "테스트2" },
     { img: "", productName: "테스트3" },
   ];
+
+  useEffect(() => {
+    // 권한 요청
+    // 권한 확인
+  });
 
   return (
     <div>
